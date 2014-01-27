@@ -79,6 +79,9 @@ void onTrackbar(int value, void* data);
 
 int main(int argc, char* argv[])
 {
+    String inputDir="/Users/donj/workspace/cs585/Lab2/Lab2/";
+    String test=inputDir+argv[1];
+    
     if (argc < 2)
     {
         cout<<"Usage: Lab2 imageName"<<endl;
@@ -87,7 +90,7 @@ int main(int argc, char* argv[])
     outputCounter=1;
     
     //load in the image and convert it to gray scale
-    readImageAndConvert(argv[1], original);
+    readImageAndConvert(inputDir+argv[1], original);
     if(original.empty())
     {
         cout<<"Unable to open the image file: "<<argv[1]<<endl;
@@ -149,7 +152,7 @@ int main(int argc, char* argv[])
         if(key == 'S' || key == 's')
         {
             char filename[512];
-            snprintf(filename, "outputFile_%03d.png", outputCounter);
+            sprintf(filename, "outputFile_%03d.png", outputCounter);
             imwrite(filename, displayImage);
             cout<<"Image Saved: "<<filename<<endl;
             outputCounter++;
@@ -405,7 +408,7 @@ bool markImageForDisplay(Mat& gray, Mat& output, Mat& mask)
     
     //anywhere that is marked in the mask image, suppress the green and blue
     //channels so that the region will be highlighted red
-    //int numchannels = mask.channels();
+    int numchannels = mask.channels();
     for(int row=0; row<output.rows; row++)
     {
         unsigned char* maskPtr = mask.ptr<unsigned char>(row);
@@ -460,8 +463,8 @@ static void onClickCallback( int event, int x, int y, int q, void* data)
     markImageForDisplay(image, displayImage, maskImage);
     double dx = dX.at<float>(y,x);
     double dy = dY.at<float>(y,x);
-    //double magnitude = sqrt(dx*dx + dy*dy);
-    //double direction = atan2(dy, dx)*180.0/M_PI;
+    double magnitude = sqrt(dx*dx + dy*dy);
+    double direction = atan2(dy, dx)*180.0/M_PI;
     cout<<"Point: ("<<x<<", "<<y<<"). Gradient = ("<<dx<<", "<<dy<<")"<<endl;
 }
 
