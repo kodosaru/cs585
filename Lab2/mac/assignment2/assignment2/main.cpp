@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  Lab2
+//  Assignment2
 //
 //  Created by Donald Johnson on 1/28/14.
 //  Copyright (c) 2014 Donald Johnson. All rights reserved.

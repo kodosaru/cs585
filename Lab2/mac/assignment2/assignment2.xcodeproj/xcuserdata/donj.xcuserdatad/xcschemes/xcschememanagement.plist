@@ -4,15 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Lab2.xcscheme</key>
+		<key>Assignment2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>728D81611897D14F000FEC87</key>
+		<key>728D81761897D160000FEC87</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "728D81611897D14F000FEC87"
-               BuildableName = "Lab2"
-               BlueprintName = "Lab2"
-               ReferencedContainer = "container:Lab2.xcodeproj">
+               BlueprintIdentifier = "728D81761897D160000FEC87"
+               BuildableName = "Assignment2"
+               BlueprintName = "Assignment2"
+               ReferencedContainer = "container:Assignment2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "728D81611897D14F000FEC87"
-            BuildableName = "Lab2"
-            BlueprintName = "Lab2"
-            ReferencedContainer = "container:Lab2.xcodeproj">
+            BlueprintIdentifier = "728D81761897D160000FEC87"
+            BuildableName = "Assignment2"
+            BlueprintName = "Assignment2"
+            ReferencedContainer = "container:Assignment2.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,18 +51,12 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "728D81611897D14F000FEC87"
-            BuildableName = "Lab2"
-            BlueprintName = "Lab2"
-            ReferencedContainer = "container:Lab2.xcodeproj">
+            BlueprintIdentifier = "728D81761897D160000FEC87"
+            BuildableName = "Assignment2"
+            BlueprintName = "Assignment2"
+            ReferencedContainer = "container:Assignment2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "rainbowSpheres.jpg"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -75,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "728D81611897D14F000FEC87"
-            BuildableName = "Lab2"
-            BlueprintName = "Lab2"
-            ReferencedContainer = "container:Lab2.xcodeproj">
+            BlueprintIdentifier = "728D81761897D160000FEC87"
+            BuildableName = "Assignment2"
+            BlueprintName = "Assignment2"
+            ReferencedContainer = "container:Assignment2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
