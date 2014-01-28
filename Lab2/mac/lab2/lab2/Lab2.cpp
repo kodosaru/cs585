@@ -118,20 +118,20 @@ int main(int argc, char* argv[])
     onTrackbar(0, NULL);
 
     //two more windows for displaying the derivative images
-    namedWindow("DX", 1);
-    namedWindow("DY", 1);
+    //namedWindow("DX", 1);
+    //namedWindow("DY", 1);
     namedWindow("Gradient Magnitude", 1);
-    namedWindow("Laplacian", 1);
+    //namedWindow("Laplacian", 1);
 
     //display the images and wait for 33 milliseconds in a loop, to 
     //allow us to refresh the displayed image when we click at locations in the image
     while(1)
     {
-       imshow("Image View", displayImage);
-       imshow("DX", displayDX);
-       imshow("DY", displayDY);
+       //imshow("Image View", displayImage);
+       //imshow("DX", displayDX);
+       //imshow("DY", displayDY);
        imshow("Gradient Magnitude", displayMagnitude);
-       imshow("Laplacian", displayLaplacian);
+       //imshow("Laplacian", displayLaplacian);
        char key=waitKey(33);
        if(key == 'Q' || key == 'q')
        {

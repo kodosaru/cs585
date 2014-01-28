@@ -28,6 +28,7 @@ void findEdgesCanny(Mat& image, Mat& edges, double thresh)
 
 void findEdgesGradientMagnitude(Mat& image, Mat& edges, double thresh)
 {
+    
 }
 
 

@@ -76,10 +76,10 @@ int main(int argc, char* argv[])
     //allow us to refresh the displayed image when we click at locations in the image
     while(1)
     {
-       imshow("Image View", displayImage);
+       //imshow("Image View", displayImage);
        //imshow("Mask View", maskImage);
        imshow("Gradient Magnitude", displayGradientMagnitude);
-       imshow("Edges", edges);
+       //imshow("Edges", edges);
        char key=waitKey(33);
        if(key == 'Q' || key == 'q')
        {
