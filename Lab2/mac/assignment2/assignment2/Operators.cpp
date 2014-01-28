@@ -28,7 +28,15 @@ void findEdgesCanny(Mat& image, Mat& edges, double thresh)
 
 void findEdgesGradientMagnitude(Mat& image, Mat& edges, double thresh)
 {
+    Mat dX, dY;
     
+    //allocate objects for holding derivatives and gradients
+    dX.create(image.rows, image.cols, CV_32F);
+    dY.create(image.rows, image.cols, CV_32F);
+    gradientMagnitude.create(image.rows, image.cols, CV_32F);
+    
+    gradientSobel(image, dX, dY, gradientMagnitude);
+    convertGradientImageForDisplay(gradientMagnitude, displayGradientMagnitude);
 }
 
 
