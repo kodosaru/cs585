@@ -14,34 +14,39 @@ static void onClickCallback( int event, int x, int y, int q, void* data)
 
 void onSmoothTrackbar(int nvalue, void* data)
 {
-    original.copyTo(image);
-    
     // Value not dropping to zero so subtract 1
     nvalue--;
     nvalue = nvalue < 1 ? 0 : nvalue;
     // Allow .5 sigma values
     double value = (double)nvalue / 2.0;
     cout << "Smoothing Sigma: " << value << endl;
-    if(value > 0)
+    if(value < 0.5)
     {
-        smoothImage(image, value);
+        return;
     }
-    
-    //gradientSobel(image, dX, dY);
+
+    original.copyTo(image);
+    smoothImage(image, value);
     markImageForDisplay(image, displayImage, maskImage);
-    
-    //Mat dX, dY;
-    //gradientSobel(image, dX, dY, gradientMagnitude);
-    //convertGradientImageForDisplay(gradientMagnitude, displayGradientMagnitude);
     
     onThresholdTrackbar(threshSlider, NULL);
 }
 
-void onThresholdTrackbar(int value, void* data)
+void onThresholdTrackbar(int nvalue, void* data)
 {
+    // Value not dropping to zero so subtract 1
+    nvalue--;
+    nvalue = nvalue < 1 ? 0 : nvalue;
+    // Allow .5 sigma values
+    double value = (double)nvalue / 2.0;
+    cout << "Threshold: " << value << endl;
+    if(value < 0.5)
+    {
+        return;
+    }
+
     //re-initialize the edge map and mask?
     edges = Mat::zeros(edges.rows, edges.cols, CV_8U);
-    cout << "Threshold: " << value << endl;
     if(edgeMode == EDGEMODE_GRADIENT)
     {
         findEdgesGradientMagnitude(image, edges, threshSlider);

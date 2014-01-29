@@ -51,7 +51,8 @@ int main(int argc, char* argv[])
 
     initializeData();
     createWindows();
-   
+    onThresholdTrackbar(threshSlider, NULL);
+    
     //display the images and wait for 33 milliseconds in a loop, to
     //allow us to refresh the displayed image when we click at locations in the image
     while(1)
