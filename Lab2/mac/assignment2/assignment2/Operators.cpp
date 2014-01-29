@@ -17,7 +17,8 @@ void fillRegionBoundedByEdges(Mat& edges, Mat& mask, int seedX, int seedY)
 void refineEdgesMorphological(Mat& edges, char erodeOrDilate)
 {
     //http://docs.opencv.org/doc/tutorials/imgproc/erosion_dilatation/erosion_dilatation.html
-    
+
+    // Using track bars to call morphological operators instead
     if(erodeOrDilate == 'e')
     {
     }
@@ -43,6 +44,7 @@ void findEdgesCanny(Mat& image, Mat& edges, double thresh)
 
     cout << "Canny Threshold Low: " << lowThreshold << "  High: " << lowThreshold * threshholdRatio << endl;
     Canny( image, edges, lowThreshold, highThreshold, kernelSize);
+    edges.copyTo(originalEdges);
 }
 
 
@@ -60,7 +62,7 @@ void findEdgesGradientMagnitude(Mat& image, Mat& edges, double thresh)
     cout << "Gradient Threshold: " << thresh << endl;
     threshold(gradientMagnitude, gradientMagnitude, thresh, 128, THRESH_BINARY);
     gradientMagnitude.convertTo(edges, CV_8UC1);
-    //gradientMagnitude.copyTo(edges);
+    edges.copyTo(originalEdges);
 }
 
 
@@ -192,4 +194,49 @@ void initializeData()
     
     edges.create(image.rows, image.cols, CV_8UC1);
 }
+
+void Erosion( int, void* )
+{
+    if ( !morph || morphType != 'e') {
+        return;
+    }
+
+    int erosion_type = MORPH_RECT;
+    Mat element;
+    Mat morphedImage = Mat::zeros(edges.rows, edges.cols, CV_8U);
+    
+    // If size equals 0, do not dilate image
+    if ( morph && morphType == 'e' ) {
+        erosion_size = erosion_size > max_kernel_size ? max_kernel_size : erosion_size;
+        element = getStructuringElement( erosion_type,
+                                        Size( 2*erosion_size + 1, 2*erosion_size+1 ),
+                                        Point( erosion_size, erosion_size ) );
+    }
+    
+    /// Apply the erosion operation
+    erode( originalEdges, edges, element );
+}
+
+void Dilation( int, void* )
+{
+    if ( !morph || morphType != 'd') {
+        return;
+    }
+    
+        
+    int dilation_type = MORPH_RECT;
+    Mat element;
+    Mat morphedImage = Mat::zeros(edges.rows, edges.cols, CV_8U);
+    
+    // If size equals 0, do not dilate image
+
+        dilation_size = dilation_size > max_kernel_size ? max_kernel_size : dilation_size;
+        element = getStructuringElement( dilation_type,
+                                        Size( 2*dilation_size + 1, 2*dilation_size+1 ),
+                                        Point( dilation_size, dilation_size ) );
+    
+    /// Apply the dilation operation
+    dilate( originalEdges, edges, element );
+}
+
 

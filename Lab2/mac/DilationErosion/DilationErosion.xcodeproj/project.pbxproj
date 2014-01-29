@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		728D81D718993FCB000FEC87 /* DilationErosion */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DilationErosion; sourceTree = BUILT_PRODUCTS_DIR; };
-		728D81DA18993FCB000FEC87 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		728D81DA18993FCB000FEC87 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		728D81DC18993FCB000FEC87 /* DilationErosion.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DilationErosion.1; sourceTree = "<group>"; };
 		728D81E318994023000FEC87 /* libopencv_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.dylib; path = ../../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_core.dylib; sourceTree = "<group>"; };
 		728D81E518994028000FEC87 /* libopencv_highgui.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.dylib; path = ../../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_highgui.dylib; sourceTree = "<group>"; };

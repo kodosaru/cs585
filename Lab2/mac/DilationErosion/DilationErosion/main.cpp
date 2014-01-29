@@ -103,5 +103,3 @@ void Dilation( int, void* )
     dilate( src, dilation_dst, element );
     imshow( "Dilation Demo", dilation_dst );
 }
-
-

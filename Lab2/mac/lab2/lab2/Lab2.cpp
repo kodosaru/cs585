@@ -11,7 +11,7 @@
 // Copyright 2014 Diane H. Theriault
 //
 //
-
+#include "stdafx.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
@@ -62,14 +62,13 @@ bool markImageForDisplay(Mat& gray, Mat& output, Mat& mask);
 bool readImageAndConvert(const string& filename, Mat& grayImage);
 
 //the callback for the click
-static void onClickCallback( int event, int x, int y, int q, void* data);
+void onClickCallback( int event, int x, int y, int q, void* data);
 
 //a function to smooth the image, based on the smoothing factor chosen with the trackbar
 void onTrackbar(int value, void* data);
 
 int main(int argc, char* argv[])
 {
-    String dataDir="/Users/donj/workspace/cs585/Lab2/Mac/Lab2/Data/";
     if (argc < 2)
     {
         cout<<"Usage: Lab2 imageName"<<endl;
@@ -78,7 +77,7 @@ int main(int argc, char* argv[])
     outputCounter=1;
 
     //load in the image and convert it to gray scale
-    readImageAndConvert(dataDir + argv[1], original);
+    readImageAndConvert(argv[1], original);
     if(original.empty())
     {
         cout<<"Unable to open the image file: "<<argv[1]<<endl;
@@ -118,20 +117,20 @@ int main(int argc, char* argv[])
     onTrackbar(0, NULL);
 
     //two more windows for displaying the derivative images
-    //namedWindow("DX", 1);
-    //namedWindow("DY", 1);
+    namedWindow("DX", 1);
+    namedWindow("DY", 1);
     namedWindow("Gradient Magnitude", 1);
-    //namedWindow("Laplacian", 1);
+    namedWindow("Laplacian", 1);
 
     //display the images and wait for 33 milliseconds in a loop, to 
     //allow us to refresh the displayed image when we click at locations in the image
     while(1)
     {
-       //imshow("Image View", displayImage);
-       //imshow("DX", displayDX);
-       //imshow("DY", displayDY);
+       imshow("Image View", displayImage);
+       imshow("DX", displayDX);
+       imshow("DY", displayDY);
        imshow("Gradient Magnitude", displayMagnitude);
-       //imshow("Laplacian", displayLaplacian);
+       imshow("Laplacian", displayLaplacian);
        char key=waitKey(33);
        if(key == 'Q' || key == 'q')
        {
@@ -140,7 +139,7 @@ int main(int argc, char* argv[])
        if(key == 'S' || key == 's')
        {
            char filename[512];
-           sprintf(filename, "outputFile_%03d.png", outputCounter);
+           sprintf_s(filename, "outputFile_%03d.png", outputCounter);
            imwrite(filename, displayImage);
            cout<<"Image Saved: "<<filename<<endl;
            outputCounter++;

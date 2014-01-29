@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Assignment2.cpp"
-            timestampString = "412685167.004166"
+            timestampString = "412716764.73221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "main(int argc, char* argv[])"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,13 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "findEdgesGradientMagnitude(Mat&amp; image, Mat&amp; edges, double thresh)"
-            landmarkType = "7">
+            startingLineNumber = "49"
+            endingLineNumber = "49">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,12 +120,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "findEdgesCanny(Mat&amp; image, Mat&amp; edges, double thresh)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "refineEdgesMorphological(Mat&amp; edges, char erodeOrDilate)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,12 +152,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "convertGradientImageForDisplay(Mat&amp; input, Mat&amp; output)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -200,12 +198,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "initializeData()"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "readImageAndConvert(const string&amp; filename, Mat&amp; grayImage)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -216,13 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
-            landmarkType = "7">
+            startingLineNumber = "132"
+            endingLineNumber = "132">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -232,13 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
-            landmarkType = "7">
+            startingLineNumber = "132"
+            endingLineNumber = "132">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -248,12 +242,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "convertGradientImageForDisplay(Mat&amp; input, Mat&amp; output)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -294,11 +288,25 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "131"
+            endingLineNumber = "131">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment2/Assignment2/Operators.cpp"
+            timestampString = "412718036.574525"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
             landmarkType = "7">
          </BreakpointContent>
@@ -310,28 +318,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "convertGradientImageForDisplay(Mat&amp; input, Mat&amp; output)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -372,11 +364,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
             landmarkType = "7">
          </BreakpointContent>
@@ -388,11 +380,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
             landmarkType = "7">
             <Locations>
@@ -434,12 +426,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412693988.311487"
+            timestampString = "412718036.574525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "markImageForDisplay(Mat&amp; gray, Mat&amp; output, Mat&amp; mask)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DilationErosion/DilationErosion/main.cpp"
+            timestampString = "412713886.474456"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "main( int argc, char** argv )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

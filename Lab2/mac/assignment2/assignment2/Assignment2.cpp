@@ -10,7 +10,7 @@
 //Global variables are evil, but easy
 Mat original, image, displayImage;
 Mat maskImage;
-Mat edges;
+Mat originalEdges, edges;
 Mat gradientMagnitude, displayGradientMagnitude;
 int outputCounter;
 int edgeMode;
@@ -23,6 +23,11 @@ int smoothSlider;
 int smoothSliderMax = 20;
 int threshSlider;
 int threshSliderMax = 256;
+int erosion_size = 0;
+int dilation_size = 0;
+int const max_kernel_size = 21;
+bool morph = false;
+char morphType = 0;
 
 
 int main(int argc, char* argv[])
@@ -35,7 +40,6 @@ int main(int argc, char* argv[])
     }
     outputCounter=1;
     edgeMode = EDGEMODE_GRADIENT;
-    //edgeMode = EDGEMODE_CANNY;
     
     //load in the image and convert it to gray scale
     readImageAndConvert(dataDir + argv[1], original);
@@ -52,10 +56,10 @@ int main(int argc, char* argv[])
     //allow us to refresh the displayed image when we click at locations in the image
     while(1)
     {
-        imshow("Image View", displayImage);
-        imshow("Mask View", maskImage);
-        //imshow("Gradient Magnitude", displayGradientMagnitude);
         imshow("Edges", edges);
+        imshow("Image View", displayImage);
+        //imshow("Mask View", maskImage);
+        //imshow("Gradient Magnitude", displayGradientMagnitude);
 
         char key=waitKey(33);
         if(key == 'Q' || key == 'q')
@@ -86,7 +90,11 @@ int main(int argc, char* argv[])
         }
         if(key == 'e' || key == 'd')
         {
-            refineEdgesMorphological(edges, key);
+            //refineEdgesMorphological(edges, key);
+            // Adjust morphological settings with track bar
+            
+            morphType = key;
+            morph = true;
         }
         
     }

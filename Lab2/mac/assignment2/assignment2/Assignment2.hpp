@@ -24,7 +24,7 @@ using namespace cv;
 //Global variables are evil, but easy
 extern Mat original, image, displayImage;
 extern Mat maskImage;
-extern Mat edges;
+extern Mat originalEdges, edges;
 extern Mat gradientMagnitude, displayGradientMagnitude;
 extern int outputCounter;
 extern int edgeMode;
@@ -37,6 +37,11 @@ extern int smoothSlider;
 extern int smoothSliderMax;
 extern int threshSlider;
 extern int threshSliderMax;
+extern int erosion_size;
+extern int dilation_size;
+extern int const max_kernel_size;
+extern bool morph;
+extern char morphType;
 
 
 void fillRegionBoundedByEdges(Mat& edges, Mat& mask, int seedX, int seedY);
@@ -76,5 +81,10 @@ void onThresholdTrackbar(int value, void* data);
 void createWindows();
 
 void initializeData();
+
+void Erosion( int, void* );
+
+void Dilation( int, void* );
+
 
 #endif
