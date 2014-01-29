@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:DilationErosion/DilationErosion.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Canny/Canny.xcodeproj">
    </FileRef>
    <FileRef
