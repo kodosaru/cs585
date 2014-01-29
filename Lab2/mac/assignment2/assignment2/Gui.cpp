@@ -15,6 +15,7 @@ static void onClickCallback( int event, int x, int y, int q, void* data)
 void onSmoothTrackbar(int nvalue, void* data)
 {
     original.copyTo(image);
+    
     // Value not dropping to zero so subtract 1
     nvalue--;
     nvalue = nvalue < 1 ? 0 : nvalue;
@@ -25,6 +26,7 @@ void onSmoothTrackbar(int nvalue, void* data)
     {
         smoothImage(image, value);
     }
+    
     //gradientSobel(image, dX, dY);
     markImageForDisplay(image, displayImage, maskImage);
     

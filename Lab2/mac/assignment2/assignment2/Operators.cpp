@@ -44,6 +44,7 @@ void findEdgesCanny(Mat& image, Mat& edges, double thresh)
 
     cout << "Canny Threshold Low: " << lowThreshold << "  High: " << lowThreshold * threshholdRatio << endl;
     Canny( image, edges, lowThreshold, highThreshold, kernelSize);
+    threshold(edges, edges, 64, 128, THRESH_BINARY);
     edges.copyTo(originalEdges);
 }
 
@@ -216,6 +217,8 @@ void Erosion( int, void* )
     
     /// Apply the erosion operation
     erode( originalEdges, edges, element );
+    edges.copyTo(maskImage);
+    markImageForDisplay(image, displayImage, maskImage);
 }
 
 void Dilation( int, void* )
@@ -239,6 +242,8 @@ void Dilation( int, void* )
     
     /// Apply the dilation operation
     dilate( originalEdges, edges, element );
+    edges.copyTo(maskImage);
+    markImageForDisplay(image, displayImage, maskImage);
 }
 
 
