@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
     {
         imshow("Edges", edges);
         imshow("Image View", displayImage);
-        //imshow("Mask View", maskImage);
+        imshow("Mask View", maskImage);
         //imshow("Gradient Magnitude", displayGradientMagnitude);
 
         char key=waitKey(33);

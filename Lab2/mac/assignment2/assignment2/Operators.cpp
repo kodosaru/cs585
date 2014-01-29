@@ -208,6 +208,7 @@ void Erosion( int, void* )
     // If size equals 0, do not dilate image
     if ( morph && morphType == 'e' ) {
         erosion_size = erosion_size > max_kernel_size ? max_kernel_size : erosion_size;
+        cout << "Erosion Kernel Size: " << 2 * erosion_size + 1 << endl;
         element = getStructuringElement( erosion_type,
                                         Size( 2*erosion_size + 1, 2*erosion_size+1 ),
                                         Point( erosion_size, erosion_size ) );
@@ -231,6 +232,7 @@ void Dilation( int, void* )
     // If size equals 0, do not dilate image
 
         dilation_size = dilation_size > max_kernel_size ? max_kernel_size : dilation_size;
+        cout << "Dilation Kernel Size: " << 2 * dilation_size + 1 << endl;
         element = getStructuringElement( dilation_type,
                                         Size( 2*dilation_size + 1, 2*dilation_size+1 ),
                                         Point( dilation_size, dilation_size ) );
