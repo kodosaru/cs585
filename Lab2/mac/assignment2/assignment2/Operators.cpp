@@ -6,7 +6,11 @@ void fillRegionBoundedByEdges(Mat& edges, Mat& mask, int seedX, int seedY)
     //int channels = mask.channels();
     Point seedPoint(seedX, seedY);
     //http://docs.opencv.org/modules/imgproc/doc/miscellaneous_transformations.html#floodfill
-    floodFill(edges, mask, seedPoint, 128, 0, Scalar(), Scalar(), 4 );
+    //floodFill(edges, mask, seedPoint, Scalar(128), 0, Scalar(), Scalar(), 4 );
+     uchar fillValue = 128;
+     //Point seed(4,4);
+    copyMakeBorder(mask, mask, 1, 1, 1, 1, BORDER_REPLICATE);
+    floodFill(edges, mask, seedPoint, Scalar(fillValue), 0, Scalar(), Scalar(), 4 | FLOODFILL_MASK_ONLY | (fillValue << 8));
 }
 
 void refineEdgesMorphological(Mat& edges, char erodeOrDilate)
