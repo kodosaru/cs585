@@ -30,7 +30,7 @@ static void onClickCallback( int event, int x, int y, int q, void* data);
 
 int main(int argc, char* argv[])
 {
-    String inputDir="/Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/";
+    String dataDir="/Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/";
     if (argc < 2)
     {
         cout<<"Usage: Lab2 imageName"<<endl;
@@ -38,9 +38,10 @@ int main(int argc, char* argv[])
     }
     outputCounter=1;
     edgeMode = EDGEMODE_GRADIENT;
+    //edgeMode = EDGEMODE_CANNY;
 
     //load in the image and convert it to gray scale
-    readImageAndConvert(inputDir + argv[1], original);
+    readImageAndConvert(dataDir + argv[1], original);
     if(original.empty())
     {
         cout<<"Unable to open the image file: "<<argv[1]<<endl;
@@ -76,10 +77,11 @@ int main(int argc, char* argv[])
     //allow us to refresh the displayed image when we click at locations in the image
     while(1)
     {
-       //imshow("Image View", displayImage);
-       //imshow("Mask View", maskImage);
+       imshow("Image View", displayImage);
+       imshow("Mask View", maskImage);
        imshow("Gradient Magnitude", displayGradientMagnitude);
-       //imshow("Edges", edges);
+       imwrite(dataDir+"gradmag.png", gradientMagnitude);
+       imshow("Edges", edges);
        char key=waitKey(33);
        if(key == 'Q' || key == 'q')
        {

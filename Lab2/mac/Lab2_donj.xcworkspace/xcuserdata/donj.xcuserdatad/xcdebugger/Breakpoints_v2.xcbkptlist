@@ -29,8 +29,8 @@
             timestampString = "412606295.808837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "main(int argc, char* argv[])"
             landmarkType = "7">
          </BreakpointContent>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Assignment2/Assignment2/Assignment2.cpp"
-            timestampString = "412606295.808837"
+            filePath = "Assignment2/Assignment2/Operators.cpp"
+            timestampString = "412654599.703545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "main(int argc, char* argv[])"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "findEdgesGradientMagnitude(Mat&amp; image, Mat&amp; edges, double thresh)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

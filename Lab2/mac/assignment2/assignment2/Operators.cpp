@@ -3,8 +3,10 @@
 void fillRegionBoundedByEdges(Mat& edges, Mat& mask, int seedX, int seedY)
 {
     edges.copyTo(mask);
-    int channels = mask.channels();
+    //int channels = mask.channels();
+    Point seedPoint(seedX, seedY);
     //http://docs.opencv.org/modules/imgproc/doc/miscellaneous_transformations.html#floodfill
+    floodFill(edges, mask, seedPoint, 128, 0, Scalar(), Scalar(), 4 );
 }
 
 void refineEdgesMorphological(Mat& edges, char erodeOrDilate)
@@ -34,9 +36,12 @@ void findEdgesGradientMagnitude(Mat& image, Mat& edges, double thresh)
     dX.create(image.rows, image.cols, CV_32F);
     dY.create(image.rows, image.cols, CV_32F);
     gradientMagnitude.create(image.rows, image.cols, CV_32F);
-    
     gradientSobel(image, dX, dY, gradientMagnitude);
-    convertGradientImageForDisplay(gradientMagnitude, displayGradientMagnitude);
+    //threshold(gradientMagnitude,edges,thresh,255,0);
+    /* Note from teacher: I came across a problem regarding flood fill, it was not happening when I was using the sliders to threshold and smooth.  It turned out that the function threshold changes the type of the second argument, and therefore it should be converted back. */
+    threshold(gradientMagnitude, gradientMagnitude, thresh, 128, THRESH_BINARY);
+    gradientMagnitude.convertTo(edges, CV_8UC1);
+    //gradientMagnitude.copyTo(edges);
 }
 
 
