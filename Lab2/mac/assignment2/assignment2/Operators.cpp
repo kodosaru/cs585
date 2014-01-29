@@ -7,10 +7,11 @@ void fillRegionBoundedByEdges(Mat& edges, Mat& mask, int seedX, int seedY)
     Point seedPoint(seedX, seedY);
     //http://docs.opencv.org/modules/imgproc/doc/miscellaneous_transformations.html#floodfill
     //floodFill(edges, mask, seedPoint, Scalar(128), 0, Scalar(), Scalar(), 4 );
-     uchar fillValue = 128;
+     uchar fillValue = 255;
      //Point seed(4,4);
     copyMakeBorder(mask, mask, 1, 1, 1, 1, BORDER_REPLICATE);
     floodFill(edges, mask, seedPoint, Scalar(fillValue), 0, Scalar(), Scalar(), 4 | FLOODFILL_MASK_ONLY | (fillValue << 8));
+
 }
 
 void refineEdgesMorphological(Mat& edges, char erodeOrDilate)
@@ -40,7 +41,7 @@ void findEdgesCanny(Mat& image, Mat& edges, double thresh)
     int highThreshold = threshholdRatio * lowThreshold;
     int kernelSize = 3;
 
-    cout << "Canny Low: " << lowThreshold << "  High: " << lowThreshold * threshholdRatio << endl;
+    cout << "Canny Threshold Low: " << lowThreshold << "  High: " << lowThreshold * threshholdRatio << endl;
     Canny( image, edges, lowThreshold, highThreshold, kernelSize);
 }
 
@@ -93,7 +94,6 @@ void smoothImage(Mat& image, double sigma)
     //smooth the image
     // This is another example of a convolution / filtering operation, this time with a
     // Gaussian kernel. You could also use all ones to get the mean of the pixels in the image
-    cout << "Smoothing Sigma: " << sigma << endl;
     GaussianBlur(image, image, Size(0,0), sigma, sigma, BORDER_DEFAULT);
 }
 
@@ -129,6 +129,8 @@ bool convertGradientImageForDisplay(Mat& input, Mat& output)
 
 bool markImageForDisplay(Mat& gray, Mat& output, Mat& mask)
 {
+    //imshow("Test",mask);
+    
     //duplicate gray image into three channels and place one red pixel
     vector<Mat> channels;
     for(int i=0; i<3; i++)
@@ -136,6 +138,8 @@ bool markImageForDisplay(Mat& gray, Mat& output, Mat& mask)
         channels.push_back(gray);
     }
     merge(channels, output);
+    
+    //imshow("Test",output);
     
     //anywhere that is marked in the mask image, suppress the green and blue
     //channels so that the region will be highlighted red
@@ -150,9 +154,11 @@ bool markImageForDisplay(Mat& gray, Mat& output, Mat& mask)
             {
                 imgPtr[col*3]=0;
                 imgPtr[col*3+1]=0;
+                imgPtr[col*3+2]=255;
             }
         }
     }
+    //imshow("Test",output);
     return true;
 }
 
@@ -167,5 +173,23 @@ bool readImageAndConvert(const string& filename, Mat& grayImage)
     }
     cvtColor( image, grayImage, CV_RGB2GRAY );
     return !grayImage.empty();
+}
+
+void initializeData()
+{
+    original.copyTo(image);
+    
+    //initialize the versions of the image that we will use for displaying some things
+    displayImage.create(image.rows, image.cols, CV_8UC3);
+    maskImage=Mat::zeros(image.rows, image.cols, CV_8UC1);
+    markImageForDisplay(image, displayImage, maskImage);
+    
+    //Mat dX, dY;
+    //gradientMagnitude.create(image.rows, image.cols, CV_32FC1);
+    //displayGradientMagnitude.create(image.rows, image.cols, CV_8UC1);
+    //gradientSobel(image, dX, dY, gradientMagnitude);
+    //convertGradientImageForDisplay(gradientMagnitude, displayGradientMagnitude);
+    
+    edges.create(image.rows, image.cols, CV_8UC1);
 }
 

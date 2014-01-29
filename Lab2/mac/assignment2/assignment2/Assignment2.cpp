@@ -25,9 +25,6 @@ int threshSlider;
 int threshSliderMax = 256;
 
 
-//Given: the callback for the click
-static void onClickCallback( int event, int x, int y, int q, void* data);
-
 int main(int argc, char* argv[])
 {
     String dataDir="/Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/";
@@ -47,50 +44,17 @@ int main(int argc, char* argv[])
         cout<<"Unable to open the image file: "<<argv[1]<<endl;
         return 0;
     }
-    original.copyTo(image);
-    
-    //initialize the versions of the image that we will use for displaying some things
-    displayImage.create(image.rows, image.cols, CV_8UC3);
-    maskImage=Mat::zeros(image.rows, image.cols, CV_8UC1);
-    markImageForDisplay(image, displayImage, maskImage);
-    
-    Mat dX, dY;
-    gradientMagnitude.create(image.rows, image.cols, CV_32FC1);
-    displayGradientMagnitude.create(image.rows, image.cols, CV_8UC1);
-    gradientSobel(image, dX, dY, gradientMagnitude);
-    convertGradientImageForDisplay(gradientMagnitude, displayGradientMagnitude);
-    
-    edges.create(image.rows, image.cols, CV_8UC1);
-    
-    // Create a new windows
-    namedWindow("Control Window",0);
-    namedWindow( "Image View", 1);
-    namedWindow( "Mask View", 1);
-    namedWindow( "Edges", 1);
-    namedWindow( "Gradient Magnitude", 1);
-    imshow("Image View", displayImage);
-    int ydisplacement = 80;
-    int offset = 20;
-    moveWindow("Image View", offset, ydisplacement + offset);
-    imshow("Mask View", maskImage);
-    moveWindow("Mask View", 2 * offset, ydisplacement + 2 * offset);
-    imshow("Gradient Magnitude", displayGradientMagnitude);
-    moveWindow("Gradient Magnitude", ydisplacement + 3 * offset, 3 * offset);
-    imshow("Edges", edges);
-    moveWindow("Edges", 4 * offset, ydisplacement + 4 * offset);
-    
-    //attach a mouse click callback to the window
-    setMouseCallback("Image View", onClickCallback, NULL);
-    createTrackbar( "Smoothing", "Control Window", &smoothSlider, smoothSliderMax, onSmoothTrackbar );
-    createTrackbar( "Threshold", "Control Window", &threshSlider, threshSliderMax, onThresholdTrackbar );
-    
+
+    initializeData();
+    createWindows();
+   
     //display the images and wait for 33 milliseconds in a loop, to
     //allow us to refresh the displayed image when we click at locations in the image
     while(1)
     {
         imshow("Image View", displayImage);
         imshow("Mask View", maskImage);
-        imshow("Gradient Magnitude", displayGradientMagnitude);
+        //imshow("Gradient Magnitude", displayGradientMagnitude);
         imshow("Edges", edges);
 
         char key=waitKey(33);
@@ -130,14 +94,5 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-static void onClickCallback( int event, int x, int y, int q, void* data)
-{
-    if( event != EVENT_LBUTTONDOWN )
-        return;
-    
-    //Flood fill region bounded by edges
-    fillRegionBoundedByEdges(edges, maskImage, x, y);
-    
-    markImageForDisplay(image, displayImage, maskImage);
-}
+
 

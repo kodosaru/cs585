@@ -73,4 +73,8 @@ bool readImageAndConvert(const string& filename, Mat& grayImage);
 void onSmoothTrackbar(int value, void* data);
 void onThresholdTrackbar(int value, void* data);
 
+void createWindows();
+
+void initializeData();
+
 #endif
