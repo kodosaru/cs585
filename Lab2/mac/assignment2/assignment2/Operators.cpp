@@ -29,6 +29,19 @@ void refineEdgesMorphological(Mat& edges, char erodeOrDilate)
 void findEdgesCanny(Mat& image, Mat& edges, double thresh)
 {
     //http://docs.opencv.org/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html
+    // Input to this function is already blurred
+    Scalar mean,stddev;
+    meanStdDev( image, mean, stddev);
+
+    int threshholdRatio = 3;
+    //int lowThreshold = (int)0.66 * mean;
+    int lowThreshold = thresh;
+    //int highThreshold = (int)1.33 * mean;
+    int highThreshold = threshholdRatio * lowThreshold;
+    int kernelSize = 3;
+
+    cout << "Canny Low: " << lowThreshold << "  High: " << lowThreshold * threshholdRatio << endl;
+    Canny( image, edges, lowThreshold, highThreshold, kernelSize);
 }
 
 
@@ -43,6 +56,7 @@ void findEdgesGradientMagnitude(Mat& image, Mat& edges, double thresh)
     gradientSobel(image, dX, dY, gradientMagnitude);
     //threshold(gradientMagnitude,edges,thresh,255,0);
     /* Note from teacher: I came across a problem regarding flood fill, it was not happening when I was using the sliders to threshold and smooth.  It turned out that the function threshold changes the type of the second argument, and therefore it should be converted back. */
+    cout << "Gradient Threshold: " << thresh << endl;
     threshold(gradientMagnitude, gradientMagnitude, thresh, 128, THRESH_BINARY);
     gradientMagnitude.convertTo(edges, CV_8UC1);
     //gradientMagnitude.copyTo(edges);
@@ -79,6 +93,7 @@ void smoothImage(Mat& image, double sigma)
     //smooth the image
     // This is another example of a convolution / filtering operation, this time with a
     // Gaussian kernel. You could also use all ones to get the mean of the pixels in the image
+    cout << "Smoothing Sigma: " << sigma << endl;
     GaussianBlur(image, image, Size(0,0), sigma, sigma, BORDER_DEFAULT);
 }
 

@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment2/Assignment2/Operators.cpp"
-            timestampString = "412659579.130267"
+            timestampString = "412681832.107495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "findEdgesGradientMagnitude(Mat&amp; image, Mat&amp; edges, double thresh)"
             landmarkType = "7">
          </BreakpointContent>
@@ -112,6 +112,22 @@
             startingLineNumber = "13"
             endingLineNumber = "13"
             landmarkName = "fillRegionBoundedByEdges(Mat&amp; edges, Mat&amp; mask, int seedX, int seedY)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment2/Assignment2/Operators.cpp"
+            timestampString = "412682067.983695"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "findEdgesCanny(Mat&amp; image, Mat&amp; edges, double thresh)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

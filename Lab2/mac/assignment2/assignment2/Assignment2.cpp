@@ -13,7 +13,7 @@ Mat maskImage;
 Mat edges;
 Mat gradientMagnitude, displayGradientMagnitude;
 int outputCounter;
-int edgeMode; 
+int edgeMode;
 //while we are engaging in bad software practices, let's try some magic numbers
 const int EDGEMODE_GRADIENT=0;
 const int EDGEMODE_LAPLACIAN=1;
@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
     outputCounter=1;
     edgeMode = EDGEMODE_GRADIENT;
     //edgeMode = EDGEMODE_CANNY;
-
+    
     //load in the image and convert it to gray scale
     readImageAndConvert(dataDir + argv[1], original);
     if(original.empty())
@@ -48,74 +48,85 @@ int main(int argc, char* argv[])
         return 0;
     }
     original.copyTo(image);
-
+    
     //initialize the versions of the image that we will use for displaying some things
     displayImage.create(image.rows, image.cols, CV_8UC3);
     maskImage=Mat::zeros(image.rows, image.cols, CV_8UC1);
     markImageForDisplay(image, displayImage, maskImage);
-
+    
     Mat dX, dY;
     gradientMagnitude.create(image.rows, image.cols, CV_32FC1);
     displayGradientMagnitude.create(image.rows, image.cols, CV_8UC1);
     gradientSobel(image, dX, dY, gradientMagnitude);
     convertGradientImageForDisplay(gradientMagnitude, displayGradientMagnitude);
-
+    
     edges.create(image.rows, image.cols, CV_8UC1);
-
+    
     // Create a new windows
     namedWindow("Control Window",0);
     namedWindow( "Image View", 1);
+    namedWindow( "Mask View", 1);
     namedWindow( "Edges", 1);
     namedWindow( "Gradient Magnitude", 1);
-
+    imshow("Image View", displayImage);
+    int ydisplacement = 80;
+    int offset = 20;
+    moveWindow("Image View", offset, ydisplacement + offset);
+    imshow("Mask View", maskImage);
+    moveWindow("Mask View", 2 * offset, ydisplacement + 2 * offset);
+    imshow("Gradient Magnitude", displayGradientMagnitude);
+    moveWindow("Gradient Magnitude", ydisplacement + 3 * offset, 3 * offset);
+    imshow("Edges", edges);
+    moveWindow("Edges", 4 * offset, ydisplacement + 4 * offset);
+    
     //attach a mouse click callback to the window
     setMouseCallback("Image View", onClickCallback, NULL);
     createTrackbar( "Smoothing", "Control Window", &smoothSlider, smoothSliderMax, onSmoothTrackbar );
     createTrackbar( "Threshold", "Control Window", &threshSlider, threshSliderMax, onThresholdTrackbar );
-
-    //display the images and wait for 33 milliseconds in a loop, to 
+    
+    //display the images and wait for 33 milliseconds in a loop, to
     //allow us to refresh the displayed image when we click at locations in the image
     while(1)
     {
-       imshow("Image View", displayImage);
-       imshow("Mask View", maskImage);
-       imshow("Gradient Magnitude", displayGradientMagnitude);
-       imwrite(dataDir+"gradmag.png", gradientMagnitude);
-       imshow("Edges", edges);
-       char key=waitKey(33);
-       if(key == 'Q' || key == 'q')
-       {
-           break;
-       }
-       if(key == 'S' || key == 's')
-       {
-           char filename1[512];
-           char filename2[512];
-           sprintf(filename1, "filledRegion_%03d.png", outputCounter);
-           imwrite(filename1, displayImage);
-           sprintf(filename2, "edges_%03d.png", outputCounter);
-           imwrite(filename2, edges);
+        imshow("Image View", displayImage);
+        imshow("Mask View", maskImage);
+        imshow("Gradient Magnitude", displayGradientMagnitude);
+        imshow("Edges", edges);
 
-           cout<<"Images Saved: "<<filename1<<" "<<filename2<<endl;
-           outputCounter++;
-       }
-       if(key == 'g')
-       {
-           edgeMode = EDGEMODE_GRADIENT;
-           onThresholdTrackbar(threshSlider, NULL);
-       }
-       if(key == 'c')
-       {
-           edgeMode = EDGEMODE_CANNY;
-           onThresholdTrackbar(threshSlider, NULL);
-       }
-       if(key == 'e' || key == 'd')
-       {
+        char key=waitKey(33);
+        if(key == 'Q' || key == 'q')
+        {
+            break;
+        }
+        if(key == 'S' || key == 's')
+        {
+            char filename1[512];
+            char filename2[512];
+            sprintf(filename1, "filledRegion_%03d.png", outputCounter);
+            imwrite(filename1, displayImage);
+            sprintf(filename2, "edges_%03d.png", outputCounter);
+            imwrite(filename2, edges);
+            
+            cout<<"Images Saved: "<<filename1<<" "<<filename2<<endl;
+            outputCounter++;
+        }
+        if(key == 'g')
+        {
+            edgeMode = EDGEMODE_GRADIENT;
+            onThresholdTrackbar(threshSlider, NULL);
+        }
+        if(key == 'c')
+        {
+            edgeMode = EDGEMODE_CANNY;
+            onThresholdTrackbar(threshSlider, NULL);
+        }
+        if(key == 'e' || key == 'd')
+        {
             refineEdgesMorphological(edges, key);
-       }
-
+        }
+        
     }
-
+    
     return 0;
 }
 

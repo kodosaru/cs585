@@ -38,6 +38,7 @@ extern int smoothSliderMax;
 extern int threshSlider;
 extern int threshSliderMax;
 
+
 void fillRegionBoundedByEdges(Mat& edges, Mat& mask, int seedX, int seedY);
 
 //Required: You must write the function to create edge maps by thresholding the gradient magnitude,
