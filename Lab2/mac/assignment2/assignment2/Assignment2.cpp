@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
     {
         imshow("Edges", edges);
         imshow("Image View", displayImage);
-        imshow("Mask View", maskImage);
+        //imshow("Mask View", maskImage);
         //imshow("Gradient Magnitude", displayGradientMagnitude);
 
         char key=waitKey(33);
@@ -69,14 +69,20 @@ int main(int argc, char* argv[])
         }
         if(key == 'S' || key == 's')
         {
-            char filename1[512];
-            char filename2[512];
-            sprintf(filename1, "filledRegion_%03d.png", outputCounter);
-            imwrite(filename1, displayImage);
-            sprintf(filename2, "edges_%03d.png", outputCounter);
-            imwrite(filename2, edges);
+
+            //String filename1 = dataDir + "SoloYellowEgg-Gradient-edges.png";
+            //String filename2 = dataDir + "SoloYellowEgg-Gradient-result.png";
+            //String filename1 = dataDir + "SoloYellowEgg-Canny-edges.png";
+            //String filename2 = dataDir + "SoloYellowEgg-Canny-result.png";
+            String filename1 = dataDir + "redEgg-edges.png";
+            String filename2 = dataDir + "redEgg-result.png";
             
-            cout<<"Images Saved: "<<filename1<<" "<<filename2<<endl;
+            imwrite(filename1, edges);
+            
+            imwrite(filename2, displayImage);
+            
+            cout << "Image Saved: " << filename1 << endl;
+            cout << "Image Saved: " << filename2 << endl;
             outputCounter++;
         }
         if(key == 'g')

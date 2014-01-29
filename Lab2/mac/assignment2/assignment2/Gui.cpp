@@ -77,8 +77,8 @@ void createWindows()
     moveWindow("Edges", 1 * offset, ydisplacement + 1 * offset);
     imshow("Image View", displayImage);
     moveWindow("Image View", 2 * offset, ydisplacement + 2 * offset);
-    imshow("Mask View", maskImage);
-    moveWindow("Mask View", 3 * offset, ydisplacement + 3 * offset);
+    //imshow("Mask View", maskImage);
+    //moveWindow("Mask View", 3 * offset, ydisplacement + 3 * offset);
     //imshow("Gradient Magnitude", displayGradientMagnitude);
     //moveWindow("Gradient Magnitude", ydisplacement + 4 * offset, 4 * offset);
     
