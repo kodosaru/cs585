@@ -9,4 +9,11 @@ green                               42
 
 3. cube                 1.5			16
 
+Gradient I
+
+Val	dX	dY
+0   1   0
+45
+90
+
 		

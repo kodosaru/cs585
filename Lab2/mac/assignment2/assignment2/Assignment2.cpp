@@ -86,8 +86,12 @@ int main(int argc, char* argv[])
             //String filename2 = dataDir + "cube-canny-dilation-result.png";
             //String filename1 = dataDir + "camoEggsOnPaper-canny-dilation-edges.png";
             //String filename2 = dataDir + "camoEggsOnPaper-canny-dilation-result.png";
-            String filename1 = dataDir + "rainbowEasy-edges.png";
-            String filename2 = dataDir + "rainbowEasy-result.png";
+            //String filename1 = dataDir + "rainbowEasy-edges.png";
+            //String filename2 = dataDir + "rainbowEasy-result.png";
+            //String filename1 = dataDir + "rainbowHard-before-edges.png";
+            //String filename2 = dataDir + "rainbowHard-before-result.png";
+            String filename1 = dataDir + "rainbowHard-after-edges.png";
+            String filename2 = dataDir + "rainbowHard-after-result.png";
            
             imwrite(filename1, edges);
             imwrite(filename2, displayImage);

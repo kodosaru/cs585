@@ -20,7 +20,8 @@
 \section{Assignment 2 (100 points)}
 \subsection{Learning Objectives}
 \subsection{Technical Task (30 points)}
-Source code for technical task in ZIP file: Assignment2.cpp, Assignment2.hpp, Gui.cpp and Operators.cpp
+Source code for technical task in ZIP file: Assignment2.cpp, Assignment2.hpp, Gui.cpp and Operators.cpp. All output images are in a subfolder in the ZIP file called "assignment2/Data."
+
 \subsection{Programming Assignment Questions (28 points)}
 
 \begin{enumerate}
@@ -104,7 +105,9 @@ Run your program on the image "eggsAndCube.jpg." Choose a smoothing level that y
 \end{figure}
 
 \item
-Are you able to find any parameters that will allow you to identify the cube (or a face of the cube)? Harder with "gradient," because of the texture of the cube. Need low threshold and higher smoothing, however with "Canny" with dilation it is easy to select the same face on the cube cleanly (Smoothing sigma = 1.5, Canny thresholds = 20 and 60, Dilation kernel size = 3). See the results below (right vertical face):
+Are you able to find any parameters that will allow you to identify the cube (or a face of the cube)? 
+
+Harder with "gradient," because of the texture of the cube. Need low threshold and higher smoothing, however with "Canny" with dilation it is easy to select the same face on the cube cleanly (Smoothing sigma = 1.5, Canny thresholds = 20 and 60, Dilation kernel size = 3). See the results below (right vertical face):
 
 \begin{figure}[H]
 \centering
@@ -134,8 +137,11 @@ Are you able to find any parameters that will allow you to identify the cube (or
 \label{overflow}
 \end{figure}
 
+\pagebreak
 \item
-Use your program on the image "camoEggsOnPaper.jpg." If you knew that you were looking for textured objects on a plain background, what steps could you combine in order to highlight an entire egg, even though there are lots of internal edges? What type of binary image analysis steps could you perform in order to segment the entire egg? Canny with high thresholds (low=149 and high=447) and 3x3 kernel dilation can the closest to working. Nothing I tried to close off the eggs edges without almost filling the eggs with mask. Initial smoothing wasn't needed and didn't help for Canny, because Canny does a Gaussian smoothing as part of its procedure. Results below:
+Use your program on the image "camoEggsOnPaper.jpg." If you knew that you were looking for textured objects on a plain background, what steps could you combine in order to highlight an entire egg, even though there are lots of internal edges? What type of binary image analysis steps could you perform in order to segment the entire egg? 
+
+Canny with high thresholds (low=149 and high=447) and 3x3 kernel dilation can the closest to working. Nothing I tried to close off the eggs edges without almost filling the eggs with mask. Initial smoothing wasn't needed and didn't help for Canny, because Canny does a Gaussian smoothing as part of its procedure. Results below:
 
 \begin{figure}[H]
 \centering
@@ -163,46 +169,90 @@ Run your program on the image rainbowSpheres.jpg. You may find that some areas o
 \end{figure}
 
 
+\item
+Identify an area of the image that you think should be reasonably easy to pick out, but that the program is having trouble with. (For example, the purple and blue stripes on top of the rainbow ball). What is happening that causes the entire background to be filled when you attempt to fill the region bounded by edges starting in one of these areas?
 
-
+The entire background is filled because the strip I picked out was missing part of its left edge.
 
 \item
-The color representation idea that I found most interesting was the trichromatic theory of perception where monochromatic colors, in terms of perception, can be created as a mixture of three primaries: 700 nm, 546 nm and 436 nm. Also, found the description of the CIE, XYZ color space and the matrix that relates it to the RGB space interesting.
+Use morphological operators to manipulate your edge map to help close gaps where the region-filling is leaking out so that you can fill in difficult region. Create before and after images of your troublesome regions. 
+
+I used 1 sigma smoothing, a lower threshold and  a 3x3 kernel dilation to fill the gap. Results below:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=140mm]{/Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowHard-before-result-1-94.png}
+\caption{rainbowHard-before-result-1-94.png}
+\label{overflow}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=140mm]{/Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowHard-after-result-1-33.png}
+\caption{rainbowHard-after-result-1-33.png}
+;\label{overflow}
+;\end{figure}
+
+\end{enumerate}
+
+\subsection{Lab Follow-up Questions (39 points)}
+\begin{enumerate}
 
 \item
-A monochromatic image of dimension 960x720 has 691,200 pixels. A RGB image of that size has 691,000 x 3 = 2073600 bytes, but still the same number of pixels.
+Under the folder for Lab2, there is a folder called "gradients" containing several image where I have prepared several images using the gradient formula. Remember that the gradient of a function is just a vector containing the partial derivatives of the function with respect to each variable. You take a partial derivative of a function using the normal rules of calculus, but you treat all variables other than the one you are interested in as constants.
 
-\item
-Found these timing values in the original code:
 
-\begin{tabular}{| l | r |}
+  \begin{enumerate}
+    \item Write an expression for the gradient of I, given the formula that I used to generate the images.
+    
+    Holding y, \(\theta\) constant and taking the derivative with respect to x yields:
+    
+\begin{eqnarray*}
+\frac{\partial I}{\partial x} I(x,y)=\cos \theta
+\end{eqnarray*}    
+    
+        Holding x, \(\theta\)  constant and taking the derivative with respect to y yields:
+    
+\begin{eqnarray*}[H]
+\frac{\partial I}{\partial y} I(x,y)=\sin \theta
+\end{eqnarray*}    
+
+    \item For each of three values calculate what you anticipate the values of the gradient will be:
+\begin{eqnarray*}
+\nabla I \left( \theta \right)=\left( \sin \theta, \cos \theta \right)
+\\\nabla I \left( 0 ^{\circ} \right)=\left(0,1\right)
+\\\nabla I \left( 45  ^{\circ} \right)=\left(\frac{\sqrt 2}{2},\frac{\sqrt 2}{2}\right)
+\\\nabla I \left( 90  ^{\circ} \right)=\left(1,0\right)
+\end{eqnarray*}    
+
+	\item Using the program from the Lab, inspect the gradient of the images named "gradient_theta=0.png", "gradient_theta=45.png", "gradient_theta=90.png." Did you find any discrepancies? 
+	\linebreak
+	Yes, the 0 and ninety degree values were opposite of what I expected because the dI/dx and dI/dy values were reversed. These are the values I got from running the program against the three images: (1,0) , (0.7,0.7) and (0, 1).
+	\item Using the program from the Lab, inspect the gradient of the image named "gradient_mysteryTheta.png." Report the values that you find and use them to determine the angle I used to generate the image.
+	\linebreak
+	Non-noisy mystery theta Arctan(dI/dy,dI/dx) = (255/191) = 53 degrees
+	\item
+	Histogram is gaussian before smoothing of mystery gradient noisy, using mean instead of three point gives Arctan(dI/dy,dI/dx) =  = (147.33/167.03) = 41.41 degrees
+	\item 
+	Histogram is just a few spikes after smoothing did seem to help much. Noisy mystery theta Arctan(dI/dy,dI/dx) = [(64+128+191)/(159+191+223)] = (383/573) = 56 degrees
+	\item The image "gradient sigmoid.png" has been generated with such a function (given below). By inspecting the gradient of the image at the center point, estimate the angle that I used to generate the image.
+	\linebreak
+	The gradient looks like a a negative 45 degrees.
+\end{enumerate}
+
+\item Write down the kernel associated witth logic. It is a 9x9 kernel since there are nine terms:
+\begin{tabular}{| l |c |r |}
 \hline
-Name              & Elapsed Time (sec) \\
+1 &	2 &	1 \\
 \hline
-Linear Index v1  & 67.690270412808275   \\
+2 &	4 &	2 \\	
 \hline
-Linear Index v2            & 21.070437060547910   \\
-\hline
-Linear Index v3           & 3.7960514995024437  \\
-\hline
-Row Ptr & 3.5284727421810489 \\
+1 &	2 &	1 \\
 \hline
 \end{tabular}
 
-In the version 3, addOne_LinearIndex() function, the image.step[0] function is only being called 720 times, once per row. In the version 2, the image.step[0] function is being called 2,073,600 times, once per each channel in every pixel. Since image.step[0] always returns 2880, the number of bytes in a row, it can be moved outside of the loops in both versions of the addOne_LinearIndex() function. When you do this, the run times are almost identical:
 
-\begin{tabular}{| l | r |}
-\hline
-Name              & Elapsed Time (sec) \\
-\hline
-Linear Index v2            & 3.9606397209834103   \\
-\hline
-Linear Index v3           & 3.8033933929887844  \\
-\hline
-\end{tabular}
-
-Conclusion, run times differences between v2 and v3 of the addOne LinearIndex() function are caused by calls to the image.step[0] function and not by differing number of mathematical operations. As a side note, and not counting the pixel increment, v2 has two multiplications and two additions while v3 has only one multiplication and two additions per pixel. In the rainbowSpheres.jpg image we are using, there a 691,200 pixels so the various operation just mentioned happen one or two times that number. The slightly slower time of v2, once the step[] function has been removed may be caused by the extra multiplication it has over v3.
-
+	
 \item
 This code snippet below demonstrates the strange thing that is happening in when we add 1 to a color channel of an image. If the color channel is saturated (equal to 255) for a particular pixel, the color channel value rolls over to 0 because it is a unsigned byte. This why the more saturated areas of the image showed a strange speckled effect. The color also changes. For example if you add one to a saturated green channel in a  yellow pixel, the pixel changes to red.
 \newline\newline
