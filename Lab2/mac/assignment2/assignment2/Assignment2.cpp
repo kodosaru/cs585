@@ -74,11 +74,22 @@ int main(int argc, char* argv[])
             //String filename2 = dataDir + "SoloYellowEgg-Gradient-result.png";
             //String filename1 = dataDir + "SoloYellowEgg-Canny-edges.png";
             //String filename2 = dataDir + "SoloYellowEgg-Canny-result.png";
-            String filename1 = dataDir + "redEgg-edges.png";
-            String filename2 = dataDir + "redEgg-result.png";
-            
+            //String filename1 = dataDir + "redEgg-edges.png";
+            //String filename2 = dataDir + "redEgg-result.png";
+            //String filename1 = dataDir + "blueEgg-edges.png";
+            //String filename2 = dataDir + "blueEgg-result.png";
+            //String filename1 = dataDir + "greenEgg-edges.png";
+            //String filename2 = dataDir + "greenEgg-result.png";
+            //String filename1 = dataDir + "cube-edges.png";
+            //String filename2 = dataDir + "cube-result.png";
+            //String filename1 = dataDir + "cube-canny-dilation-edges.png";
+            //String filename2 = dataDir + "cube-canny-dilation-result.png";
+            //String filename1 = dataDir + "camoEggsOnPaper-canny-dilation-edges.png";
+            //String filename2 = dataDir + "camoEggsOnPaper-canny-dilation-result.png";
+            String filename1 = dataDir + "rainbowEasy-edges.png";
+            String filename2 = dataDir + "rainbowEasy-result.png";
+           
             imwrite(filename1, edges);
-            
             imwrite(filename2, displayImage);
             
             cout << "Image Saved: " << filename1 << endl;

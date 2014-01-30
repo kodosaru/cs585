@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  29 JAN 2014 18:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  29 JAN 2014 20:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -229,7 +229,54 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen140
 \l_MT_below_shortintertext_sep=\dimen141
 )
+(/usr/local/texlive/2013/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count118
+\float@exts=\toks22
+\float@box=\box30
+\@float@everytoks=\toks23
+\@floatcapt=\box31
+)
 (./Assignment 2 Don Johnson.aux
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
 
 LaTeX Warning: Label `overflow' multiply defined.
 
@@ -245,31 +292,31 @@ LaTeX Warning: Label `overflow' multiply defined.
 )
 \openout1 = `"Assignment 2 Don Johnson.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
  (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count118
+\scratchcounter=\count119
 \scratchdimen=\dimen142
-\scratchbox=\box30
-\nofMPsegments=\count119
-\nofMParguments=\count120
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count121
+\scratchbox=\box32
+\nofMPsegments=\count120
+\nofMParguments=\count121
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count122
 \MPscratchDim=\dimen143
-\MPnumerator=\count122
-\makeMPintoPDFobject=\count123
-\everyMPtoPDFconversion=\toks23
+\MPnumerator=\count123
+\makeMPintoPDFobject=\count124
+\everyMPtoPDFconversion=\toks25
 ) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -348,8 +395,9 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count124
+\c@lstlisting=\count125
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Gradient-e
@@ -360,8 +408,8 @@ ent-edges-2pt5-82.png Graphic file (type png)
 <use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Gradie
 nt-edges-2pt5-82.png>
 Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
-SoloYellowEgg-Gradient-edges-2pt5-82.png used on input line 34.
-(pdftex.def)             Requested size: 284.52756pt x 213.39314pt.
+SoloYellowEgg-Gradient-edges-2pt5-82.png used on input line 35.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
 
 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Gradient-r
 esult-2pt5-82.png, id=2, 963.6pt x 722.7pt>
@@ -371,127 +419,252 @@ ent-result-2pt5-82.png Graphic file (type png)
 <use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Gradie
 nt-result-2pt5-82.png>
 Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
-SoloYellowEgg-Gradient-result-2pt5-82.png used on input line 41.
-(pdftex.def)             Requested size: 284.52756pt x 213.39314pt.
+SoloYellowEgg-Gradient-result-2pt5-82.png used on input line 42.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+ [1
 
+{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/
+donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Gradient-edges-2pt
+5-82.png (PNG copy)>]
 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Canny-edge
-s-1-129-387.png, id=3, 963.6pt x 722.7pt>
+s-1-129-387.png, id=12, 963.6pt x 722.7pt>
 File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Canny
 -edges-1-129-387.png Graphic file (type png)
 
 <use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Canny-
 edges-1-129-387.png>
 Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
-SoloYellowEgg-Canny-edges-1-129-387.png used on input line 48.
-(pdftex.def)             Requested size: 284.52756pt x 213.39314pt.
+SoloYellowEgg-Canny-edges-1-129-387.png used on input line 49.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
 
 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Canny-resu
-lt-1-129-387.png, id=4, 963.6pt x 722.7pt>
+lt-1-129-387.png, id=13, 963.6pt x 722.7pt>
 File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Canny
 -result-1-129-387.png Graphic file (type png)
 
 <use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Canny-
 result-1-129-387.png>
 Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
-SoloYellowEgg-Canny-result-1-129-387.png used on input line 55.
-(pdftex.def)             Requested size: 284.52756pt x 213.39314pt.
- <yellowEggThresholded175.png, id=5, 963.6pt x 722.7pt>
-File: yellowEggThresholded175.png Graphic file (type png)
+SoloYellowEgg-Canny-result-1-129-387.png used on input line 56.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+ [2 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Gradie
+nt-result-2pt5-82.png (PNG copy)> </Users/donj/workspace/cs585/Lab2/Mac/Assignm
+ent2/Data/SoloYellowEgg-Canny-edges-1-129-387.png (PNG copy)>]
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/redEgg-edges-0pt5-41.png
+, id=17, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/redEgg-edges-0pt5-4
+1.png Graphic file (type png)
 
-<use yellowEggThresholded175.png>
-Package pdftex.def Info: yellowEggThresholded175.png used on input line 78.
-(pdftex.def)             Requested size: 284.52756pt x 213.39314pt.
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/redEgg-edges-0pt5-41
+.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+redEgg-edges-0pt5-41.png used on input line 66.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
 
-<detectRedAndYellowEgg.png, id=6, 963.6pt x 722.7pt>
-File: detectRedAndYellowEgg.png Graphic file (type png)
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/redEgg-result-0pt5-41.pn
+g, id=18, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/redEgg-result-0pt5-
+41.png Graphic file (type png)
 
-<use detectRedAndYellowEgg.png>
-Package pdftex.def Info: detectRedAndYellowEgg.png used on input line 88.
-(pdftex.def)             Requested size: 284.52756pt x 213.39314pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 96.
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/redEgg-result-0pt5-4
+1.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+redEgg-result-0pt5-41.png used on input line 73.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+ [3 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Canny-
+result-1-129-387.png (PNG copy)> </Users/donj/workspace/cs585/Lab2/Mac/Assignme
+nt2/Data/redEgg-edges-0pt5-41.png (PNG copy)>]
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/greenEgg-edges-0pt5-41.p
+ng, id=22, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/greenEgg-edges-0pt5
+-41.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/greenEgg-edges-0pt5-
+41.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+greenEgg-edges-0pt5-41.png used on input line 80.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/greenEgg-result-0pt5-41.
+png, id=23, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/greenEgg-result-0pt
+5-41.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/greenEgg-result-0pt5
+-41.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+greenEgg-result-0pt5-41.png used on input line 87.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+ [4 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/redEgg-result-0pt5-4
+1.png (PNG copy)> </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/greenE
+gg-edges-0pt5-41.png (PNG copy)>]
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/blueEgg-edges-0pt5-42.pn
+g, id=27, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/blueEgg-edges-0pt5-
+42.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/blueEgg-edges-0pt5-4
+2.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+blueEgg-edges-0pt5-42.png used on input line 94.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/blueEgg-result-0pt5-42.p
+ng, id=28, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/blueEgg-result-0pt5
+-42.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/blueEgg-result-0pt5-
+42.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+blueEgg-result-0pt5-42.png used on input line 101.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+ [5 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/greenEgg-result-0pt5
+-41.png (PNG copy)> </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/blue
+Egg-edges-0pt5-42.png (PNG copy)>]
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-edges-1pt5-16.png, 
+id=32, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-edges-1pt5-16.
+png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-edges-1pt5-16.p
+ng>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+cube-edges-1pt5-16.png used on input line 111.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-result-1pt5-16.png,
+ id=33, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-result-1pt5-16
+.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-result-1pt5-16.
+png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+cube-result-1pt5-16.png used on input line 118.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+ [6 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/blueEgg-result-0pt5-
+42.png (PNG copy)> </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-
+edges-1pt5-16.png (PNG copy)>]
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-canny-dilation-edge
+s.png, id=37, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-canny-dilation
+-edges.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-canny-dilation-
+edges.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+cube-canny-dilation-edges.png used on input line 125.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-canny-dilation-resu
+lt.png, id=38, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-canny-dilation
+-result.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-canny-dilation-
+result.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+cube-canny-dilation-result.png used on input line 132.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+ [7 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-result-1pt5-16.
+png (PNG copy)> </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-can
+ny-dilation-edges.png (PNG copy)>]
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/camoEggsOnPaper-canny-di
+lation-edges.png, id=43, 963.6pt x 733.74126pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/camoEggsOnPaper-can
+ny-dilation-edges.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/camoEggsOnPaper-cann
+y-dilation-edges.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+camoEggsOnPaper-canny-dilation-edges.png used on input line 142.
+(pdftex.def)             Requested size: 398.33858pt x 303.31018pt.
+ [8 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/cube-canny-dilation-
+result.png (PNG copy)>]
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowEasy-edges-1-94.p
+ng, id=47, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowEasy-edges-1
+-94.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowEasy-edges-1-
+94.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+rainbowEasy-edges-1-94.png used on input line 153.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+
+</Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowEasy-result-1-94.
+png, id=48, 963.6pt x 722.7pt>
+File: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowEasy-result-
+1-94.png Graphic file (type png)
+
+<use /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowEasy-result-1
+-94.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
+rainbowEasy-result-1-94.png used on input line 160.
+(pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
+ [9 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/camoEggsOnPaper-cann
+y-dilation-edges.png (PNG copy)> </Users/donj/workspace/cs585/Lab2/Mac/Assignme
+nt2/Data/rainbowEasy-edges-1-94.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 207--210
+
+ []
+
+[10 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowEasy-result-1
+-94.png (PNG copy)>]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 212.
+
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 212.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 212.
+
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 96.
- [1
-
-{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/
-donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Gradient-edges-2pt
-5-82.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 100.
-
- (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 100.
-
-<penguin.png, id=16, 1710.39pt x 2324.685pt>
-File: penguin.png Graphic file (type png)
- <use penguin.png>
-Package pdftex.def Info: penguin.png used on input line 116.
-(pdftex.def)             Requested size: 227.62204pt x 309.34949pt.
-
-<detectRedAndYellowOnPenguin.png, id=17, 1710.39pt x 2324.685pt>
-File: detectRedAndYellowOnPenguin.png Graphic file (type png)
-
-<use detectRedAndYellowOnPenguin.png>
-Package pdftex.def Info: detectRedAndYellowOnPenguin.png used on input line 122
-.
-(pdftex.def)             Requested size: 227.62204pt x 309.34949pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[2 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Gradien
-t-result-2pt5-82.png (PNG copy)> </Users/donj/workspace/cs585/Lab2/Mac/Assignme
-nt2/Data/SoloYellowEgg-Canny-edges-1-129-387.png (PNG copy)>] [3 </Users/donj/w
-orkspace/cs585/Lab2/Mac/Assignment2/Data/SoloYellowEgg-Canny-result-1-129-387.p
-ng (PNG copy)> <./yellowEggThresholded175.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 168--171
-
- []
-
-[4 <./detectRedAndYellowEgg.png (PNG copy)> <./penguin.png (PNG copy)> <./detec
-tRedAndYellowOnPenguin.png (PNG copy)>] [5] [6]
-Overfull \hbox (22.98051pt too wide) in paragraph at lines 322--323
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 212.
+ [11] [12]
+Overfull \hbox (22.98051pt too wide) in paragraph at lines 361--362
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.98033pt too wide) in paragraph at lines 327--329
+Overfull \hbox (4.98033pt too wide) in paragraph at lines 366--368
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ] 
  []
 
 
-Overfull \hbox (460.98497pt too wide) in paragraph at lines 329--330
+Overfull \hbox (460.98497pt too wide) in paragraph at lines 368--369
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[7] <twoRedEggsThresholded175.png, id=45, 963.6pt x 722.7pt>
+[13] <twoRedEggsThresholded175.png, id=71, 963.6pt x 722.7pt>
 File: twoRedEggsThresholded175.png Graphic file (type png)
 
 <use twoRedEggsThresholded175.png>
-Package pdftex.def Info: twoRedEggsThresholded175.png used on input line 336.
+Package pdftex.def Info: twoRedEggsThresholded175.png used on input line 375.
 (pdftex.def)             Requested size: 284.52756pt x 213.39314pt.
- [8 <./twoRedEggsThresholded175.png (PNG copy)>] (./Assignment 2 Don Johnson.au
-x)
+ [14 <./twoRedEggsThresholded175.png (PNG copy)>] (./Assignment 2 Don Johnson.a
+ux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5830 strings out of 493315
- 89714 string characters out of 6137904
- 175555 words of memory out of 5000000
- 9205 multiletter control sequences out of 15000+600000
- 9668 words of font info for 35 fonts, out of 8000000 for 9000
+ 5882 strings out of 493315
+ 94054 string characters out of 6137904
+ 176882 words of memory out of 5000000
+ 9246 multiletter control sequences out of 15000+600000
+ 9023 words of font info for 33 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,8n,49p,670b,1543s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,8n,49p,708b,1478s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -500,14 +673,12 @@ usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
 r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
 local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
 cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
-/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texli
-ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "Assignment 2 Don Johnson.pdf" (8 pages, 3800810 bytes).
+/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on "Assignment 2 Don Johnson.pdf" (14 pages, 4799765 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 108 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
