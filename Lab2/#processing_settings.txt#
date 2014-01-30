@@ -1,0 +1,21 @@
+Name                  Smoothing	Threshold
+
+1. yellow egg gradient	2.5			82
+           canny      	1         	129	387
+
+2. red        gradient   0.5		41
+blue
+green                               42
+
+3. cube                 1.5			16
+
+Gradient I
+
+Deg	dX	dY
+0   white=1  black=0
+45  gray=0.7  gray=0.7
+90  black=0  white=1 
+
+=(1*9+2*10+1*1)+(1*1+-4*10+1*4)+(1*9+2*2+1*9)
+
+		
