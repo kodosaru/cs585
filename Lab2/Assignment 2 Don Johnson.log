@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  29 JAN 2014 23:34
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  30 JAN 2014 01:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -238,9 +238,6 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@floatcapt=\box31
 )
 (./Assignment 2 Don Johnson.aux
-
-LaTeX Warning: Label `overflow' multiply defined.
-
 
 LaTeX Warning: Label `overflow' multiply defined.
 
@@ -635,96 +632,61 @@ Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/
 rainbowHard-after-result-1-33.png used on input line 191.
 (pdftex.def)             Requested size: 398.33858pt x 298.74599pt.
  [11 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowHard-before-
-result-1-94.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 228--231
-\OT1/cmr/m/n/10 theta=45.png", "gra-di-ent[]-theta=90.png." Did you find any di
-s-crep-an-cies?
- []
-
-
-Underfull \hbox (badness 3803) in paragraph at lines 231--235
+result-1-94.png (PNG copy)>] [12 </Users/donj/workspace/cs585/Lab2/Mac/Assignme
+nt2/Data/rainbowHard-after-result-1-33.png (PNG copy)>]
+Underfull \hbox (badness 3803) in paragraph at lines 243--247
 \OT1/cmr/m/n/10 the val-ues that you find and use them to de-ter-mine the an-gl
 e I used to gen-er-ate the im-age.
  []
 
-[12 </Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/rainbowHard-after-re
-sult-1-33.png (PNG copy)>]
-Underfull \hbox (badness 4181) in paragraph at lines 238--241
+
+Underfull \hbox (badness 4181) in paragraph at lines 250--253
 \OT1/cmr/m/n/10 ent of the im-age at the cen-ter point, es-ti-mate the an-gle t
 hat I used to gen-er-ate the im-age.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 257--260
+</Users/donj/workspace/cs585/Lab2/convolution.png, id=67, 257.46187pt x 137.011
+87pt>
+File: /Users/donj/workspace/cs585/Lab2/convolution.png Graphic file (type png)
+ <use /Users/donj/workspace/cs585/Lab2/convolution.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/convolution.png used 
+on input line 270.
+(pdftex.def)             Requested size: 227.62204pt x 121.13528pt.
 
- []
-
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 262.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 262.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 262.
-
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 262.
- [13] [14]
-Overfull \hbox (22.98051pt too wide) in paragraph at lines 411--412
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (4.98033pt too wide) in paragraph at lines 416--418
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-] 
- []
-
-
-Overfull \hbox (460.98497pt too wide) in paragraph at lines 418--419
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[15] <twoRedEggsThresholded175.png, id=79, 963.6pt x 722.7pt>
-File: twoRedEggsThresholded175.png Graphic file (type png)
-
-<use twoRedEggsThresholded175.png>
-Package pdftex.def Info: twoRedEggsThresholded175.png used on input line 425.
-(pdftex.def)             Requested size: 284.52756pt x 213.39314pt.
- [16 <./twoRedEggsThresholded175.png (PNG copy)>] (./Assignment 2 Don Johnson.a
-ux)
+</Users/donj/workspace/cs585/Lab2/morphology.png, id=69, 652.93938pt x 287.5743
+7pt>
+File: /Users/donj/workspace/cs585/Lab2/morphology.png Graphic file (type png)
+ <use /Users/donj/workspace/cs585/Lab2/morphology.png>
+Package pdftex.def Info: /Users/donj/workspace/cs585/Lab2/morphology.png used o
+n input line 277.
+(pdftex.def)             Requested size: 398.33858pt x 175.43765pt.
+ [13 </Users/donj/workspace/cs585/Lab2/convolution.png> </Users/donj/workspace/
+cs585/Lab2/morphology.png>] (./Assignment 2 Don Johnson.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5892 strings out of 493315
- 94859 string characters out of 6137904
- 184882 words of memory out of 5000000
- 9254 multiletter control sequences out of 15000+600000
- 9023 words of font info for 33 fonts, out of 8000000 for 9000
+ 5601 strings out of 493315
+ 91907 string characters out of 6137904
+ 160882 words of memory out of 5000000
+ 8968 multiletter control sequences out of 15000+600000
+ 8715 words of font info for 32 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,8n,49p,514b,1237s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
-cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
-/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
-texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on "Assignment 2 Don Johnson.pdf" (16 pages, 5366715 bytes).
+ 38i,7n,49p,498b,353s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
+ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
+cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on "Assignment 2 Don Johnson.pdf" (13 pages, 5377166 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 103 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

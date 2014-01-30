@@ -213,7 +213,7 @@ Under the folder for Lab2, there is a folder called "gradients" containing sever
     
         Holding x, \(\theta\)  constant and taking the derivative with respect to y yields:
     
-\begin{eqnarray*}[H]
+\begin{eqnarray*}
 \frac{\partial I}{\partial y} I(x,y)=\sin \theta
 \end{eqnarray*}    
 
@@ -226,8 +226,20 @@ Under the folder for Lab2, there is a folder called "gradients" containing sever
 \end{eqnarray*}    
 
 	\item Using the program from the Lab, inspect the gradient of the images named "gradient_theta=0.png", "gradient_theta=45.png", "gradient_theta=90.png." Did you find any discrepancies? 
-	\linebreak
-	Yes, the 0 and ninety degree values were opposite of what I expected because the dI/dx and dI/dy values were reversed. These are the values I got from running the program against the three images: (1,0) , (0.7,0.7) and (0, 1).
+	Yes, the 0 and ninety degree values were opposite of what I expected because the dI/dx and dI/dy values were reversed. These are the values I got from running the program against the three images:
+	
+\begin{tabular}{| l |c |r |}
+\hline
+Degree &	dX &	 dY \\
+\hline
+0 &	1 &	0 \\	
+\hline
+45 &	0.7 &	0.7 \\
+\hline
+90 & 0 & 1 \\
+\hline
+\end{tabular}
+
 	\item Using the program from the Lab, inspect the gradient of the image named "gradient_mysteryTheta.png." Report the values that you find and use them to determine the angle I used to generate the image.
 	\linebreak
 	Non-noisy mystery theta Arctan(dI/dy,dI/dx) = (255/191) = 53 degrees
@@ -250,211 +262,26 @@ Under the folder for Lab2, there is a folder called "gradients" containing sever
 1 &	2 &	1 \\
 \hline
 \end{tabular}
-
-
 	
 \item
-This code snippet below demonstrates the strange thing that is happening in when we add 1 to a color channel of an image. If the color channel is saturated (equal to 255) for a particular pixel, the color channel value rolls over to 0 because it is a unsigned byte. This why the more saturated areas of the image showed a strange speckled effect. The color also changes. For example if you add one to a saturated green channel in a  yellow pixel, the pixel changes to red.
-\newline\newline
-Here is the code and output:
-\begin{lstlisting}
-unsigned char nvar = 253;
-for(int i=0;i<5;i++){
-    printf("nvar + 1: %d\n", (unsigned int)++nvar);
-}
-\end{lstlisting}
-
-Output:
-\newline
-nvar + 1: 254
-\newline
-nvar + 1: 255
-\newline
-nvar + 1: 0   (Here is where the value rolled over)
-\newline
-nvar + 1: 1
-\newline
-nvar + 1: 2
-
-\end{enumerate}
-
-\section{Lecture preparation}
-\subsection{Preparation for Lecture 2}
-\begin{enumerate}
-\item
-Formula for the area A, of the base of a cone, given an apex angle \( \alpha \), and height h:
-\begin{eqnarray*}
-\tan \alpha =\frac{r}{h}
-\\r=h \tan\alpha
-\\A=\pi r^{2}
-\\A=\pi\left ( h\tan\alpha \right )^{2}
-\end{eqnarray*}
-
-\item
-Solving for side Z of the blue triangle using properties of similar triangles:
-\begin{eqnarray*}
-\frac{Z}{f}=\frac{X}{u}
-\\Z=\frac{X}{u}\cdot f
-\\Z=\frac{5000 mm \cdot 25 mm}{0.540 mm}
-\\Z=231.48m
-\end{eqnarray*}
-
-\item
-Solving for side u of the red triangle using properties of similar triangles:
-\begin{eqnarray*}
-\frac{Z}{f}=\frac{X}{u}
-\\u=\frac{f}{X}\cdot Z
-\\u=\frac{25 mm \cdot 1000 mm}{10000 mm}
-\\u=2.5 mm
-\end{eqnarray*}
-
-\item
-Count N in pixels of u in for an \(18 \mu m\) pixel is:
-\begin{eqnarray*}
-N=\frac{u}{pixels\:size\:in\:\mu m}
-\\N=\frac{2500 \mu m}{18 \mu m}
-\\N=139 pixels
-\end{eqnarray*}
-
-\item
-The magnitude of the vectors, n, v:
-\begin{eqnarray*}
-\left | n \right |=\sqrt{\left( 1\right )^{2}+\left( 1\right )^{2}}=\sqrt{2}
-\\\left | v \right |=\sqrt{\left( 1\right )^{2}+\left( 0.5\right )^{2}}=\frac{\sqrt{5}}{2}
-\end{eqnarray*}
-\newline
-The corresponding unit vectors \(\left \| n \right \|, \left \| v \right \|\):
-\begin{eqnarray*}
-\left \| n \right \|=(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})
-\\\left \| v \right \|=( \frac{2}{\sqrt{5}}, \frac{1}{\sqrt{5}} )
-\end{eqnarray*}
-
-\item
-The dot product of unit vectors \(\left \| n \right \|, \left \| v \right \|\):
-\begin{eqnarray*}
-\left \| n \right \|\cdot \left \| v \right \|=\frac{1}{\sqrt{2}}\cdot\frac{2}{\sqrt{5}}+\frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{5}}
-\\\left \| n \right \|\cdot \left \| v \right \|=\frac{3}{\sqrt{10}}
-\end{eqnarray*}
-
-\item
-The angle \(\theta\) between vectors n, v:
-\begin{eqnarray*}
-\cos \theta=\frac{n \cdot v}{\left | n \right | \cdot \left | v \right |}
-\\\cos \theta=\frac{1\cdot1+1\cdot\frac{1}{2}}{\sqrt{2}\cdot\frac{\sqrt{5}}{2}}
-\\\cos \theta=\frac{3}{\sqrt 10}
-\\\theta=18.44^{\circ}
-\end{eqnarray*}
-
-\item
-The projection p of v, onto n:
-\begin{eqnarray*}
-p=\left | v \right |\cos \theta\cdot\left \| n \right \|
-\\p=\frac{\sqrt{5}}{2}\cdot\frac{3}{\sqrt 10}(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})
-\\p=\frac{3}{2\sqrt 2}(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})
-\\p=(\frac{3}{4},\frac{3}{4})
-\end{eqnarray*}
-
-
-\item
-The perpendicular vector q, between v and n:
-\begin{eqnarray*}
-q=v-p
-\\q=(1,\frac{1}{2})-(\frac{3}{4},\frac{3}{4})
-\\q=(\frac{1}{4},-\frac{1}{4})
-\end{eqnarray*}
-Finally, r equals the sum of the components we just calculated:
-\begin{eqnarray*}
-r=p+q
-\\r=(\frac{3}{4},\frac{3}{4})+(\frac{1}{4},-\frac{1}{4})
-\\r=(\frac{1}{2},\frac{1}{2})
-\end{eqnarray*}
-
-\end{enumerate}
-
-\subsection{Preparation for Lecture 3}
-\begin{enumerate}
-\item
-Adapted from source: http://www.csl.mtu.edu/cs2321/www/newLectures/26_Depth_First_Search.html
-
-\begin{lstlisting}
-Definitions: 
-G is a graph
-G.incidentEdges(v) - all of the edges associated with vertex v
-G.opposite(v,e) - a vertex at the other end of edge e connected to v
-
-Note: Every edge and vertex is marked initially as unexplored.
-The algorithm terminates when all vertices and edges have been explored.
-The initial vertex is the root.
-
-Algorithm for depth-first, recursive transversal of graph G:
-
-DFS(graph G, Vertex v) 
-
-for all edges e in G.incidentEdges(v) do
-
-    if edge e is unexplored then
-    
-        w = G.opposite(v, e) 
-        if vertex w is unexplored then 
-            label e as discovery edge 
-            recursively call DFS(G, w) 
-        else 
-            label e as a back edge
-            
-\end{lstlisting}
-
-\item
-Algorithm to find connected components of graph and using depth-first transversal algorithm in previous question:
-\begin{lstlisting}
-Given a set of vertices {a,b,c,d,e,...}
-
-Create a 2-dimensional matrix where the row and columns are the labeled with the vertices.
-A cell value of 1 means they are connected and 0 unconnected.
-Initialize (a,a), (b,b),(c,c).... equal to 1 - every vertex is connected to itself.
-
-for all vertices v in G
-	Do DFS(G, v) only for sum of row and column with same label is greater than one
-		
-		for each v, treated as root vertex, set connection matrix cell (v,v1), (v,v2), (v,v3) equal to 1 when v1, v2, v3, ... are visited during algorithm. 	
-\end{lstlisting}
-
-\pagebreak
-\item
-\begin{figure}[ht!]
+I replicated the nearest neighbor row and then column to complete the convolution and populate the boundary pixels:
+\begin{figure}[H]
 \centering
-\includegraphics[width=100mm]{twoRedEggsThresholded175.png}
-\caption{Results from running my program from section 1.2 on the picture "twoRedEggs.jpg"}
-\label{overflow}
+\includegraphics[width=80mm]{/Users/donj/workspace/cs585/Lab2/convolution.png}
 \end{figure}
 
 \item
-\begin{itemize}
-\item
-To find the number of red objects, I would define red for a pixel as a minimum ratio between the red channel and the blue, green channels
-\item
-Create a mask of all of those pixels defined as red, setting them equal to 1 and all other pixels equal to 0
-\item
-Run a depth first algorithm against the mask, visiting only the pixels equal to 1, treating each pixel as a vertex and each pixel boundary as an edge. Make it a greedy algorithm, collecting sets of connected pixels and keeping track of which pixels have been visited.
-\item
-Count the pixel sets to determine number of red objects
-\end{itemize}
-\item
-My strategy for discarding the small extra regions that may pass through your red-object detector would be to require a minimal set size when counting the sets in the last step of the algorithm outlined in the previous question.
+These are the erosion and dilation of the original image:
+\begin{figure}[H]
+\centering
+\includegraphics[width=140mm]{/Users/donj/workspace/cs585/Lab2/morphology.png}
+\end{figure}
 
-\item
-If I was trying to create an rordered list of pixels that comprised the perimeter of an image region, for example, one of the red objects in the previous problem, I would:
-\begin{itemize}
-\item
-Assume a x,y coordinate system for the image with (0,0) being the upper-left hand coordinate and both x and y increasing as you went down and to the right of the image.
-\item
-Find a pixel in one of the objects pixels sets from the previous problem with a value equal to 1 and having an x-coordinate minima in the set of pixels for that object. This will be one of the far left pixels in the object.
-\item
-Check for neighbor pixels with a value of one in this order: left, left-up, up, right-up, right, right-down, down, left-down
-\item
-When a non-zero neighbor is found, add it to a linked list, mark the pixel as visited and repeat the left to clockwise search pattern starting at the pixel boundary at which you entered.
-\item
-Repeat the process until you return to the first pixel where you started. The approach is similar to the approach used by bright physician from Egypt on the Maze of the Minotaur. The linked list contains the boundary pixels for the object.
-\end{itemize}
+\section{Lecture preparation (3 points)}
+
+\subsection{Preparation for Lecture 4}
+
+\subsection{Preparation for Lecture 5 (3 pts)}
 
 \end{enumerate}
 
