@@ -32,7 +32,9 @@ char morphType = 0;
 
 int main(int argc, char* argv[])
 {
-    String dataDir="/Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/";
+    //String dataDir="/Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/";
+    String dataDir="/Users/donj/workspace/cs585/Lab2/Mac/Assignment2/Data/camoEggsPyramid/";
+    
     if (argc < 2)
     {
         cout<<"Usage: Lab2 imageName"<<endl;
@@ -90,8 +92,10 @@ int main(int argc, char* argv[])
             //String filename2 = dataDir + "rainbowEasy-result.png";
             //String filename1 = dataDir + "rainbowHard-before-edges.png";
             //String filename2 = dataDir + "rainbowHard-before-result.png";
-            String filename1 = dataDir + "rainbowHard-after-edges.png";
-            String filename2 = dataDir + "rainbowHard-after-result.png";
+            //String filename1 = dataDir + "rainbowHard-after-edges.png";
+            //String filename2 = dataDir + "rainbowHard-after-result.png";
+            String filename1 = dataDir + "camoEggsPyramid-edges.png";
+            String filename2 = dataDir + "camoEggsPyramid-result.png";
            
             imwrite(filename1, edges);
             imwrite(filename2, displayImage);
