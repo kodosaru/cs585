@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "72F1FAA6189EC5190050CA45"
-               BuildableName = "Lab3"
-               BlueprintName = "Lab3"
-               ReferencedContainer = "container:Lab3.xcodeproj">
+               BuildableName = "Lab3_Part3"
+               BlueprintName = "Lab3_Part3"
+               ReferencedContainer = "container:Lab3_Part3.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "72F1FAA6189EC5190050CA45"
-            BuildableName = "Lab3"
-            BlueprintName = "Lab3"
-            ReferencedContainer = "container:Lab3.xcodeproj">
+            BuildableName = "Lab3_Part3"
+            BlueprintName = "Lab3_Part3"
+            ReferencedContainer = "container:Lab3_Part3.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,11 +52,17 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "72F1FAA6189EC5190050CA45"
-            BuildableName = "Lab3"
-            BlueprintName = "Lab3"
-            ReferencedContainer = "container:Lab3.xcodeproj">
+            BuildableName = "Lab3_Part3"
+            BlueprintName = "Lab3_Part3"
+            ReferencedContainer = "container:Lab3_Part3.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/donj/workspace/cs585/Lab3/Data"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "72F1FAA6189EC5190050CA45"
-            BuildableName = "Lab3"
-            BlueprintName = "Lab3"
-            ReferencedContainer = "container:Lab3.xcodeproj">
+            BuildableName = "Lab3_Part3"
+            BlueprintName = "Lab3_Part3"
+            ReferencedContainer = "container:Lab3_Part3.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -4,6 +4,7 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include <stdlib.h>
 
 using namespace cv;
 using namespace std;
@@ -13,9 +14,10 @@ int main(int argc, char* argv[])
 {
     VideoCapture capture;
     capture.open(0);
+    int error;
     if(!capture.isOpened())
     {
-        int error = -1;
+        error = -1;
         return 1;
     }
 
@@ -23,7 +25,7 @@ int main(int argc, char* argv[])
     // http://docs.opencv.org/doc/tutorials/objdetect/cascade_classifier/cascade_classifier.html
 
     Mat view;
-    bool blink = false;
+    //bool blink = false;
 
     bool bRecording = false;
     int frameNumber=0;
@@ -31,7 +33,7 @@ int main(int argc, char* argv[])
     directory[0]='.';
     if(argc > 1)
     {
-        strcpy_s(directory, argv[1]);
+        strcpy(directory, argv[1]);
     }
     char filename[256];
 
@@ -43,7 +45,7 @@ int main(int argc, char* argv[])
         imshow("Camera View", view);
         if(bRecording)
         {
-            sprintf_s(filename, "%s/video_%04d.jpg", directory, frameNumber);
+            sprintf(filename, "%s/video_%04d.jpg", directory, frameNumber);
             imwrite(filename  , view);
             frameNumber++;
         }
@@ -51,7 +53,7 @@ int main(int argc, char* argv[])
         char key = waitKey(33);
         if(key == 'p')
         {
-            sprintf_s(filename, "%s/video_%04d.jpg", directory, frameNumber);
+            sprintf(filename, "%s/video_%04d.jpg", directory, frameNumber);
             imwrite(filename, view);
             frameNumber++;
         }

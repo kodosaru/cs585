@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		72F1FAAD189EC5190050CA45 /* Lab3_Part3.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 72F1FAAC189EC5190050CA45 /* Lab3_Part3.1 */; };
-		72F1FADE189EC6130050CA45 /* Lab3_Part3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72F1FADD189EC6130050CA45 /* Lab3_Part3.cpp */; };
+		726ED3EC189F0DD3009C096B /* Lab3_Part3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 726ED3EB189F0DD3009C096B /* Lab3_Part3.cpp */; };
 		72F1FAF8189ED1BD0050CA45 /* libopencv_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72F1FAF7189ED1BD0050CA45 /* libopencv_core.dylib */; };
 		72F1FAFA189ED1C80050CA45 /* libopencv_highgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72F1FAF9189ED1C80050CA45 /* libopencv_highgui.dylib */; };
 		72F1FAFC189ED1CE0050CA45 /* libopencv_imgproc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72F1FAFB189ED1CE0050CA45 /* libopencv_imgproc.dylib */; };
@@ -21,17 +20,15 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				72F1FAAD189EC5190050CA45 /* Lab3_Part3.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		726ED3EA189F0DD3009C096B /* Lab3_Part3.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = Lab3_Part3.1; sourceTree = "<group>"; };
+		726ED3EB189F0DD3009C096B /* Lab3_Part3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lab3_Part3.cpp; sourceTree = "<group>"; };
 		72F1FAA7189EC5190050CA45 /* Lab3_Part3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab3_Part3; sourceTree = BUILT_PRODUCTS_DIR; };
-		72F1FAAC189EC5190050CA45 /* Lab3_Part3.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Lab3_Part3.1; sourceTree = "<group>"; };
-		72F1FADD189EC6130050CA45 /* Lab3_Part3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lab3_Part3.cpp; sourceTree = "<group>"; };
-		72F1FAF5189ED1B40050CA45 /* libopencv_contrib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_contrib.dylib; sourceTree = "<group>"; };
 		72F1FAF7189ED1BD0050CA45 /* libopencv_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_core.dylib; sourceTree = "<group>"; };
 		72F1FAF9189ED1C80050CA45 /* libopencv_highgui.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_highgui.dylib; sourceTree = "<group>"; };
 		72F1FAFB189ED1CE0050CA45 /* libopencv_imgproc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_imgproc.dylib; sourceTree = "<group>"; };
@@ -51,13 +48,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		726ED3E9189F0DD3009C096B /* Lab3_Part3.cpp */ = {
+			isa = PBXGroup;
+			children = (
+				726ED3EA189F0DD3009C096B /* Lab3_Part3.1 */,
+				726ED3EB189F0DD3009C096B /* Lab3_Part3.cpp */,
+			);
+			name = Lab3_Part3.cpp;
+			sourceTree = "<group>";
+		};
 		72F1FA9E189EC5190050CA45 = {
 			isa = PBXGroup;
 			children = (
 				72F1FAFB189ED1CE0050CA45 /* libopencv_imgproc.dylib */,
 				72F1FAF9189ED1C80050CA45 /* libopencv_highgui.dylib */,
 				72F1FAF7189ED1BD0050CA45 /* libopencv_core.dylib */,
-				72F1FAF5189ED1B40050CA45 /* libopencv_contrib.dylib */,
 				72F1FAA9189EC5190050CA45 /* Lab3_Part3.cpp */,
 				72F1FAA8189EC5190050CA45 /* Products */,
 			);
@@ -74,8 +79,7 @@
 		72F1FAA9189EC5190050CA45 /* Lab3_Part3.cpp */ = {
 			isa = PBXGroup;
 			children = (
-				72F1FADD189EC6130050CA45 /* Lab3_Part3.cpp */,
-				72F1FAAC189EC5190050CA45 /* Lab3_Part3.1 */,
+				726ED3E9189F0DD3009C096B /* Lab3_Part3.cpp */,
 			);
 			name = Lab3_Part3.cpp;
 			path = Lab3;
@@ -132,7 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72F1FADE189EC6130050CA45 /* Lab3_Part3.cpp in Sources */,
+				726ED3EC189F0DD3009C096B /* Lab3_Part3.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +256,7 @@
 				72F1FAB2189EC5190050CA45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
