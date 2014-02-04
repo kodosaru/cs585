@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7268A1D8189F31EB0027B26C"
-               BuildableName = "Assignment3_Part2"
-               BlueprintName = "Assignment3_Part2"
-               ReferencedContainer = "container:Assignment3_Part2.xcodeproj">
+               BlueprintIdentifier = "72581BAF18A1118B00BAD842"
+               BuildableName = "CascadeClassifier"
+               BlueprintName = "CascadeClassifier"
+               ReferencedContainer = "container:CascadeClassifier.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7268A1D8189F31EB0027B26C"
-            BuildableName = "Assignment3_Part2"
-            BlueprintName = "Assignment3_Part2"
-            ReferencedContainer = "container:Assignment3_Part2.xcodeproj">
+            BlueprintIdentifier = "72581BAF18A1118B00BAD842"
+            BuildableName = "CascadeClassifier"
+            BlueprintName = "CascadeClassifier"
+            ReferencedContainer = "container:CascadeClassifier.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,22 +51,12 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7268A1D8189F31EB0027B26C"
-            BuildableName = "Assignment3_Part2"
-            BlueprintName = "Assignment3_Part2"
-            ReferencedContainer = "container:Assignment3_Part2.xcodeproj">
+            BlueprintIdentifier = "72581BAF18A1118B00BAD842"
+            BuildableName = "CascadeClassifier"
+            BlueprintName = "CascadeClassifier"
+            ReferencedContainer = "container:CascadeClassifier.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "redStar.png"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "faceImage.jpg"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -79,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7268A1D8189F31EB0027B26C"
-            BuildableName = "Assignment3_Part2"
-            BlueprintName = "Assignment3_Part2"
-            ReferencedContainer = "container:Assignment3_Part2.xcodeproj">
+            BlueprintIdentifier = "72581BAF18A1118B00BAD842"
+            BuildableName = "CascadeClassifier"
+            BlueprintName = "CascadeClassifier"
+            ReferencedContainer = "container:CascadeClassifier.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

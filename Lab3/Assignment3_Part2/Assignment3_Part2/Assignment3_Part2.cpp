@@ -1,7 +1,6 @@
 // Assignment3_Part2.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -9,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sys/stat.h>
 
 using namespace cv;
 using namespace std;
@@ -38,8 +38,12 @@ void computeObjectAreaAndCenter(vector<Point>& outline, double& area, Point& cen
 //Given: Draw an outline stored in a vector of points
 void drawOutline(Mat& image, vector<Point>& outline);
 
+bool FileExist( const string& Name );
+
 int main(int argc, char* argv[])
 {
+    String dataDir="/Users/donj/workspace/cs585/Lab3/Data/";
+    String path;
 
     //Put a frame around a picture of a face
     if(argc <= 2)
@@ -47,16 +51,26 @@ int main(int argc, char* argv[])
         cout<<"Please provide a filename of an outline and an image"<<endl;
         return 0;
     }
-
-    string face_cascade_name = "haarcascade_frontalface_alt.xml";
+    
+    string face_cascade_name = dataDir+"haarcascade_frontalface_alt.xml";
     CascadeClassifier face_cascade;
     if( !face_cascade.load( face_cascade_name ) )
     {
         printf("--(!)Error loading\n"); return -1; 
     }
 
-    outlineImage = imread(argv[1]);
-    originalImage = imread(argv[2]);
+    path = dataDir+argv[1];
+    if(!FileExist(path)){
+        cout << "File " << path << " does not exist" << endl;
+        return 1;
+    }
+    outlineImage = imread(path);
+    path = dataDir+argv[2];
+    if(!FileExist(path)){
+        cout << "File " << path << " does not exist" << endl;
+        return 1;
+    }
+    originalImage = imread(path);
     if(outlineImage.empty() || originalImage.empty())
     {
         cout<<"Unable to open images"<<endl;
@@ -129,7 +143,7 @@ void detectFaces( Mat& image, CascadeClassifier& face_cascade, vector<Rect>& fac
     cvtColor( image, frame_gray, CV_BGR2GRAY );
     equalizeHist( frame_gray, frame_gray );
 
-    //imshow("gray image", frame_gray);
+    imshow("gray image", frame_gray);
     //-- Detect faces
     face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
 }
@@ -137,19 +151,34 @@ void detectFaces( Mat& image, CascadeClassifier& face_cascade, vector<Rect>& fac
 
 void drawOutline(Mat& image, vector<Point>& outline)
 {
-    int numPoints = outline.size()-1;
+    int numPoints = (int)outline.size()-1;
     for(int f=0; f<numPoints; f++)
     {
         line(image, outline[f], outline[f+1], Scalar(255, 0, 0), 3);
     }
 }
 
+
 void translateOutline(vector<Point>& outline, Point center)
 {
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it+center;
+    }
 }
 
 void scaleOutline(vector<Point>& outline, double scale)
 {
+    Point oldCenter,newCenter,deltaCenter;
+    double area;
+    computeObjectAreaAndCenter(outline, area, oldCenter);
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it*scale;
+    }
+    computeObjectAreaAndCenter(outline, area, newCenter);
+    deltaCenter= oldCenter - newCenter;
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it+deltaCenter;
+    }
 }
 
 // Need to overload on the type of the point
@@ -238,4 +267,16 @@ void onTrackbar(int redThreshold, void* data)
     Point largestCenter;
     vector<Point>* largestOutline = (vector<Point>*)(data);
     findLargestRedObject(outlineImage, largestCenter, *largestOutline, redThreshold);
+}
+
+bool FileExist( const string& Name )
+{
+#ifdef OS_WINDOWS
+    struct _stat buf;
+    int Result = _stat( Name.c_str(), &buf );
+#else
+    struct stat buf;
+    int Result = stat( Name.c_str(), &buf );
+#endif
+    return Result == 0;
 }
