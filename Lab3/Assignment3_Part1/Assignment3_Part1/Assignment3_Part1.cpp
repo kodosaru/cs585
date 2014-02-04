@@ -1,7 +1,6 @@
 // Assignment3_Part1.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -9,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sys/stat.h>
 
 using namespace cv;
 using namespace std;
@@ -35,8 +35,13 @@ void drawOutline(Mat& image, vector<Point>& outline);
 //a dummy function to pass to the slider bar to threshold the red object
 void onTrackbar(int value, void* data);
 
+bool FileExist( const string& Name );
+
 int main(int argc, char* argv[])
 {
+    String dataDir="/Users/donj/workspace/cs585/Lab3/Data/";
+    String path = dataDir+argv[1];
+    
     //moving and scaling an outline
 
     if(argc <= 1)
@@ -45,7 +50,12 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    originalImage = imread(argv[1]);
+    if(!FileExist(path)){
+        cout << "File " << path << " does not exist" << endl;
+        return 1;
+    }
+    
+    originalImage = imread(path);
     Mat displayImage(originalImage.rows, originalImage.cols, CV_8UC3);
     originalImage.copyTo(displayImage);
     vector<Point> outline;
@@ -91,7 +101,7 @@ int main(int argc, char* argv[])
 
             //Required: do some operations to scale the outline. This might produce 
             //strange results to keep the outline centered, you need to do something else
-            scaleOutline(outline, 1.1);
+            scaleOutline(outline, 0.9);
         }
         if(key == ' ')
         {
@@ -104,7 +114,7 @@ int main(int argc, char* argv[])
 
 void drawOutline(Mat& image, vector<Point>& outline)
 {
-    int numPoints = outline.size()-1;
+    int numPoints = (int)outline.size()-1;
     for(int f=0; f<numPoints; f++)
     {
         line(image, outline[f], outline[f+1], Scalar(255, 0, 0), 3);
@@ -113,10 +123,24 @@ void drawOutline(Mat& image, vector<Point>& outline)
 
 void translateOutline(vector<Point>& outline, Point center)
 {
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it+center;
+    }
 }
 
 void scaleOutline(vector<Point>& outline, double scale)
 {
+    Point oldCenter,newCenter,deltaCenter;
+    double area;
+    computeObjectAreaAndCenter(outline, area, oldCenter);
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it*scale;
+    }
+    computeObjectAreaAndCenter(outline, area, newCenter);
+    deltaCenter= oldCenter - newCenter;
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it+deltaCenter;
+    }
 }
 
 // Need to overload on the type of the point
@@ -205,4 +229,16 @@ void onTrackbar(int redThreshold, void* data)
     Point largestCenter;
     vector<Point>* largestOutline = (vector<Point>*)(data);
     findLargestRedObject(originalImage, largestCenter, *largestOutline, redThreshold);
+}
+
+bool FileExist( const string& Name )
+{
+#ifdef OS_WINDOWS
+    struct _stat buf;
+    int Result = _stat( Name.c_str(), &buf );
+#else
+    struct stat buf;
+    int Result = stat( Name.c_str(), &buf );
+#endif
+    return Result == 0;
 }
