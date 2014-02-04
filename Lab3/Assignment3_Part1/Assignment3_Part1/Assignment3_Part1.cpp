@@ -119,6 +119,7 @@ void drawOutline(Mat& image, vector<Point>& outline)
     {
         line(image, outline[f], outline[f+1], Scalar(255, 0, 0), 3);
     }
+    //line(image,outline[0],outline[)
 }
 
 void translateOutline(vector<Point>& outline, Point center)
@@ -179,7 +180,8 @@ bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, in
     vector<Vec4i> dummy;
 
     //Find all of the contiguous image regions
-    findContours(justRed[0], objectContours, dummy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+    //findContours(justRed[0], objectContours, dummy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+    findContours(justRed[0], objectContours, dummy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
 
     //find the largest object
     int largestArea(-1), largestIndex(-1);
