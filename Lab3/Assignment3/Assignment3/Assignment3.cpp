@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <sys/stat.h>
+#include <dirent.h>
 
 using namespace cv;
 using namespace std;
@@ -53,6 +54,38 @@ int main(int argc, char* argv[])
     vector<Point> outline,drawing; //for the version that we are drawing (scaled and translated)
     Point outlineCenter;
     double outlineArea=0;
+    
+    // Empty results directory
+    struct dirent *next_file;
+    DIR *dir;
+    char filepath[256];
+    string folder;
+    
+    // Empty results folder
+    folder=dataDir+"results";
+    dir=opendir(folder.c_str());
+    while ( (next_file = readdir(dir)) )
+    {
+        // build the full path for each file in the folder
+        sprintf(filepath, "%s/%s", folder.c_str(), next_file->d_name);
+        if(!remove(filepath))
+        {
+            cout<<"Removed file "<<filepath<<endl;
+        };
+    }
+    // Empty video folder
+    folder=dataDir+"video";
+    dir=opendir(folder.c_str());
+    while ( (next_file = readdir(dir)) )
+    {
+        // build the full path for each file in the folder
+        sprintf(filepath, "%s/%s", folder.c_str(), next_file->d_name);
+        if(!remove(filepath))
+        {
+            cout<<"Removed file "<<filepath<<endl;
+        };
+    }
+
     
     // Create star outline
     /*
