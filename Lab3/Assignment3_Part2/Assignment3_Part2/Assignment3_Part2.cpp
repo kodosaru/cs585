@@ -15,6 +15,8 @@ using namespace std;
 
 Mat originalImage;
 Mat outlineImage;
+String dataDir="/Users/donj/workspace/cs585/Lab3/Data/";
+bool debug=false;
 
 //Required: Translate (move) an outline stored in a vector of points by adding an offset to 
 //the coordinates of all points in the outline
@@ -27,7 +29,7 @@ void scaleOutline(vector<Point>& outline, double scale);
 void detectFaces( Mat& image, CascadeClassifier& cascade, vector<Rect>& faces );
 
 //Given: function to detect the largest red object in an image
-bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, int redThreshold);
+bool findLargestRedObject(Mat view, Point& location, vector<Point>& outline, int redThreshold);
 
 //Given: a dummy function to pass to the slider bar to threshold the red object
 void onTrackbar(int value, void* data);
@@ -42,8 +44,10 @@ bool FileExist( const string& Name );
 
 int main(int argc, char* argv[])
 {
-    String dataDir="/Users/donj/workspace/cs585/Lab3/Data/";
+
     String path;
+    int redThreshold=190;
+
 
     //Put a frame around a picture of a face
     if(argc <= 2)
@@ -81,7 +85,7 @@ int main(int argc, char* argv[])
     originalImage.copyTo(displayImage);
     vector<Point> outline;
     vector<Point> originalOutline;
-    int redThreshold = 190;
+
 
     double scaleFactor = 1.0;
     Point2f translation(0,0);
@@ -201,7 +205,7 @@ void computeObjectAreaAndCenter(vector<Point>& outline, double& area, Point& cen
 }
 
 
-bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, int redThreshold)
+bool findLargestRedObject(Mat view, Point& location, vector<Point>& outline, int redThreshold)
 {
     //allocate some images to store intermediate results
     vector<Mat> YCrCb;
@@ -216,7 +220,15 @@ bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, in
 
     //Pull out just the red channel
     int extractRed[6]={1,0, 1, 1, 1, 2};
+    if(debug){
+        imwrite(dataDir+"test_view_good.png", view);
+        imwrite(dataDir+"test_ycrcb_good.png", YCrCb[0]);
+        imwrite(dataDir+"test_justred_good_before.png", justRed[0]);
+    }
     mixChannels(&(YCrCb[0]), 1, &(justRed[0]), 1, extractRed, 1);
+    if(debug){
+        imwrite(dataDir+"test_justred_good_after.png", justRed[0]);
+    }
 
     // Threshold the red object (with the threshold from the slider)
     threshold(justRed[0], justRed[0], redThreshold, 255, CV_THRESH_BINARY);

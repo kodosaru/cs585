@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7265D9A518A1F00B001871B1 /* libopencv_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7265D9A418A1F00B001871B1 /* libopencv_core.dylib */; };
+		7265D9A718A1F013001871B1 /* libopencv_highgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7265D9A618A1F013001871B1 /* libopencv_highgui.dylib */; };
+		7265D9A918A1F01F001871B1 /* libopencv_objdetect.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7265D9A818A1F01F001871B1 /* libopencv_objdetect.dylib */; };
+		7265D9AB18A1F029001871B1 /* libopencv_imgproc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7265D9AA18A1F029001871B1 /* libopencv_imgproc.dylib */; };
 		7268A1B5189F31630027B26C /* Assignment3.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7268A1B4189F31630027B26C /* Assignment3.1 */; };
 		7268A1FB189F32DA0027B26C /* Assignment3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7268A1FA189F32DA0027B26C /* Assignment3.cpp */; };
 /* End PBXBuildFile section */
@@ -25,6 +29,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7265D9A418A1F00B001871B1 /* libopencv_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_core.dylib; sourceTree = "<group>"; };
+		7265D9A618A1F013001871B1 /* libopencv_highgui.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_highgui.dylib; sourceTree = "<group>"; };
+		7265D9A818A1F01F001871B1 /* libopencv_objdetect.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_objdetect.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_objdetect.dylib; sourceTree = "<group>"; };
+		7265D9AA18A1F029001871B1 /* libopencv_imgproc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_imgproc.dylib; sourceTree = "<group>"; };
 		7268A1AF189F31620027B26C /* Assignment3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Assignment3; sourceTree = BUILT_PRODUCTS_DIR; };
 		7268A1B4189F31630027B26C /* Assignment3.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Assignment3.1; sourceTree = "<group>"; };
 		7268A1FA189F32DA0027B26C /* Assignment3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Assignment3.cpp; sourceTree = "<group>"; };
@@ -35,6 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7265D9A518A1F00B001871B1 /* libopencv_core.dylib in Frameworks */,
+				7265D9A718A1F013001871B1 /* libopencv_highgui.dylib in Frameworks */,
+				7265D9AB18A1F029001871B1 /* libopencv_imgproc.dylib in Frameworks */,
+				7265D9A918A1F01F001871B1 /* libopencv_objdetect.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +56,10 @@
 		7268A1A6189F31620027B26C = {
 			isa = PBXGroup;
 			children = (
+				7265D9AA18A1F029001871B1 /* libopencv_imgproc.dylib */,
+				7265D9A818A1F01F001871B1 /* libopencv_objdetect.dylib */,
+				7265D9A618A1F013001871B1 /* libopencv_highgui.dylib */,
+				7265D9A418A1F00B001871B1 /* libopencv_core.dylib */,
 				7268A1B1189F31620027B26C /* Assignment3 */,
 				7268A1B0189F31620027B26C /* Products */,
 			);
@@ -195,6 +211,12 @@
 		7268A1B9189F31630027B26C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/opencv/2.4.7.1/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/opencv/2.4.7.1/lib,
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/opencv/2.4.7.1/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -202,6 +224,12 @@
 		7268A1BA189F31630027B26C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/opencv/2.4.7.1/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/opencv/2.4.7.1/lib,
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/opencv/2.4.7.1/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -225,6 +253,7 @@
 				7268A1BA189F31630027B26C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

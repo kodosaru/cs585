@@ -1,15 +1,23 @@
 // OpenCVWebcam.cpp : Defines the entry point for the console application.
 //
-#include "stdafx.h"
+
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/objdetect/objdetect.hpp"
 #include <string>
 #include <vector>
+#include <stdio.h>
+#include <iostream>
+#include <sys/stat.h>
 
 using namespace cv;
 using namespace std;
+
+Mat view;
+//Mat starImage;
+string dataDir="/Users/donj/workspace/cs585/Lab3/Data/";
+bool debug=false;
 
  //function to detect faces after normalizing the image
  void detectFaces( Mat& image, CascadeClassifier& cascade, vector<Rect>& faces );
@@ -36,33 +44,56 @@ void translateOutline(vector<Point>& outline, Point center);
 //Scale an outline by multiplying all coordinates of all points in the outline by a constant
 void scaleOutline(vector<Point>& outline, double scale);
 
+bool FileExist( const string& Name );
 
 int main(int argc, char* argv[])
 {
+
+    int redThreshold = 190;
+    vector<Point> outline,drawing; //for the version that we are drawing (scaled and translated)
+    Point outlineCenter;
+    double outlineArea=0;
+    
+    // Create star outline
+    /*
+    string path = dataDir+"redStar.png";
+    if(!FileExist(path)){
+        cout << "File " << path << " does not exist" << endl;
+        return 1;
+    }
+    Mat starImage = imread(path);
+    Point starCenter;
+    imwrite(dataDir+"test_view_before_bad.png", starImage);
+    findLargestRedObject(starImage, starCenter, drawing, redThreshold);
+    */
+    
+    double scaleFactor = 1.0;
+    Point2f translation(0,0);
+    
     VideoCapture capture;
     char filename[256];
     capture.open(0);
     if(!capture.isOpened())
     {
-        int error = -1;
+        //int error = -1;
         return 1;
     }
 
    //Load face the cascades
    string face_cascade_name = "haarcascade_frontalface_alt.xml";
    CascadeClassifier face_cascade;
-   if( !face_cascade.load( face_cascade_name ) )
+   if( !face_cascade.load( dataDir+face_cascade_name ) )
    {
        printf("--(!)Error loading\n"); return -1; 
    }
 
     //for tracking the ball
-    vector<Point> drawing; //to keep track of the original track
-    vector<Point> outline; //for the version that we are drawing (scaled and translated)
+    //vector<Point> drawing; //to keep track of the original track
+    //vector<Point> outline; //for the version that we are drawing (scaled and translated)
     double drawingArea;
     Point drawingCenter;
-    int redThreshold=190;
     bool bTracking = false;
+    Mat view0;
 
     //for recording frames of video and results
     bool bRecordVideo = false;
@@ -73,11 +104,11 @@ int main(int argc, char* argv[])
     namedWindow( "Camera View", 1 );
     createTrackbar( "Red Threshold", "Camera View", &redThreshold, 255, onTrackbar );
 
-    Mat view, view0;
+
     capture.read(view0);
     view0.copyTo(view);
 
-    bool blink = false;
+    //bool blink = false;
 
     while( capture.isOpened() )
     {
@@ -85,7 +116,7 @@ int main(int argc, char* argv[])
         view0.copyTo(view);
         if(bRecordVideo)
         {
-            sprintf_s(filename, "video/video_%04d.jpg", frameNumber);
+            sprintf(filename, "%svideo/video_%04d.jpg", dataDir.c_str(), frameNumber);
             imwrite(filename, view);
         }
 
@@ -99,24 +130,37 @@ int main(int argc, char* argv[])
         else if(drawing.size() > 0)
         {
             //If we are not tracking, then detect the faces and draw the outline around the faces
-            std::vector<Rect> faces;
-            detectFaces(view, face_cascade, faces);
-            for(int F=0; F<faces.size(); F++)
-            {
-                //calculate the center of the faces returned by the face detector
-                Point faceCenter (faces[F].x+faces[F].width/2, faces[F].y + faces[F].height/2);
+            computeObjectAreaAndCenter(drawing, outlineArea, outlineCenter);
+            
+                std::vector<Rect> faces;
+                detectFaces(view, face_cascade, faces);
+                for(int F=0; F<faces.size(); F++)
+                {
+                    
 
-                // copy the drawing into another vector so we can manipulate it
-                outline = drawing;
+                    //calculate the center of the faces returned by the face detector
+                    Point faceCenter (faces[F].x+faces[F].width/2, faces[F].y + faces[F].height/2);
 
-                // Required: draw the user's drawing around the face
-            }
+                    // copy the drawing into another vector so we can manipulate it
+                    outline = drawing;
+
+                    // Required: draw the user's drawing around the face
+                    //Required: do some manipulations to scale and translate the shape
+                    translation=faceCenter-outlineCenter;
+                    translateOutline(outline, translation);
+                    scaleFactor=pow(faces[F].width,2)/outlineArea;
+                    scaleOutline(outline, scaleFactor);
+                    
+                    //draw the manipulated outline on the image
+                    drawOutline(view, outline);
+
+                }
         }
 
 
         if(bRecordResults)
         {
-            sprintf_s(filename, "results/results_%04d.jpg", frameNumber);
+            sprintf(filename, "%sresults/results_%04d.jpg", dataDir.c_str(), frameNumber);
             imwrite(filename, view);
         }
 
@@ -168,7 +212,7 @@ int main(int argc, char* argv[])
 
 void drawOutline(Mat& image, vector<Point>& outline)
 {
-    int numPoints = outline.size()-1;
+    int numPoints = (int)outline.size()-1;
     for(int f=0; f<numPoints; f++)
     {
         line(image, outline[f], outline[f+1], Scalar(255, 0, 0), 3);
@@ -177,14 +221,34 @@ void drawOutline(Mat& image, vector<Point>& outline)
 
 void translateOutline(vector<Point>& outline, Point center)
 {
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it+center;
+    }
 }
 
 void scaleOutline(vector<Point>& outline, double scale)
 {
+    Point oldCenter,newCenter,deltaCenter;
+    double area;
+    computeObjectAreaAndCenter(outline, area, oldCenter);
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it*scale;
+    }
+    computeObjectAreaAndCenter(outline, area, newCenter);
+    deltaCenter= oldCenter - newCenter;
+    for(vector<Point>::iterator it = outline.begin(); it != outline.end(); ++it) {
+        *it=*it+deltaCenter;
+    }
 }
 
 void trackRedObject(Mat& view, vector<Point>& track, int redThreshold)
 {
+    //Added
+    Point largestCenter;
+    vector<Point> largestOutline;
+    findLargestRedObject(view, largestCenter, largestOutline, redThreshold);
+    cout<<"Center: ("<<largestCenter.x<<","<<largestCenter.y<<")"<<endl;
+    track.push_back(largestCenter);
 }
 
 void computeObjectAreaAndCenter(vector<Point>& outline, double& area, Point& center)
@@ -212,10 +276,15 @@ void detectFaces( Mat& image, CascadeClassifier& face_cascade, vector<Rect>& fac
   //imshow("gray image", frame_gray);
   //-- Detect faces
   face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+    cout<<"No. of faces: "<<faces.size()<<endl;
  }
 
 bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, int redThreshold)
 {
+    if(debug){
+        imwrite(dataDir+"test_view_after_bad.png", view);
+    }
+    
     //allocate some images to store intermediate results
     vector<Mat> YCrCb;
     YCrCb.push_back(Mat(view.rows, view.cols, CV_8UC3));
@@ -228,8 +297,21 @@ bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, in
     cvtColor(view, YCrCb[0], CV_BGR2YCrCb); 
 
     //Pull out just the red channel
+    //int extractRed[6]={1,0, 1, 1, 1, 2};
+    //mixChannels(&(YCrCb[0]), 1, &(justRed[0]), 1, extractRed, 1);
+    
     int extractRed[6]={1,0, 1, 1, 1, 2};
+    Mat foo;
+    //justRed[0]=Mat::zeros(view.rows,view.cols,CV_8UC1);
+    if(debug){
+        imwrite(dataDir+"test_ycrcb_bad.png", YCrCb[0]);
+        imwrite(dataDir+"test_justred_bad_before.png", justRed[0]);
+    }
     mixChannels(&(YCrCb[0]), 1, &(justRed[0]), 1, extractRed, 1);
+    if(debug){
+        imwrite(dataDir+"test_justred_bad_after.png", justRed[0]);
+    }
+
 
     // Threshold the red object (with the threshold from the slider)
     threshold(justRed[0], justRed[0], redThreshold, 255, CV_THRESH_BINARY);
@@ -268,8 +350,10 @@ bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, in
         //put a red circle around the red object
         circle(displayRed[0], largestCenter, std::min(double(view.cols)/2, sqrt(largestArea)), Scalar(0, 0, 255), 1);
     }
-    imshow("Just Red", displayRed[0]);
-
+    if(debug)
+    {
+        imshow("Just Red", displayRed[0]);
+    }
 
     if(largestIndex >= 0)
     {
@@ -282,6 +366,23 @@ bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, in
 
 }
 
-void onTrackbar(int value, void* data)
+void onTrackbar(int redThreshold, void* data)
 {
+    //Added
+    Point largestCenter;
+    vector<Point>* largestOutline = (vector<Point>*)(data);
+    findLargestRedObject(view, largestCenter, *largestOutline, redThreshold);
+}
+
+
+bool FileExist( const string& Name )
+{
+#ifdef OS_WINDOWS
+    struct _stat buf;
+    int Result = _stat( Name.c_str(), &buf );
+#else
+    struct stat buf;
+    int Result = stat( Name.c_str(), &buf );
+#endif
+    return Result == 0;
 }
