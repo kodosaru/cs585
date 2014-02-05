@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
         }
         if(key == ' ')
         {
-            imwrite("Part1_result.png", displayImage);
+            imwrite(dataDir+"Part1_result.png", displayImage);
         }
     }
 

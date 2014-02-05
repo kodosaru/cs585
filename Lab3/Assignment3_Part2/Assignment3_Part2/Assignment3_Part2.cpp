@@ -130,7 +130,7 @@ int main(int argc, char* argv[])
         }
         if(key == ' ')
         {
-            imwrite("Part2_result.png", displayImage);
+            imwrite(dataDir+"Part2_result.png", displayImage);
         }
     }
 
@@ -148,7 +148,7 @@ void detectFaces( Mat& image, CascadeClassifier& face_cascade, vector<Rect>& fac
     cvtColor( image, frame_gray, CV_BGR2GRAY );
     equalizeHist( frame_gray, frame_gray );
 
-    //imshow("gray image", frame_gray);
+    imshow("gray image", frame_gray);
     //-- Detect faces
     face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
     cout<<"x0: "<<faces[0].x<<" y0: "<<faces[0].y<<endl;
@@ -255,7 +255,7 @@ bool findLargestRedObject(Mat& view, Point& location, vector<Point>& outline, in
         //put a red circle around the red object
         circle(displayRed[0], largestCenter, std::min(double(view.cols)/2, sqrt(largestArea)), Scalar(0, 0, 255), 1);
     }
-    //imshow("Just Red", displayRed[0]);
+    imshow("Just Red", displayRed[0]);
 
 
     if(largestIndex >= 0)

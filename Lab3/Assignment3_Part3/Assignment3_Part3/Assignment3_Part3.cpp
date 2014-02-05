@@ -31,6 +31,8 @@ void drawOutline(Mat& image, vector<Point>& outline);
 
 int main(int argc, char* argv[])
 {
+    String dataDir="/Users/donj/workspace/cs585/Lab3/Data/";
+
     //using an STL vector to keep track of red object over time
     vector<Point> track;
     char directory[256], filename[256];
@@ -86,7 +88,7 @@ int main(int argc, char* argv[])
         }
         if(key == ' ')
         {
-            imwrite("Part3_result.png", originalImage);
+            imwrite(dataDir+"Part3_result.png", originalImage);
         }
     }
 
@@ -100,6 +102,7 @@ void trackRedObject(Mat& view, vector<Point>& track, int redThreshold)
     vector<Point> largestOutline;
     findLargestRedObject(view, largestCenter, largestOutline, redThreshold);
     cout<<"Center: ("<<largestCenter.x<<","<<largestCenter.y<<")"<<endl;
+    track.push_back(largestCenter);
 }
 
 void drawOutline(Mat& image, vector<Point>& outline)
