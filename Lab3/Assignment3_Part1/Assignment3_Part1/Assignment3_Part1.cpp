@@ -119,7 +119,6 @@ void drawOutline(Mat& image, vector<Point>& outline)
     {
         line(image, outline[f], outline[f+1], Scalar(255, 0, 0), 3);
     }
-    //line(image,outline[0],outline[)
 }
 
 void translateOutline(vector<Point>& outline, Point center)

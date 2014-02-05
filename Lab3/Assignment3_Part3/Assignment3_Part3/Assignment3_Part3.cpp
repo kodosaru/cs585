@@ -1,7 +1,6 @@
 // Assignment3_Part3.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -44,7 +43,7 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    strcpy_s(directory, argv[1]);
+    strcpy(directory, argv[1]);
     startFrame = atoi(argv[2]);
     endFrame = atoi(argv[3]);
     currentFrame = startFrame;
@@ -52,7 +51,7 @@ int main(int argc, char* argv[])
     namedWindow("Image Window", 1);
     createTrackbar( "Red Threshold", "Image Window", &redThreshold, 255, onTrackbar, NULL);
 
-    sprintf_s(filename, "%s/video_%04d.jpg", directory, currentFrame);
+    sprintf(filename, "%s/video_%04d.jpg", directory, currentFrame);
     originalImage = imread(filename);
     if(originalImage.empty())
     {
@@ -64,7 +63,7 @@ int main(int argc, char* argv[])
     {
         if(bTracking && currentFrame <= endFrame)
         {
-            sprintf_s(filename, "%s/video_%04d.jpg", directory, currentFrame);
+            sprintf(filename, "%s/video_%04d.jpg", directory, currentFrame);
             originalImage = imread(filename);
             if(originalImage.empty())
             {
@@ -97,11 +96,15 @@ int main(int argc, char* argv[])
 void trackRedObject(Mat& view, vector<Point>& track, int redThreshold)
 {
     //Required
+    Point largestCenter;
+    vector<Point> largestOutline;
+    findLargestRedObject(view, largestCenter, largestOutline, redThreshold);
+    cout<<"Center: ("<<largestCenter.x<<","<<largestCenter.y<<")"<<endl;
 }
 
 void drawOutline(Mat& image, vector<Point>& outline)
 {
-    int numPoints = outline.size()-1;
+    int numPoints = (int)outline.size()-1;
     for(int f=0; f<numPoints; f++)
     {
         line(image, outline[f], outline[f+1], Scalar(255, 0, 0), 3);
@@ -194,5 +197,6 @@ void onTrackbar(int redThreshold, void* data)
     
     Point largestCenter;
     vector<Point> largestOutline;
-    findLargestRedObject(originalImage, largestCenter, largestOutline, redThreshold);   
+    findLargestRedObject(originalImage, largestCenter, largestOutline, redThreshold);
+    cout<<"Center: ("<<largestCenter.x<<","<<largestCenter.y<<")"<<endl;
 }
