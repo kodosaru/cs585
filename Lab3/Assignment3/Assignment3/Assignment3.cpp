@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
 
     
     // Create star outline
-    /*
+    
     string path = dataDir+"redStar.png";
     if(!FileExist(path)){
         cout << "File " << path << " does not exist" << endl;
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
     Point starCenter;
     imwrite(dataDir+"test_view_before_bad.png", starImage);
     findLargestRedObject(starImage, starCenter, drawing, redThreshold);
-    */
+    
     
     double scaleFactor = 1.0;
     Point2f translation(0,0);
