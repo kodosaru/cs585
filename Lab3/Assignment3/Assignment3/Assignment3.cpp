@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
     char filepath[256];
     string folder;
     
-    // Empty results folder
+    /* Empty results folder
     folder=dataDir+"results";
     dir=opendir(folder.c_str());
     while ( (next_file = readdir(dir)) )
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
         {
             cout<<"Removed file "<<filepath<<endl;
         };
-    }
+    }*/
 
     
     // Create star outline

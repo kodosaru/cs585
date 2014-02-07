@@ -31,6 +31,7 @@ int main(int argc, char* argv[])
     int frameNumber=0;
     char directory[128]={'\0'};
     directory[0]='.';
+    strcpy(directory,"/Users/donj/workspace/cs585/Lab3/trackingSequence");
     if(argc > 1)
     {
         strcpy(directory, argv[1]);

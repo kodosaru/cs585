@@ -59,7 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/donj/workspace/cs585/Lab3/trackingSequence2"
+            argument = "/Users/donj/workspace/cs585/Lab3/trackingSequence"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -68,6 +68,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "234"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "198"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

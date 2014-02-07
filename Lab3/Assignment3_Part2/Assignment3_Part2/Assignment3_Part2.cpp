@@ -118,7 +118,7 @@ int main(int argc, char* argv[])
                 //Required: do some manipulations to scale and translate the shape
                 translation=faceCenter-outlineCenter;
                 translateOutline(outline, translation);
-                scaleFactor=pow(faces[F].width,2)/outlineArea*2.0;
+                scaleFactor=pow(faces[F].width,2)/outlineArea;
                 scaleOutline(outline, scaleFactor);
 
                 //draw the manipulated outline on the image
