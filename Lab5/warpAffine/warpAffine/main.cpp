@@ -32,7 +32,8 @@ int main( int argc, char** argv )
     Point2f srcTri[3];
     Point2f dstTri[3];
     
-    Mat rot_mat( 2, 3, CV_32FC1 );
+    //Mat rot_mat( 3, 3, CV_32FC1 );
+     Mat rot_mat  = Mat::eye(Size(3,3), CV_64FC1);
     Mat warp_mat( 2, 3, CV_32FC1 );
     Mat src, warp_dst, warp_rotate_dst,final_dst;
     
@@ -73,14 +74,25 @@ int main( int argc, char** argv )
     double scale = 1.0;
     
     /// Get the rotation matrix with the specifications above
-    rot_mat = getRotationMatrix2D( center, angle, scale );
+    //rot_mat = getRotationMatrix2D( center, angle, scale );
     printRotMat(rot_mat);
     rot_mat.at<float>(0,0)=1.0;
     rot_mat.at<float>(0,1)=0.0;
-    rot_mat.at<float>(0,2)=50.0;
+    rot_mat.at<float>(0,2)=0.0;
     rot_mat.at<float>(1,0)=0.0;
     rot_mat.at<float>(1,1)=1.0;
-    rot_mat.at<float>(1,2)=100;
+    rot_mat.at<float>(1,2)=0.0;
+    double degrees = 45.0;
+    double theta = degrees * M_PI / 180.0;
+    Mat rotation  = Mat::eye(Size(3,3), CV_64FC1);
+    rotation.at<double>(0, 0) = cos(theta);
+    rotation.at<double>(0, 1) = sin(theta);
+    rotation.at<double>(1, 0) = -sin(theta);
+    rotation.at<double>(1, 1) = cos(theta);
+    rotation.at<float>(0, 0) = 1.0;
+    rotation.at<float>(0, 1) = 0.0;
+    rotation.at<float>(1, 0) = 0.0;
+    rotation.at<float>(1, 1) = 1.0;
     //rot_mat.at<float>(0,2)=src.cols;
     //rot_mat.at<float>(1,2)=src.rows;
     //c=rot_mat.at<float>(0,2);
@@ -90,15 +102,11 @@ int main( int argc, char** argv )
     /// Rotate the warped image
     //warpAffine( warp_dst, warp_rotate_dst, rot_mat, warp_dst.size() );
 
-    warpAffine( src, warp_rotate_dst, rot_mat, newSize );
-    invertAffineTransform(rot_mat, rot_mat);
-    printRotMat(rot_mat);
-    rot_mat.at<float>(0,0)=1.0;
-    rot_mat.at<float>(0,1)=0.0;
-    rot_mat.at<float>(0,2)=0.0;
-    rot_mat.at<float>(1,0)=0.0;
-    rot_mat.at<float>(1,1)=1.0;
-    rot_mat.at<float>(1,2)=0.0;
+    //warpAffine( src, warp_rotate_dst, rot_mat, newSize );
+    warpPerspective(src, warp_rotate_dst, rotation, newSize, INTER_CUBIC, BORDER_TRANSPARENT);
+    //invertAffineTransform(rot_mat, rot_mat);
+
+    
     //rot_mat = getRotationMatrix2D( Point(0.0,0.0), 180.0, 1.0 );
     //printRotMat(rot_mat);    
     //warpAffine( warp_rotate_dst, final_dst, rot_mat, newSize );
