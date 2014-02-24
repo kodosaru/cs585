@@ -2,7 +2,7 @@
 // Reproduce the functionality of the OpenCV getRotationMatrix2D function from primitives
 // The scale and rotation are controlled by slider. The center of rotation
 // is set by clicking in the image
-#include "stdafx.h"
+
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -43,7 +43,8 @@ int centerX, centerY;
 
 int main(int argc, char* argv[])
 {
-    original = imread(argv[1]);
+    String dataDir="/Users/donj/workspace/cs585/Lab5/Data/";
+    original = imread(dataDir+argv[1]);
     myResult.create(original.rows, original.cols, CV_8UC3);
     openCVResult.create(original.rows, original.cols, CV_8UC3);
     centerX = original.cols/2;
@@ -72,8 +73,8 @@ int main(int argc, char* argv[])
         }
         if(key == ' ')
         {
-            imwrite("Assignment5_Part1_Output_Mine.png", myResult);
-            imwrite("Assignment5_Part1_Output_OpenCV.png", openCVResult);
+            imwrite(dataDir+"Assignment5_Part1_Output_Mine.png", myResult);
+            imwrite(dataDir+"Assignment5_Part1_Output_OpenCV.png", openCVResult);
         }
     }
     return 0;
@@ -111,16 +112,52 @@ void onMouse(int event, int x, int y, int flags, void* data)
 //Our version will return a matrix that is 3 x 3, which will be convenient for combining with subsequent operations
 Mat myGetRotationMatrix2D(Point2f center, double rotationAngle, double scaleFactor)
 {
+    Mat mat1 = Mat::eye(Size(3,3), CV_64FC1);
+    Mat mat2 = Mat::eye(Size(3,3), CV_64FC1);
+    Mat mat3 = Mat::eye(Size(3,3), CV_64FC1);
+    Mat mat4 = Mat::eye(Size(3,3), CV_64FC1);
+    
+    // Move image to origin
+    mat1.at<double>(0, 2) = -center.x;
+    mat1.at<double>(1, 2) = -center.y;
+
+    // Rotate image
+    double theta = rotationAngle * M_PI / 180.0;
+    mat2.at<double>(0, 0) = cos(theta);
+    mat2.at<double>(0, 1) = sin(theta);
+    mat2.at<double>(1, 0) = -sin(theta);
+    mat2.at<double>(1, 1) = cos(theta);
+    
+    // Scale image
+    mat3.at<double>(0, 0) = scaleFactor;
+    mat3.at<double>(1, 1) = scaleFactor;
+    
+    // Move back to original location
+    mat4.at<double>(0, 2) = center.x;
+    mat4.at<double>(1, 2) = center.y;
+    
+    // Return composition of matrices
+    return mat4 * (mat3 * (mat2 * mat1));
 }
 
 //Required: construct a matrix to represent translation
 Mat getTranslationMatrix(Point2f offset)
 {
+    Mat translation  = Mat::eye(Size(3,3), CV_64FC1);
+    translation.at<double>(0, 2) = offset.x;
+    translation.at<double>(1, 2) = offset.y;
+    return translation;
 }
 
 //Required: construct a matrix to represent scaling
 Mat getScaleMatrix(double scaleFactor)
 {
+    Mat scale  = Mat::eye(Size(3,3), CV_64FC1);
+    scale.at<double>(0, 0) = scaleFactor;
+    scale.at<double>(0, 1) = 0.0;
+    scale.at<double>(1, 0) = 0.0;
+    scale.at<double>(1, 1) = scaleFactor;
+    return scale;
 }
 
 //Given: rotation
