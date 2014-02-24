@@ -6,15 +6,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "warpAffine/warpAffine/main.cpp"
+            timestampString = "414880596.513086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "main( int argc, char** argv )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "warpAffine/warpAffine/main.cpp"
+            timestampString = "414880596.513086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "main( int argc, char** argv )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "warpAffine/warpAffine/main.cpp"
+            timestampString = "414880596.513086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "main( int argc, char** argv )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "warpAffine/warpAffine/main.cpp"
+            timestampString = "414880596.513086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "main( int argc, char** argv )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment5_Part0/Assignment5_Part0/Assignment5_Part0.cpp"
-            timestampString = "414829399.633843"
+            timestampString = "414914987.070516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "getScaleMatrix(double scaleFactor)"
             landmarkType = "7">
          </BreakpointContent>
@@ -25,13 +89,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "warpAffine/warpAffine/main.cpp"
-            timestampString = "414840862.147935"
+            filePath = "Assignment5_Part0/Assignment5_Part0/Assignment5_Part0.cpp"
+            timestampString = "414914548.8535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "main( int argc, char** argv )"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "onRotationTrackbar(int trackbarValue, void* data)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,14 +105,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "warpAffine/warpAffine/main.cpp"
-            timestampString = "414840862.147935"
+            filePath = "Assignment5_Part0/Assignment5_Part0/Assignment5_Part0.cpp"
+            timestampString = "414914548.8535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "main( int argc, char** argv )"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "onRotationTrackbar(int trackbarValue, void* data)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "onRotationTrackbar(int, void*)"
+                  moduleName = "Assignment5_Part0"
+                  urlString = "file:///Users/donj/workspace/cs585/Lab5/Assignment5_Part0/Assignment5_Part0/Assignment5_Part0.cpp"
+                  timestampString = "414911403.144228"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "onRotationTrackbar(int, void*)"
+                  moduleName = "Assignment5_Part0"
+                  urlString = "file:///Users/donj/workspace/cs585/Lab5/Assignment5_Part0/Assignment5_Part0/Assignment5_Part0.cpp"
+                  timestampString = "414911403.144576"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "219">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -57,29 +151,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "warpAffine/warpAffine/main.cpp"
-            timestampString = "414841115.707398"
+            filePath = "Assignment5_Part0/Assignment5_Part0/Assignment5_Part0.cpp"
+            timestampString = "414914548.8535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "main( int argc, char** argv )"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "warpAffine/warpAffine/main.cpp"
-            timestampString = "414841115.707398"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "main( int argc, char** argv )"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "onRotationTrackbar(int trackbarValue, void* data)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
