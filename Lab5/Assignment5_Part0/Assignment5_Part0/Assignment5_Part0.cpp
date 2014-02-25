@@ -21,14 +21,7 @@ using namespace std;
 //These are the callbacks for the two sliders
 void onRotationTrackbar(int trackbarValue, void* data);
 void onScaleTrackbar(int trackbarValue, void* data);
-
-void printTransformMat(Mat rm)
-{
-    cout << "Transform matrix:" << endl;
-    cout << rm.at<double>(0,0) << "\t" <<  rm.at<double>(0,1) << "\t" <<  rm.at<double>(0,2) << endl;
-    cout << rm.at<double>(1,0) << "\t" <<  rm.at<double>(1,1) << "\t" <<  rm.at<double>(1,2) << endl;
-}
-
+void printTransformMat(Mat rm);
 
 //Required
 Mat getScaleMatrix(double scaleFactor);
@@ -157,4 +150,11 @@ Mat getRotationMatrix(double degrees, Point center)
     rotation.at<double>(1, 1) = cos(theta);
     rotation.at<double>(1, 2) = sin(theta) * center.x + (1.0-cos(theta)) * center.y;
     return rotation;    
+}
+
+void printTransformMat(Mat rm)
+{
+    cout << "Transform matrix:" << endl;
+    cout << rm.at<double>(0,0) << "\t" <<  rm.at<double>(0,1) << "\t" <<  rm.at<double>(0,2) << endl;
+    cout << rm.at<double>(1,0) << "\t" <<  rm.at<double>(1,1) << "\t" <<  rm.at<double>(1,2) << endl;
 }
