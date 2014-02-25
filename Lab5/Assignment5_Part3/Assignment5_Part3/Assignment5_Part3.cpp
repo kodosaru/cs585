@@ -1,7 +1,6 @@
 // Create a spring-time collage of images to encourage spring to come sooner
 // Here is a basic skeleton. Fill it in any way that suits you to create your composition
 // Use any pieces of any labs and homeworks that you need
-#include "stdafx.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
