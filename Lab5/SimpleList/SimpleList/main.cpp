@@ -17,7 +17,6 @@
 #include <iostream>
 
 namespace fs = boost::filesystem;
-using namespace std;
 
 int main( int argc, char* argv[] )
 {
@@ -37,13 +36,13 @@ int main( int argc, char* argv[] )
     
     if ( !fs::exists( full_path ) )
     {
-        cout << "\nNot found: " << full_path.string() << std::endl;
+        std::cout << "\nNot found: " << full_path.string() << std::endl;
         return 1;
     }
     
     if ( fs::is_directory( full_path ) )
     {
-        cout << "\nIn directory: "
+        std::cout << "\nIn directory: "
         << full_path.string() << "\n\n";
         fs::directory_iterator end_iter;
         for ( fs::directory_iterator dir_itr( full_path );

@@ -1,4 +1,4 @@
-q#include "functions.hpp"
+#include "functions.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #define BOOST_FILESYSTEM_NO_DEPRECATED

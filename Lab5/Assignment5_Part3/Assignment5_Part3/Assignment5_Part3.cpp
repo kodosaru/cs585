@@ -25,6 +25,29 @@ Mat getRotationMatrix(double degrees);
 vector<Mat> originals;
 Mat result;
 
+
+void resizeImage(Point sizeBackground, float factor, Mat& image)
+{
+    float imageAspect = image.cols/(float)image.rows;
+    float ratioWidth = image.cols/(float)sizeBackground.x;
+    float ratioHeight = image.rows/(float)sizeBackground.y;
+    float resizeFactor, newWidth, newHeight;
+
+    if(ratioWidth>ratioHeight)
+    {
+        resizeFactor = sizeBackground.x/(image.cols * factor);
+        newWidth = resizeFactor * image.cols;
+        newHeight = newWidth / imageAspect;
+    }
+    else
+    {
+        resizeFactor = sizeBackground.y/(image.rows * factor);
+        newHeight = resizeFactor * image.rows;
+        newWidth = newHeight * imageAspect;
+    }
+    resize(image, image, Size(newWidth,newHeight));
+}
+
 //For reference
 //http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html
 int main(int argc, char* argv[])
@@ -36,14 +59,15 @@ int main(int argc, char* argv[])
     cout << "File count: " << listFiles(collageSourceDir, fileNames) << endl;
     
     int gridx=2, gridy=2;
-    int maxDim;
     Mat result = imread(dataDir+backgroundImage);
-    int minDimResult = result.cols > result.rows ? result.rows : result.cols;
+    Mat collageImage;
+    Point sizeResult(result.rows,result.cols);
     for(int i=0; i < fileNames.size(); i++)
     {
         cout << fileNames[i] << endl;
-        originals.push_back(imread(collageSourceDir+fileNames[i]));
-        maxDim = originals[i].cols > originals[i].rows ? originals[i].cols : originals[i].rows;
+        collageImage = imread(collageSourceDir+fileNames[i]);
+        resizeImage(sizeResult, 2.0, collageImage);
+        originals.push_back(collageImage);
         if ( originals.size() == gridx*gridy )
             break;
     }
