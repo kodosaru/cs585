@@ -6,7 +6,7 @@
 #include "boost/filesystem/path.hpp"
 #include "boost/progress.hpp"
 #include <iostream>
-
+#include <stdio.h>
 
 using namespace cv;
 using namespace std;
@@ -94,6 +94,28 @@ void printTransformMat(Mat mat)
     cout << mat.at<double>(1,0) << "\t" <<  mat.at<double>(1,1) << "\t" <<  mat.at<double>(1,2) << endl;
 }
 
+void resizeImage(Point sizeBackground, float factor, Mat& image)
+{
+    float imageAspect = image.cols/(float)image.rows;
+    float ratioWidth = image.cols/(float)sizeBackground.x;
+    float ratioHeight = image.rows/(float)sizeBackground.y;
+    float resizeFactor, newWidth, newHeight;
+
+    if(ratioWidth>ratioHeight)
+    {
+        resizeFactor = sizeBackground.x/(image.cols * factor);
+        newWidth = resizeFactor * image.cols;
+        newHeight = newWidth / imageAspect;
+    }
+    else
+    {
+        resizeFactor = sizeBackground.y/(image.rows * factor);
+        newHeight = resizeFactor * image.rows;
+        newWidth = newHeight * imageAspect;
+    }
+    resize(image, image, Size(newWidth,newHeight));
+}
+
 unsigned long listFiles(String targetPath, vector<string>& fileNames)
 {
     boost::progress_timer t( std::clog );
@@ -167,11 +189,42 @@ void tile(const vector<Mat> &src, Mat &dst, int grid_x, int grid_y) {
     int height = dst.rows/grid_y;
     // iterate through grid
     int k = 0;
+    char stemp[100];
     for(int i = 0; i < grid_y; i++) {
         for(int j = 0; j < grid_x; j++) {
-            Mat s = src[k++];
+            Mat s = src[k];
             resize(s,s,Size(width,height));
-            s.copyTo(dst(Rect(j*width,i*height,width,height)));
+            Rect dstRect=Rect(j*width,i*height,width,height);
+            sprintf(stemp, "Dst rect coordinates (%d,%d,%d,%d)",dstRect.x,dstRect.y,dstRect.width,dstRect.height);
+            cout << stemp << endl;
+            s.copyTo(dst(dstRect));
+            k++;
         }
     }
 }
+
+void mosaic(const vector<Mat> &src, Mat &dst, int count, int border) {
+    int grid_y = (int)(sqrt(count) + 0.5);
+    int grid_x = count - grid_y;
+    int width  = dst.cols/grid_x;
+    int height = dst.rows/grid_y;
+    
+    int k = 0;
+    char stemp[100];
+    for(int i = 0; i < grid_y; i++) {
+        for(int j = 0; j < grid_x; j++) {
+            Mat s = src[k];
+            cout<<"Before size ("<< s.cols<<","<<s.rows<<")"<<endl;
+            resizeImage(Point(dst.cols,dst.rows), 3.0, s);
+            cout<<"After size ("<< s.cols<<","<<s.rows<<")"<<endl;
+            Rect dstRect=Rect(j*width,i*height,s.cols, s.rows);
+            sprintf(stemp, "Dst rect coordinates (%d,%d,%d,%d)",dstRect.x,dstRect.y,dstRect.width,dstRect.height);
+            cout << stemp << endl;
+            s.copyTo(dst(dstRect));
+            k++;
+        }
+    }
+}
+
+
+

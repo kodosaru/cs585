@@ -25,29 +25,6 @@ Mat getRotationMatrix(double degrees);
 vector<Mat> originals;
 Mat result;
 
-
-void resizeImage(Point sizeBackground, float factor, Mat& image)
-{
-    float imageAspect = image.cols/(float)image.rows;
-    float ratioWidth = image.cols/(float)sizeBackground.x;
-    float ratioHeight = image.rows/(float)sizeBackground.y;
-    float resizeFactor, newWidth, newHeight;
-
-    if(ratioWidth>ratioHeight)
-    {
-        resizeFactor = sizeBackground.x/(image.cols * factor);
-        newWidth = resizeFactor * image.cols;
-        newHeight = newWidth / imageAspect;
-    }
-    else
-    {
-        resizeFactor = sizeBackground.y/(image.rows * factor);
-        newHeight = resizeFactor * image.rows;
-        newWidth = newHeight * imageAspect;
-    }
-    resize(image, image, Size(newWidth,newHeight));
-}
-
 //For reference
 //http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html
 int main(int argc, char* argv[])
@@ -58,24 +35,28 @@ int main(int argc, char* argv[])
     vector<string> fileNames;
     cout << "File count: " << listFiles(collageSourceDir, fileNames) << endl;
     
-    int gridx=2, gridy=2;
+    int gridx=3, gridy=3;
     Mat result = imread(dataDir+backgroundImage);
     Mat collageImage;
-    Point sizeResult(result.rows,result.cols);
     for(int i=0; i < fileNames.size(); i++)
     {
         cout << fileNames[i] << endl;
         collageImage = imread(collageSourceDir+fileNames[i]);
-        resizeImage(sizeResult, 2.0, collageImage);
+        //resizeImage(Point(result.cols,result.rows), 3.0, collageImage);
         originals.push_back(collageImage);
-        if ( originals.size() == gridx*gridy )
-            break;
+    }
+
+    if ( originals.size() < gridx*gridy )
+    {
+        cout << "Insufficient images to tile background" << endl;
+        return 0;
     }
 
     
     //result.create(750, 750, CV_8UC3);
     tile(originals,result,gridx,gridy);
-
+    //mosaic(originals, result, 6, 100);
+    resize(result,result,Size(result.cols/2,result.rows/2));
     namedWindow("Result", 1);
 
     while( 1 == 1)
