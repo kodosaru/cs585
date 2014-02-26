@@ -13,7 +13,9 @@
 		7245FDA518BD24A60004ECC9 /* libopencv_highgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7245FDA118BD24A60004ECC9 /* libopencv_highgui.dylib */; };
 		7245FDA618BD24A60004ECC9 /* libopencv_imgproc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7245FDA218BD24A60004ECC9 /* libopencv_imgproc.dylib */; };
 		7245FDA718BD24A60004ECC9 /* libopencv_nonfree.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7245FDA318BD24A60004ECC9 /* libopencv_nonfree.dylib */; };
-		7245FDA918BD24DD0004ECC9 /* affineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7245FDA818BD24DD0004ECC9 /* affineTransform.cpp */; };
+		7245FDA918BD24DD0004ECC9 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7245FDA818BD24DD0004ECC9 /* functions.cpp */; };
+		72C1FC1D18BD92AC00632E2B /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72C1FC1C18BD92AC00632E2B /* libboost_system.dylib */; };
+		72C1FC1F18BD92B400632E2B /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72C1FC1E18BD92B400632E2B /* libboost_filesystem.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,7 +39,10 @@
 		7245FDA118BD24A60004ECC9 /* libopencv_highgui.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_highgui.dylib; sourceTree = "<group>"; };
 		7245FDA218BD24A60004ECC9 /* libopencv_imgproc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_imgproc.dylib; sourceTree = "<group>"; };
 		7245FDA318BD24A60004ECC9 /* libopencv_nonfree.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_nonfree.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_nonfree.dylib; sourceTree = "<group>"; };
-		7245FDA818BD24DD0004ECC9 /* affineTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = affineTransform.cpp; sourceTree = "<group>"; };
+		7245FDA818BD24DD0004ECC9 /* functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = functions.cpp; sourceTree = "<group>"; };
+		72C1FC0218BD6B5700632E2B /* functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = functions.hpp; sourceTree = "<group>"; };
+		72C1FC1C18BD92AC00632E2B /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/Cellar/boost/1.55.0/lib/libboost_system.dylib; sourceTree = "<group>"; };
+		72C1FC1E18BD92B400632E2B /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../../../../../../usr/local/Cellar/boost/1.55.0/lib/libboost_filesystem.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +54,8 @@
 				7245FDA518BD24A60004ECC9 /* libopencv_highgui.dylib in Frameworks */,
 				7245FDA618BD24A60004ECC9 /* libopencv_imgproc.dylib in Frameworks */,
 				7245FDA718BD24A60004ECC9 /* libopencv_nonfree.dylib in Frameworks */,
+				72C1FC1F18BD92B400632E2B /* libboost_filesystem.a in Frameworks */,
+				72C1FC1D18BD92AC00632E2B /* libboost_system.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +65,8 @@
 		7245FD8918BCFB6B0004ECC9 = {
 			isa = PBXGroup;
 			children = (
+				72C1FC1E18BD92B400632E2B /* libboost_filesystem.a */,
+				72C1FC1C18BD92AC00632E2B /* libboost_system.dylib */,
 				7245FDA018BD24A60004ECC9 /* libopencv_core.dylib */,
 				7245FDA118BD24A60004ECC9 /* libopencv_highgui.dylib */,
 				7245FDA218BD24A60004ECC9 /* libopencv_imgproc.dylib */,
@@ -78,7 +87,8 @@
 		7245FD9418BCFB6B0004ECC9 /* Assignment5_Part3 */ = {
 			isa = PBXGroup;
 			children = (
-				7245FDA818BD24DD0004ECC9 /* affineTransform.cpp */,
+				72C1FC0218BD6B5700632E2B /* functions.hpp */,
+				7245FDA818BD24DD0004ECC9 /* functions.cpp */,
 				7245FD9E18BCFEA50004ECC9 /* Assignment5_Part3.cpp */,
 				7245FD9718BCFB6B0004ECC9 /* Assignment5_Part3.1 */,
 			);
@@ -137,7 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7245FD9F18BCFEA50004ECC9 /* Assignment5_Part3.cpp in Sources */,
-				7245FDA918BD24DD0004ECC9 /* affineTransform.cpp in Sources */,
+				7245FDA918BD24DD0004ECC9 /* functions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,8 +225,14 @@
 		7245FD9C18BCFB6B0004ECC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/Cellar/opencv/2.4.7.1/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/opencv/2.4.7.1/lib;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/opencv/2.4.7.1/include,
+					/usr/local/Cellar/boost/1.55.0/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/opencv/2.4.7.1/lib,
+					/usr/local/Cellar/boost/1.55.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -225,7 +241,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = /usr/local/Cellar/opencv/2.4.7.1/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/opencv/2.4.7.1/lib;
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/Cellar/opencv/2.4.7.1/include;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/opencv/2.4.7.1/lib,
+					/usr/local/Cellar/boost/1.55.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -249,6 +269,7 @@
 				7245FD9D18BCFB6B0004ECC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
