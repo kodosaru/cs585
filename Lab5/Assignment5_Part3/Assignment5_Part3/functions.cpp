@@ -1,6 +1,7 @@
 #include "functions.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
 #define BOOST_FILESYSTEM_NO_DEPRECATED
 #include "boost/filesystem/operations.hpp"
 #include "boost/filesystem/path.hpp"
@@ -94,7 +95,7 @@ void printTransformMat(Mat mat)
     cout << mat.at<double>(1,0) << "\t" <<  mat.at<double>(1,1) << "\t" <<  mat.at<double>(1,2) << endl;
 }
 
-void resizeImage(Point sizeBackground, float factor, Mat& image)
+void resizeImageRelativeToBackground(Point sizeBackground, float factor, Mat& image)
 {
     float imageAspect = image.cols/(float)image.rows;
     float ratioWidth = image.cols/(float)sizeBackground.x;
@@ -203,28 +204,110 @@ void tile(const vector<Mat> &src, Mat &dst, int grid_x, int grid_y) {
     }
 }
 
-void mosaic(const vector<Mat> &src, Mat &dst, int count, int border) {
-    int grid_y = (int)(sqrt(count) + 0.5);
-    int grid_x = count - grid_y;
+void mosaic(const vector<Mat> &src, Mat &dst, int count) {
+    int grid_y = (int)(sqrt(count));
+    int grid_x = grid_y;
     int width  = dst.cols/grid_x;
     int height = dst.rows/grid_y;
+    Mat temp,temp2,centerImage, centerImageMask;
+    Rect centerImageRect;
     
     int k = 0;
+    int xOverlap = 150;
+    int yOverlap = 150;
+    int xOffset = 100;
+    int yOffset = 100;
     char stemp[100];
+    vector<Mat> images;
     for(int i = 0; i < grid_y; i++) {
         for(int j = 0; j < grid_x; j++) {
             Mat s = src[k];
             cout<<"Before size ("<< s.cols<<","<<s.rows<<")"<<endl;
-            resizeImage(Point(dst.cols,dst.rows), 3.0, s);
+            double resizeFactor = 2.5;
+            
+            if(k==0) resizeFactor = 2.0;
+            if(k==6) resizeFactor = 1.7;
+            resizeImageRelativeToBackground(Point(dst.cols,dst.rows), resizeFactor, s);
             cout<<"After size ("<< s.cols<<","<<s.rows<<")"<<endl;
-            Rect dstRect=Rect(j*width,i*height,s.cols, s.rows);
+            
+            int diag = sqrt(pow(s.cols,2)+pow(s.rows,2))+0.5;
+            int minDim = min(s.rows,s.cols);
+            double scaleFactor = minDim/(double)diag;
+            Mat temp(s.size(),CV_8UC3);
+            temp=Scalar(0);
+            
+            Rect dstRect=Rect(xOffset+j*width-j*xOverlap,yOffset+i*height-i*yOverlap,temp.cols, temp.rows);
             sprintf(stemp, "Dst rect coordinates (%d,%d,%d,%d)",dstRect.x,dstRect.y,dstRect.width,dstRect.height);
             cout << stemp << endl;
-            s.copyTo(dst(dstRect));
+            
+            Mat transform;
+            switch (k)
+            {
+                case 0:
+                case 2:
+                case 6:
+                case 8:
+                {
+                    double theta = k==6 ? -15.0 : 45.0;
+                    transform = myGetRotationMatrix2D(Point2f(s.cols/2, s.rows/2), theta, scaleFactor);
+                    warpPerspective(s, temp, transform, temp.size(), INTER_CUBIC, BORDER_TRANSPARENT);
+                    break;
+                }
+                case 4:
+                {
+                    transform = getShearMatrix2D(Point(s.cols/2, s.rows/2),-0.2, -0.2, 0.8);
+                    warpPerspective(s, temp, transform, temp.size(), INTER_CUBIC, BORDER_TRANSPARENT);
+                    break;
+                }
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 9:
+                {
+                    s.copyTo(temp);
+                    break;
+                }
+            }
+            
+            // Create mask
+            Mat mask(temp.size(),CV_8UC1);
+            cvtColor(temp,mask,CV_RGB2GRAY);
+            threshold(mask,mask,0,255,THRESH_BINARY);
+
+            if(k==0 || k==6)
+            {
+                Rect roi(200,0,temp.cols-200,temp.rows);
+                temp(roi).copyTo(temp2);
+                Rect newDst=Rect(dstRect.x,dstRect.y,dstRect.width-200,dstRect.height);
+                temp2.copyTo(dst(newDst),createMask(temp2));
+            }
+            else if (k==4)
+            {
+                centerImage.create(temp.size(),CV_8UC3);
+                temp.copyTo(centerImage);
+                centerImageMask.create(mask.size(),CV_8UC1);
+                mask.copyTo(centerImageMask);
+                centerImageRect = dstRect;
+            }
+            else
+            {
+                temp.copyTo(dst(dstRect),createMask(temp));
+            }
+            temp.release();
+            mask.release();
             k++;
         }
     }
+    centerImage.copyTo(dst(centerImageRect),centerImageMask);
 }
 
+Mat createMask(Mat& image)
+{
+    Mat mask(image.size(),CV_8UC1);
+    cvtColor(image,mask,CV_RGB2GRAY);
+    threshold(mask,mask,0,255,THRESH_BINARY);
+    return mask;
+}
 
 

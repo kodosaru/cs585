@@ -60,6 +60,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "crocus.jpg"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "hand.png"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

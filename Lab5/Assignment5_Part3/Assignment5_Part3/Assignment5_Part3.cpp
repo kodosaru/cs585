@@ -31,19 +31,21 @@ int main(int argc, char* argv[])
 {
     String dataDir="/Users/donj/workspace/cs585/Lab5/Data/";
     String collageSourceDir="/Users/donj/workspace/cs585/Lab5/collageSource/";
-    String backgroundImage="Clear_sky_over_Riga_2008.jpg";
+    String backgroundImage="sky2.png";
     vector<string> fileNames;
     cout << "File count: " << listFiles(collageSourceDir, fileNames) << endl;
     
     int gridx=3, gridy=3;
-    Mat result = imread(dataDir+backgroundImage);
+    result = imread(dataDir+backgroundImage);
+    resize(result,result,Size(0,0),0.8,0.8,INTER_LINEAR);
+
     Mat collageImage;
     for(int i=0; i < fileNames.size(); i++)
     {
         cout << fileNames[i] << endl;
         collageImage = imread(collageSourceDir+fileNames[i]);
-        //resizeImage(Point(result.cols,result.rows), 3.0, collageImage);
         originals.push_back(collageImage);
+
     }
 
     if ( originals.size() < gridx*gridy )
@@ -52,10 +54,7 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    
-    //result.create(750, 750, CV_8UC3);
-    tile(originals,result,gridx,gridy);
-    //mosaic(originals, result, 6, 100);
+    mosaic(originals, result, 9);
     resize(result,result,Size(result.cols/2,result.rows/2));
     namedWindow("Result", 1);
 
@@ -69,7 +68,7 @@ int main(int argc, char* argv[])
         }
         if(key == ' ')
         {
-            imwrite("Assignment5_Output.png", result);
+            imwrite(dataDir+"Assignment5_Output.png", result);
         }
     }
     return 0;
