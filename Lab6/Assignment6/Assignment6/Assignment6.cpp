@@ -49,13 +49,13 @@ int main(int argc, char* argv[])
     Mat result1;
     composeMosaic_v1(img1, img2, H, mosaicSize, mosaicOffset, result1);
     imwrite("Assignment6_Part1_Result1.png", result1);
-    imshow("result1", result1);
+    //imshow("result1", result1);
     waitKey(0);
 
     Mat result2;
     composeMosaic_v2(img1, img2, H, mosaicSize, mosaicOffset, result2);
     imwrite("Assignment6_Part1_Result2.png", result2);
-    imshow("result2", result2);
+    //imshow("result2", result2);
     waitKey(0);
     int i=0;
 }
@@ -90,8 +90,6 @@ void computeMosaicFootprint(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Poin
     img1_corners[3] = Point( 0, img1.rows-1 );
     printf("img %d corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n",1,img1_corners[0].x,img1_corners[0].y,img1_corners[1].x,img1_corners[1].y,img1_corners[2].x,img1_corners[2].y,img1_corners[3].x,img1_corners[3].y);
     
-
-    
     //-- Get the corners from the img2
     std::vector<Point2f> img2_corners(4);
     img2_corners[0] = Point(0,0);
@@ -102,8 +100,9 @@ void computeMosaicFootprint(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Poin
     
     // Transform corners from img2 using homography matrix
     std::vector<Point2f> img2_projected_corners(4);
-    perspectiveTransform( img2_corners, img2_projected_corners, H);
-    printf("img %s corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n","proj",img2_projected_corners[0].x,img2_projected_corners[0].y,img2_projected_corners[1].x,img2_projected_corners[1].y,img2_projected_corners[2].x,img2_projected_corners[2].y,img2_projected_corners[3].x,img2_projected_corners[3].y);
+    //perspectiveTransform( img2_corners, img2_projected_corners, H);
+    warpCorners(img2, H, img2_projected_corners);
+    //printf("img %s corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n","proj",img2_projected_corners[0].x,img2_projected_corners[0].y,img2_projected_corners[1].x,img2_projected_corners[1].y,img2_projected_corners[2].x,img2_projected_corners[2].y,img2_projected_corners[3].x,img2_projected_corners[3].y);
 }
 
 
@@ -121,10 +120,10 @@ void warpCorners(Mat& input_img, Mat& H, vector<Point2f>& imgCorners)
     printf("input image corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n",input_img_corners[0].x,input_img_corners[0].y,input_img_corners[1].x,input_img_corners[1].y,input_img_corners[2].x,input_img_corners[2].y,input_img_corners[3].x,input_img_corners[3].y);
     
     // Warp corners
-    perspectiveTransform( imgCorners, imgCorners, H);
+    perspectiveTransform( input_img_corners, imgCorners, H);
     
     // Print warped corner values
-    printf("input image corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n",imgCorners[0].x,imgCorners[0].y,imgCorners[1].x,imgCorners[1].y,imgCorners[2].x,imgCorners[2].y,imgCorners[3].x,imgCorners[3].y);
+    printf("warped input image corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n",imgCorners[0].x,imgCorners[0].y,imgCorners[1].x,imgCorners[1].y,imgCorners[2].x,imgCorners[2].y,imgCorners[3].x,imgCorners[3].y);
 }
 
 //Given: construct a matrix to represent translation
@@ -200,7 +199,7 @@ Mat getHomography(Mat& img1, Mat& img2)
 
     //-- Show detected matches
     resize(img_matches,img_matches,Size(0,0),0.4,0.4,INTER_LINEAR);
-    imshow( "Homography Matches", img_matches );
+    //imshow( "Homography Matches", img_matches );
 
 
     //Compute the homography
