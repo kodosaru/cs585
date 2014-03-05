@@ -68,6 +68,8 @@ int main(int argc, char* argv[])
         }
         if(key == ' ')
         {
+            imwrite(dataDir+"Assignment5_Output_large.png", result);
+            resize(result,result,Size(0,0),750.0/result.cols,750.0/result.cols);
             imwrite(dataDir+"Assignment5_Output.png", result);
         }
     }

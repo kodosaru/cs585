@@ -568,7 +568,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment5_Part3/Assignment5_Part3/functions.cpp"
-            timestampString = "415259027.318769"
+            timestampString = "415271804.656127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "279"
@@ -580,15 +580,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment5_Part2/Assignment5_Part2/Assignment5_Part2.cpp"
-            timestampString = "415255994.482099"
+            timestampString = "415265789.339195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "onTrackbar(int trackbarValue, void* data)"
             landmarkType = "7">
          </BreakpointContent>
@@ -777,6 +777,52 @@
             endingLineNumber = "231"
             landmarkName = "mosaic(const vector&lt;Mat&gt; &amp;src, Mat &amp;dst, int count)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment5_Part3/Assignment5_Part3/Assignment5_Part3.cpp"
+            timestampString = "415264123.043249"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "main(int argc, char* argv[])"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "Assignment5_Part3"
+                  urlString = "file:///Users/donj/workspace/cs585/Lab5/Assignment5_Part3/Assignment5_Part3/Assignment5_Part3.cpp"
+                  timestampString = "415264123.054609"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "3241">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "Assignment5_Part3"
+                  urlString = "file:///Users/donj/workspace/cs585/Lab5/Assignment5_Part3/Assignment5_Part3/Assignment5_Part3.cpp"
+                  timestampString = "415264123.054824"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "3471">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

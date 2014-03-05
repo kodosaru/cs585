@@ -26,7 +26,7 @@ Mat getTranslationMatrix(Point2f offset);
 Mat getShearMatrix2D(Point2f center, double XShearFactor, double YShearFactor, double scaleFactor);
 
 
-Mat original, result;
+Mat original, result, hresult, vresult;
 
 int main(int argc, char* argv[])
 {
@@ -35,10 +35,15 @@ int main(int argc, char* argv[])
 
     //the result image for shearing will be larger so we can see the shape
     result.create(original.rows*1.5, original.cols*1.5, CV_8UC3);
-
+    hresult.create(original.rows*1.5, original.cols*1.5, CV_8UC3);
+    vresult.create(original.rows*1.5, original.cols*1.5, CV_8UC3);
+    
     namedWindow("Original", 1);
 
     namedWindow("Result", 1);
+    namedWindow("Horizontal", 1);
+    namedWindow("Vertical", 1);
+    
     //separate x and y shear
     createTrackbar("X shear", "Result", &xshear, maxShear, onTrackbar);
     createTrackbar("Y shear", "Result", &yshear, maxShear, onTrackbar);
@@ -47,6 +52,8 @@ int main(int argc, char* argv[])
     {
         imshow("Original", original);
         imshow("Result", result);
+        imshow("Horizontal", hresult);
+        imshow("Vertical", vresult);
         char key = waitKey(33);
         if(key == 'q')
         {
@@ -56,6 +63,15 @@ int main(int argc, char* argv[])
         {
             imwrite(dataDir+"Assignment5_Part2_Output.png", result);
         }
+        if(key == ' ')
+        {
+            imwrite(dataDir+"Assignment5_Part2_Output_Horizontal.png", hresult);
+        }
+        if(key == ' ')
+        {
+            imwrite(dataDir+"Assignment5_Part2_Output_Vertical.png", vresult);
+        }
+
     }
     return 0;
 }
@@ -125,14 +141,21 @@ void onTrackbar(int trackbarValue, void* data)
     double yshearVal = (double)(yshear-100)/100.0;
     // Shear the matrix about the center
     Mat shear = getShearMatrix2D(Point2f(original.cols/2, original.rows/2), xshearVal, yshearVal, 1);
-
+    Mat hshear = getShearMatrix2D(Point2f(original.cols/2, original.rows/2), xshearVal, 0.0, 1);
+    Mat vshear = getShearMatrix2D(Point2f(original.cols/2, original.rows/2), 0.0, yshearVal, 1);
 
     // Apply an extra translation to put the result at the center of the result image
     Mat translation = getTranslationMatrix(Point(result.cols/2 - original.cols/2, result.rows/2 - original.rows/2));
     Mat transform = translation * shear;
-
+    Mat htransform = translation * hshear;
+    Mat vtransform = translation * vshear;
+    
     // warp the image
     result.setTo(Scalar(0));
+    hresult.setTo(Scalar(0));
+    vresult.setTo(Scalar(0));
     warpPerspective(original, result, transform, result.size(), INTER_CUBIC, BORDER_TRANSPARENT);
+    warpPerspective(original, hresult, htransform, result.size(), INTER_CUBIC, BORDER_TRANSPARENT);
+    warpPerspective(original, vresult, vtransform, result.size(), INTER_CUBIC, BORDER_TRANSPARENT);
 }
 

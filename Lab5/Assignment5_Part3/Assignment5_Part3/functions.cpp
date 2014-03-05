@@ -248,7 +248,7 @@ void mosaic(const vector<Mat> &src, Mat &dst, int count) {
                 case 6:
                 case 8:
                 {
-                    double theta = k==6 ? -15.0 : 45.0;
+                    double theta = k==2||k==6 ? -15.0 : 45.0;
                     transform = myGetRotationMatrix2D(Point2f(s.cols/2, s.rows/2), theta, scaleFactor);
                     warpPerspective(s, temp, transform, temp.size(), INTER_CUBIC, BORDER_TRANSPARENT);
                     break;
