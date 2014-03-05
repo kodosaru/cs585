@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "722E9AB918C72AB500B0C8B7"
-               BuildableName = "Assignment6"
-               BlueprintName = "Assignment6"
-               ReferencedContainer = "container:Assignment6.xcodeproj">
+               BlueprintIdentifier = "722E9AE718C73D8400B0C8B7"
+               BuildableName = "SURF_Homography"
+               BlueprintName = "SURF_Homography"
+               ReferencedContainer = "container:SURF_Homography.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "722E9AB918C72AB500B0C8B7"
-            BuildableName = "Assignment6"
-            BlueprintName = "Assignment6"
-            ReferencedContainer = "container:Assignment6.xcodeproj">
+            BlueprintIdentifier = "722E9AE718C73D8400B0C8B7"
+            BuildableName = "SURF_Homography"
+            BlueprintName = "SURF_Homography"
+            ReferencedContainer = "container:SURF_Homography.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,36 +51,24 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "722E9AB918C72AB500B0C8B7"
-            BuildableName = "Assignment6"
-            BlueprintName = "Assignment6"
-            ReferencedContainer = "container:Assignment6.xcodeproj">
+            BlueprintIdentifier = "722E9AE718C73D8400B0C8B7"
+            BuildableName = "SURF_Homography"
+            BlueprintName = "SURF_Homography"
+            ReferencedContainer = "container:SURF_Homography.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
-         <CommandLineArgument
-            argument = "Starbucks.jpg"
-            isEnabled = "YES">
-         </CommandLineArgument>
          <CommandLineArgument
             argument = "AllWorkSign.jpg"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "train2.jpg"
+            argument = "AllWorkSignRotate.jpg"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "train3.jpg"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "SouthStation1.jpg"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "SouthStation2.jpg"
-            isEnabled = "NO">
+            argument = "Starbucks.jpg"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -95,10 +83,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "722E9AB918C72AB500B0C8B7"
-            BuildableName = "Assignment6"
-            BlueprintName = "Assignment6"
-            ReferencedContainer = "container:Assignment6.xcodeproj">
+            BlueprintIdentifier = "722E9AE718C73D8400B0C8B7"
+            BuildableName = "SURF_Homography"
+            BlueprintName = "SURF_Homography"
+            ReferencedContainer = "container:SURF_Homography.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

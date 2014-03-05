@@ -1,6 +1,5 @@
 // Assignment 6, Do the mosaic creation pipeline for two images
 
-#include "stdafx.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -13,6 +12,7 @@
 #include <iostream>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <stdio.h>
 
 using namespace cv;
 using namespace std;
@@ -30,9 +30,10 @@ void composeMosaic_v2(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& m
 
 int main(int argc, char* argv[])
 {
+    String dataDir="/Users/donj/workspace/cs585/Lab6/Data/";
     Mat img1, img2, mask;
-    img1 = imread(argv[1]);
-    img2 = imread(argv[2]);
+    img1 = imread(dataDir+argv[1]);
+    img2 = imread(dataDir+argv[2]);
     mask = Mat::ones(img1.rows, img1.cols, CV_8UC1);
 
     Mat H = getHomography(img1, img2);
@@ -81,14 +82,49 @@ void composeMosaic_v2(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& m
 //second image is above or to the left of the first image
 void computeMosaicFootprint(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& mosaicOffset)
 {
+    //-- Get the corners from the img1
+    std::vector<Point2f> img1_corners(4);
+    img1_corners[0] = Point(0,0);
+    img1_corners[1] = Point( img1.cols-1, 0 );
+    img1_corners[2] = Point( img1.cols-1, img1.rows-1 );
+    img1_corners[3] = Point( 0, img1.rows-1 );
+    printf("img %d corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n",1,img1_corners[0].x,img1_corners[0].y,img1_corners[1].x,img1_corners[1].y,img1_corners[2].x,img1_corners[2].y,img1_corners[3].x,img1_corners[3].y);
+    
+
+    
+    //-- Get the corners from the img2
+    std::vector<Point2f> img2_corners(4);
+    img2_corners[0] = Point(0,0);
+    img2_corners[1] = Point( img2.cols-1, 0 );
+    img2_corners[2] = Point( img2.cols-1, img2.rows-1 );
+    img2_corners[3] = Point( 0, img2.rows-1 );
+    printf("img %d corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n",2,img2_corners[0].x,img2_corners[0].y,img2_corners[1].x,img2_corners[1].y,img2_corners[2].x,img2_corners[2].y,img2_corners[3].x,img2_corners[3].y);
+    
+    // Transform corners from img2 using homography matrix
+    std::vector<Point2f> img2_projected_corners(4);
+    perspectiveTransform( img2_corners, img2_projected_corners, H);
+    printf("img %s corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n","proj",img2_projected_corners[0].x,img2_projected_corners[0].y,img2_projected_corners[1].x,img2_projected_corners[1].y,img2_projected_corners[2].x,img2_projected_corners[2].y,img2_projected_corners[3].x,img2_projected_corners[3].y);
 }
 
 
 //Required: Use the given homography to warp the corners of the image
 //You may want to use this as a subroutine to compute the mosaic footprint
 //http://docs.opencv.org/modules/core/doc/operations_on_arrays.html#perspectivetransform
-void warpCorners(Mat& img, Mat& H, vector<Point2f>& imgCorners)
+void warpCorners(Mat& input_img, Mat& H, vector<Point2f>& imgCorners)
 {
+    // Get the corners from the img
+    std::vector<Point2f> input_img_corners(4);
+    input_img_corners[0] = Point(0.0,0.0);
+    input_img_corners[1] = Point( input_img.cols-1.0, 0.0 );
+    input_img_corners[2] = Point( input_img.cols-1.0, input_img.rows-1.0 );
+    input_img_corners[3] = Point( 0.0, input_img.rows-1.0 );
+    printf("input image corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n",input_img_corners[0].x,input_img_corners[0].y,input_img_corners[1].x,input_img_corners[1].y,input_img_corners[2].x,input_img_corners[2].y,input_img_corners[3].x,input_img_corners[3].y);
+    
+    // Warp corners
+    perspectiveTransform( imgCorners, imgCorners, H);
+    
+    // Print warped corner values
+    printf("input image corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n",imgCorners[0].x,imgCorners[0].y,imgCorners[1].x,imgCorners[1].y,imgCorners[2].x,imgCorners[2].y,imgCorners[3].x,imgCorners[3].y);
 }
 
 //Given: construct a matrix to represent translation
@@ -163,6 +199,7 @@ Mat getHomography(Mat& img1, Mat& img2)
         vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
 
     //-- Show detected matches
+    resize(img_matches,img_matches,Size(0,0),0.4,0.4,INTER_LINEAR);
     imshow( "Homography Matches", img_matches );
 
 

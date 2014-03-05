@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SURF_Homography/SURF_Homography.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Assignment6/Assignment6.xcodeproj">
    </FileRef>
    <FileRef
