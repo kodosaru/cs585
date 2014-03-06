@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415765759.488799"
+            timestampString = "415818568.621208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "main(int argc, char* argv[])"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,27 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772583.927422"
+            timestampString = "415818568.621208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
-            landmarkName = "getHomography(Mat&amp; img1, Mat&amp; img2)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415765759.488799"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "main(int argc, char* argv[])"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415765759.488799"
+            timestampString = "415818568.621208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "main(int argc, char* argv[])"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415765759.488799"
+            timestampString = "415818568.621208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "main(int argc, char* argv[])"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,59 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
+            timestampString = "415818568.621208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "computeMosaicFootprint(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "warpCorners(Mat&amp; input_img, Mat&amp; H, vector&lt;Point2f&gt;&amp; imgCorners)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "warpCorners(Mat&amp; input_img, Mat&amp; H, vector&lt;Point2f&gt;&amp; imgCorners)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415765759.488799"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "composeMosaic_v1(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415767221.29723"
+            timestampString = "415818568.621208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "composeMosaic_v1(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "main(int argc, char* argv[])"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -170,153 +106,41 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415767221.29723"
+            timestampString = "415818568.621208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "composeMosaic_v1(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415771807.293323"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "composeMosaic_v1(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "composeMosaic_v1(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772583.927422"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "getHomography(Mat&amp; img1, Mat&amp; img2)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "computeMosaicFootprint(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "computeMosaicFootprint(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "computeMosaicFootprint(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "computeMosaicFootprint(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset)"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "composeMosaic_v2B(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "computeMosaicFootprint(cv::Mat&amp;, cv::Mat&amp;, cv::Mat&amp;, cv::Size_&lt;int&gt;&amp;, cv::Point_&lt;float&gt;&amp;)"
+                  symbolName = "composeMosaic_v2B(cv::Mat&amp;, cv::Mat&amp;, cv::Mat&amp;, cv::Size_&lt;int&gt;&amp;, cv::Point_&lt;float&gt;&amp;, cv::Mat&amp;)"
                   moduleName = "Assignment6"
                   urlString = "file:///Users/donj/workspace/cs585/Lab6/Assignment6/Assignment6/Assignment6.cpp"
-                  timestampString = "415771009.48571"
+                  timestampString = "415810280.683635"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "2615">
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "2608">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "computeMosaicFootprint(cv::Mat&amp;, cv::Mat&amp;, cv::Mat&amp;, cv::Size_&lt;int&gt;&amp;, cv::Point_&lt;float&gt;&amp;)"
+                  symbolName = "composeMosaic_v2B(cv::Mat&amp;, cv::Mat&amp;, cv::Mat&amp;, cv::Size_&lt;int&gt;&amp;, cv::Point_&lt;float&gt;&amp;, cv::Mat&amp;)"
                   moduleName = "Assignment6"
                   urlString = "file:///Users/donj/workspace/cs585/Lab6/Assignment6/Assignment6/Assignment6.cpp"
-                  timestampString = "415771009.486008"
+                  timestampString = "415810280.683858"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "3449">
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "4362">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -328,12 +152,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment6/Assignment6/Assignment6.cpp"
-            timestampString = "415772019.602353"
+            timestampString = "415818568.621208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "computeMosaicFootprint(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset)"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "composeMosaic_v2B(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment6/Assignment6/Assignment6.cpp"
+            timestampString = "415818568.621208"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "composeMosaic_v2B(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment6/Assignment6/Assignment6.cpp"
+            timestampString = "415818568.621208"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "composeMosaic_v2B(Mat&amp; img1, Mat&amp; img2, Mat&amp; H, Size&amp; mosaicSize, Point2f&amp; mosaicOffset, Mat&amp; result)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -21,4 +21,11 @@ using namespace cv;
 using namespace std;
 
 Mat createMask(Mat& image);
+void computeMosaicFootprint(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& mosaicOffset);
+void computeWarpedImageFootprint(Mat& img1, Mat& H, Size& imageSize);
+Mat getTranslationMatrix(Point2f offset);
+Mat getHomography(Mat& img1, Mat& img2);
+void warpCorners(Mat& img, Mat& H, vector<Point2f>& warped);
+
+
 #endif /* defined(__Assignment6__File__) */
