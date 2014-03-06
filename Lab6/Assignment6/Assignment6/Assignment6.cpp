@@ -13,6 +13,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
+#include "Functions.h"
 
 using namespace cv;
 using namespace std;
@@ -34,6 +35,15 @@ int main(int argc, char* argv[])
     Mat img1, img2, mask;
     img1 = imread(dataDir+argv[1]);
     img2 = imread(dataDir+argv[2]);
+    
+    //Point2f testOffset(100.0,100.0);
+    //Mat scaleResult(Size(img2.cols,img2.rows),CV_8UC3);
+    //Mat TM = getTranslationMatrix(testOffset);
+    //warpPerspective(img2, scaleResult, TM, img2.size(), INTER_CUBIC, BORDER_TRANSPARENT);
+    //imshow("test",scaleResult);
+    //waitKey(0);
+    
+    
     mask = Mat::ones(img1.rows, img1.cols, CV_8UC1);
 
     Mat H = getHomography(img1, img2);
@@ -49,13 +59,15 @@ int main(int argc, char* argv[])
     Mat result1;
     composeMosaic_v1(img1, img2, H, mosaicSize, mosaicOffset, result1);
     imwrite("Assignment6_Part1_Result1.png", result1);
-    //imshow("result1", result1);
+    resize(result1,result1,Size(0,0),0.4,0.4,INTER_LINEAR);
+    imshow("result1", result1);
     waitKey(0);
+    exit(0);
 
     Mat result2;
     composeMosaic_v2(img1, img2, H, mosaicSize, mosaicOffset, result2);
     imwrite("Assignment6_Part1_Result2.png", result2);
-    //imshow("result2", result2);
+    imshow("result2", result2);
     waitKey(0);
     int i=0;
 }
@@ -64,6 +76,24 @@ int main(int argc, char* argv[])
 //compose the mosaic with a simple "copy and paste" operation (using warpPerspective)
 void composeMosaic_v1(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& mosaicOffset, Mat& result)
 {
+    result.create(mosaicSize,CV_8UC3);
+    result.setTo(Scalar(255,255,255));
+
+    Mat TM = getTranslationMatrix(mosaicOffset);
+    
+    //Mat temp;
+    //resize(img1,temp,Size(0,0),0.4,0.4,INTER_LINEAR);
+    //imshow("img1",img1);
+    //imshow("img1 shrink",temp);
+    //resize(result,temp,Size(0,0),0.4,0.4,INTER_LINEAR);
+    //imshow("test2",result);
+    warpPerspective(img2, result, TM*H, result.size(), INTER_CUBIC, BORDER_TRANSPARENT);
+    warpPerspective(img1, result, TM, result.size(), INTER_CUBIC, BORDER_TRANSPARENT);
+    
+
+
+    //resize(result,temp,Size(0,0),0.4,0.4,INTER_LINEAR);
+    //imshow("test3",temp);
 }
 
 //Required: Given the two images, the homography between them, and the mosaic footprint information,
@@ -100,9 +130,41 @@ void computeMosaicFootprint(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Poin
     
     // Transform corners from img2 using homography matrix
     std::vector<Point2f> img2_projected_corners(4);
-    //perspectiveTransform( img2_corners, img2_projected_corners, H);
+
     warpCorners(img2, H, img2_projected_corners);
-    //printf("img %s corners: (%f,%f),(%f,%f),(%f,%f),(%f,%f)\n","proj",img2_projected_corners[0].x,img2_projected_corners[0].y,img2_projected_corners[1].x,img2_projected_corners[1].y,img2_projected_corners[2].x,img2_projected_corners[2].y,img2_projected_corners[3].x,img2_projected_corners[3].y);
+    
+    double xMin = DBL_MAX;
+    double xMax = -DBL_MAX;
+    double yMin = DBL_MAX;
+    double yMax = -DBL_MAX;
+    for(int i=0;i<4;i++)
+    {
+        xMin=img1_corners[i].x<xMin?img1_corners[i].x:xMin;
+        xMax=img1_corners[i].x>xMax?img1_corners[i].x:xMax;
+        yMin=img1_corners[i].y<yMin?img1_corners[i].y:yMin;
+        yMax=img1_corners[i].y>yMax?img1_corners[i].y:yMax;
+        
+        xMin=img2_projected_corners[i].x<xMin?img2_projected_corners[i].x:xMin;
+        xMax=img2_projected_corners[i].x>xMax?img2_projected_corners[i].x:xMax;
+        yMin=img2_projected_corners[i].y<yMin?img2_projected_corners[i].y:yMin;
+        yMax=img2_projected_corners[i].y>yMax?img2_projected_corners[i].y:yMax;
+    }
+    printf("xMin: %f, yMin: %f, xMax: %f, yMax: %f\n",xMin,yMin,xMax,yMax);
+    if(xMax<0.0)
+    {
+        printf("xMax < 0 ERROR: %f",xMax);
+        exit(1);
+    }
+    if(yMax<0.0)
+    {
+        printf("yMax < 0 ERROR: %f",yMax);
+        exit(1);
+    }
+    mosaicOffset.x=xMin<0.0?-xMin:0.0;
+    mosaicOffset.y=yMin<0.0?-yMin:0.0;
+    mosaicSize.width=(int)(ceil(xMax)-floor(xMin)+1.5);
+    mosaicSize.height=(int)(ceil(yMax)-floor(yMin)+1.5);
+    printf("mosaic width: %d, height: %d\n",mosaicSize.width,mosaicSize.height);
 }
 
 
@@ -144,64 +206,64 @@ Mat getHomography(Mat& img1, Mat& img2)
     cvtColor(img2, img2BW, CV_BGR2GRAY);
     GaussianBlur(img1BW, img1BW, Size(5,5), 1);
     GaussianBlur(img2BW, img2BW, Size(5,5), 1);
-
+    
     //-- Step 1: Find the keypoints
     int minHessian = 400;
     Ptr<FeatureDetector> detector = new SurfFeatureDetector(1, true);
     std::vector<KeyPoint> keypoints_1, keypoints_2;
-
+    
     detector->detect( img1BW, keypoints_1 );
     detector->detect( img2BW, keypoints_2 );
-
+    
     //-- Step 2: Calculate descriptors (feature vectors)
     Ptr<DescriptorExtractor> extractor = new SurfDescriptorExtractor;
     Mat descriptors_1, descriptors_2;
-
+    
     extractor->compute( img1BW, keypoints_1, descriptors_1 );
     extractor->compute( img2BW, keypoints_2, descriptors_2 );
-
+    
     //-- Step 3: Matching descriptor vectors using FLANN matcher
     BFMatcher matcher;
     std::vector< DMatch > matches;
     vector<Point2f> img1Points;
     vector<Point2f> img2Points;
-
+    
     matcher.match( descriptors_1, descriptors_2, matches );
-
+    
     //-- Step 4: Use some heuristics to prune out bad matches
-    double max_dist = 0; 
+    double max_dist = 0;
     double min_dist = 1000;
     for( int i = 0; i < descriptors_1.rows; i++ )
     { double dist = matches[i].distance;
-    if( dist < min_dist ) min_dist = dist;
-    if( dist > max_dist ) max_dist = dist;
+        if( dist < min_dist ) min_dist = dist;
+        if( dist > max_dist ) max_dist = dist;
     }
-
+    
     std::vector< DMatch > good_matches;
-
+    
     for( int i = 0; i < descriptors_1.rows; i++ )
-    { 
-        if( matches[i].distance <= max(min_dist*3, 0.02) )
-        { 
-            good_matches.push_back( matches[i]); 
-
+    {
+        if( matches[i].distance <= max(min_dist*2, 0.02) )
+        {
+            good_matches.push_back( matches[i]);
+            
             //store the good matches in two vectors that we will use to find the homography
             img1Points.push_back(keypoints_1[matches[i].queryIdx].pt);
             img2Points.push_back(keypoints_2[matches[i].trainIdx].pt);
         }
     }
-
+    
     //-- Draw only "good" matches
     Mat img_matches;
     drawMatches( img1, keypoints_1, img2, keypoints_2,
-        good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
-        vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
-
+                good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
+                vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    
     //-- Show detected matches
     resize(img_matches,img_matches,Size(0,0),0.4,0.4,INTER_LINEAR);
-    //imshow( "Homography Matches", img_matches );
-
-
+    imshow( "Homography Matches", img_matches );
+    
+    
     //Compute the homography
     Mat H = findHomography(img2Points, img1Points, CV_RANSAC);
     return H;

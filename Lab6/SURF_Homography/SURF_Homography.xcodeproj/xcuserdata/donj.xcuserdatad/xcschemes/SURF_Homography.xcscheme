@@ -60,7 +60,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "AllWorkSign.jpg"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "AllWorkSignRotate.jpg"
@@ -68,6 +68,14 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Starbucks.jpg"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "SouthStation1.png"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "SouthStation2.png"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
