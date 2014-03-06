@@ -18,7 +18,7 @@ void onTrackbar(int value, void* data) {}
 
 int main(int argc, char* argv[])
 {
-    String dataDir="/Users/donj/workspace/cs585/Lab4/Data/";
+    String dataDir="/Users/donj/workspace/cs585/Lab6/Data/";
 
     if(argc < 3)
     {

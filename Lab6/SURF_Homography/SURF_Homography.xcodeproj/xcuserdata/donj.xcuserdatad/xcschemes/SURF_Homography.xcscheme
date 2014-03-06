@@ -72,10 +72,18 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "SouthStation1.png"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "SouthStation2.png"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "office1.jpg"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "office2.jpg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

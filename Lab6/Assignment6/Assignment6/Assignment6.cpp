@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
     Mat result1;
     composeMosaic_v1(img1, img2, H, mosaicSize, mosaicOffset, result1);
     imwrite("Assignment6_Part1_Result1.png", result1);
-    resize(result1,result1,Size(0,0),0.4,0.4,INTER_LINEAR);
+    //resize(result1,result1,Size(0,0),0.4,0.4,INTER_LINEAR);
     imshow("result1", result1);
     waitKey(0);
     exit(0);
@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 void composeMosaic_v1(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& mosaicOffset, Mat& result)
 {
     result.create(mosaicSize,CV_8UC3);
-    result.setTo(Scalar(255,255,255));
+    result.setTo(Scalar(0,0,0));
 
     Mat TM = getTranslationMatrix(mosaicOffset);
     
@@ -103,6 +103,19 @@ void composeMosaic_v1(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& m
 // You will probably need to iterate over all of the pixels in the output manually
 void composeMosaic_v2(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& mosaicOffset, Mat& result)
 {
+    result.create(mosaicSize,CV_8UC3);
+    result.setTo(Scalar(0,0,0));
+    
+    Mat TM = getTranslationMatrix(mosaicOffset);
+
+    Mat img1BW, img2BW;
+    cvtColor(img1, img1BW, CV_BGR2GRAY);
+    cvtColor(img2, img2BW, CV_BGR2GRAY);
+    Mat img1Dist(img1.size(),CV_32FC1);
+    Mat img2Dist(img2.size(),CV_32FC1);
+    distanceTransform(img1BW,img1Dist,CV_DIST_L2 /*Euclidean*/,3);
+    distanceTransform(img2BW,img2Dist,CV_DIST_L2 /*Euclidean*/,3);
+    
 }
 
 

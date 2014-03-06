@@ -64,7 +64,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;spoon exemplary green bg.png&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;3D exemplary.png&quot;"
@@ -84,7 +84,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;spoon green bg.png&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "ruby.jpg"
@@ -137,6 +137,22 @@
          <CommandLineArgument
             argument = "&quot;spoon close.png&quot;"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "office1.jpg"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "office2.jpg"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "SouthStation1.png"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "SouthStation2.png"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
