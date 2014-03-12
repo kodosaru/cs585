@@ -111,19 +111,15 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "books1.jpg"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "books2.jpg"
-            isEnabled = "NO">
+            argument = "books1.png"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "books2.png"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "books1.png"
+            argument = "books3.png"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

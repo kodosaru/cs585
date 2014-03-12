@@ -26,6 +26,8 @@ void computeWarpedImageFootprint(Mat& img1, Mat& H, Size& imageSize);
 Mat getTranslationMatrix(Point2f offset);
 Mat getHomography(Mat& img1, Mat& img2);
 void warpCorners(Mat& img, Mat& H, vector<Point2f>& warped);
-
+void composeMosaic_v1(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& mosaicOffset, Mat& result);
+void composeMosaic_v2(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& mosaicOffset, Mat& result);
+void composeMosaic_v2B(Mat& img1, Mat& img2, Mat& H, Size& mosaicSize, Point2f& mosaicOffset, Mat& result);
 
 #endif /* defined(__Assignment6__File__) */

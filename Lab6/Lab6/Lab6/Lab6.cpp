@@ -43,7 +43,8 @@ int main(int argc, char* argv[])
     Stitcher stitcher = Stitcher::createDefault(false);
     Stitcher::Status status = stitcher.stitch(originals, result);
     
-    imshow("result", result);
+    imshow("Result", result);
+    imwrite(dataDir+"Assignment6_Lab6_Optional.png", result);
     waitKey(0);
 }
 
