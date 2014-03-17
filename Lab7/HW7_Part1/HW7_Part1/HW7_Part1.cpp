@@ -13,7 +13,7 @@ using namespace std;
 
 Point2f point;
 bool addRemovePt = false;
-int patchSize=70; //the size of the image patches
+int patchSize=200; //the size of the image patches
 int searchRadius=100; //the size of the search radius
 Size imageSize;
 bool displayMatch=false;
@@ -65,6 +65,7 @@ int main( int argc, char** argv )
 
     Mat gray, displayGray, image;
     vector<Point2f> points; //for the locations of the templates
+    vector<Rect> faces;
     vector<Mat> patches; //for the image patches
 
     addRemovePt = false; //this is so the mouse callback event can tell us when to add points
@@ -109,19 +110,6 @@ int main( int argc, char** argv )
         cvtColor(image, gray, COLOR_BGR2GRAY);
         gray.copyTo(displayGray);
 
-        //Go through our list of templates and track each of them
-        if( !points.empty() )
-        {
-            for(int i=0; i<points.size(); i++)
-            {
-                //track the template
-                trackTemplate(points[i], patches[i], gray, displayGray, i, searchRadius);
-                
-                //draw a rectangle around its location
-                rectangle(image, points[i], points[i]+Point2f(patchSize, patchSize), Scalar(0,255,0), 2, 8, 0);
-            }
-        }
-
         if( addRemovePt)
         {
             //assume that the user wants to click in the middle of the patch, but we'll store
@@ -145,6 +133,21 @@ int main( int argc, char** argv )
             addRemovePt = false;
         }
 
+        //Go through our list of templates and track each of them
+        if( !points.empty() )
+        {
+            for(int i=0; i<points.size(); i++)
+            {
+                //track the template
+                trackTemplate(points[i], patches[i], gray, displayGray, i, searchRadius);
+                
+                //draw a rectangle around its location
+                rectangle(image, points[i], points[i]+Point2f(patchSize, patchSize), Scalar(0,255,0), 2, 8, 0);
+            }
+        }
+        
+        displayFaces(gray, displayGray, faces, dataDir);
+
         //save the finished image if necessary
         if(bRecording)
         {
@@ -162,6 +165,7 @@ int main( int argc, char** argv )
         if( c == 'c' )
         {
             points.clear();
+            patches.clear();
         }
 
         if( c == 'q' )

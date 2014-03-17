@@ -20,6 +20,7 @@
 		72301DEE18D2465300DADD0C /* libopencv_photo.2.4.7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72301DE418D2465300DADD0C /* libopencv_photo.2.4.7.dylib */; };
 		72301DEF18D2465300DADD0C /* libopencv_stitching.2.4.7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72301DE518D2465300DADD0C /* libopencv_stitching.2.4.7.dylib */; };
 		72301E1D18D2475200DADD0C /* libopencv_video.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72301E1C18D2475200DADD0C /* libopencv_video.dylib */; };
+		72301E7918D6D69900DADD0C /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72301E7718D6D69900DADD0C /* Functions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +51,8 @@
 		72301DE418D2465300DADD0C /* libopencv_photo.2.4.7.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_photo.2.4.7.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_photo.2.4.7.dylib; sourceTree = "<group>"; };
 		72301DE518D2465300DADD0C /* libopencv_stitching.2.4.7.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_stitching.2.4.7.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_stitching.2.4.7.dylib; sourceTree = "<group>"; };
 		72301E1C18D2475200DADD0C /* libopencv_video.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.dylib; path = ../../../../../../usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_video.dylib; sourceTree = "<group>"; };
+		72301E7718D6D69900DADD0C /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Functions.cpp; sourceTree = "<group>"; };
+		72301E7818D6D69900DADD0C /* Functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Functions.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 		72301DCC18D244A200DADD0C /* HW7_Part2 */ = {
 			isa = PBXGroup;
 			children = (
+				72301E7718D6D69900DADD0C /* Functions.cpp */,
+				72301E7818D6D69900DADD0C /* Functions.hpp */,
 				72301DD618D2456000DADD0C /* HW7_Part2.cpp */,
 				72301DCF18D244A200DADD0C /* HW7_Part2.1 */,
 			);
@@ -162,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72301DD718D2456000DADD0C /* HW7_Part2.cpp in Sources */,
+				72301E7918D6D69900DADD0C /* Functions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
