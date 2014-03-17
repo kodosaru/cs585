@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:PointClick/PointClick.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TemplateMatching/TemplateMatching.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:HW7_Part2/HW7_Part2.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:HW7_Part1/HW7_Part1.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Lab7/Lab7.xcodeproj">
+   </FileRef>
+</Workspace>
