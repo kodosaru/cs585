@@ -1,6 +1,3 @@
-//CS585 HW7
-//For this homework, we will try our hand at using template tracking
-
 #include <opencv2/video/tracking.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -29,8 +26,12 @@ int main( int argc, char** argv )
     char directory[256], filename[256];
     int startFrame(-1), endFrame (-1);
     int currentFrame = 1;
+    int frameNumber=0;
     bool bRecording = false;
     addRemovePt = false;
+    int lastX = 0;
+    int lastY = 0;
+
 
     if( argc == 1 )
     {
@@ -102,8 +103,8 @@ int main( int argc, char** argv )
         if(bRecording)
         {
             //Record the original image if necessary
-            sprintf(filename, "video_%04d.jpg", currentFrame);
-            imwrite(filename, image);
+            //sprintf(filename, "HW7_Part2_TwoModeTracking_image%04d.jpg", frameNumber++);
+            //imwrite(dataDir+filename, image);
         }
 
         //convert to grayscale
@@ -136,23 +137,37 @@ int main( int argc, char** argv )
         //Go through our list of templates and track each of them
         if( !points.empty() )
         {
-            for(int i=0; i<points.size(); i++)
-            {
+            //for(int i=0; i<points.size(); i++)
+            //{
+                int i=0;
+            
                 //track the template
                 trackTemplate(points[i], patches[i], gray, displayGray, i, searchRadius);
                 
                 //draw a rectangle around its location
                 rectangle(image, points[i], points[i]+Point2f(patchSize, patchSize), Scalar(0,255,0), 2, 8, 0);
-            }
+            //}
         }
         
         displayFaces(gray, displayGray, faces, dataDir);
+        if(faces.size() >= 1)
+        {
+            points.clear();
+            patches.clear();
+            patchSize = faces[0].width>faces[0].height?faces[0].width:faces[0].height;
+            lastX=faces[0].x + faces[0].width/2;
+            lastY=faces[0].y + faces[0].height/2;
+        }
+        else
+        {
+            noFace(lastX,lastY);
+        }
 
         //save the finished image if necessary
         if(bRecording)
         {
-            sprintf(filename, "result_%04d.jpg", currentFrame);
-            imwrite(filename, image);
+            sprintf(filename, "HW7_Part2_TwoModeTracking_result_%04d.jpg", frameNumber++);
+            imwrite(dataDir+filename, displayGray);
         }
 
         imshow("Gray", displayGray);
@@ -198,6 +213,21 @@ static void onMouse( int event, int x, int y, int /*flags*/, void* /*param*/ )
         {
             cout<<"Point too close to image border"<<endl;
         }
+    }
+}
+
+void noFace(int x, int y)
+{
+    if((x - patchSize/2 - searchRadius) > 0 && (y - patchSize/2 - searchRadius) > 0
+       && (x + patchSize/2 + searchRadius) < imageSize.width && (y + patchSize/2 + searchRadius < imageSize.height))
+    {
+        cout << "Face callback function" << endl;
+        point = Point2f((float)x, (float)y);
+        addRemovePt = true;
+    }
+    else
+    {
+        cout<<"Point too close to image border"<<endl;
     }
 }
 

@@ -30,9 +30,6 @@ void displayFaces(Mat& image, Mat& displayImage, vector<Rect>& faces, String dat
     detectFaces(image, face_cascade, faces);
     for(int F=0; F<faces.size(); F++)
     {
-        //calculate the center of the faces returned by the face detector
-        Point faceCenter (faces[F].x+faces[F].width/2, faces[F].y + faces[F].height/2);
-        
         rectangle(displayImage, faces[F], Scalar::all(0), 2, 8, 0 );
     }
     

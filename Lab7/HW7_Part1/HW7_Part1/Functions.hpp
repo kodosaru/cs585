@@ -21,7 +21,5 @@ using namespace std;
 
 void trackTemplate(Point2f& point, Mat& patch, Mat& image, Mat& displayGray, int pointNo, int searchRadius);
 void matchingMethod(Mat& img, Mat& templ, Point& maxLoc, int pointNo, int match_method);
-void detectFaces( Mat& image, CascadeClassifier& face_cascade, vector<Rect>& faces );
-void displayFaces(Mat& image, Mat& displayImage, vector<Rect>& faces, String dataDir);
 
 #endif /* defined(__HW7_Part1__Functions__) */

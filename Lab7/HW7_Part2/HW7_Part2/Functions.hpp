@@ -23,5 +23,6 @@ void trackTemplate(Point2f& point, Mat& patch, Mat& image, Mat& displayGray, int
 void matchingMethod(Mat& img, Mat& templ, Point& maxLoc, int pointNo, int match_method);
 void detectFaces( Mat& image, CascadeClassifier& face_cascade, vector<Rect>& faces );
 void displayFaces(Mat& image, Mat& displayImage, vector<Rect>& faces, String dataDir);
+void noFace(int x, int y);
 
 #endif /* defined(__HW7_Part1__Functions__) */

@@ -14,47 +14,6 @@ using namespace std;
 extern bool displayMatch;
 extern int match_method;
 
-void displayFaces(Mat& image, Mat& displayImage, vector<Rect>& faces, String dataDir)
-{
-    
-   
-    //Load face the cascades
-    string face_cascade_name = "haarcascade_frontalface_alt.xml";
-    CascadeClassifier face_cascade;
-    if( !face_cascade.load( dataDir+face_cascade_name ) )
-    {
-        printf("--(!)Error loading\n");
-        return;
-    }
-    
-    detectFaces(image, face_cascade, faces);
-    for(int F=0; F<faces.size(); F++)
-    {
-        //calculate the center of the faces returned by the face detector
-        Point faceCenter (faces[F].x+faces[F].width/2, faces[F].y + faces[F].height/2);
-        
-        rectangle(displayImage, faces[F], Scalar::all(0), 2, 8, 0 );
-    }
-    
-}
-
-void detectFaces( Mat& image, CascadeClassifier& face_cascade, vector<Rect>& faces )
-{
-    
-    // http://docs.opencv.org/modules/objdetect/doc/cascade_classification.html
-    // http://docs.opencv.org/doc/tutorials/objdetect/cascade_classifier/cascade_classifier.html
-    
-    
-    Mat frame_gray;
-    image.copyTo(frame_gray);
-    equalizeHist( frame_gray, frame_gray );
-    
-    //imshow("gray image", frame_gray);
-    //-- Detect faces
-    face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(200, 200) );
-    cout<<"No. of faces: "<<faces.size()<<endl;
-}
-
 //Required: Implement the function to find the new location of the template in the image
 //Arguments are: the previous location (point), the template (patch), the new image (image)
 //and a search radius.

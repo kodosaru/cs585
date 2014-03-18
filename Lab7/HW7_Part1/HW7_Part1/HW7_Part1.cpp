@@ -13,7 +13,7 @@ using namespace std;
 
 Point2f point;
 bool addRemovePt = false;
-int patchSize=200; //the size of the image patches
+int patchSize=50; //the size of the image patches
 int searchRadius=100; //the size of the search radius
 Size imageSize;
 bool displayMatch=false;
@@ -29,6 +29,7 @@ int main( int argc, char** argv )
     char directory[256], filename[256];
     int startFrame(-1), endFrame (-1);
     int currentFrame = 1;
+    int frameNumber=0;
     bool bRecording = false;
     addRemovePt = false;
 
@@ -65,7 +66,6 @@ int main( int argc, char** argv )
 
     Mat gray, displayGray, image;
     vector<Point2f> points; //for the locations of the templates
-    vector<Rect> faces;
     vector<Mat> patches; //for the image patches
 
     addRemovePt = false; //this is so the mouse callback event can tell us when to add points
@@ -102,8 +102,8 @@ int main( int argc, char** argv )
         if(bRecording)
         {
             //Record the original image if necessary
-            sprintf(filename, "video_%04d.jpg", currentFrame);
-            imwrite(filename, image);
+            //sprintf(filename, "video_%04d.jpg", currentFrame);
+            //imwrite(filename, image);
         }
 
         //convert to grayscale
@@ -145,14 +145,12 @@ int main( int argc, char** argv )
                 rectangle(image, points[i], points[i]+Point2f(patchSize, patchSize), Scalar(0,255,0), 2, 8, 0);
             }
         }
-        
-        displayFaces(gray, displayGray, faces, dataDir);
 
         //save the finished image if necessary
         if(bRecording)
         {
-            sprintf(filename, "result_%04d.jpg", currentFrame);
-            imwrite(filename, image);
+            sprintf(filename, "HW7_Part1_TemplateTracking_result_%04d.jpg", frameNumber++);
+            imwrite(dataDir+filename, displayGray);
         }
 
         imshow("Gray", displayGray);
