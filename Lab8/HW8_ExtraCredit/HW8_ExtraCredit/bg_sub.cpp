@@ -10,6 +10,8 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/video/background_segm.hpp>
+#include <opencv2/imgproc/types_c.h>
+#include <opencv2/imgproc/imgproc.hpp>
 //C
 #include <stdio.h>
 //C++
@@ -29,7 +31,7 @@ int keyboard;
 
 //function declarations
 void help();
-void processVideo(char* videoFilename);
+void processVideo(char* videoFilename, char* videoFilenameOut);
 void processImages(char* firstFrameFilename);
 
 void help()
@@ -53,7 +55,7 @@ int main(int argc, char* argv[])
     help();
     
     //check for the input parameter correctness
-    if(argc != 3) {
+    if(argc != 4) {
         cerr <<"Incorret input list" << endl;
         cerr <<"exiting..." << endl;
         return EXIT_FAILURE;
@@ -65,17 +67,29 @@ int main(int argc, char* argv[])
     namedWindow("FG Mask MOG 2");
     
     //create Background Subtractor objects
-    //NOTE HERE!!!!
-    pMOG= new BackgroundSubtractorMOG(); //MOG approach
-    pMOG2 = new BackgroundSubtractorMOG2(); //MOG2 approach
+    // Modified by Don Johnson
+    int history=30;
+    int nmixtures=5;
+    double backgroundRatio=0.9;
+    double noiseSigma=0;
+    float varThreshold=16.0;
+    bool bShadowDetection=false;
+
+    pMOG= new BackgroundSubtractorMOG(history, nmixtures, backgroundRatio, noiseSigma); //MOG approach
+    pMOG2 = new BackgroundSubtractorMOG2(history,varThreshold,bShadowDetection); //MOG2 approach
     
+    char path[256],pathOut[256];
+    strcpy(path, "/Users/donj/workspace/cs585/Lab8/Data/");
+    strcat(path, argv[2]);
+    strcpy(pathOut, "/Users/donj/workspace/cs585/Lab8/Data/");
+    strcat(pathOut, argv[3]);
     if(strcmp(argv[1], "-vid") == 0) {
         //input data coming from a video
-        processVideo(argv[2]);
+        processVideo(path,pathOut);
     }
     else if(strcmp(argv[1], "-img") == 0) {
         //input data coming from a sequence of images
-        processImages(argv[2]);
+        processImages(path);
     }
     else {
         //error in reading input parameters
@@ -88,9 +102,14 @@ int main(int argc, char* argv[])
     return EXIT_SUCCESS;
 }
 
-void processVideo(char* videoFilename) {
+void processVideo(char* videoFilename, char* videoFilenameOut) {
     //create the capture object
+    // Modified by Don Johnson
     VideoCapture capture(videoFilename);
+    double fps = capture.get(CV_CAP_PROP_FPS);
+    int width = capture.get(CV_CAP_PROP_FRAME_WIDTH);
+    int height = capture.get(CV_CAP_PROP_FRAME_HEIGHT);
+    VideoWriter videoOut(videoFilenameOut,CV_FOURCC('m', 'p', '4', 'v'), fps, Size(width,height));
     if(!capture.isOpened()){
         //error in opening the video input
         cerr << "Unable to open video file: " << videoFilename << endl;
@@ -100,30 +119,42 @@ void processVideo(char* videoFilename) {
     while( (char)keyboard != 'q' && (char)keyboard != 27 ){
         //read the current frame
         if(!capture.read(frame)) {
-            cerr << "Unable to read next frame." << endl;
             cerr << "Exiting..." << endl;
             exit(EXIT_FAILURE);
         }
         //update the background model
-        //AND HERE!!!
-        pMOG->operator()(frame, fgMaskMOG);
-        pMOG2->operator()(frame, fgMaskMOG2);
+        // Modified by Don Johnson
+        double learningRate=0.1;
+        pMOG->operator()(frame, fgMaskMOG,learningRate);
+        //pMOG2->operator()(frame, fgMaskMOG2,learningRate);
+        
         //get the frame number and write it on the current frame
         stringstream ss;
         rectangle(frame, cv::Point(10, 2), cv::Point(100,20),
                   cv::Scalar(255,255,255), -1);
         ss << capture.get(CV_CAP_PROP_POS_FRAMES);
+        if(0 && atoi(ss.str().c_str())>0)
+        {
+            pMOG->operator()(frame, fgMaskMOG);
+            //pMOG2->operator()(frame, fgMaskMOG2);
+        }
         string frameNumberString = ss.str();
         putText(frame, frameNumberString.c_str(), cv::Point(15, 15),
                 FONT_HERSHEY_SIMPLEX, 0.5 , cv::Scalar(0,0,0));
         //show the current frame and the fg masks
+        Mat temp;
+        fgMaskMOG.copyTo(temp);
+        cvtColor(temp, temp, CV_GRAY2BGR);
+        videoOut << temp;
+        cout<<"Frame "<<frameNumberString<<endl;
         imshow("Frame", frame);
         imshow("FG Mask MOG", fgMaskMOG);
-        imshow("FG Mask MOG 2", fgMaskMOG2);
+        //imshow("FG Mask MOG 2", fgMaskMOG2);
         //get the input from the keyboard
         keyboard = waitKey( 30 );
     }
     //delete capture object
+    videoOut.release();
     capture.release();
 }
 

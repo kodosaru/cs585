@@ -59,11 +59,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "bkgd_source.avi"
+            argument = "background_source.avi"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "30"
+            argument = "20"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

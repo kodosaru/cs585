@@ -14,18 +14,12 @@ using namespace std;
 using namespace boost::posix_time;
 using namespace cv;
 
-
-static bool bDone=false;
-
 // Code for capture thread
 void captureFunc(Mat *frame, VideoCapture *capture){
     //loop infinitely
     for(;;){
 		//capture from webcame to Mat frame
-        if(!bDone)
-        {
-            (*capture) >> (*frame);
-        }
+        (*capture) >> (*frame);
 	}
 }
 
@@ -78,7 +72,6 @@ int main (int argc, char *argv[])
 	// loop infinitely
 	for(nFrame=0;nFrame<=atoi(argv[2]);nFrame++)
 	{
-        
 		// wait for X microseconds until 1second/framerate time has passed after previous frame write
 		while(td.total_microseconds() < 1000000/framerate){
             //determine current elapsed time
@@ -115,7 +108,6 @@ int main (int argc, char *argv[])
 		//[TIMESTAMP OF PREVIOUS FRAME] [TIMESTAMP OF NEW FRAME] [TIME DELAY OF WRITING]
         
 	}
-    bDone=true;
     
 	// Exit
 	return 0;
