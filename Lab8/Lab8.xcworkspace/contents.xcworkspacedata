@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:HW8_ExtraCredit/HW8_ExtraCredit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:HW8/HW8.xcodeproj">
+   </FileRef>
+</Workspace>
