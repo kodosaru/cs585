@@ -16,12 +16,17 @@
 #include "opencv2/highgui/highgui.hpp"
 #define USE_MATH_DEFINES 1
 #include <math.h>
+#define N_SAVE_FRAMES 5
+#define N_SKIP_FRAMES 1
+
 using namespace cv;
 using namespace std;
 
 // copied from OpenCV sample fback.cpp
-void drawOptFlowMap(const Mat& flow, Mat& cflowmap, int step, double, const Scalar& color);
 void opticalFlowMagnitudeAngle(const Mat& flow, Mat& magnitude, Mat& angle, int step);
+void recordFrames(Mat& view, Mat& magnitude, Mat& angle, vector<Mat>& view_record, vector<Mat>& magnitude_record, vector<Mat>& angle_record, bool& bRecording, int frameNumber, int nFrame[], int& fcount);
+void writeFrames(vector<Mat>& view_record, vector<Mat>& magnitude_record, vector<Mat>& angle_record, char* directory,int nFrame[]);
+void drawOptFlowMap(const Mat& flow, Mat& cflowmap, int step, double, const Scalar& color);
 void visualizeFlow(const Mat& magnitude, const Mat& angle, Mat& magnitude8UC1, Mat& angle8UC3);
 
 #endif /* defined(__HW8__Functions__) */

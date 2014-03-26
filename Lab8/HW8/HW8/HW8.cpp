@@ -6,6 +6,8 @@
 #include "opencv2/highgui/highgui.hpp"
 #define USE_MATH_DEFINES 1
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
 #include "Functions.h"
 
 using namespace cv;
@@ -31,19 +33,23 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    namedWindow( "Camera View", 1 );
     namedWindow( "Flow Magnitude", 1 );
     namedWindow( "Flow Angle", 1 );
+    namedWindow( "Camera View", 1 );
 
     Mat view, magnitudeView, angleView;
     Mat gray1, gray2;
     Mat flow, magnitude, angle;
+    vector<Mat> view_record(5), magnitude_record(5), angle_record(5);
+    int nFrame[N_SAVE_FRAMES];
     bool blink = false;
 
     bool bRecording = false;
     int frameNumber=0;
-    char directory[128]={'\0'};
-    directory[0]='.';
+    char directory[256];
+    strcpy(directory, "/Users/donj/workspace/cs585/Lab8/Data/");
+    int fcount=0;
+
     if(argc > 1)
     {
         strcpy(directory, argv[1]);
@@ -69,7 +75,6 @@ int main(int argc, char* argv[])
         }
         cvtColor(view, gray2, COLOR_BGR2GRAY); //optical flow works on grayscale images
 
-        //gray2.copyTo(gray1);
         if(frameNumber > 1)
         {
             // copied from OpenCV sample fback.cpp
@@ -85,18 +90,6 @@ int main(int argc, char* argv[])
         }
         imshow("Camera View", view);
 
-
-        if(bRecording)
-        {
-            sprintf(filename, "%s/video_%04d.jpg", directory, frameNumber);
-            imwrite(filename, view);
-            sprintf(filename, "%s/magnitude_%04d.jpg", directory, frameNumber);
-            imwrite(filename, magnitudeView);
-            sprintf(filename, "%s/angle_%04d.jpg", directory, frameNumber);
-            imwrite(filename, angleView);
-            frameNumber++;
-        }
-
         char key = waitKey(33);
         if(key == 'p')
         {
@@ -108,17 +101,31 @@ int main(int argc, char* argv[])
             imwrite(filename, angleView);
             frameNumber++;
         }
+        if(bRecording)
+        {
+                recordFrames(view, magnitudeView, angleView, view_record, magnitude_record, angle_record, bRecording, frameNumber, nFrame, fcount);
+        }
+        
+        if(key == 'w')
+        {
+            writeFrames(view_record, magnitude_record, angle_record, directory, nFrame);
+        }
+        
         if(key == ' ')
         {
             bRecording = !bRecording;
+            fcount=0;
         }
+        
         if(key == 'q')
         {
             break;
         }
+        
         gray2.copyTo(gray1);
         frameNumber++;
     }
+    
     return 0;
 }
 

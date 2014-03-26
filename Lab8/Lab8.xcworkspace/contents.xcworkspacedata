@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:VideoWrite/VideoWrite.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:HW8_ExtraCredit/HW8_ExtraCredit.xcodeproj">
    </FileRef>
    <FileRef
