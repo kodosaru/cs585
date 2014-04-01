@@ -63,6 +63,7 @@ int main( int argc, char** argv )
         if(bEvolving)
         {
             double avgChange = evolveContour(contour, gray, 1, 1, 1.2);
+            if(DEBUG)printf("Avg change: %0.2f\n",avgChange);
         }
         
         original.copyTo(display);
@@ -113,6 +114,8 @@ void evolvePoint(Mat& image, Point& out, const Point& now, const Point& before, 
     Mat curvature(3,3,CV_32FC1);
     Mat imageScore(3,3, CV_32FC1);
     Mat totalScore(3,3, CV_32FC1);
+    double minVal, maxVal;
+    Point minPt, maxPt;
     
     // Here, fill in the code to visit each pixel in a 3 x 3 neighborhood and compute the value of the objective function
     // vi=now, vi-1=before, vi+1=after
@@ -124,14 +127,33 @@ void evolvePoint(Mat& image, Point& out, const Point& now, const Point& before, 
                 printf("Kernel cell out of bounds at (%d,%d)\n",now.x, now.y);
             continuity.at<float>(now.x+dx,now.y+dy) = computeContinuity(meanDist, Point(now.x+dx,now.y+dy), before);
             curvature.at<float>(now.x+dx,now.y+dy) = computeCurvature(before, Point(now.x+dx,now.y+dy), after);
+            if(DEBUG)printf("Cont and Curv at (%d,%d): %0.2f, %0.2f\n",now.x+dx,now.y+dy,continuity.at<float>(now.x+dx,now.y+dy),curvature.at<float>(now.x+dx,now.y+dy));
         }
     
     // Normalize energy terms
     normalizeScore(continuity);
+    if(DEBUG)
+    {
+        minMaxLoc(continuity, &minVal, &maxVal, &minPt, &maxPt);
+        printf("Continuity min at (%d,%d): %0.2f and max at (%d,%d): %0.2f\n",minPt.x,minPt.y,minVal,
+               maxPt.x,maxPt.y,maxVal);
+    }
     normalizeScore(curvature);
+    if(DEBUG)
+    {
+        minMaxLoc(curvature, &minVal, &maxVal, &minPt, &maxPt);
+        printf("Curvature min at (%d,%d): %0.2f and max at (%d,%d): %0.2f\n",minPt.x,minPt.y,minVal,
+               maxPt.x,maxPt.y,maxVal);
+    }
     gradientMagnitude.copyTo(imageScore);
     // Note: normalizeImageScore() takes negative of gradient magnitude so maximum gradient gives minimum energy
     normalizeImageScore(imageScore, CLAMP);
+    if(DEBUG)
+    {
+        minMaxLoc(curvature, &minVal, &maxVal, &minPt, &maxPt);
+        printf("Gradient min at (%d,%d): %0.2f and max at (%d,%d): %0.2f\n",minPt.x,minPt.y,minVal,
+               maxPt.x,maxPt.y,maxVal);
+    }
     
     // Compute total energy
     for(int dx=-1;dx<=1;dx++)
@@ -141,14 +163,12 @@ void evolvePoint(Mat& image, Point& out, const Point& now, const Point& before, 
                                                     beta * curvature.at<float>(now.x+dx,now.y+dy) +
                                                     gamma * imageScore.at<float>(now.x+dx,now.y+dy);
             if(DEBUG)
-                printf("Scores at (%d,%d): %0.2f, %0.2f, %0.2f",now.x+dx,now.y+dy,
+                printf("Scores at (%d,%d): %0.2f, %0.2f, %0.2f\n",now.x+dx,now.y+dy,
                    continuity.at<float>(now.x+dx,now.y+dy), curvature.at<float>(now.x+dx,now.y+dy),
                    imageScore.at<float>(now.x+dx,now.y+dy));
         }
 
 
-    double minVal, maxVal;
-    Point minPt, maxPt;
     minMaxLoc(totalScore, &minVal, &maxVal, &minPt, &maxPt);
     out.x = now.x + minPt.x-1;
     out.y = now.y + minPt.y-1;
@@ -157,6 +177,7 @@ void evolvePoint(Mat& image, Point& out, const Point& now, const Point& before, 
 //Given: management of contour evolution
 double evolveContour(vector<Point>& contour, Mat& gray, double alpha, double beta, double gamma)
 {
+    if(DEBUG)printf("Inside evolveContour()\n");
     vector<Point> original = contour;
     Mat submatrix;
     
@@ -173,12 +194,13 @@ double evolveContour(vector<Point>& contour, Mat& gray, double alpha, double bet
     
     for(int f=1; f<numPoints; f++)
     {
-        submatrix.copyTo(gradientMagnitude(Rect(original[f].x-1, original[f].y-1, 3, 3)));
+        if(DEBUG)printf("Original point: (%d,%d)\n",original[f].x, original[f].y);
+        gradientMagnitude(Rect(original[f].x-1, original[f].y-1, 3, 3)).copyTo(submatrix);
         evolvePoint(gray, contour[f], original[f], original[f-1], original[f+1], submatrix, meanDist, alpha, beta, gamma);
     }
-    submatrix.copyTo(gradientMagnitude(Rect(original[0].x-1, original[0].y-1, 3, 3)));
+    gradientMagnitude(Rect(original[0].x-1, original[0].y-1, 3, 3)).copyTo(submatrix);
     evolvePoint(gray, contour[0], original[0], original[numPoints], original[1], submatrix, meanDist, alpha, beta, gamma);
-    submatrix.copyTo(gradientMagnitude(Rect(original[numPoints].x-1, original[numPoints].y-1, 3, 3)));
+    gradientMagnitude(Rect(original[numPoints].x-1, original[numPoints].y-1, 3, 3)).copyTo(submatrix);
     evolvePoint(gray, contour[numPoints], original[numPoints], original[numPoints-1], original[0], submatrix, meanDist, alpha, beta, gamma);
     
     double totalChange = 0;
