@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418030904.837574"
+            timestampString = "418105831.761377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418030904.837574"
+            timestampString = "418105831.761377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418030904.837574"
+            timestampString = "418105831.761377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -54,16 +54,192 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418030900.355074"
+            timestampString = "418105831.761377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "evolveContour(vector&lt;Point&gt;&amp; contour, Mat&amp; gray, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418106260.449551"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "computeContinuity(double meanDist, Point p1, Point p2)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "main( int argc, char** argv )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HW9/HW9.cpp"
+            timestampString = "418105831.761377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "main( int argc, char** argv )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

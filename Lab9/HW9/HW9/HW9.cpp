@@ -9,7 +9,13 @@ using namespace cv;
 using namespace std;
 
 #define CLAMP 30
-#define DEBUG 1
+#define ALPHA 1.2
+#define BETA 1.0
+#define GAMMA 1.35
+#define DEBUG 0
+#define DEBUG_CONT 0
+#define DEBUG_CURVE 0
+#define DEBUG_GRAD 0
 
 vector<Point> contour;
 bool bRecordContour=false;
@@ -35,6 +41,30 @@ void evolvePoint(Mat& image, Point& out, const Point& now, const Point& before, 
                  Mat& gradientMagnitude, double meanDist, double alpha, double beta, double gamma);
 double evolveContour(vector<Point>& contour, Mat& gray, double alpha, double beta, double gamma);
 
+// Test function
+void fillContour();
+
+void myMinMaxLoc(Mat& array, double& minVal, double& maxVal, Point& minPt, Point& maxPt)
+{
+    int cols=array.cols;
+    int rows=array.rows;
+    minVal=DBL_MAX;
+    maxVal=-DBL_MAX;
+    for(int x=0;x<cols;x++)
+        for(int y=0;y<rows;y++)
+        {
+            if( array.at<float>(x,y) < minVal)
+            {
+                minVal = array.at<float>(x,y);
+                minPt = Point(x,y);
+            }
+            if( array.at<float>(x,y) > maxVal)
+            {
+                maxVal = array.at<float>(x,y);
+                maxPt = Point(x,y);
+            }
+        }
+}
 
 int main( int argc, char** argv )
 {
@@ -57,13 +87,23 @@ int main( int argc, char** argv )
     bool bEvolving = false;
     int currentFrame = 0;
     char filename[128];
+    
+    //fillContour();
     while(true)
     {
         
         if(bEvolving)
         {
-            double avgChange = evolveContour(contour, gray, 1, 1, 1.2);
-            if(DEBUG)printf("Avg change: %0.2f\n",avgChange);
+            if(DEBUG)
+                for(int i=0;i<contour.size();i++)
+                    printf("Contour Point before (%d,%d)\n",contour[i].x,contour[i].y);
+            double avgChange = evolveContour(contour, gray, ALPHA, BETA, GAMMA);
+            if(DEBUG)
+            {
+                for(int i=0;i<contour.size();i++)
+                    printf("Contour Point after (%d,%d)\n",contour[i].x,contour[i].y);
+                printf("Avg change: %0.2f\n",avgChange);
+            }
         }
         
         original.copyTo(display);
@@ -116,62 +156,96 @@ void evolvePoint(Mat& image, Point& out, const Point& now, const Point& before, 
     Mat totalScore(3,3, CV_32FC1);
     double minVal, maxVal;
     Point minPt, maxPt;
+    int dx,dy;
     
     // Here, fill in the code to visit each pixel in a 3 x 3 neighborhood and compute the value of the objective function
     // vi=now, vi-1=before, vi+1=after
     // Compute continuity and curvature energy terms
-    for(int dx=-1;dx<=1;dx++)
-        for(int dy=-1;dy<=1;dy++)
+    for(dx=-1; dx<=1; dx++)
+        for(dy=-1; dy<=1; dy++)
         {
             if(DEBUG && (now.x+dx < 0 || now.y+dy < 0 || now.x+dx > image.cols - 2 || now.y+dy > image.rows - 2))
                 printf("Kernel cell out of bounds at (%d,%d)\n",now.x, now.y);
-            continuity.at<float>(now.x+dx,now.y+dy) = computeContinuity(meanDist, Point(now.x+dx,now.y+dy), before);
-            curvature.at<float>(now.x+dx,now.y+dy) = computeCurvature(before, Point(now.x+dx,now.y+dy), after);
-            if(DEBUG)printf("Cont and Curv at (%d,%d): %0.2f, %0.2f\n",now.x+dx,now.y+dy,continuity.at<float>(now.x+dx,now.y+dy),curvature.at<float>(now.x+dx,now.y+dy));
+            continuity.at<float>(dx+1,dy+1) = computeContinuity(meanDist, Point(now.x+dx,now.y+dy), before);
+            curvature.at<float>(dx+1,dy+1) = computeCurvature(before, Point(now.x+dx,now.y+dy), after);
+            if(DEBUG_CONT)
+                printf("Cont Mean: %0.2f now: (%d,%d) before: (%d,%d): (%d,%d) %0.6f\n",meanDist,now.x+dx,now.y+dy,before.x,before.y,dx+1,dy+1,continuity.at<float>(dx+1,dy+1));
+            if(DEBUG_CURVE)
+                printf("Curve (%d,%d) now (%d,%d) after (%d,%d): %0.2f\n",before.x,before.y,now.x+dx,now.y+dy,after.x,after.y,curvature.at<float>(dx+1,dy+1));
         }
     
     // Normalize energy terms
+    // Continuity
     normalizeScore(continuity);
-    if(DEBUG)
+    if(DEBUG_CONT)
     {
-        minMaxLoc(continuity, &minVal, &maxVal, &minPt, &maxPt);
-        printf("Continuity min at (%d,%d): %0.2f and max at (%d,%d): %0.2f\n",minPt.x,minPt.y,minVal,
+        for(dx=-1; dx<=1; dx++)
+            for(dy=-1; dy<=1; dy++)
+            {
+                printf("Cont normal Mean: %0.2f now: (%d,%d) before: (%d,%d): (%d,%d) %0.6f\n",meanDist,now.x+dx,now.y+dy,before.x,before.y,dx+1,dy+1,continuity.at<float>(dx+1,dy+1));
+            }
+        myMinMaxLoc(continuity, minVal, maxVal, minPt, maxPt);
+        printf("My continuity min at (%d,%d): %0.2f and max at (%d,%d): %0.2f\n",minPt.x,minPt.y,minVal,
                maxPt.x,maxPt.y,maxVal);
+
     }
+    
+    // Curves
     normalizeScore(curvature);
-    if(DEBUG)
+    if(DEBUG_CURVE)
     {
-        minMaxLoc(curvature, &minVal, &maxVal, &minPt, &maxPt);
+        for(dx=-1; dx<=1; dx++)
+            for(dy=-1; dy<=1; dy++)
+            {
+                printf("Curve normal now: (%d,%d) before: (%d,%d) after: (%d,%d): (%d,%d) %0.6f\n",now.x+dx,now.y+dy,before.x,before.y,after.x, after.y,dx+1,dy+1,curvature.at<float>(dx+1,dy+1));
+            }
+        myMinMaxLoc(curvature, minVal, maxVal, minPt, maxPt);
         printf("Curvature min at (%d,%d): %0.2f and max at (%d,%d): %0.2f\n",minPt.x,minPt.y,minVal,
                maxPt.x,maxPt.y,maxVal);
     }
+    
+    // Gradient
     gradientMagnitude.copyTo(imageScore);
+    if(DEBUG_GRAD)
+        for(dx=-1; dx<=1; dx++)
+            for(dy=-1; dy<=1; dy++)
+            {
+                printf("Gradient magnitude at (%d,%d), (%d,%d): %0.6f\n",now.x+dx,now.y+dy,dx+1,dy+1,
+                        imageScore.at<float>(dx+1,dy+1));
+            }
+
     // Note: normalizeImageScore() takes negative of gradient magnitude so maximum gradient gives minimum energy
     normalizeImageScore(imageScore, CLAMP);
-    if(DEBUG)
+    if(DEBUG_GRAD)
     {
-        minMaxLoc(curvature, &minVal, &maxVal, &minPt, &maxPt);
-        printf("Gradient min at (%d,%d): %0.2f and max at (%d,%d): %0.2f\n",minPt.x,minPt.y,minVal,
+        for(dx=-1; dx<=1; dx++)
+            for(dy=-1; dy<=1; dy++)
+            {
+                printf("Normalized gradient magnitude at (%d,%d), (%d,%d): %0.2f\n",now.x+dx,now.y+dy,dx+1,dy+1,
+                       imageScore.at<float>(dx+1,dy+1));
+            }
+        myMinMaxLoc(curvature, minVal, maxVal, minPt, maxPt);
+        printf("Gradient min at (%d,%d): %0.2f and max at (%d,%d): %0.6f\n",minPt.x,minPt.y,minVal,
                maxPt.x,maxPt.y,maxVal);
     }
     
     // Compute total energy
-    for(int dx=-1;dx<=1;dx++)
-        for(int dy=-1;dy<=1;dy++)
-        {
-            totalScore.at<float>(now.x+dx,now.y+dy)= alpha * continuity.at<float>(now.x+dx,now.y+dy) +
-                                                    beta * curvature.at<float>(now.x+dx,now.y+dy) +
-                                                    gamma * imageScore.at<float>(now.x+dx,now.y+dy);
-            if(DEBUG)
-                printf("Scores at (%d,%d): %0.2f, %0.2f, %0.2f\n",now.x+dx,now.y+dy,
-                   continuity.at<float>(now.x+dx,now.y+dy), curvature.at<float>(now.x+dx,now.y+dy),
-                   imageScore.at<float>(now.x+dx,now.y+dy));
-        }
+    totalScore = alpha * continuity + beta * curvature + gamma * imageScore;
+    if(DEBUG)
+        for(dx=-1; dx<=1; dx++)
+            for(dy=-1; dy<=1; dy++)
+            {
+                printf("Scores at (%d,%d): %0.2f, %0.2f, %0.2f, %0.6f\n",now.x+dx,now.y+dy,
+                   continuity.at<float>(dx+1,dy+1), curvature.at<float>(dx+1,dy+1),
+                   imageScore.at<float>(dx+1,dy+1), totalScore.at<float>(dx+1,dy+1));
+            }
 
-
-    minMaxLoc(totalScore, &minVal, &maxVal, &minPt, &maxPt);
+    myMinMaxLoc(totalScore, minVal, maxVal, minPt, maxPt);
     out.x = now.x + minPt.x-1;
     out.y = now.y + minPt.y-1;
+    
+    if(DEBUG)
+        printf("Orig point (%d,%d) and new point (%d,%d)\n",now.x,now.y,out.x,out.y);
 }
 
 //Given: management of contour evolution
@@ -192,6 +266,8 @@ double evolveContour(vector<Point>& contour, Mat& gray, double alpha, double bet
     gradientSobel(gray, gradientMagnitude);
     
     
+    if(DEBUG)
+        printf("Size of original: %ld numPoints: %d\n",original.size(),numPoints);
     for(int f=1; f<numPoints; f++)
     {
         if(DEBUG)printf("Original point: (%d,%d)\n",original[f].x, original[f].y);
@@ -242,7 +318,9 @@ double computeContinuity(double meanDist, Point p1, Point p2)
 void normalizeScore(Mat& score)
 {
     double minVal, maxVal;
-    minMaxLoc(score, &minVal, & maxVal);
+    Point minPt, maxPt;
+
+    myMinMaxLoc(score, minVal, maxVal, minPt, maxPt);
     score = score/maxVal;
 }
 
@@ -254,7 +332,9 @@ void normalizeScore(Mat& score)
 void normalizeImageScore(Mat& score, double clamp)
 {
     double minVal, maxVal;
-    minMaxLoc(score, &minVal, & maxVal);
+    Point minPt, maxPt;
+
+    myMinMaxLoc(score, minVal, maxVal, minPt, maxPt);
     score = (-score+minVal)/max(clamp, maxVal-minVal);
 }
 
@@ -285,7 +365,7 @@ void subsampleContour(vector<Point>& contour, int subsample)
 {
     vector<Point> original = contour;
     contour.clear();
-    for(int i=0; i<original.size(); i+=5)
+    for(int i=0; i<original.size(); i+=2)
     {
         contour.push_back(original[i]);
     }
@@ -348,4 +428,13 @@ void gradientSobel(Mat& image,  Mat& magnitude)
     multiply(dY, dY, temp);
     add(temp, magnitude, magnitude);
     sqrt(magnitude, magnitude);
+}
+
+void fillContour()
+{
+    contour.push_back(Point(200, 200));
+    contour.push_back(Point(220, 220));
+    contour.push_back(Point(220, 230));
+    contour.push_back(Point(200, 250));
+    contour.push_back(Point(180, 225));
 }
