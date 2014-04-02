@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "evolveContour(vector&lt;Point&gt;&amp; contour, Mat&amp; gray, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418106260.449551"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "computeContinuity(double meanDist, Point p1, Point p2)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418109271.134676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "evolvePoint(Mat&amp; image, Point&amp; out, const Point&amp; now, const Point&amp; before, const Point&amp; after, Mat&amp; gradientMagnitude, double meanDist, double alpha, double beta, double gamma)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418108759.066049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "main( int argc, char** argv )"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HW9/HW9.cpp"
-            timestampString = "418105831.761377"
+            timestampString = "418108759.066049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "main( int argc, char** argv )"
             landmarkType = "7">
          </BreakpointContent>

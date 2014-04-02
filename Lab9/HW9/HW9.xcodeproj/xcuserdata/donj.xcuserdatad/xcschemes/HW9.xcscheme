@@ -63,12 +63,20 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "blueTop.jpg"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "glove.jpg"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "camoEggsOnPaper_cropped.jpg"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "eggsAndCube.jpg"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

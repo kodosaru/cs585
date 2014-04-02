@@ -9,9 +9,9 @@ using namespace cv;
 using namespace std;
 
 #define CLAMP 30
-#define ALPHA 1.2
-#define BETA 1.0
-#define GAMMA 1.35
+#define ALPHA 1.5
+#define BETA 1.1
+#define GAMMA 1.3
 #define DEBUG 0
 #define DEBUG_CONT 0
 #define DEBUG_CURVE 0
@@ -44,27 +44,7 @@ double evolveContour(vector<Point>& contour, Mat& gray, double alpha, double bet
 // Test function
 void fillContour();
 
-void myMinMaxLoc(Mat& array, double& minVal, double& maxVal, Point& minPt, Point& maxPt)
-{
-    int cols=array.cols;
-    int rows=array.rows;
-    minVal=DBL_MAX;
-    maxVal=-DBL_MAX;
-    for(int x=0;x<cols;x++)
-        for(int y=0;y<rows;y++)
-        {
-            if( array.at<float>(x,y) < minVal)
-            {
-                minVal = array.at<float>(x,y);
-                minPt = Point(x,y);
-            }
-            if( array.at<float>(x,y) > maxVal)
-            {
-                maxVal = array.at<float>(x,y);
-                maxPt = Point(x,y);
-            }
-        }
-}
+void myMinMaxLoc(Mat& array, double& minVal, double& maxVal, Point& minPt, Point& maxPt);
 
 int main( int argc, char** argv )
 {
@@ -114,7 +94,7 @@ int main( int argc, char** argv )
         if(bRecording)
         {
             sprintf(filename, "result_%04d.jpg", currentFrame);
-            imwrite(filename, display);
+            imwrite(dataDir+filename, display);
             currentFrame++;
         }
         
@@ -135,7 +115,6 @@ int main( int argc, char** argv )
     
     return 0;
 }
-
 
 
 //Required: Given a point in the contour and some supporting information, evaluate
@@ -438,3 +417,27 @@ void fillContour()
     contour.push_back(Point(200, 250));
     contour.push_back(Point(180, 225));
 }
+
+void myMinMaxLoc(Mat& array, double& minVal, double& maxVal, Point& minPt, Point& maxPt)
+{
+    int cols=array.cols;
+    int rows=array.rows;
+    minVal=DBL_MAX;
+    maxVal=-DBL_MAX;
+    for(int x=0;x<cols;x++)
+        for(int y=0;y<rows;y++)
+        {
+            if( array.at<float>(x,y) < minVal)
+            {
+                minVal = array.at<float>(x,y);
+                minPt = Point(x,y);
+            }
+            if( array.at<float>(x,y) > maxVal)
+            {
+                maxVal = array.at<float>(x,y);
+                maxPt = Point(x,y);
+            }
+        }
+}
+
+
