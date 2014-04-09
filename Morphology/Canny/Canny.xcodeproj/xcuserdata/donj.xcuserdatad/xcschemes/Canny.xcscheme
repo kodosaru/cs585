@@ -63,8 +63,12 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;silverware stainless bg.png&quot;"
+            argument = "&quot;silverware flash stainless bg.png&quot;"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;silverware stainless bg.png&quot;"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "rainbowSpheres.jpg"

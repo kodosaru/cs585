@@ -79,7 +79,7 @@ int main(int argc, const char * argv[])
         char c = (char)waitKey(0);
         switch( c )
         {
-             case 'w':
+            case 'w':
                 imwrite(dataDir+"nonreflective_bg.png",  dst);
                 imwrite(dataDir+"reflective_bg.png",  dst2);
                 break;
@@ -125,5 +125,3 @@ void CannyThreshold2(int, void*)
     src2.copyTo( dst2, detected2_edges);
     imshow( window_name2, dst2 );
 }
-
-
