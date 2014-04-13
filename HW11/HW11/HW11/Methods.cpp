@@ -8,10 +8,115 @@
 
 #include "Methods.h"
 
-
-void trackRedObjects(Mat& view, vector<TrackedObject>& tracks, vector<Point>& detections, int redThreshold, int areaThreshold)
+void dataAssociationNew(vector<TrackedObject>& tracks, vector<vector<Point>*> detectionsBuffer)
 {
-    unsigned long nDetectionsLast = nDetections;
+    vector<Point> predictions;
+    
+    // Collect the predicted locations of our tracked objects
+    for(int t=0; t<tracks.size(); t++)
+    {
+        Point prediction=tracks[t].getPrediction();
+        predictions.push_back(prediction);
+        //if(DEBUG)
+        //{
+        //    printf("predicted point: track %d (%d,%d)\n",t,prediction.x,prediction.y);
+        //}
+        
+    }
+    
+    // compute the cost matrix to use to decide which detections should go to which tracks
+    Mat cost((int)tracks.size(), (int)detectionsBuffer[0]->size(), CV_32FC1);
+    vector<int> bestMatch;
+    vector<int> bestScore;
+    for(int t=0; t<tracks.size(); t++)
+    {
+        for(int z=0; z<detectionsBuffer[0]->size(); z++)
+        {
+            cost.at<float>(t,z) = computeDistance(predictions[t], detectionsBuffer[0]->at(z));
+        }
+    }
+    
+    // Given: Naive data association: just give every track its closest measurement.
+    //
+    // Required: Observe some bad things that happen when this style of data association is used
+    // Required: Implement a better data association algorithm by enumerating the total cost of
+    //           all possible assignments and choosing the best for up to 3 measurements and 3 tracks
+    // Required: Add logic so that any detection not assigned to a track results in the creation of a new track (up to 3 tracks)
+    // Required: Add logic to allow tracks to terminate if not associated with a sufficiently close detection
+    for(int t=0; t<tracks.size(); t++)
+    {
+        bestMatch.push_back(-1);
+        bestScore.push_back(10000);
+        for(int z=0; z<detectionsBuffer[0]->size(); z++)
+        {
+            if(cost.at<float>(t,z) < bestScore[t])
+            {
+                bestMatch[t]=z;
+                bestScore[t] = cost.at<float>(t,z);
+            }
+        }
+        
+        //update the track with the nearest measurement
+        tracks[t].update(detectionsBuffer[0]->at(bestMatch[t]));
+    }
+}
+
+void dataAssociationOriginal(vector<TrackedObject>& tracks, vector<Point>& detections)
+{
+    vector<Point> predictions;
+    
+    // Collect the predicted locations of our tracked objects
+    for(int t=0; t<tracks.size(); t++)
+    {
+        Point prediction=tracks[t].getPrediction();
+        predictions.push_back(prediction);
+        //if(DEBUG)
+        //{
+        //    printf("predicted point: track %d (%d,%d)\n",t,prediction.x,prediction.y);
+        //}
+        
+    }
+    
+    // compute the cost matrix to use to decide which detections should go to which tracks
+    Mat cost((int)tracks.size(), (int)detections.size(), CV_32FC1);
+    vector<int> bestMatch;
+    vector<int> bestScore;
+    for(int t=0; t<tracks.size(); t++)
+    {
+        for(int z=0; z<detections.size(); z++)
+        {
+            cost.at<float>(t,z) = computeDistance(predictions[t], detections[z]);
+        }
+    }
+    
+    // Given: Naive data association: just give every track its closest measurement.
+    //
+    // Required: Observe some bad things that happen when this style of data association is used
+    // Required: Implement a better data association algorithm by enumerating the total cost of
+    //           all possible assignments and choosing the best for up to 3 measurements and 3 tracks
+    // Required: Add logic so that any detection not assigned to a track results in the creation of a new track (up to 3 tracks)
+    // Required: Add logic to allow tracks to terminate if not associated with a sufficiently close detection
+    for(int t=0; t<tracks.size(); t++)
+    {
+        bestMatch.push_back(-1);
+        bestScore.push_back(10000);
+        for(int z=0; z<detections.size(); z++)
+        {
+            if(cost.at<float>(t,z) < bestScore[t])
+            {
+                bestMatch[t]=z;
+                bestScore[t] = cost.at<float>(t,z);
+            }
+        }
+        
+        //update the track with the nearest measurement
+        tracks[t].update(detections[bestMatch[t]]);
+    }
+}
+
+void trackRedObjects(Mat& view, vector<TrackedObject>& tracks, vector<Point>& detections, vector<vector<Point>*> detectionsBuffer, int redThreshold, int areaThreshold)
+{
+    unsigned long nDetectionsLast = detections.size();
     if(DEBUG)
     {
         //cout<<"Called trackRedObjects with threshold "<<redThreshold<<" and area "<<areaThreshold<<endl;
@@ -21,7 +126,6 @@ void trackRedObjects(Mat& view, vector<TrackedObject>& tracks, vector<Point>& de
     }
 
     vector<vector<Point> > outlines;
-    vector<Point> predictions;
     if(findRedObjects(view, detections, outlines, redThreshold, areaThreshold))
     {
         if(DEBUG)
@@ -33,17 +137,14 @@ void trackRedObjects(Mat& view, vector<TrackedObject>& tracks, vector<Point>& de
         }
         
         // initialze tracks if we don't have any already
-        nDetections=detections.size();
-        //if(DEBUG)
-            //printf("Detections: %ld and last detections: %ld\n",nDetections,nDetectionsLast);
-        if(tracks.empty() || (nDetections != nDetectionsLast))
+        if(tracks.empty() || (detections.size() != nDetectionsLast))
         {
-            //tracks.clear();
+            tracks.clear();
             for(int z=0; z<detections.size(); z++)
             {
                 tracks.push_back(TrackedObject(detections[z]));
-                if(DEBUG && (nDetections != tracks.size()))
-                    printf("ERROR: No. of detections and tracks is different");
+                if(DEBUG && (detections.size() != tracks.size()))
+                    printf("ERROR: No. of detections %ld and tracks %ld is different\n",detections.size(),tracks.size());
                 
                 //Assign different colors so we can see the track identity
                 switch(z%3)
@@ -57,6 +158,16 @@ void trackRedObjects(Mat& view, vector<TrackedObject>& tracks, vector<Point>& de
                     case 2:
                         tracks.back().color = Scalar(0, 255, 255);
                         break;
+                    case 3:
+                        tracks.back().color = Scalar(255, 255, 0);
+                        break;
+                    case 4:
+                        tracks.back().color = Scalar(0, 255, 255);
+                        break;
+                    case 5:
+                        tracks.back().color = Scalar(255, 255, 255);
+                        break;
+
                 }
             }
             return;
@@ -70,60 +181,16 @@ void trackRedObjects(Mat& view, vector<TrackedObject>& tracks, vector<Point>& de
             return;
         }
         
-        // Collect the predicted locations of our tracked objects
-        for(int t=0; t<tracks.size(); t++)
-        {
-            Point prediction=tracks[t].getPrediction();
-            predictions.push_back(prediction);
-            //if(DEBUG)
-            //{
-            //    printf("predicted point: track %d (%d,%d)\n",t,prediction.x,prediction.y);
-            //}
-
-        }
-        
-        // compute the cost matrix to use to decide which detections should go to which tracks
-        Mat cost(tracks.size(), detections.size(), CV_32FC1);
-        vector<int> bestMatch;
-        vector<int> bestScore;
-        for(int t=0; t<tracks.size(); t++)
-        {
-            for(int z=0; z<detections.size(); z++)
-            {
-                cost.at<float>(t,z) = computeDistance(predictions[t], detections[z]);
-            }
-        }
-        
-        // Given: Naive data association: just give every track its closest measurement.
-        //
-        // Required: Observe some bad things that happen when this style of data association is used
-        // Required: Implement a better data association algorithm by enumerating the total cost of
-        //           all possible assignments and choosing the best for up to 3 measurements and 3 tracks
-        // Required: Add logic so that any detection not assigned to a track results in the creation of a new track (up to 3 tracks)
-        // Required: Add logic to allow tracks to terminate if not associated with a sufficiently close detection
-        for(int t=0; t<tracks.size(); t++)
-        {
-            bestMatch.push_back(-1);
-            bestScore.push_back(10000);
-            for(int z=0; z<detections.size(); z++)
-            {
-                if(cost.at<float>(t,z) < bestScore[t])
-                {
-                    bestMatch[t]=z;
-                    bestScore[t] = cost.at<float>(t,z);
-                }
-            }
-            
-            //update the track with the nearest measurement
-            tracks[t].update(detections[bestMatch[t]]);
-        }
+        // Associate data and draw tracks
+        dataAssociationNew(tracks, detectionsBuffer);
+        //dataAssociationOriginal(tracks, detections);
         
     }
 }
 
 void drawLine(Mat& image, vector<Point>& outline, Scalar color)
 {
-    int numPoints = outline.size()-1;
+    int numPoints = (int)outline.size()-1;
     for(int f=0; f<numPoints; f++)
     {
         line(image, outline[f], outline[f+1], color, 3);
@@ -185,8 +252,15 @@ bool findRedObjects(Mat& view, vector<Point>& locations, vector<vector<Point> >&
         
         if(tempArea > areaThreshold)
         {
-            locations.push_back(tempCenter);
-            outlines.push_back(objectContours[i]);
+            if(locations.size()<MAX_OBJECTS)
+            {
+                locations.push_back(tempCenter);
+                outlines.push_back(objectContours[i]);
+            }
+            else if(DEBUG)
+            {
+                printf("Maximum no. of objects exceeded %ld > %d\n",locations.size(),MAX_OBJECTS);
+            }
         }
     }
     
@@ -200,7 +274,7 @@ bool findRedObjects(Mat& view, vector<Point>& locations, vector<vector<Point> >&
     imshow("Just Red", displayRed[0]);
     
     
-    if(locations.size() >= 0)
+    if(locations.size() > 0)
     {
         return true;
     }

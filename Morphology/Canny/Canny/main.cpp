@@ -80,8 +80,11 @@ int main(int argc, const char * argv[])
         switch( c )
         {
             case 'w':
-                imwrite(dataDir+"nonreflective_bg.png",  dst);
-                imwrite(dataDir+"reflective_bg.png",  dst2);
+                //imwrite(dataDir+"nonreflective_bg.png",  dst);
+                //imwrite(dataDir+"reflective_bg.png",  dst2);
+                imwrite(dataDir+"edge1.png",  dst);
+                imwrite(dataDir+"edge2.png",  dst2);
+                
                 break;
             case 'q':
             case 27:

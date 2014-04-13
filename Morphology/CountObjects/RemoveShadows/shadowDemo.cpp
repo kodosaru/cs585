@@ -23,9 +23,9 @@ int shadowDemo() {
 	//cv::Mat frame = cv::imread(dataDir+"samples/frame.bmp");
 	//cv::Mat bg = cv::imread(dataDir+"samples/bg.bmp");
 	//cv::Mat fg = cv::imread(dataDir+"samples/fg.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	cv::Mat frame = cv::imread(dataDir+"frame_small.bmp");
-	cv::Mat bg = cv::imread(dataDir+"bg_small.bmp");
-	cv::Mat fg = cv::imread(dataDir+"fg_small.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	cv::Mat frame = cv::imread(dataDir+"frame.bmp");
+	cv::Mat bg = cv::imread(dataDir+"bg.bmp");
+	cv::Mat fg = cv::imread(dataDir+"fg.bmp", CV_LOAD_IMAGE_GRAYSCALE);
 
 	// create shadow removers
 	ChromacityShadRem chr;

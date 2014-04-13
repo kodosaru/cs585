@@ -3,13 +3,9 @@
 
 #include "Methods.h"
 #include "TrackedObject.h"
-#define MAX_IMAGES 4
-#define MAX_OBJECTS 3
 
 //a dummy function to pass to the slider bar to threshold the red object
 void onTrackbar(int value, void* data);
-
-unsigned long nDetections=0;
 
 int main(int argc, char* argv[])
 {
@@ -24,7 +20,7 @@ int main(int argc, char* argv[])
 
     //for tracking the balls
     int redThreshold=153;
-    int areaThreshold = 200;
+    int areaThreshold = 400;
     bool bTracking = false;
     vector<TrackedObject> tracks;
 
@@ -35,9 +31,17 @@ int main(int argc, char* argv[])
     
     vector<Point> detections;
     vector<Mat> imageBuffer(4);
-    vector<vector<Point>*> detectionsBuffer(3);
-    for(int i=0;i<MAX_OBJECTS;i++)
+    //detectionsBuffer is a vector, one per image, of a vector of points, size up to MAX_OBJECTS
+    vector<vector<Point>*> detectionsBuffer(MAX_IMAGES);
+    for(int i=0;i<MAX_IMAGES;i++)
+    {
         detectionsBuffer[i]=new vector<Point>();
+        for(int j=0;j<MAX_OBJECTS;j++)
+        {
+            detectionsBuffer[i]->push_back(Point(0,0));
+        }
+    }
+
 
     //create the window with a trackbar for the slider
     namedWindow( "Camera View", 1 );
@@ -46,30 +50,22 @@ int main(int argc, char* argv[])
 
     while( capture.isOpened() )
     {
+        //shuffle images; newest has lowest indice;imageBuffer[0]
         for(int i=0;i<MAX_IMAGES-1;i++)
             imageBuffer[i+1]=imageBuffer[i];
-        for(int i=0;i<MAX_OBJECTS;i++)
+        //empty most current image buffer to get ready for capture below
+        imageBuffer[0].empty();
+        
+        //save vector of detection points pointer associated with oldest image
+        vector<Point>* pVect=detectionsBuffer[MAX_IMAGES-1];
+        //shuffle detections vectors so they correspond to images in image buffer
+        for(int i=0;i<MAX_IMAGES-1;i++)
         {
-            vector<Point> tvec = *(detectionsBuffer[i]);
-            for(int j=0;j<(int)tvec.size()-1;j++)
-            {
-                tvec[j+1]=tvec[j];
-            }
+            detectionsBuffer[i+1]=detectionsBuffer[i];
         }
-        for(int i=0;i<MAX_OBJECTS;i++)
-        {
-            vector<Point> tvec = *(detectionsBuffer[i]);
-            int nsize = (int)tvec.size();
-            if(nsize>0)
-            {
-                printf("Object %d detections: ",i);
-                for(int j=0;j<nsize-1;j++)
-                    printf("(%d,%d),",tvec[j].x,tvec[j].y);
-                printf("(%d,%d)",tvec[nsize-1].x,tvec[nsize-1].y);
-                cout<<endl;
-            }
-        }
-
+        //reuse saved vector of points
+        detectionsBuffer[0]=pVect;
+        
         capture.read(imageBuffer[0]);
         if(bRecordVideo)
         {
@@ -80,7 +76,47 @@ int main(int argc, char* argv[])
         if(bTracking)
         {
             //We are currently tracking the red object, so draw the track so the user can see it
-            trackRedObjects(imageBuffer[0], tracks, detections, redThreshold, areaThreshold);
+            trackRedObjects(imageBuffer[0], tracks, detections, detectionsBuffer, redThreshold, areaThreshold);
+            if(DEBUG && detections.size()>MAX_OBJECTS)
+                printf("Maximum no. of objects exceeded %ld > %d\n",detections.size(),MAX_OBJECTS);
+                
+            for(int i=0;i<detections.size();i++)
+            {
+                //save detections associated with Image 0 to detectionsBuffer vector 0
+                detectionsBuffer[0]->at(i)=Point(detections[i].x,detections[i].y);
+            }
+            
+            //print detections vectors associated with each image
+            if(DEBUG)
+            {
+                if(detectionsBuffer.size()!=MAX_IMAGES)
+                {
+                    printf("detectionsBuffer size %ld not equal MAX_IMAGES %d\n",detectionsBuffer.size(),MAX_IMAGES);
+                    return 1;
+                }
+                for(int i=0;i<MAX_IMAGES;i++)
+                {
+                    vector<Point> tvec = *(detectionsBuffer[i]);
+                    int nsize = (int)tvec.size();
+
+                    if(nsize != MAX_OBJECTS)
+                    {
+                        printf("tvec size %d not equal MAX_OBJECTS %d\n",nsize,MAX_OBJECTS);
+                        return 1;
+                    }
+
+                    if(nsize>0)
+                    {
+                        printf("Image %d detections: ",i);
+                        for(int j=0;j<nsize-1;j++)
+                            printf("(%d,%d),",tvec[j].x,tvec[j].y);
+                        printf("(%d,%d)",tvec[nsize-1].x,tvec[nsize-1].y);
+                        cout<<endl;
+                    }
+                }
+            }
+            
+
             //draw the tracks
             for(int t=0; t<tracks.size(); t++)
             {
@@ -90,11 +126,9 @@ int main(int argc, char* argv[])
 
         if(bRecordResults)
         {
-            sprintf(filename, "results/results_%04d.jpg", frameNumber);
+            sprintf(filename, "%sresults/results_%04d.jpg",dataDir.c_str(),frameNumber);
             imwrite(filename, imageBuffer[0]);
         }
-
-
 
         imshow("Camera View", imageBuffer[0]);
         char key = waitKey(33);
