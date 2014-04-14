@@ -17,9 +17,10 @@
 #include <vector>
 #include <iostream>
 #include "TrackedObject.h"
+#include <limits>
 
 #define MAX_IMAGES 4
-#define MAX_OBJECTS 6
+#define MAX_OBJECTS 3
 
 using namespace cv;
 using namespace std;
@@ -44,6 +45,14 @@ double computeDistance(Point p1, Point p2);
 void dataAssociationOriginal(vector<TrackedObject>& tracks, vector<Point>& detections);
 
 //New data association algorithm which constrants bipartite graph and examines all paths
-void dataAssociationNew(vector<TrackedObject>& tracks, vector<Point>& detections);
+void dataAssociationNew(vector<TrackedObject>& tracks, vector<vector<Point>*> detectionsBuffer);
+
+struct PATH
+{
+    int track0Detection;
+    int track1Detection;
+    int track2Detection;
+    float totalCost;
+};
 
 #endif /* defined(__HW11__Methods__) */

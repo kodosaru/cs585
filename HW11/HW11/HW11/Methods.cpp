@@ -8,7 +8,46 @@
 
 #include "Methods.h"
 
-void dataAssociationNew(vector<TrackedObject>& tracks, vector<vector<Point>*> detectionsBuffer)
+int sumCostPerPath(Mat& cost, vector<TrackedObject>& tracks, vector<Point>& detections, struct PATH path)
+{
+    if(tracks.size() != 3 || detections.size() != 3)
+    {
+        printf("Tracks: %ld and detections: %ld\n",tracks.size(),detections.size());
+        printf("Using simple data association\n");
+        return 1;
+    }
+    float ftemp=0.0;
+    path.totalCost=FLT_MAX;
+    
+        for(int i=0;i<MAX_OBJECTS;i++)
+            for(int j=0;j<MAX_OBJECTS;j++)
+                for(int k=0;k<MAX_OBJECTS;k++)
+                {
+                    if(i==j || i==k || j==k)
+                    {
+                        path.totalCost=FLT_MAX;
+                    }
+                    else
+                    {
+                        ftemp=cost.at<float>(0,i);
+                        ftemp+=cost.at<float>(1,j);
+                        ftemp+=cost.at<float>(2,k);
+                        if(ftemp<path.totalCost)
+                        {
+                            //Create a vector of the object,detection paring with the smallest path cost
+                            path.track0Detection=i;
+                            path.track1Detection=j;
+                            path.track2Detection=k;
+                            path.totalCost=ftemp;
+                            printf("Path Cost (%d,%d,%d): %f\n",path.track0Detection=i,path.track1Detection=j,path.track2Detection=k,path.totalCost);
+                        }
+                    }
+                }
+    
+    return 0;
+}
+
+void dataAssociationNew(vector<TrackedObject>& tracks, vector<Point>& detections)
 {
     vector<Point> predictions;
     
@@ -25,16 +64,17 @@ void dataAssociationNew(vector<TrackedObject>& tracks, vector<vector<Point>*> de
     }
     
     // compute the cost matrix to use to decide which detections should go to which tracks
-    Mat cost((int)tracks.size(), (int)detectionsBuffer[0]->size(), CV_32FC1);
+    Mat cost((int)tracks.size(), (int)detections.size(), CV_32FC1);
     vector<int> bestMatch;
     vector<int> bestScore;
     for(int t=0; t<tracks.size(); t++)
     {
-        for(int z=0; z<detectionsBuffer[0]->size(); z++)
+        for(int z=0; z<detections.size(); z++)
         {
-            cost.at<float>(t,z) = computeDistance(predictions[t], detectionsBuffer[0]->at(z));
+            cost.at<float>(t,z) = computeDistance(predictions[t], detections[z]);
         }
     }
+    
     
     // Given: Naive data association: just give every track its closest measurement.
     //
@@ -47,7 +87,7 @@ void dataAssociationNew(vector<TrackedObject>& tracks, vector<vector<Point>*> de
     {
         bestMatch.push_back(-1);
         bestScore.push_back(10000);
-        for(int z=0; z<detectionsBuffer[0]->size(); z++)
+        for(int z=0; z<detections.size(); z++)
         {
             if(cost.at<float>(t,z) < bestScore[t])
             {
@@ -57,7 +97,7 @@ void dataAssociationNew(vector<TrackedObject>& tracks, vector<vector<Point>*> de
         }
         
         //update the track with the nearest measurement
-        tracks[t].update(detectionsBuffer[0]->at(bestMatch[t]));
+        tracks[t].update(detections[bestMatch[t]]);
     }
 }
 
@@ -182,7 +222,7 @@ void trackRedObjects(Mat& view, vector<TrackedObject>& tracks, vector<Point>& de
         }
         
         // Associate data and draw tracks
-        dataAssociationNew(tracks, detectionsBuffer);
+        dataAssociationNew(tracks, detections);
         //dataAssociationOriginal(tracks, detections);
         
     }

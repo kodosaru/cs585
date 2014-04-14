@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C4ECF0F1-1791-4DE8-A65E-73C6B25AD090</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HW11</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>12AD16F5-C5DE-44B1-8D04-9FC8E1E0E999</key>
+		<string>ssh://github.com/kodosaru/cs585.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HW11/HW11.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>12AD16F5-C5DE-44B1-8D04-9FC8E1E0E999</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/kodosaru/cs585.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>12AD16F5-C5DE-44B1-8D04-9FC8E1E0E999</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>12AD16F5-C5DE-44B1-8D04-9FC8E1E0E999</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cs585</string>
+		</dict>
+	</array>
+</dict>
+</plist>
