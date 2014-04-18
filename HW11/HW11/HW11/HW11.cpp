@@ -33,6 +33,7 @@ int main(int argc, char* argv[])
     vector<Mat> imageBuffer(4);
     //detectionsBuffer is a vector, one per image, of a vector of points, size up to MAX_OBJECTS
     vector<vector<Point>*> detectionsBuffer(MAX_IMAGES);
+    cout<<"val2 "<<detectionsBuffer.size()<<endl;
     for(int i=0;i<MAX_IMAGES;i++)
     {
         detectionsBuffer[i]=new vector<Point>();
@@ -41,6 +42,7 @@ int main(int argc, char* argv[])
             detectionsBuffer[i]->push_back(Point(0,0));
         }
     }
+    cout<<"val1a "<<detectionsBuffer.size()<<endl;
 
 
     //create the window with a trackbar for the slider
@@ -96,8 +98,11 @@ int main(int argc, char* argv[])
                 }
                 for(int i=0;i<MAX_IMAGES;i++)
                 {
+                     cout<<"val1b "<<detectionsBuffer.size()<<endl;
                     vector<Point> tvec = *(detectionsBuffer[i]);
+                    printf("val1c: %ld\n",tvec.size());
                     int nsize = (int)tvec.size();
+                    cout<<"val1 "<<nsize<<endl;
 
                     if(nsize != MAX_OBJECTS)
                     {

@@ -10,7 +10,8 @@
 
 int sumCostPerPath(Mat& cost, vector<TrackedObject>& tracks, vector<Point>& detections, struct PATH path)
 {
-    if(tracks.size() != 3 || detections.size() != 3)
+    const int nObjects=3;
+    if(tracks.size() != nObjects || detections.size() != nObjects)
     {
         printf("Tracks: %ld and detections: %ld\n",tracks.size(),detections.size());
         printf("Using simple data association\n");
@@ -19,13 +20,14 @@ int sumCostPerPath(Mat& cost, vector<TrackedObject>& tracks, vector<Point>& dete
     float ftemp=0.0;
     path.totalCost=FLT_MAX;
     
-        for(int i=0;i<MAX_OBJECTS;i++)
-            for(int j=0;j<MAX_OBJECTS;j++)
-                for(int k=0;k<MAX_OBJECTS;k++)
+        for(int i=0;i<nObjects;i++)
+            for(int j=0;j<nObjects;j++)
+                for(int k=0;k<nObjects;k++)
                 {
                     if(i==j || i==k || j==k)
                     {
                         path.totalCost=FLT_MAX;
+                        printf("Path Conflict (%d,%d,%d): %f\n",path.track0Detection=i,path.track1Detection=j,path.track2Detection=k);
                     }
                     else
                     {
@@ -83,6 +85,10 @@ void dataAssociationNew(vector<TrackedObject>& tracks, vector<Point>& detections
     //           all possible assignments and choosing the best for up to 3 measurements and 3 tracks
     // Required: Add logic so that any detection not assigned to a track results in the creation of a new track (up to 3 tracks)
     // Required: Add logic to allow tracks to terminate if not associated with a sufficiently close detection
+    
+    PATH path;
+    sumCostPerPath(cost, tracks, detections, path);
+    
     for(int t=0; t<tracks.size(); t++)
     {
         bestMatch.push_back(-1);

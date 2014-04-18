@@ -19,7 +19,7 @@
 #include "TrackedObject.h"
 #include <limits>
 
-#define MAX_IMAGES 4
+#define MAX_IMAGES 1
 #define MAX_OBJECTS 3
 
 using namespace cv;
