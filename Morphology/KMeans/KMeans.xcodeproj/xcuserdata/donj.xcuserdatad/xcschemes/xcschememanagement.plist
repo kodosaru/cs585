@@ -4,15 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CountObjects.xcscheme</key>
+		<key>KMeans.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>72CA399B18F437A9001401AB</key>
+		<key>727147941901DCDE00649CC6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

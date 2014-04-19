@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "728C424E1900C91400B99166"
-               BuildableName = "SubtractBackground"
-               BlueprintName = "SubtractBackground"
-               ReferencedContainer = "container:SubtractBackground.xcodeproj">
+               BlueprintIdentifier = "727147941901DCDE00649CC6"
+               BuildableName = "KMeans"
+               BlueprintName = "KMeans"
+               ReferencedContainer = "container:KMeans.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "728C424E1900C91400B99166"
-            BuildableName = "SubtractBackground"
-            BlueprintName = "SubtractBackground"
-            ReferencedContainer = "container:SubtractBackground.xcodeproj">
+            BlueprintIdentifier = "727147941901DCDE00649CC6"
+            BuildableName = "KMeans"
+            BlueprintName = "KMeans"
+            ReferencedContainer = "container:KMeans.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,15 +51,23 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "728C424E1900C91400B99166"
-            BuildableName = "SubtractBackground"
-            BlueprintName = "SubtractBackground"
-            ReferencedContainer = "container:SubtractBackground.xcodeproj">
+            BlueprintIdentifier = "727147941901DCDE00649CC6"
+            BuildableName = "KMeans"
+            BlueprintName = "KMeans"
+            ReferencedContainer = "container:KMeans.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "DSC02105.JPG"
+            argument = "fruits.jpg"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Foreground/DSC02106.JPG"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Output/foregroundCIE.jpg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -75,10 +83,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "728C424E1900C91400B99166"
-            BuildableName = "SubtractBackground"
-            BlueprintName = "SubtractBackground"
-            ReferencedContainer = "container:SubtractBackground.xcodeproj">
+            BlueprintIdentifier = "727147941901DCDE00649CC6"
+            BuildableName = "KMeans"
+            BlueprintName = "KMeans"
+            ReferencedContainer = "container:KMeans.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
