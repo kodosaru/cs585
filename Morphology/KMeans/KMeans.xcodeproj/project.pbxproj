@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		726678161902A12E00DFFE03 /* OpenCVSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 726678141902A12E00DFFE03 /* OpenCVSample.cpp */; };
 		727147991901DCDE00649CC6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 727147981901DCDE00649CC6 /* main.cpp */; };
 		7271479B1901DCDE00649CC6 /* KMeans.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7271479A1901DCDE00649CC6 /* KMeans.1 */; };
 		727147B31901DE4300649CC6 /* libopencv_calib3d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147A11901DE4300649CC6 /* libopencv_calib3d.dylib */; };
@@ -27,6 +28,7 @@
 		727147C21901DE4300649CC6 /* libopencv_superres.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147B01901DE4300649CC6 /* libopencv_superres.dylib */; };
 		727147C31901DE4300649CC6 /* libopencv_video.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147B11901DE4300649CC6 /* libopencv_video.dylib */; };
 		727147C41901DE4300649CC6 /* libopencv_videostab.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147B21901DE4300649CC6 /* libopencv_videostab.dylib */; };
+		72D2C4221902F639007CD32C /* OpenCVSampleOrig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72D2C4201902F639007CD32C /* OpenCVSampleOrig.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +45,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		726678141902A12E00DFFE03 /* OpenCVSample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenCVSample.cpp; sourceTree = "<group>"; };
+		726678151902A12E00DFFE03 /* OpenCVSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVSample.h; sourceTree = "<group>"; };
 		727147951901DCDE00649CC6 /* KMeans */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KMeans; sourceTree = BUILT_PRODUCTS_DIR; };
 		727147981901DCDE00649CC6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7271479A1901DCDE00649CC6 /* KMeans.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = KMeans.1; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		727147B01901DE4300649CC6 /* libopencv_superres.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_superres.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_superres.dylib; sourceTree = "<absolute>"; };
 		727147B11901DE4300649CC6 /* libopencv_video.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_video.dylib; sourceTree = "<absolute>"; };
 		727147B21901DE4300649CC6 /* libopencv_videostab.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_videostab.dylib; sourceTree = "<absolute>"; };
+		72D2C4201902F639007CD32C /* OpenCVSampleOrig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenCVSampleOrig.cpp; sourceTree = "<group>"; };
+		72D2C4211902F639007CD32C /* OpenCVSampleOrig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVSampleOrig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,10 @@
 			children = (
 				727147981901DCDE00649CC6 /* main.cpp */,
 				7271479A1901DCDE00649CC6 /* KMeans.1 */,
+				726678141902A12E00DFFE03 /* OpenCVSample.cpp */,
+				726678151902A12E00DFFE03 /* OpenCVSample.h */,
+				72D2C4201902F639007CD32C /* OpenCVSampleOrig.cpp */,
+				72D2C4211902F639007CD32C /* OpenCVSampleOrig.h */,
 			);
 			path = KMeans;
 			sourceTree = "<group>";
@@ -197,6 +207,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D2C4221902F639007CD32C /* OpenCVSampleOrig.cpp in Sources */,
+				726678161902A12E00DFFE03 /* OpenCVSample.cpp in Sources */,
 				727147991901DCDE00649CC6 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +323,7 @@
 				727147A01901DCDE00649CC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

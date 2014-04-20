@@ -68,6 +68,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Output/foregroundCIE.jpg"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "foregroundSmall.jpg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

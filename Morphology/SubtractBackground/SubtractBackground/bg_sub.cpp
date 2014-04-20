@@ -37,25 +37,50 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
     
-    //create GUI windows
-    namedWindow("Foreground");
-    namedWindow("FG Mask MOG");
-    
     string pathOut="/Users/donj/workspace/cs585/Morphology/Data/Output/";
     char pathForeground[256],pathBackground[256];
     strcpy(pathForeground, "/Users/donj/workspace/cs585/Morphology/Data/Foreground/");
     strcat(pathForeground, argv[1]);
-    Mat in,out;
+
+    Mat im = imread(pathForeground);
+    Mat im_out;
+    namedWindow("image1");
+    namedWindow("image2");
+    if (im.empty())
+    {
+        cout << "Cannot open image!" << endl;
+        return -1;
+    }
+    //make the copy 1/2 as big as the original
+    //resize(im,im_out,Size(im.cols/3,im.rows/3),0,0,INTER_LINEAR);
+    resize(im,im_out,Size(im.cols/3,im.rows/3));
+    
+    imshow("image1", im);
+    imshow("image2", im_out);
+    //waitKey(0);
+    //return 0;
+    
+    //create GUI windows
+    namedWindow("Foreground");
+    namedWindow("FG Mask MOG");
+    
+    Mat in,out,final;
     in=imread(pathForeground);
-    cvtColor(in, out, CV_BGR2GRAY);
-    resize(out,out,Size(out.cols/3,out.rows/3));
-    imshow("Foreground", out);
-    cvtColor(in, out, CV_BGR2XYZ);
-    resize(out,out,Size(out.cols/3,out.rows/3));
-    imshow("Foreground", out);
-    imwrite(pathOut+"foregroundCIE.jpg", out);
-    keyboard = waitKey( 0 );
+    resize(in,final,Size((int)in.cols/3.0,(int)in.rows/3.0));
+    imwrite(pathOut+"foregroundSmall.jpg",final);
+    //imshow("Foreground", out);
+    
+    cvtColor(in,out,CV_BGR2XYZ);
+    resize(out,final,Size(in.cols/3,in.rows/3));
+    imwrite(pathOut+"foregroundCIE2.jpg",final);
+    
+    cvtColor(in,out,CV_BGR2YCrCb);
+    resize(out,final,Size(in.cols/3,in.rows/3));
+    imwrite(pathOut+"foregroundYCrCb.jpg",final);
+    
+    //keyboard = waitKey( 0 );
     return 0;
+    
     
     
     // Create list of background images
