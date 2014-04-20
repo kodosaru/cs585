@@ -59,20 +59,24 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "fruits.jpg"
+            argument = "fruits"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Foreground/DSC02106.JPG"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "Output/foregroundCIE.jpg"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "foregroundSmall.jpg"
+            argument = "foregroundYCrCB"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Foreground/DSC02106"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "foregroundCIE"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "foregroundSmall"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

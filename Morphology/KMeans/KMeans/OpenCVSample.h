@@ -13,15 +13,17 @@
 #include "OpenCVSample.h"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/core/core.hpp"
-#include <iostream>
+#include "stdlib.h"
 
 using namespace cv;
 using namespace std;
 
+void createGraph3DGrayScale(Mat& graph, Mat& labels, int clusterCount);
+void createGraph3D(Mat& graph, Mat& labels, int clusterCount);
+void createGraph2D(Mat& graph, Mat& points, Mat& labels, Point2i dataRange, int clusterCount, unsigned long sampleCount);
 void generateSampleData(Mat& graph, Mat& points, Mat& centers, int& clusterCount, unsigned long& sampleCount, int maxClusters);
-void createGraph3D(Mat& graph, Mat& labels, int clusterCount, int sampleCount);
-void createGraph2D(Mat& graph, Mat& points, Mat& labels, Point2i dataRange, int clusterCount, int sampleCount);
 void imageData(Mat& in, Mat& points, int& clusterCount, unsigned long& sampleCount, int maxClusters);
+void scaleData(Mat& points, int dataRange);
 void scaleData2D(Mat& points, Point2i dataRange);
 void scaleData3D(Mat& points, Point3i dataRange);
 

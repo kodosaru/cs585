@@ -13,15 +13,14 @@ using namespace std;
 int main( int argc, char* argv[] )
 {
     const int maxClusters = 20;
-    Mat points,labels,centers,graph;
+    Mat points,labels,centers,graph,grayScale;
     int clusterCount = 0;
     unsigned long sampleCount = 0;
     
     // Generate image data
-    char pathForeground[256];
-    strcpy(pathForeground, "/Users/donj/workspace/cs585/Morphology/Data/Output/");
-    strcat(pathForeground, argv[1]);
-    Mat image = imread(pathForeground);
+    string dataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
+    Mat image = imread(dataDir+argv[1]+".jpg");
+    imshow("Image",image);
     int ucharMax=pow(2,sizeof(uchar)*8) - 1;
     Point3i dataRange3D(ucharMax,ucharMax,ucharMax);
     cout<<"Fill points array"<<endl;
@@ -34,17 +33,29 @@ int main( int argc, char* argv[] )
     
     // Random number generator
     cout<<"Perform k-means clustering"<<endl;
-    TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
-    kmeans(points, clusterCount, labels, termCrit, 3, KMEANS_PP_CENTERS, centers);
+    TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 20, 1.0);
+    kmeans(points, clusterCount, labels, termCrit, 12, KMEANS_PP_CENTERS, centers);
+    for(int i;i<centers.rows;i++)
+        printf("Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
     
     // Display data clusters
     //scaleData2D(points, dataRange2D);
-    //createGraph2D(graph, points, labels, dataRange2D, clusterCount, (int)sampleCount);
-    cout<<"Create graph"<<endl;
-    graph.create(image.cols,image.rows,CV_8UC3);
-    createGraph3D(graph, labels, clusterCount, (int)sampleCount);
+    //createGraph2D(graph, points, labels, dataRange2D, clusterCount, sampleCount);
+    cout<<"Create graph cluster"<<endl;
+    graph.create(image.rows,image.cols,CV_8UC3);
+    createGraph3D(graph, labels, clusterCount);
+    char cn[256];
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Cluster",clusterCount,".jpg");
+    imwrite(cn,graph);
+    imshow("Clusters", graph);
     
-    imshow("clusters", graph);
+    cout<<"Create graph gray scale"<<endl;
+    grayScale.create(image.rows,image.cols,CV_8UC1);
+    createGraph3DGrayScale(grayScale, labels, clusterCount);
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"GrayScale",clusterCount,".jpg");
+    imwrite(cn,grayScale);
+    imshow("GrayScale", grayScale);
+
     printf("kmeans info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, labels.rows, labels.cols, centers.rows, centers.cols);
     
     waitKey();
@@ -52,7 +63,31 @@ int main( int argc, char* argv[] )
     return 0;
 }
 
-void createGraph3D(Mat& graph, Mat& labels, int& clusterCount, unsigned long& sampleCount)
+void createGraph3DGrayScale(Mat& graph, Mat& labels, int clusterCount)
+{
+    int i = 0;
+    while (i < labels.rows)
+    {
+        int channels = graph.channels();
+        if(channels != 1)
+        {
+            cout<<"Gray scale image must have one channel"<<endl;
+            return;
+        }
+        for(int row=0; row<graph.rows; row++)
+        {
+            for(int col=0; col<graph.cols; col++)
+            {
+                int clusterIdx = labels.at<int>(i);
+                graph.data[row*(graph.step[0]) + col] = clusterIdx;
+                //printf("point(%d): (%u)\n",i,graph.data[row*(graph.step[0]) + col]);
+                i++;
+            }
+        }
+    }
+}
+
+void createGraph3D(Mat& graph, Mat& labels, int clusterCount)
 {
     RNG rng(12345);
     vector<Scalar> colorTab;
@@ -61,7 +96,7 @@ void createGraph3D(Mat& graph, Mat& labels, int& clusterCount, unsigned long& sa
     {
         colorTab.push_back(Scalar(rng.uniform(0,255), rng.uniform(0, 255), rng.uniform(0, 255)));
     }
-
+    
     int i = 0;
     while (i < labels.rows)
     {
@@ -80,14 +115,14 @@ void createGraph3D(Mat& graph, Mat& labels, int& clusterCount, unsigned long& sa
                 graph.data[row*(graph.step[0]) + col*channels + 0] = color[0];
                 graph.data[row*(graph.step[0]) + col*channels + 1] = color[1];
                 graph.data[row*(graph.step[0]) + col*channels + 2] = color[2];
-                printf("point(%d): (%u,%u,%u)\n",i,graph.data[row*(graph.step[0]) + col*channels + 0],graph.data[row*(graph.step[0]) + col*channels + 1],graph.data[row*(graph.step[0]) + col*channels + 2]);
+                //printf("point(%d): (%u,%u,%u)\n",i,graph.data[row*(graph.step[0]) + col*channels + 0],graph.data[row*(graph.step[0]) + col*channels + 1],graph.data[row*(graph.step[0]) + col*channels + 2]);
                 i++;
             }
         }
     }
 }
 
-void createGraph2D(Mat& graph, Mat& points, Mat& labels, Point2i dataRange, int clusterCount, int sampleCount)
+void createGraph2D(Mat& graph, Mat& points, Mat& labels, Point2i dataRange, int clusterCount, unsigned long sampleCount)
 {
     RNG rng(12345);
     graph = Scalar::all(0);
@@ -105,6 +140,23 @@ void createGraph2D(Mat& graph, Mat& points, Mat& labels, Point2i dataRange, int 
         //cout<<"Cluster Index: "<<clusterIdx<<endl;
         Point ipt = points.at<Point2f>(i);
         circle(graph, ipt, 2, colorTab[clusterIdx], CV_FILLED, CV_AA );
+    }
+}
+
+void scaleData(Mat& points, int dataRange)
+{
+    float xmin=FLT_MAX;
+    float xmax=FLT_MIN;
+    for(int i=0;i<points.rows;i++)
+    {
+        xmin = xmin < points.at<uchar>(i) ? xmin : points.at<uchar>(i);
+        xmax = xmax > points.at<uchar>(i) ? xmax : points.at<uchar>(i);
+    }
+    printf("Data xmin: %0.2f xmax: %0.2f\n",xmin,xmax);
+    float xscale=dataRange/(xmax-xmin);
+    for(int i=0;i<points.rows;i++)
+    {
+        points.at<uchar>(i) = (uchar)((points.at<uchar>(i) - xmin) * xscale + 0.5);
     }
 }
 
