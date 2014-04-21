@@ -215,76 +215,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419785312.242596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "generateSampleData(Mat&amp; graph, Mat&amp; points, Mat&amp; centers, int&amp; clusterCount, unsigned long&amp; sampleCount, int maxClusters)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "imageData(Mat&amp; image, Mat&amp; points, int&amp; clusterCount, unsigned long&amp; sampleCount, int maxClusters)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "createGraph2D(Mat&amp; graph, Mat&amp; points, Mat&amp; labels, Point2i dataRange, int clusterCount, unsigned long sampleCount)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "createGraph2D(Mat&amp; graph, Mat&amp; points, Mat&amp; labels, Point2i dataRange, int clusterCount, unsigned long sampleCount)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419665772.344221"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "main( int argc, char* argv[] )"
             landmarkType = "7">
          </BreakpointContent>
@@ -295,28 +231,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419788010.931252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
-            landmarkName = "imageData(Mat&amp; image, Mat&amp; points, int&amp; clusterCount, unsigned long&amp; sampleCount, int maxClusters)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "main( int argc, char* argv[] )"
             landmarkType = "7">
          </BreakpointContent>
@@ -327,13 +247,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419788010.931252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "imageData(Mat&amp; image, Mat&amp; points, int&amp; clusterCount, unsigned long&amp; sampleCount, int maxClusters)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "main( int argc, char* argv[] )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -343,13 +263,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419785363.101528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "imageData(Mat&amp; image, Mat&amp; points, int&amp; clusterCount, unsigned long&amp; sampleCount, int maxClusters)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "main( int argc, char* argv[] )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -359,13 +279,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419788010.931252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "imageData(Mat&amp; image, Mat&amp; points, int&amp; clusterCount, unsigned long&amp; sampleCount, int maxClusters)"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "main( int argc, char* argv[] )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -375,13 +295,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419788010.931252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "createGraph3DGrayScale(Mat&amp; graph, Mat&amp; labels, int clusterCount)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "main( int argc, char* argv[] )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -391,13 +311,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419788010.931252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "createGraph3DGrayScale(Mat&amp; graph, Mat&amp; labels, int clusterCount)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "main( int argc, char* argv[] )"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -407,8 +327,24 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KMeans/KMeans/OpenCVSample.cpp"
-            timestampString = "419671703.672854"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419788010.931252"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "main( int argc, char* argv[] )"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KMeans/KMeans/kmeans.cpp"
+            timestampString = "419788010.931252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"

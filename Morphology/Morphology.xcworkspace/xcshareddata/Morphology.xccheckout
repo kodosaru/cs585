@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>DE611A17-15DD-4616-B974-889C8CB21947</string>
+	<string>505736DA-D0FB-4683-A927-D27C4B867197</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Morphology</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>A9E052BE-3BAE-42CA-9557-0AEC5959B251</key>
-		<string>ssh://github.com/kodosaru/cs585.git</string>
+		<key>C3CFEEFD-412C-40A6-B952-5F1A2980D9A8</key>
+		<string>https://github.com/kodosaru/cs585.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Morphology/Morphology.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>A9E052BE-3BAE-42CA-9557-0AEC5959B251</key>
+		<key>C3CFEEFD-412C-40A6-B952-5F1A2980D9A8</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/kodosaru/cs585.git</string>
+	<string>https://github.com/kodosaru/cs585.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>A9E052BE-3BAE-42CA-9557-0AEC5959B251</string>
+	<string>C3CFEEFD-412C-40A6-B952-5F1A2980D9A8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>A9E052BE-3BAE-42CA-9557-0AEC5959B251</string>
+			<string>C3CFEEFD-412C-40A6-B952-5F1A2980D9A8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>cs585</string>
 		</dict>
