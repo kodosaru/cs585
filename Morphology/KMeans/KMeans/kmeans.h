@@ -14,13 +14,6 @@
 #include "opencv2/core/core.hpp"
 #include "stdlib.h"
 
-void createGraph3DGrayScale(cv::Mat& graph, cv::Mat& labels, int clusterCount);
-void createGraph3D(cv::Mat& graph, cv::Mat& labels, int clusterCount, cv::string dataDir, bool bSaveState);
-void createGraph2D(cv::Mat& graph, cv::Mat& points, cv::Mat& labels, cv::Point2i dataRange, int clusterCount, unsigned long sampleCount);
-void generateSampleData(cv::Mat& graph, cv::Mat& points, cv::Mat& centers, int& clusterCount, unsigned long& sampleCount, int maxClusters);
-void imageData(cv::Mat& in, cv::Mat& points, int& clusterCount, unsigned long& sampleCount, int maxClusters);
-void scaleData(cv::Mat& points, int dataRange);
-void scaleData2D(cv::Mat& points, cv::Point2i dataRange);
-void scaleData3D(cv::Mat& points, cv::Point3i dataRange);
+static void onMouse( int event, int x, int y, int /*flags*/, void* /*param*/ );
 
 #endif /* defined(__KMeans__kmeans__) */

@@ -1,8 +1,7 @@
 //
-//  OpenCVSample.cpp
 //  KMeans
 //
-//  Modifed by Don Johnson on 4/19/14. Originally take from OpenCV v2.7 sample library
+//  Modifed by Don Johnson on 4/19/14. Originally taken from OpenCV v2.7 sample library
 //
 
 #include "kmeans.h"
@@ -14,9 +13,11 @@ using namespace std;
 
 int main( int argc, char* argv[] )
 {
+    MOUSEINFO mouseInfo,*pMouseInfo;
+    pMouseInfo=&mouseInfo;
     string dataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
     const int maxClusters = 20;
-    Mat points,labels,centers,graph,grayScale;
+    Mat points,centers,graph,grayScale;
     int clusterCount = 0;
     unsigned long sampleCount = 0;
     bool bSaveState=false;
@@ -45,7 +46,7 @@ int main( int argc, char* argv[] )
     for(int i=0;i<centers.rows;i++)
         printf("Before Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
     TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 20, 1.0);
-    kmeans(points, clusterCount, labels, termCrit, 1, KMEANS_USE_INITIAL_LABELS, centers);
+    kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 1, KMEANS_USE_INITIAL_LABELS, centers);
     for(int i=0;i<centers.rows;i++)
         printf("After Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
     if(bSaveState)
@@ -56,23 +57,33 @@ int main( int argc, char* argv[] )
     //createGraph2D(graph, points, labels, dataRange2D, clusterCount, sampleCount);
     cout<<"Create graph cluster"<<endl;
     graph.create(image.rows,image.cols,CV_8UC3);
-    createGraph3D(graph, labels, clusterCount, dataDir, bSaveState);
+    createGraph3D(graph, pMouseInfo->labels, clusterCount, dataDir, bSaveState);
     char cn[256];
     sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Cluster",clusterCount,".jpg");
     imwrite(cn,graph);
     imshow("Clusters", graph);
+    setMouseCallback("Clusters", onMouse, (void*) pMouseInfo);
     
     cout<<"Create graph gray scale"<<endl;
     grayScale.create(image.rows,image.cols,CV_8UC1);
-    createGraph3DGrayScale(grayScale, labels, clusterCount);
+    createGraph3DGrayScale(grayScale, pMouseInfo->labels, clusterCount);
     sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"GrayScale",clusterCount,".jpg");
     imwrite(cn,grayScale);
     //imshow("GrayScale", grayScale);
 
-    printf("kmeans info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, labels.rows, labels.cols, centers.rows, centers.cols);
+    printf("kmeans info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, pMouseInfo->labels.rows, pMouseInfo->labels.cols, centers.rows, centers.cols);
     
     waitKey();
 
     return 0;
 }
 
+static void onMouse( int event, int x, int y, int /*flags*/, void* ptr )
+{
+    if( event == CV_EVENT_LBUTTONDOWN )
+    {
+        MOUSEINFO *pMousePoints=(MOUSEINFO*)ptr;
+        pMousePoints->points.push_back(Point(x, y));
+        cout << "Point ("<<x<<","<<y<<") saved"<<endl;
+    }
+}
