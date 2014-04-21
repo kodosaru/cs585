@@ -29,8 +29,9 @@
 using namespace cv;
 using namespace std;
 
+void colorTabTest(int clusterCount, string dataDir);
 void createGraph3DGrayScale(cv::Mat& graph, cv::Mat& labels, int clusterCount);
-void createGraph3D(cv::Mat& graph, cv::Mat& labels, int clusterCount);
+void createGraph3D(cv::Mat& graph, cv::Mat& labels, int clusterCount, bool bSaveState);
 void createGraph2D(cv::Mat& graph, cv::Mat& points, cv::Mat& labels, Point2i dataRange, int clusterCount, unsigned long sampleCount);
 void scaleData(cv::Mat& points, int dataRange);
 void scaleData2D(cv::Mat& points, Point2i dataRange);

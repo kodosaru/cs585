@@ -7,10 +7,67 @@
 //
 
 #include "Methods.h"
+#include "Archive.hpp"
 
 using namespace cv;
 using namespace std;
 namespace fs = boost::filesystem;
+
+void colorTabTest(int clusterCount, string dataDir)
+{
+    RNG rng(12345);
+    vector<Scalar> colorTab;
+    Scalar color;
+    ostringstream ss;
+    ss<<clusterCount;
+    Mat vecCvt(clusterCount,1,CV_64FC4);
+    
+    // Create color tab
+    for(int i=0;i<clusterCount;i++)
+    {
+        colorTab.push_back(Scalar(rng.uniform(0,255), rng.uniform(0, 255), rng.uniform(0, 255),0.0f));
+    }
+    
+    // Print color tab
+    for(int i=0;i<clusterCount;i++)
+    {
+        color = colorTab.at(i);
+        printf("After Gen ColorTab(%d): (%0.2lf,%0.2lf,%0.2lf,%0.2lf)\n",i,colorTab.at(i)[0],colorTab.at(i)[1],colorTab.at(i)[2],colorTab.at(i)[3]);
+    }
+    
+    // Copy color tab to matrix
+    for(int i=0;i<clusterCount;i++)
+    {
+        for(int j=0;j<4;j++)
+            vecCvt.at<Scalar>(i,0)[j]=colorTab.at(i)[j];
+    }
+    
+    // Print matrix before save
+    for(int i=0;i<clusterCount;i++)
+    {
+        printf("Matrix before save (%d): (%0.2lf,%0.2lf,%0.2lf,%0.2lf)\n",i,vecCvt.at<Scalar>(i,0)[0],vecCvt.at<Scalar>(i,0)[1],vecCvt.at<Scalar>(i,0)[2],vecCvt.at<Scalar>(i,0)[3]);
+    }
+
+    // Save matrix to disk
+    saveMat(vecCvt, dataDir+"colorTab."+ss.str()+".bin");
+    
+    // Load color tab from disk
+    loadMat(vecCvt, dataDir+"colorTab."+ss.str()+".bin");
+    colorTab.resize(clusterCount);
+    
+    // Copy matrix to color tab
+    for(int i=0;i<clusterCount;i++)
+    {
+        for(int j=0;j<4;j++)
+            colorTab.at(i)[j]=vecCvt.at<Scalar>(i,0)[j];
+    }
+    
+    // Print matrix after load
+    for(int i=0;i<clusterCount;i++)
+    {
+        printf("Matrix after load (%d): (%0.2lf,%0.2lf,%0.2lf,%0.2lf)\n",i,vecCvt.at<Scalar>(i,0)[0],vecCvt.at<Scalar>(i,0)[1],vecCvt.at<Scalar>(i,0)[2],vecCvt.at<Scalar>(i,0)[3]);
+    }
+}
 
 void createGraph3DGrayScale(Mat& graph, Mat& labels, int clusterCount)
 {
@@ -36,16 +93,51 @@ void createGraph3DGrayScale(Mat& graph, Mat& labels, int clusterCount)
     }
 }
 
-void createGraph3D(Mat& graph, Mat& labels, int clusterCount)
+void createGraph3D(Mat& graph, Mat& labels, int clusterCount, string dataDir, bool bSaveState)
 {
-    RNG rng(12345);
+    RNG rng(rand());
     vector<Scalar> colorTab;
-    
-    for(int i=0;i<clusterCount;i++)
+    Scalar color;
+    ostringstream ss;
+    ss<<clusterCount;
+    Mat vecCvt(clusterCount,1,CV_64FC4);
+
+    if(bSaveState)
     {
-        colorTab.push_back(Scalar(rng.uniform(0,255), rng.uniform(0, 255), rng.uniform(0, 255)));
+        // Create color tab
+        for(int i=0;i<clusterCount;i++)
+        {
+            colorTab.push_back(Scalar(rng.uniform(0,255), rng.uniform(0, 255), rng.uniform(0, 255),0.0f));
+        }
+
+        // Copy color tab to matrix
+        for(int i=0;i<clusterCount;i++)
+        {
+            for(int j=0;j<4;j++)
+                vecCvt.at<Scalar>(i,0)[j]=colorTab.at(i)[j];
+        }
+        saveMat(vecCvt, dataDir+"colorTab."+ss.str()+".bin");
+    }
+    else
+    {
+        // Load color tab from disk
+        loadMat(vecCvt, dataDir+"colorTab."+ss.str()+".bin");
+        colorTab.resize(clusterCount);
+        
+        // Copy matrix to color tab
+        for(int i=0;i<clusterCount;i++)
+        {
+            for(int j=0;j<4;j++)
+                colorTab.at(i)[j]=vecCvt.at<Scalar>(i,0)[j];
+        }
     }
     
+    // Print color tab
+    for(int i=0;i<clusterCount;i++)
+    {
+        color = colorTab.at(i);
+        printf("ColorTab before assign (%d): (%0.2lf,%0.2lf,%0.2lf,%0.2lf)\n",i,colorTab.at(i)[0],colorTab.at(i)[1],colorTab.at(i)[2],colorTab.at(i)[3]);
+    }
     int i = 0;
     while (i < labels.rows)
     {
@@ -60,7 +152,7 @@ void createGraph3D(Mat& graph, Mat& labels, int clusterCount)
             for(int col=0; col<graph.cols; col++)
             {
                 int clusterIdx = labels.at<int>(i);
-                Scalar color = colorTab[clusterIdx];
+                color = colorTab[clusterIdx];
                 graph.data[row*(graph.step[0]) + col*channels + 0] = color[0];
                 graph.data[row*(graph.step[0]) + col*channels + 1] = color[1];
                 graph.data[row*(graph.step[0]) + col*channels + 2] = color[2];

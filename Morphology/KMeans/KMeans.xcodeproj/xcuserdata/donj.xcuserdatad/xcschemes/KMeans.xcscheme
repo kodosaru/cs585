@@ -67,8 +67,8 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "ReadCenters"
-            isEnabled = "YES">
+            argument = "saveState"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Foreground/DSC02106"

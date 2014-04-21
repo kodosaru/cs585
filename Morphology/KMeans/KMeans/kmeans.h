@@ -15,7 +15,7 @@
 #include "stdlib.h"
 
 void createGraph3DGrayScale(cv::Mat& graph, cv::Mat& labels, int clusterCount);
-void createGraph3D(cv::Mat& graph, cv::Mat& labels, int clusterCount);
+void createGraph3D(cv::Mat& graph, cv::Mat& labels, int clusterCount, cv::string dataDir, bool bSaveState);
 void createGraph2D(cv::Mat& graph, cv::Mat& points, cv::Mat& labels, cv::Point2i dataRange, int clusterCount, unsigned long sampleCount);
 void generateSampleData(cv::Mat& graph, cv::Mat& points, cv::Mat& centers, int& clusterCount, unsigned long& sampleCount, int maxClusters);
 void imageData(cv::Mat& in, cv::Mat& points, int& clusterCount, unsigned long& sampleCount, int maxClusters);
