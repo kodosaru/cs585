@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "onMouse(int, int, int, int, void*):kmeans.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "pMouseInfo-&gt;labels.at&lt;int&gt;(i)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "main:main.cpp">
          <PersistentStrings>
             <PersistentString

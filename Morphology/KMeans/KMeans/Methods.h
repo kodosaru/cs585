@@ -20,11 +20,8 @@
 //C++
 #include <iostream>
 #include <sstream>
-//Boost
-#define BOOST_FILESYSTEM_NO_DEPRECATED
-#include "boost/filesystem/operations.hpp"
-#include "boost/filesystem/path.hpp"
-#include "boost/progress.hpp"
+#include <string>
+#include <set>
 
 using namespace cv;
 using namespace std;
@@ -33,9 +30,13 @@ struct mouseInfo
 {
     vector<Point2i> points;
     Mat labels;
+    Mat graph;
+    set<int> completedClasses;
 };
 typedef struct mouseInfo MOUSEINFO;
 
+void saveCompletedClasses(set<int>& completedClasses, string path);
+void loadCompletedClasses(set<int>& completedClasses, string path);
 void colorTabTest(int clusterCount, string dataDir);
 void createGraph3DGrayScale(cv::Mat& graph, cv::Mat& labels, int clusterCount);
 void createGraph3D(cv::Mat& graph, cv::Mat& labels, int clusterCount, string dataDir, bool bSaveState);

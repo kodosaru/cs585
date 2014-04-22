@@ -5,8 +5,6 @@
 //
 
 #include "kmeans.h"
-#include "Methods.h"
-#include "Archive.hpp"
 
 using namespace cv;
 using namespace std;
@@ -17,7 +15,7 @@ int main( int argc, char* argv[] )
     pMouseInfo=&mouseInfo;
     string dataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
     const int maxClusters = 20;
-    Mat points,centers,graph,grayScale;
+    Mat points,centers,grayScale,objects;
     int clusterCount = 0;
     unsigned long sampleCount = 0;
     bool bSaveState=false;
@@ -56,12 +54,13 @@ int main( int argc, char* argv[] )
     //scaleData2D(points, dataRange2D);
     //createGraph2D(graph, points, labels, dataRange2D, clusterCount, sampleCount);
     cout<<"Create graph cluster"<<endl;
-    graph.create(image.rows,image.cols,CV_8UC3);
-    createGraph3D(graph, pMouseInfo->labels, clusterCount, dataDir, bSaveState);
+    pMouseInfo->graph.create(image.rows,image.cols,CV_8UC3);
+    objects.create(image.rows,image.cols,CV_8UC1);
+    createGraph3D(pMouseInfo->graph, pMouseInfo->labels, clusterCount, dataDir, bSaveState);
     char cn[256];
     sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Cluster",clusterCount,".jpg");
-    imwrite(cn,graph);
-    imshow("Clusters", graph);
+    imwrite(cn,pMouseInfo->graph);
+    imshow("Clusters", pMouseInfo->graph);
     setMouseCallback("Clusters", onMouse, (void*) pMouseInfo);
     
     cout<<"Create graph gray scale"<<endl;
@@ -74,7 +73,9 @@ int main( int argc, char* argv[] )
     printf("kmeans info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, pMouseInfo->labels.rows, pMouseInfo->labels.cols, centers.rows, centers.cols);
     
     waitKey();
-
+    saveCompletedClasses(pMouseInfo->completedClasses, dataDir+"completedClasses."+ss.str()+".bin");
+    loadCompletedClasses(pMouseInfo->completedClasses, dataDir+"completedClasses."+ss.str()+".bin");
+    
     return 0;
 }
 
@@ -82,8 +83,37 @@ static void onMouse( int event, int x, int y, int /*flags*/, void* ptr )
 {
     if( event == CV_EVENT_LBUTTONDOWN )
     {
-        MOUSEINFO *pMousePoints=(MOUSEINFO*)ptr;
-        pMousePoints->points.push_back(Point(x, y));
-        cout << "Point ("<<x<<","<<y<<") saved"<<endl;
+        MOUSEINFO *pMouseInfo=(MOUSEINFO*)ptr;
+        if(pMouseInfo==NULL||pMouseInfo->labels.total()==0||pMouseInfo->graph.total()==0)
+        {
+            cout<<"pMouseInfor is NULL or size of labels is 0 or size for graph is 0"<<endl;
+            return;
+        }
+        pMouseInfo->points.push_back(Point(x, y));
+        cout << "Point ("<<x<<","<<y<<")"<<endl;
+        circle(pMouseInfo->graph, Point(x,y), 5, CV_RGB(255,0,0), -1);
+        int i = y * pMouseInfo->graph.cols + x;
+        if(i > INT_MAX)
+            cout<<"Integer maximum exceeded"<<endl;
+        if(i > pMouseInfo->labels.rows)
+            cout<<"Length of labels table exceeded"<<endl;
+        int cls = pMouseInfo->labels.at<int>(i);
+        printf("Class at (%d,%d) offset %d has value %d\n",x,y,i,cls);
+        if(pMouseInfo->completedClasses.find(cls) == pMouseInfo->completedClasses.end())
+        {
+            cout<<"Inserting class "<<cls<<" into completed classes set"<<endl;
+            pMouseInfo->completedClasses.insert(cls);
+            int channels=pMouseInfo->graph.channels();
+            for(int i=0;i<pMouseInfo->labels.rows;i++)
+                if(pMouseInfo->labels.at<int>(i)==cls)
+                {
+                    pMouseInfo->graph.data[i*channels] = 0;
+                    pMouseInfo->graph.data[i*channels + 1] = 0;
+                    pMouseInfo->graph.data[i*channels + 2] = 0;
+                }
+        }
+        for(int i;i<pMouseInfo->points.size();i++)
+            circle(pMouseInfo->graph, pMouseInfo->points[i], 5, CV_RGB(255,0,0), -1);
+        imshow("Clusters", pMouseInfo->graph);
     }
 }

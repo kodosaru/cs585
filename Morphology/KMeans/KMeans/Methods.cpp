@@ -8,10 +8,78 @@
 
 #include "Methods.h"
 #include "Archive.hpp"
+//Boost
+#define BOOST_FILESYSTEM_NO_DEPRECATED
+#include "boost/filesystem/operations.hpp"
+#include "boost/filesystem/path.hpp"
+#include "boost/progress.hpp"
 
 using namespace cv;
 using namespace std;
 namespace fs = boost::filesystem;
+
+void saveCompletedClasses(set<int>& completedClasses, string path)
+{
+    cout<<"Save completed classes"<<endl;
+    ostringstream ss;
+    ss<<completedClasses.size();
+    Mat vecCvt((int)completedClasses.size(),1,CV_32S);
+    
+    // Print completed classes set
+    for(set<int>::iterator it=completedClasses.begin();it!=completedClasses.end();)
+    {
+        printf("Completed classes vector has value %d\n",*it);
+        ++it;
+    }
+    
+    // Copy completed classes to matrix
+    int i=0;
+    for(set<int>::iterator it=completedClasses.begin();it!=completedClasses.end();)
+    {
+        vecCvt.at<int>(i,0)=*it;
+        ++it;
+        ++i;
+    }
+    
+    // Print matrix before save
+    for(int i=0;i<completedClasses.size();i++)
+    {
+        printf("Completed classess matrix before save at location %d has value %d\n",i,vecCvt.at<int>(i,0));
+    }
+    
+    // Save matrix to disk
+    saveMat(vecCvt, path);
+}
+
+void loadCompletedClasses(set<int>& completedClasses, string path)
+{
+    cout<<"Load completed classes"<<endl;
+    ostringstream ss;
+    ss<<completedClasses.size();
+    Mat vecCvt((int)completedClasses.size(),1,CV_32S);
+    
+    // Load completed classes from disk
+    loadMat(vecCvt, path);
+    
+    // Print matrix after load
+    for(int i=0;i<completedClasses.size();i++)
+    {
+        printf("Matrix after load at location %d has value %d\n",i,vecCvt.at<int>(i,0));
+    }
+
+    // Copy completed classes to set
+    for(int i=0;i<completedClasses.size();i++)
+    {
+        completedClasses.insert(vecCvt.at<int>(i,0));
+    }
+    
+    // Print completed classes set
+    for(set<int>::iterator it=completedClasses.begin();it!=completedClasses.end();)
+    {
+        printf("Completed classes vector has value %d\n",*it);
+        ++it;
+    }
+}
 
 void colorTabTest(int clusterCount, string dataDir)
 {
@@ -153,7 +221,7 @@ void createGraph3D(Mat& graph, Mat& labels, int clusterCount, string dataDir, bo
             {
                 int clusterIdx = labels.at<int>(i);
                 color = colorTab[clusterIdx];
-                graph.data[row*(graph.step[0]) + col*channels + 0] = color[0];
+                graph.data[row*(graph.step[0]) + col*channels] = color[0];
                 graph.data[row*(graph.step[0]) + col*channels + 1] = color[1];
                 graph.data[row*(graph.step[0]) + col*channels + 2] = color[2];
                 //printf("point(%d): (%u,%u,%u)\n",i,graph.data[row*(graph.step[0]) + col*channels + 0],graph.data[row*(graph.step[0]) + col*channels + 1],graph.data[row*(graph.step[0]) + col*channels + 2]);
