@@ -13,7 +13,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/core/core.hpp"
 #include "stdlib.h"
-#include "Methods.h"
+#include "KMeansMethods.h"
 #include "Archive.hpp"
 
 static void onMouse( int event, int x, int y, int /*flags*/, void* /*param*/ );

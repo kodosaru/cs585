@@ -55,7 +55,7 @@
 		727147C21901DE4300649CC6 /* libopencv_superres.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147B01901DE4300649CC6 /* libopencv_superres.dylib */; };
 		727147C31901DE4300649CC6 /* libopencv_video.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147B11901DE4300649CC6 /* libopencv_video.dylib */; };
 		727147C41901DE4300649CC6 /* libopencv_videostab.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147B21901DE4300649CC6 /* libopencv_videostab.dylib */; };
-		72941BAC1903F69600655514 /* Methods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72941BAA1903F69600655514 /* Methods.cpp */; };
+		72941BAC1903F69600655514 /* KMeansMethods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72941BAA1903F69600655514 /* KMeansMethods.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,8 +123,8 @@
 		727147B01901DE4300649CC6 /* libopencv_superres.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_superres.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_superres.dylib; sourceTree = "<absolute>"; };
 		727147B11901DE4300649CC6 /* libopencv_video.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_video.dylib; sourceTree = "<absolute>"; };
 		727147B21901DE4300649CC6 /* libopencv_videostab.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_videostab.dylib; sourceTree = "<absolute>"; };
-		72941BAA1903F69600655514 /* Methods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Methods.cpp; sourceTree = "<group>"; };
-		72941BAB1903F69600655514 /* Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Methods.h; sourceTree = "<group>"; };
+		72941BAA1903F69600655514 /* KMeansMethods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KMeansMethods.cpp; sourceTree = "<group>"; };
+		72941BAB1903F69600655514 /* KMeansMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMeansMethods.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,8 +241,8 @@
 				7271479A1901DCDE00649CC6 /* KMeans.1 */,
 				726678141902A12E00DFFE03 /* kmeans.cpp */,
 				726678151902A12E00DFFE03 /* kmeans.h */,
-				72941BAA1903F69600655514 /* Methods.cpp */,
-				72941BAB1903F69600655514 /* Methods.h */,
+				72941BAA1903F69600655514 /* KMeansMethods.cpp */,
+				72941BAB1903F69600655514 /* KMeansMethods.h */,
 				721239131905686800AC7A66 /* Archive.cpp */,
 				721239141905686800AC7A66 /* Archive.hpp */,
 			);
@@ -325,7 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72941BAC1903F69600655514 /* Methods.cpp in Sources */,
+				72941BAC1903F69600655514 /* KMeansMethods.cpp in Sources */,
 				726678161902A12E00DFFE03 /* kmeans.cpp in Sources */,
 				721239151905686800AC7A66 /* Archive.cpp in Sources */,
 			);

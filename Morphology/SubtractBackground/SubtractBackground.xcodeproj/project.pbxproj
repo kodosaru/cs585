@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		725F0EB71906163400CE04FA /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 725F0EB61906163400CE04FA /* libboost_filesystem.dylib */; };
+		725F0EB91906163E00CE04FA /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 725F0EB81906163E00CE04FA /* libboost_system.dylib */; };
 		72633DA71901296400E0839B /* libopencv_calib3d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72633D951901296400E0839B /* libopencv_calib3d.dylib */; };
 		72633DA81901296400E0839B /* libopencv_contrib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72633D961901296400E0839B /* libopencv_contrib.dylib */; };
 		72633DA91901296400E0839B /* libopencv_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72633D971901296400E0839B /* libopencv_core.dylib */; };
@@ -25,8 +27,6 @@
 		72633DB61901296400E0839B /* libopencv_superres.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72633DA41901296400E0839B /* libopencv_superres.dylib */; };
 		72633DB71901296400E0839B /* libopencv_video.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72633DA51901296400E0839B /* libopencv_video.dylib */; };
 		72633DB81901296400E0839B /* libopencv_videostab.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72633DA61901296400E0839B /* libopencv_videostab.dylib */; };
-		72633DBC19012A1C00E0839B /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72633DBA19012A1C00E0839B /* libboost_system.dylib */; };
-		72633DBE19012B6000E0839B /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72633DBD19012B6000E0839B /* libboost_filesystem.dylib */; };
 		728C42551900C91400B99166 /* SubtractBackground.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 728C42541900C91400B99166 /* SubtractBackground.1 */; };
 		728C425C1900C95E00B99166 /* bg_sub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 728C425B1900C95E00B99166 /* bg_sub.cpp */; };
 /* End PBXBuildFile section */
@@ -45,6 +45,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		725F0EB61906163400CE04FA /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../../../usr/local/packages/boost_1_53_0/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
+		725F0EB81906163E00CE04FA /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../../usr/local/packages/boost_1_53_0/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		72633D951901296400E0839B /* libopencv_calib3d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_calib3d.dylib; sourceTree = "<absolute>"; };
 		72633D961901296400E0839B /* libopencv_contrib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_contrib.dylib; sourceTree = "<absolute>"; };
 		72633D971901296400E0839B /* libopencv_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_core.dylib; sourceTree = "<absolute>"; };
@@ -93,8 +95,8 @@
 				72633DB61901296400E0839B /* libopencv_superres.dylib in Frameworks */,
 				72633DB71901296400E0839B /* libopencv_video.dylib in Frameworks */,
 				72633DB81901296400E0839B /* libopencv_videostab.dylib in Frameworks */,
-				72633DBE19012B6000E0839B /* libboost_filesystem.dylib in Frameworks */,
-				72633DBC19012A1C00E0839B /* libboost_system.dylib in Frameworks */,
+				725F0EB71906163400CE04FA /* libboost_filesystem.dylib in Frameworks */,
+				725F0EB91906163E00CE04FA /* libboost_system.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +140,8 @@
 		728C42461900C91400B99166 = {
 			isa = PBXGroup;
 			children = (
+				725F0EB81906163E00CE04FA /* libboost_system.dylib */,
+				725F0EB61906163400CE04FA /* libboost_filesystem.dylib */,
 				727147C61901E66200649CC6 /* Boost */,
 				727147C51901E65600649CC6 /* OpenCV */,
 				728C42511900C91400B99166 /* SubtractBackground */,
@@ -294,12 +298,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/boost/1.55.0_1/include,
+					/usr/local/packages/boost_1_53_0/include,
 					/usr/local/Cellar/opencv/2.4.7.1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
+					/usr/local/packages/boost_1_53_0/include,
 					/usr/local/Cellar/opencv/2.4.7.1/lib,
-					/usr/local/Cellar/boost/1.55.0_1/lib,
+					/usr/local/packages/boost_1_53_0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -309,12 +314,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/boost/1.55.0_1/include,
+					/usr/local/packages/boost_1_53_0/include,
 					/usr/local/Cellar/opencv/2.4.7.1/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
+					/usr/local/packages/boost_1_53_0/include,
 					/usr/local/Cellar/opencv/2.4.7.1/lib,
-					/usr/local/Cellar/boost/1.55.0_1/lib,
+					/usr/local/packages/boost_1_53_0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

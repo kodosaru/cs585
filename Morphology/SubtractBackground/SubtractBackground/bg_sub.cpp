@@ -51,7 +51,6 @@ int main(int argc, char* argv[])
         cout << "Cannot open image!" << endl;
         return -1;
     }
-    //make the copy 1/2 as big as the original
     //resize(im,im_out,Size(im.cols/3,im.rows/3),0,0,INTER_LINEAR);
     resize(im,im_out,Size(im.cols/3,im.rows/3));
     
@@ -66,7 +65,7 @@ int main(int argc, char* argv[])
     
     Mat in,out,final;
     in=imread(pathForeground);
-    resize(in,final,Size((int)in.cols/3.0,(int)in.rows/3.0));
+    resize(in,final,Size((int)in.cols/3,(int)in.rows/3));
     imwrite(pathOut+"foregroundSmall.jpg",final);
     //imshow("Foreground", out);
     
@@ -75,7 +74,7 @@ int main(int argc, char* argv[])
     imwrite(pathOut+"foregroundCIE2.jpg",final);
     
     cvtColor(in,out,CV_BGR2YCrCb);
-    resize(out,final,Size(in.cols/3,in.rows/3));
+    resize(out,final,Size(in.cols/3.1,in.rows/3.1));
     imwrite(pathOut+"foregroundYCrCb.jpg",final);
     
     //keyboard = waitKey( 0 );

@@ -27,6 +27,9 @@
             <PersistentString
                value = "argv[2]">
             </PersistentString>
+            <PersistentString
+               value = "*it">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
    </ContextStates>

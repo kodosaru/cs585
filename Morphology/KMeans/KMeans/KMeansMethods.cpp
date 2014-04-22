@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Donald Johnson. All rights reserved.
 //
 
-#include "Methods.h"
+#include "KMeansMethods.h"
 #include "Archive.hpp"
 //Boost
 #define BOOST_FILESYSTEM_NO_DEPRECATED
@@ -54,21 +54,22 @@ void saveCompletedClasses(set<int>& completedClasses, string path)
 void loadCompletedClasses(set<int>& completedClasses, string path)
 {
     cout<<"Load completed classes"<<endl;
-    ostringstream ss;
-    ss<<completedClasses.size();
-    Mat vecCvt((int)completedClasses.size(),1,CV_32S);
+    Mat vecCvt;
     
     // Load completed classes from disk
     loadMat(vecCvt, path);
+    int nClasses=vecCvt.rows;
+    ostringstream ss;
+    ss<<nClasses;
     
     // Print matrix after load
-    for(int i=0;i<completedClasses.size();i++)
+    for(int i=0;i<nClasses;i++)
     {
         printf("Matrix after load at location %d has value %d\n",i,vecCvt.at<int>(i,0));
     }
 
     // Copy completed classes to set
-    for(int i=0;i<completedClasses.size();i++)
+    for(int i=0;i<nClasses;i++)
     {
         completedClasses.insert(vecCvt.at<int>(i,0));
     }
