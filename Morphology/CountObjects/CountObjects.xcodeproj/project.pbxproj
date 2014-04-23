@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		724365021906C37900907C1B /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 724365001906C37900907C1B /* Main.cpp */; };
 		72CA39A018F437A9001401AB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CA399F18F437A9001401AB /* main.cpp */; };
 		72CA39A218F437A9001401AB /* CountObjects.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 72CA39A118F437A9001401AB /* CountObjects.1 */; };
 		72CA39E518F457A1001401AB /* libopencv_calib3d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72CA39AC18F457A1001401AB /* libopencv_calib3d.dylib */; };
@@ -59,6 +60,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		724364FE1906C2E400907C1B /* Stack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Stack.hpp; sourceTree = "<group>"; };
+		724365001906C37900907C1B /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
 		72CA399C18F437A9001401AB /* CountObjects */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CountObjects; sourceTree = BUILT_PRODUCTS_DIR; };
 		72CA399F18F437A9001401AB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		72CA39A118F437A9001401AB /* CountObjects.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CountObjects.1; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 		72CA399318F437A9001401AB = {
 			isa = PBXGroup;
 			children = (
+				724365001906C37900907C1B /* Main.cpp */,
+				724364FE1906C2E400907C1B /* Stack.hpp */,
 				72CA3A1A18F457BE001401AB /* OpenCV */,
 				72CA399E18F437A9001401AB /* CountObjects */,
 				72CA399D18F437A9001401AB /* Products */,
@@ -301,6 +306,7 @@
 				72CA39A018F437A9001401AB /* main.cpp in Sources */,
 				72CA3A5918F4E8D3001401AB /* GeometryShadRemParams.cpp in Sources */,
 				72CA3A5F18F4E8D3001401AB /* SrTextureShadRem.cpp in Sources */,
+				724365021906C37900907C1B /* Main.cpp in Sources */,
 				72CA3A5E18F4E8D3001401AB /* PhysicalShadRemParams.cpp in Sources */,
 				72CA3A6018F4E8D3001401AB /* SrTextureShadRemParams.cpp in Sources */,
 				72CA3A5D18F4E8D3001401AB /* PhysicalShadRem.cpp in Sources */,
@@ -421,6 +427,7 @@
 				72CA39A718F437A9001401AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

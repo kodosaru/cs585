@@ -29,7 +29,7 @@ String cannyWindow = "Edge Map";
 
 
 
-int main(int argc, const char * argv[])
+int main2(int argc, const char * argv[])
 {
     String dataDir="/Users/donj/workspace/cs585/Morphology/Data/";
     shadowDemo();
