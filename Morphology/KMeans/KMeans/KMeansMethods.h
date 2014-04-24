@@ -23,27 +23,24 @@
 #include <string>
 #include <set>
 
-using namespace cv;
-using namespace std;
-
 struct mouseInfo
 {
-    vector<Point2i> points;
-    Mat labels;
-    Mat graph;
-    set<int> completedClasses;
+    std::vector<cv::Point2i> points;
+    cv::Mat labels;
+    cv::Mat graph;
+    std::set<int> completedClasses;
 };
 typedef struct mouseInfo MOUSEINFO;
 
-void saveCompletedClasses(set<int>& completedClasses, string path);
-void loadCompletedClasses(set<int>& completedClasses, string path);
-void colorTabTest(int clusterCount, string dataDir);
+void saveCompletedClasses(std::set<int>& completedClasses, std::string path);
+void loadCompletedClasses(std::set<int>& completedClasses, std::string path);
+void colorTabTest(int clusterCount, std::string dataDir);
 void createGraph3DGrayScale(cv::Mat& graph, cv::Mat& labels, int clusterCount);
-void createGraph3D(cv::Mat& graph, cv::Mat& labels, int clusterCount, string dataDir, bool bSaveState);
-void createGraph2D(cv::Mat& graph, cv::Mat& points, cv::Mat& labels, Point2i dataRange, int clusterCount, unsigned long sampleCount);
+void createGraph3D(cv::Mat& graph, cv::Mat& labels, int clusterCount, std::string dataDir, bool bSaveState);
+void createGraph2D(cv::Mat& graph, cv::Mat& points, cv::Mat& labels, cv::Point2i dataRange, int clusterCount, unsigned long sampleCount);
 void scaleData(cv::Mat& points, int dataRange);
-void scaleData2D(cv::Mat& points, Point2i dataRange);
-void scaleData3D(cv::Mat& points, Point3i dataRange);
+void scaleData2D(cv::Mat& points, cv::Point2i dataRange);
+void scaleData3D(cv::Mat& points, cv::Point3i dataRange);
 void generateSampleData(cv::Mat& graph, cv::Mat& points, cv::Mat& centers, int& clusterCount, unsigned long& sampleCount, int maxClusters);
 void imageData(cv::Mat& image, cv::Mat& points, int& clusterCount, unsigned long& sampleCount, int maxClusters);
 

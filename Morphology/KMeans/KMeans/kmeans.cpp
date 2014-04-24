@@ -23,7 +23,7 @@ int main( int argc, char* argv[] )
         bSaveState=true;
     
     // Generate image data
-    Mat image = imread(dataDir+argv[1]+".jpg");
+    Mat image = imread(dataDir+argv[1]+".png");
     imshow("Image",image);
     int ucharMax=pow(2,sizeof(uchar)*8) - 1;
     Point3i dataRange3D(ucharMax,ucharMax,ucharMax);
@@ -44,7 +44,7 @@ int main( int argc, char* argv[] )
     for(int i=0;i<centers.rows;i++)
         printf("Before Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
     TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 20, 1.0);
-    kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 6, KMEANS_USE_INITIAL_LABELS, centers);
+    kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 12, KMEANS_USE_INITIAL_LABELS, centers);
     for(int i=0;i<centers.rows;i++)
         printf("After Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
     if(bSaveState)
@@ -59,7 +59,7 @@ int main( int argc, char* argv[] )
     createGraph3D(pMouseInfo->graph, pMouseInfo->labels, clusterCount, dataDir, bSaveState);
     cvtColor(pMouseInfo->graph, mask, CV_BGR2GRAY);
     char cn[256];
-    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Cluster",clusterCount,".jpg");
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Cluster",clusterCount,".png");
     imwrite(cn,pMouseInfo->graph);
     
     // Show graph and start defining background
@@ -69,7 +69,7 @@ int main( int argc, char* argv[] )
     cout<<"Create labels gray scale"<<endl;
     grayScale.create(image.rows,image.cols,CV_8UC1);
     createGraph3DGrayScale(grayScale, pMouseInfo->labels, clusterCount);
-    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"GrayScale",clusterCount,".jpg");
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"GrayScale",clusterCount,".png");
     imwrite(cn,grayScale);
     //imshow("GrayScale", grayScale);
 
@@ -126,6 +126,9 @@ int main( int argc, char* argv[] )
     // Do binary threshold
     threshold(mask, mask, 0, 255, 0);
     imshow("Mask", mask);
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Binary",clusterCount,".png");
+    imwrite(cn,mask);
+    
     waitKey();
     
     vector<vector<Scalar>> objects;

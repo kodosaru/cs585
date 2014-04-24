@@ -66,16 +66,16 @@ int main(int argc, char* argv[])
     Mat in,out,final;
     in=imread(pathForeground);
     resize(in,final,Size((int)in.cols/3,(int)in.rows/3));
-    imwrite(pathOut+"foregroundSmall.jpg",final);
+    imwrite(pathOut+"foregroundSmall.png",final);
     //imshow("Foreground", out);
     
     cvtColor(in,out,CV_BGR2XYZ);
     resize(out,final,Size(in.cols/3,in.rows/3));
-    imwrite(pathOut+"foregroundCIE2.jpg",final);
+    imwrite(pathOut+"foregroundCIE2.png",final);
     
     cvtColor(in,out,CV_BGR2YCrCb);
     resize(out,final,Size(in.cols/3.1,in.rows/3.1));
-    imwrite(pathOut+"foregroundYCrCb.jpg",final);
+    imwrite(pathOut+"foregroundYCrCb.png",final);
     
     //keyboard = waitKey( 0 );
     return 0;

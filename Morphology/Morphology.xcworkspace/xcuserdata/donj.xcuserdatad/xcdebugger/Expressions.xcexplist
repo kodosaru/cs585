@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "stack&lt;int&gt;::push():Stack.hpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "top">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "onMouse(int, int, int, int, void*):kmeans.cpp">
          <PersistentStrings>
             <PersistentString
@@ -29,6 +37,29 @@
             </PersistentString>
             <PersistentString
                value = "*it">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "stack&lt;int&gt;::print():Stack.hpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "a[2]">
+            </PersistentString>
+            <PersistentString
+               value = "a[3]">
+            </PersistentString>
+            <PersistentString
+               value = "top">
+            </PersistentString>
+            <PersistentString
+               value = "a[4]">
+            </PersistentString>
+            <PersistentString
+               value = "a[0]">
+            </PersistentString>
+            <PersistentString
+               value = "a[1]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

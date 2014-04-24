@@ -1,140 +1,151 @@
 //
-//  Stack.h
-//  CountObjects
+//  Stack.hpp
 //
 //  Created by Don Johnson on 4/22/14.
-//  Copyright (c) 2014 Donald Johnson. All rights reserved.
 //
 
-#ifndef __CountObjects__Stack__
-#define __CountObjects__Stack__
+#ifndef __STACK__HPP__
+#define __STACK__HPP__
 
 #include <iostream>
-#include<iostream>
 
-using namespace std;
+#ifndef DEBUG
+    #define DEBUG 1
+#endif
 
 template <class T>
-class stack {
-    
-    public : T *a;
+class Stack {
+    public : T *stack;
     
     int top,size;
     
-    stack()
+    Stack(int inVal=0)
     {
+        if(inVal==0)
+        {
+            std::cout<<"\nEnter desired size of the stack:"<<std::endl;
+            std::cin>>size;
+        }
+        else
+        {
+            size=inVal;
+        }
         top=-1;
-        cout<<"\nEnter size of array :"<<endl;
-        cin>>size;
-        a=new T[size];
+        stack=new T[size];
     }
     
-    int isfull()
+    int isFull()
     {
         if(top==(size-1))
+        {
+            if(DEBUG)
+                std::cout<<"Error: The stack is full"<<std::endl;
             return 1;
-        else return 0;
+        }
+        else
+        {
+            return 0;
+        }
     }
     
-    int isempty()
+    int isEmpty()
     {
         if(top==-1)
+        {
+            if(DEBUG)
+                std::cout<<"Error: The stack is empty"<<std::endl;
             return 1;
-        else return 0;
-    }
-    
-    void topp()
-    {
-        if(isempty())
-            cout<<"\nStack Underflow"<<endl;
-        else cout<<"\nTop Element is "<<a[top-1]<<endl;
-    }
-    
-    void push() {
-        T n;
-        
-        if(isfull())
-            cout<<"\nStack Overflow"<<endl;
+        }
         else
         {
-            cout<<"\nEnter an element"<<endl;
-            cin>>n;
-            a[top++]=n;
-            cout<<"\nElement Inserted Succesfully"<<endl;
+            return 0;
         }
     }
     
-    void pop()
-    {
-        if(isempty())
-            cout<<"\nStack Underflow"<<endl;
+    void push(T inVal) {
+        if(isFull())
+        {
+            return;
+        }
         else
-            top=top-1;
-        
-        cout<<"\nElement Deleted successfully"<<endl;
+        {
+            stack[++top]=inVal;
+            if(DEBUG)
+                std::cout<<"stack["<<top<<"]="<<stack[top]<<" added successfully"<<std::endl;
+        }
     }
     
-/*    void print()
+    T pop()
     {
-        for(i=top;i>=0;i--)
+        if(isEmpty())
         {
-            string label;
-            if(i==0)
-                label="top";
-            else if(i==a.size()-1)
-                label="bottom";
+            return (T)NULL;
+        }
+        else
+        {
+            if(DEBUG)
+                std::cout<<"stack["<<top<<"]="<<stack[top]<<" deleted successfully"<<std::endl;
+            top=top-1;
+            return stack[top+1];
+        }
+    }
+    
+    void print()
+    {
+        if(isEmpty())
+        {
+            return;
+        }
+        
+        for(int i=top;i>=0;i--)
+        {
+            if(i==top)
+            {
+                std::cout<<"stack["<<i<<"]: "<<stack[top]<<" top"<<std::endl;
+            }
+            else if(i==0)
+            {
+                std::cout<<"stack[0]: "<<stack[0]<<" bottom"<<std::endl;
+            }
             else
             {
-                ostringstream ss;
-                ss<<i;
-                label=ss.str();
+                std::cout<<"stack["<<i<<"]: "<<stack[i]<<std::endl;
             }
-            cout<<"label: "<<a[i]<<end;
-        }
-    }*/
-};
-
-int main()
-{
-    stack <int>s;
-    int i=0,k;
-    
-    while(i!=1)
-    {
-        cout<<"\n******************M E N U**************\n";
-        cout<<"1.Push\n2.Pop\n3.Top\n4.Exit\n5.Print\n";
-        cout<<"\n***************************************\n";
-        cout<<"\nEnter option ";
-        cin>>k;
-        
-        switch(k)
-        {
-            case 1: s.push();
-            break;
-                
-            case 2:
-            s.pop();
-            break;
-                
-            case 3:
-            s.topp();
-            break;
-                
-            case 4:
-            i=1;
-            break;
-            
-            case 5:
-                print();
-            break;
-                
-            default:
-            cout<<"\n------- Wrong Option -------\n";
-            break;
         }
     }
-    return 0;
-}
+    
+    void demo()
+    {
+        srand((uint)time(NULL));
+        std::cout<<"Begin demo..."<<std::endl;
+        
+        std::cout<<std::endl<<"-->Add "<<size<<" items to the stack"<<std::endl;
+        for(int i=0;i<size;i++)
+        {
+            push(rand() % 10);
+        }
+        
+        std::cout<<std::endl<<"-->Print the stack"<<std::endl;
+        print();
+        
+        std::cout<<std::endl<<"-->Try to push an element onto a full stack"<<std::endl;
+        push(rand() % 10);
+        
+        std::cout<<std::endl<<"-->Pop all of the elements"<<std::endl;
+        for(int i=0;i<size;i++)
+        {
+            pop();
+        }
+        
+        std::cout<<std::endl<<"-->Print the stack"<<std::endl;
+        print();
+        
+        std::cout<<std::endl<<"-->Try to pop an element from an empty stack"<<std::endl;
+        pop();
+        
+        std::cout<<std::endl<<"End of demo"<<std::endl;
+    }
+};
 
 // See more at: http://www.techfinite.net/2013/10/program-for-stack-data-structure-in-cpp.html#sthash.L4uDyzW4.dpuf
 
