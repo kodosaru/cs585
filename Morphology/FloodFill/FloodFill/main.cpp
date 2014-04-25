@@ -21,13 +21,13 @@ int main(int argc, const char * argv[])
     char cn[256];
     sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Binary",clusterCount,".png");
     Mat binary=imread(cn,CV_LOAD_IMAGE_GRAYSCALE);
-    Size size1=binary.size();
-    long size2=binary.rows * binary.cols * binary.channels() * binary.elemSize();
-    //Mat binary=imread(dataDir+"foregroundSmall.png");
-    imshow("foreground",binary);
-    //imwrite(dataDir+"outbinary.png",binary);
-    
     Mat mark(binary.cols,binary.rows,CV_8UC1);
+    
+    // Confirm stack routines are working properly before running flood fill
+    //testStack(binary,dataDir);
+    
+    imshow("binary",binary);
+    imwrite(dataDir+"outbinary.png",binary);
     long int nPix=binary.rows*binary.cols;
     Stack<PIXEL> s((int)nPix);
     uchar *rowPtr;
@@ -48,24 +48,8 @@ int main(int argc, const char * argv[])
                 printf("Pushed pixel(%d,%d): %0.0f,%0.0f,%0.0f,%0.0f\n",pix.pt.x,pix.pt.y,pix.val[0],pix.val[1],pix.val[2],pix.val[3]);
         }
     }
-    //Mat test(binary.rows,binary.cols,CV_8UC3);
-    Mat test(binary.rows,binary.cols,CV_8UC1);
-    channels=test.channels();
-    for(long i=0;i<nPix;i++)
-    {
-        PIXEL pix=s.pop();
-        //setPixel3C(pix, test);
-        setPixel1C(pix, test);
-        if(DEBUG)
-            printf("Popped pixel(%d,%d): %0.0f,%0.0f,%0.0f,%0.0f\n",pix.pt.x,pix.pt.y,pix.val[0],pix.val[1],pix.val[2],pix.val[3]);
-    }
-    std::cout<<"End of pushing and popping all pixels in binary image onto stack"<<endl;
-    imshow("test",test);
-    imwrite(dataDir+"outtest.png",test);
-    waitKey();
-    //imshow("Binary",binary);
-    //waitKey();
 
+    
     //• Depth-first Traversal(self)!
     //– Stack.push(self)!
     //– While(!stack.empty())!
@@ -75,22 +59,4 @@ int main(int argc, const char * argv[])
     //» Mark neighbor!
     //» Stack.push(neighbor)!
     return 0;
-}
-
-inline void setPixel1C(PIXEL pixel, Mat img)
-{
-    uchar *rowPtr=img.ptr<uchar>(pixel.pt.y);
-    rowPtr[pixel.pt.x]=(uchar)pixel.val[0];
-    if(DEBUG && pixel.val[3] != 0.0f)
-        cout<<"Scalar[3] not equal to zero"<<endl;
-}
-
-inline void setPixel3C(PIXEL pixel, Mat img)
-{
-    uchar *rowPtr=img.ptr<uchar>(pixel.pt.y);
-    rowPtr[pixel.pt.x * 3]=(uchar)pixel.val[0];
-    rowPtr[pixel.pt.x * 3 + 1]=(uchar)pixel.val[1];
-    rowPtr[pixel.pt.x * 3 + 2]=(uchar)pixel.val[2];
-    if(DEBUG && pixel.val[3] != 0.0f)
-        cout<<"Scalar[3] not equal to zero"<<endl;
 }
