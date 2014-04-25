@@ -28,6 +28,7 @@ void testStack(Mat& binary, string dataDir)
         for(int x=0;x<binary.cols;x++)
         {
             pix.pt=Point(x,y);
+            pixelInBounds(binary, pix.pt);
             pixPtr=rowPtr+(x*channels);
             pix.val=Scalar(*pixPtr,*(pixPtr + 1),*(pixPtr + 2),0.0f);
             s.push(pix);
@@ -41,8 +42,9 @@ void testStack(Mat& binary, string dataDir)
     for(long i=0;i<nPix;i++)
     {
         PIXEL pix=s.pop();
+        pixelInBounds(test, pix.pt);
         //setPixel3C(pix, test);
-        setPixel1C(pix, test);
+        setPixel1C(test, pix);
         if(DEBUG)
             printf("Popped pixel(%d,%d): %0.0f,%0.0f,%0.0f,%0.0f\n",pix.pt.x,pix.pt.y,pix.val[0],pix.val[1],pix.val[2],pix.val[3]);
     }

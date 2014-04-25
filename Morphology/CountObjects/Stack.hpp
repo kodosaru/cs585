@@ -63,6 +63,21 @@ class Stack {
         }
     }
     
+    int clear()
+    {
+        if(top==-1)
+        {
+            if(DEBUG)
+                std::cout<<"Error: The stack is already empty"<<std::endl;
+            return 1;
+        }
+        else
+        {
+            top=-1;
+            return 0;
+        }
+    }
+    
     void push(T inVal) {
         if(isFull())
         {
