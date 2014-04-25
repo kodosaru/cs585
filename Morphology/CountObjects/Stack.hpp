@@ -12,6 +12,7 @@
 #ifndef DEBUG
     #define DEBUG 1
 #endif
+#define DEBUG 0
 
 template <class T>
 class Stack {
@@ -70,24 +71,13 @@ class Stack {
         else
         {
             stack[++top]=inVal;
-            if(DEBUG)
-                std::cout<<"stack["<<top<<"]="<<stack[top]<<" added successfully"<<std::endl;
         }
     }
     
     T pop()
     {
-        if(isEmpty())
-        {
-            return (T)NULL;
-        }
-        else
-        {
-            if(DEBUG)
-                std::cout<<"stack["<<top<<"]="<<stack[top]<<" deleted successfully"<<std::endl;
-            top=top-1;
-            return stack[top+1];
-        }
+        top=top-1;
+        return stack[top+1];
     }
     
     void print()

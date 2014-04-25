@@ -23,5 +23,13 @@
 #include <string>
 #include <set>
 
+struct pixel
+{
+    cv::Point pt;
+    cv::Scalar val;
+};
+typedef struct pixel PIXEL;
+inline void setPixel1C(PIXEL pixel, cv::Mat img);
+inline void setPixel3C(PIXEL pixel, cv::Mat img);
 
 #endif /* defined(__FloodFill__FloodFillMethods__) */

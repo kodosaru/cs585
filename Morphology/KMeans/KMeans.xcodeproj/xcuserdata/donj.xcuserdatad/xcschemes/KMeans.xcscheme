@@ -63,7 +63,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "foregroundYCrCB"
+            argument = "foregroundYCrCb"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -43,8 +43,8 @@ int main( int argc, char* argv[] )
         loadMat(centers, dataDir+"centers."+ss.str()+".bin");
     for(int i=0;i<centers.rows;i++)
         printf("Before Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
-    TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 20, 1.0);
-    kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 12, KMEANS_USE_INITIAL_LABELS, centers);
+    TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
+    kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 3, KMEANS_USE_INITIAL_LABELS, centers);
     for(int i=0;i<centers.rows;i++)
         printf("After Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
     if(bSaveState)
@@ -55,9 +55,7 @@ int main( int argc, char* argv[] )
     //createGraph2D(graph, points, labels, dataRange2D, clusterCount, sampleCount);
     cout<<"Create graph cluster"<<endl;
     pMouseInfo->graph.create(image.rows,image.cols,CV_8UC3);
-    mask.create(image.rows,image.cols,CV_8UC1);
     createGraph3D(pMouseInfo->graph, pMouseInfo->labels, clusterCount, dataDir, bSaveState);
-    cvtColor(pMouseInfo->graph, mask, CV_BGR2GRAY);
     char cn[256];
     sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Cluster",clusterCount,".png");
     imwrite(cn,pMouseInfo->graph);
@@ -66,11 +64,11 @@ int main( int argc, char* argv[] )
     imshow("Clusters", pMouseInfo->graph);
     setMouseCallback("Clusters", onMouse, (void*) pMouseInfo);
     
-    cout<<"Create labels gray scale"<<endl;
-    grayScale.create(image.rows,image.cols,CV_8UC1);
-    createGraph3DGrayScale(grayScale, pMouseInfo->labels, clusterCount);
-    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"GrayScale",clusterCount,".png");
-    imwrite(cn,grayScale);
+    //cout<<"Create labels gray scale"<<endl;
+    //grayScale.create(image.rows,image.cols,CV_8UC1);
+    //createGraph3DGrayScale(grayScale, pMouseInfo->labels, clusterCount);
+    //sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"GrayScale",clusterCount,".png");
+    //imwrite(cn,grayScale);
     //imshow("GrayScale", grayScale);
 
     printf("kmeans info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, pMouseInfo->labels.rows, pMouseInfo->labels.cols, centers.rows, centers.cols);
@@ -90,48 +88,59 @@ int main( int argc, char* argv[] )
             {
                 if(pMouseInfo->labels.at<int>(i)==*it)
                 {
-                    pMouseInfo->graph.data[i*channels] = pMouseInfo->graph.data[i*channels]/4;
-                    pMouseInfo->graph.data[i*channels + 1] = pMouseInfo->graph.data[i*channels + 1]/4;
-                    pMouseInfo->graph.data[i*channels + 2] = pMouseInfo->graph.data[i*channels + 2]/4;
+                    pMouseInfo->graph.data[i*channels] = 0;
+                    pMouseInfo->graph.data[i*channels + 1] = 0;
+                    pMouseInfo->graph.data[i*channels + 2] = 0;
                 }
                 ++it;
             }
         }
         // Do opening to get rid of speckles
-        erode(pMouseInfo->graph,pMouseInfo->graph,Mat());
-        dilate(pMouseInfo->graph,pMouseInfo->graph,Mat());
+        //erode(pMouseInfo->graph,pMouseInfo->graph,Mat());
+        //dilate(pMouseInfo->graph,pMouseInfo->graph,Mat());
 
         imshow("Clusters", pMouseInfo->graph);
         waitKey();
     }
     
     // Convert graph with defined background to object map
+    /*mask.create(image.rows,image.cols,CV_8UC1);
+    mask=Scalar(255);
     int channels=mask.channels();
+    imshow("mask1",mask);
     for(int i=0;i<pMouseInfo->labels.rows;i++)
     {
         for(set<int>::iterator it=pMouseInfo->completedClasses.begin();it!=pMouseInfo->completedClasses.end();)
         {
             if(pMouseInfo->labels.at<int>(i)==*it)
             {
-                mask.data[i*channels] = 0;
+                mask.data[i] = 0;
             }
             ++it;
         }
     }
+    imshow("mask1",mask);*/
+    
+    // Convert to grayscale
+    mask.create(image.rows,image.cols,CV_8UC1);
+    cvtColor(pMouseInfo->graph, mask, CV_BGR2GRAY);
+    imshow("Gray Scale",mask);
+    waitKey();
     
     // Do opening to get rid of speckles
     erode(mask,mask,Mat());
     dilate(mask,mask,Mat());
-    
-    // Do binary threshold
-    threshold(mask, mask, 0, 255, 0);
-    imshow("Mask", mask);
-    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Binary",clusterCount,".png");
-    imwrite(cn,mask);
-    
+    imshow("Gray Scale",mask);
     waitKey();
     
-    vector<vector<Scalar>> objects;
+     // Do binary threshold
+    threshold(mask, mask, 0, 255, 0);
+    imshow("Mask", mask);
+    waitKey();
+    
+    // Convert float element to uchar
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Binary",clusterCount,".png");
+    imwrite(cn,mask);
     
     return 0;
 }
