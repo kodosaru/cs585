@@ -34,7 +34,7 @@ struct pixel
 typedef struct pixel PIXEL;
 void testStack(cv::Mat& binary, cv::string dataDir);
 
-void floodFill(cv::Mat& image, cv::Mat& regions);
+void floodFill(cv::Mat& image, cv::Mat& regions, unsigned short& nRegions, cv::vector<cv::vector<PIXEL>*> regionLists);
 void adjustContrastBrightness(cv::Mat& image, cv::Mat& new_image, int beta, double alpha);
 
 inline void setPixel_8UC1(PIXEL pixel, cv::Mat& image)

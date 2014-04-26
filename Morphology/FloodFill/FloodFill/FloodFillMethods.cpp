@@ -23,7 +23,7 @@ using namespace cv;
 //»                 Stack.push(neighbor)!
 
 // Begin flood fill algorithm (depthFirstTransversal)
-void floodFill(Mat& image, Mat& regions)
+void floodFill(Mat& image, Mat& regions, unsigned short& nRegion, vector<vector<PIXEL>*> regionLists)
 {
     if(image.channels()>1 && image.elemSize()!=8)
     {
@@ -37,9 +37,8 @@ void floodFill(Mat& image, Mat& regions)
     }
     regions=Scalar(0);
     Stack<PIXEL> s((int)image.rows*image.cols);
-    unsigned short region=0;
-    vector<int> regionCount;
-    regionCount.push_back(0);
+    nRegion=0;
+    unsigned long nRegionPixels;
     PIXEL imagePixel, neighborPixel, regionsPixel;
     
     for(int y=0;y<image.rows;y++)
@@ -64,15 +63,18 @@ void floodFill(Mat& image, Mat& regions)
                 s.push(imagePixel);
                 
                 // Increment region counter
-                region++;
-                regionCount.push_back(0);
-                cout<<"Starting region "<<(unsigned short)region<<" transversal"<<endl;
+                nRegion++;
+                nRegionPixels=0;
+                regionLists.push_back(new vector<PIXEL>);
+                
+                cout<<"Starting region "<<nRegion<<" transversal"<<endl;
                 
                 // Define the regions map pixel value and set
-                imagePixel.val[0]=region;
+                nRegionPixels++;
+                imagePixel.val[0]=nRegion;
                 setPixel_16UC1(imagePixel,regions);
-                regionCount[region-1]++;
-                //printf("Mark pixel#%d(%d,%d)\n",regionCount[region-1],imagePixel.pt.x,imagePixel.pt.y);
+                regionLists[nRegion-1]->push_back(imagePixel);
+                //printf("Mark pixel(%d,%d)=%0.0f\n",imagePixel.pt.x,imagePixel.pt.y,imagePixel.val[0]);
                 
                 // Begin recursion through region of image pixel
                 while(!s.isEmpty())
@@ -109,10 +111,11 @@ void floodFill(Mat& image, Mat& regions)
                                         s.push(neighborPixel);
                                         
                                         // Define the regions map pixel value and set
-                                        neighborPixel.val[0]=region;
+                                        nRegionPixels++;
+                                        neighborPixel.val[0]=nRegion;
                                         setPixel_16UC1(neighborPixel,regions);
-                                        regionCount[region-1]++;
-                                        //printf("Mark pixel#%d(%d,%d)\n",regionCount[region-1],neighborPixel.pt.x,neighborPixel.pt.y);
+                                        regionLists[nRegion-1]->push_back(neighborPixel);
+                                        //printf("Mark pixel(%d,%d)=%0.0f\n",neighborPixel.pt.x,neighborPixel.pt.y,neighborPixel.val[0]);
                                     }
                                 }
                             } // End in bounds check
@@ -120,16 +123,11 @@ void floodFill(Mat& image, Mat& regions)
                     } // End neighborhood column transversal
                 } // End of region transversal
                 
-                if(region>0)
-                    cout<<"Ending region "<<(unsigned short)region<<" count:"<<regionCount[region-1]<<endl;
+                cout<<"Ending region "<<nRegion<<" count:"<<nRegionPixels<<endl;
                 
             } // End of check if push new pixel or skip if already in other region
         } // End of image row transversal
     } // End of image column transversal
-    
-    if(region>0)
-        cout<<"Ending region "<<(unsigned short)region<<" count:"<<regionCount[region-1]<<endl;
-    
 } // End of flood fill function
 
 void adjustContrastBrightness(Mat& image, Mat& new_image, int beta, double alpha)

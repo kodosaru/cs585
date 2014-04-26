@@ -12,7 +12,6 @@
 #ifndef DEBUG
     #define DEBUG 1
 #endif
-#define DEBUG 0
 
 template <class T>
 class Stack {
@@ -39,8 +38,6 @@ class Stack {
     {
         if(top==(size-1))
         {
-            if(DEBUG)
-                std::cout<<"Error: The stack is full"<<std::endl;
             return 1;
         }
         else
@@ -53,8 +50,6 @@ class Stack {
     {
         if(top==-1)
         {
-            if(DEBUG)
-                std::cout<<"Error: The stack is empty"<<std::endl;
             return 1;
         }
         else
@@ -96,8 +91,18 @@ class Stack {
     
     T pop()
     {
-        top=top-1;
-        return stack[top+1];
+        T bad;
+        if(top>=0)
+        {
+            top=top-1;
+            return stack[top+1];
+        }
+        else
+        {
+            if(DEBUG)
+                std::cout<<"Error: The stack is already empty"<<std::endl;
+            return bad;
+        }
     }
     
     void print()
@@ -129,12 +134,14 @@ class Stack {
         srand((uint)time(NULL));
         std::cout<<"Begin demo..."<<std::endl;
         
-        std::cout<<std::endl<<"-->Add "<<size<<" items to the stack"<<std::endl;
+        std::cout<<std::endl<<"-->Add "<<size<<" random integers to the stack"<<std::endl;
         for(int i=0;i<size;i++)
         {
             push(rand() % 10);
         }
         
+        std::cout<<std::endl<<"-->Number of elements on the stack equals "<<count()<<std::endl;
+
         std::cout<<std::endl<<"-->Print the stack"<<std::endl;
         print();
         
@@ -147,11 +154,25 @@ class Stack {
             pop();
         }
         
-        std::cout<<std::endl<<"-->Print the stack"<<std::endl;
-        print();
+        std::cout<<std::endl<<"-->Number of elements on the stack equals "<<count()<<std::endl;
         
         std::cout<<std::endl<<"-->Try to pop an element from an empty stack"<<std::endl;
         pop();
+        
+        std::cout<<std::endl<<"-->Add "<<size<<" random integers to the stack"<<std::endl;
+        for(int i=0;i<size;i++)
+        {
+            push(rand() % 10);
+        }
+        std::cout<<std::endl<<"-->Number of elements on the stack equals "<<count()<<std::endl;
+        
+        std::cout<<std::endl<<"-->Print the stack"<<std::endl;
+        print();
+
+        std::cout<<std::endl<<"-->Clear the stark with clear()"<<std::endl;
+        clear();
+        
+        std::cout<<std::endl<<"-->Number of elements on the stack equals "<<count()<<std::endl;
         
         std::cout<<std::endl<<"End of demo"<<std::endl;
     }
