@@ -17,36 +17,28 @@ void testStack(Mat& binary, string dataDir)
     imwrite(dataDir+"outbinary.png",binary);
     long int nPix=binary.rows*binary.cols;
     Stack<PIXEL> s((int)nPix);
-    uchar *rowPtr;
-    uchar *pixPtr;
-    pixel pix;
+    PIXEL pixel;
     int channels=binary.channels();
     cout<<"Begin pushing and popping all pixels in binary image onto stack"<<endl;
     for(int y=0;y<binary.rows;y++)
     {
-        rowPtr=binary.ptr<uchar>(y);
         for(int x=0;x<binary.cols;x++)
         {
-            pix.pt=Point(x,y);
-            pixelInBounds(binary, pix.pt);
-            pixPtr=rowPtr+(x*channels);
-            pix.val=Scalar(*pixPtr,*(pixPtr + 1),*(pixPtr + 2),0.0f);
-            s.push(pix);
-            if(DEBUG)
-                printf("Pushed pixel(%d,%d): %0.0f,%0.0f,%0.0f,%0.0f\n",pix.pt.x,pix.pt.y,pix.val[0],pix.val[1],pix.val[2],pix.val[3]);
+            pixel.pt=Point(x,y);
+            pixelInBounds(binary, pixel.pt);
+            getPixel_8UC1(binary, pixel);
+            s.push(pixel);
+            printf("Pushed pixel(%d,%d):(%0.0f,%0.0f,%0.0f,%0.0f)\n",pixel.pt.x,pixel.pt.y,pixel.val[0],pixel.val[1],pixel.val[2],pixel.val[3]);
         }
     }
-    //Mat test(binary.rows,binary.cols,CV_8UC3);
     Mat test(binary.rows,binary.cols,CV_8UC1);
     channels=test.channels();
     for(long i=0;i<nPix;i++)
     {
-        PIXEL pix=s.pop();
-        pixelInBounds(test, pix.pt);
-        //setPixel3C(pix, test);
-        setPixel1C(test, pix);
-        if(DEBUG)
-            printf("Popped pixel(%d,%d): %0.0f,%0.0f,%0.0f,%0.0f\n",pix.pt.x,pix.pt.y,pix.val[0],pix.val[1],pix.val[2],pix.val[3]);
+        pixel=s.pop();
+        printf("Popped pixel(%d,%d)(%0.0f,%0.0f,%0.0f,%0.0f)\n",pixel.pt.x,pixel.pt.y,pixel.val[0],pixel.val[1],pixel.val[2],pixel.val[3]);
+        pixelInBounds(test, pixel.pt);
+        setPixel_8UC1(pixel,test);
     }
     std::cout<<"End of pushing and popping all pixels in binary image onto stack"<<endl;
     imshow("test",test);

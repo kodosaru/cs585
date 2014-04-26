@@ -78,6 +78,11 @@ class Stack {
         }
     }
     
+    int count()
+    {
+        return top+1;
+    }
+    
     void push(T inVal) {
         if(isFull())
         {

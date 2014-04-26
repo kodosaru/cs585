@@ -134,7 +134,7 @@ int main( int argc, char* argv[] )
     waitKey();
     
      // Do binary threshold
-    threshold(mask, mask, 0, 255, 0);
+    threshold(mask, mask, 0, 255, THRESH_BINARY);
     imshow("Mask", mask);
     waitKey();
     

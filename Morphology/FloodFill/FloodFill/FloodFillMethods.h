@@ -28,28 +28,104 @@
 
 struct pixel
 {
-    cv::Point pt;
-    cv::Scalar val;
+    cv::Point pt=cv::Point(-INT_MAX,-INT_MAX);
+    cv::Scalar val=cv::Scalar(-FLT_MAX,-FLT_MAX,-FLT_MAX,-FLT_MAX);
 };
 typedef struct pixel PIXEL;
 void testStack(cv::Mat& binary, cv::string dataDir);
 
-inline void setPixel1C(cv::Mat img, PIXEL pixel)
+inline void setPixel_8UC1(PIXEL pixel, cv::Mat& image)
 {
-    uchar *rowPtr=img.ptr<uchar>(pixel.pt.y);
-    rowPtr[pixel.pt.x]=(uchar)pixel.val[0];
-    if(DEBUG && pixel.val[3] != 0.0f)
+    // pixel -> image
+    // Set the pixel in "image" at same (x,y) to same value as "pixel"
+    if(image.type()!= CV_8UC1)
+    {
+        std::cout<<"Image must be a CV_8UC1 type";
+        return;
+    }
+    if(!(pixel.val[1] == 0.0f && pixel.val[2] == 0.0f && pixel.val[3] == 0.0f))
+        std::cout<<"Scalar[1,2 or 3] not equal to zero"<<std::endl;
+    uchar *rowPtr=image.ptr<uchar>(pixel.pt.y);
+    rowPtr[pixel.pt.x]=pixel.val[0];
+}
+
+inline void getPixel_8UC1(cv::Mat& image, PIXEL& pixel)
+{
+    // image -> pixel
+    // get the pixel in "image" at same (x,y) and set "pixel" to same value
+    if(image.type()!= CV_8UC1)
+    {
+        std::cout<<"Image must be a CV_8UC1 type";
+        return;
+    }
+    uchar *rowPtr=image.ptr<uchar>(pixel.pt.y);
+    pixel.val[0]=(float)rowPtr[pixel.pt.x];
+    pixel.val[1]=0.0f;
+    pixel.val[2]=0.0f;
+    pixel.val[3]=0.0f;
+}
+
+inline void setPixel_16UC1(PIXEL pixel, cv::Mat& image)
+{
+    // pixel -> image
+    // Set the pixel in "image" at same (x,y) to same value as "pixel"
+    if(image.type()!= CV_16UC1)
+    {
+        std::cout<<"Image must be a CV_16UC1 type";
+        return;
+    }
+    if(!(pixel.val[1] == 0.0f && pixel.val[2] == 0.0f && pixel.val[3] == 0.0f))
+        std::cout<<"Scalar[1,2 or 3] not equal to zero"<<std::endl;
+    unsigned short *rowPtr=image.ptr<unsigned short>(pixel.pt.y);
+    rowPtr[pixel.pt.x]=pixel.val[0];
+}
+
+inline void getPixel_16UC1(cv::Mat& image, PIXEL& pixel)
+{
+    // image -> pixel
+    // get the pixel in "image" at same (x,y) and set "pixel" to same value
+    if(image.type()!= CV_16UC1)
+    {
+        std::cout<<"Image must be a CV_16UC1 type";
+        return;
+    }
+    unsigned short *rowPtr=image.ptr<unsigned short>(pixel.pt.y);
+    pixel.val[0]=(float)rowPtr[pixel.pt.x];
+    pixel.val[1]=0.0f;
+    pixel.val[2]=0.0f;
+    pixel.val[3]=0.0f;
+}
+
+inline void setPixel_8UC3(PIXEL pixel, cv::Mat& image)
+{
+    // Set the pixel in "image" at same (x,y) to same value as "pixel"
+    if(image.type()!= CV_8UC3)
+    {
+        std::cout<<"Image must be a CV_8UC3 type";
+        return;
+    }
+    uchar *rowPtr=image.ptr<uchar>(pixel.pt.y);
+    rowPtr[pixel.pt.x * 3]=pixel.val[0];
+    rowPtr[pixel.pt.x * 3 + 1]=pixel.val[1];
+    rowPtr[pixel.pt.x * 3 + 2]=pixel.val[2];
+    if(pixel.val[3] != 0.0f)
         std::cout<<"Scalar[3] not equal to zero"<<std::endl;
 }
 
-inline void setPixel3C(cv::Mat img, PIXEL pixel)
+inline void getPixel_8UC3(cv::Mat& image, PIXEL& pixel)
 {
-    uchar *rowPtr=img.ptr<uchar>(pixel.pt.y);
-    rowPtr[pixel.pt.x * 3]=(uchar)pixel.val[0];
-    rowPtr[pixel.pt.x * 3 + 1]=(uchar)pixel.val[1];
-    rowPtr[pixel.pt.x * 3 + 2]=(uchar)pixel.val[2];
-    if(DEBUG && pixel.val[3] != 0.0f)
-        std::cout<<"Scalar[3] not equal to zero"<<std::endl;
+    // image -> pixel
+    // get the pixel in "image" at same (x,y) and set "pixel" to same value
+    if(image.type()!= CV_8UC3)
+    {
+        std::cout<<"Image must be a CV_8UC3 type";
+        return;
+    }
+    uchar *rowPtr=image.ptr<uchar>(pixel.pt.y);
+    pixel.val[0]=(float)rowPtr[pixel.pt.x * 3];
+    pixel.val[1]=(float)rowPtr[pixel.pt.x * 3 + 1];
+    pixel.val[2]=(float)rowPtr[pixel.pt.x * 3 + 2];
+    pixel.val[3]=0.0f;
 }
 
 inline bool pixelInBounds(cv::Mat& img, cv::Point pt)
@@ -60,43 +136,6 @@ inline bool pixelInBounds(cv::Mat& img, cv::Point pt)
         return false;
     else
         return true;
-}
-
-inline bool neighborsInBound(cv::Mat& img, cv::Point pt, int nWay)
-{
-    cv::Point tpt=pt;
-    if(nWay==4 || nWay==8)
-    {
-        tpt=cv::Point(pt.x-1,pt.y);
-        if(!pixelInBounds(img,tpt))
-            return false;
-        tpt=cv::Point(pt.x+1,pt.y);
-        if(!pixelInBounds(img,tpt))
-            return false;
-        tpt=cv::Point(pt.x,pt.y-1);
-        if(!pixelInBounds(img,tpt))
-            return false;
-        tpt=cv::Point(pt.x,pt.y-1);
-        if(!pixelInBounds(img,tpt))
-            return false;
-    }
-    if(nWay==8)
-    {
-        tpt=cv::Point(pt.x-1,pt.y+1);
-        if(!pixelInBounds(img,tpt))
-            return false;
-        tpt=cv::Point(pt.x+1,pt.y+1);
-        if(!pixelInBounds(img,tpt))
-            return false;
-        tpt=cv::Point(pt.x-1,pt.y-1);
-        if(!pixelInBounds(img,tpt))
-            return false;
-        tpt=cv::Point(pt.x+1,pt.y-1);
-        if(!pixelInBounds(img,tpt))
-            return false;
-    }
-    // If pixel passes all of the tests, its in bounds
-    return true;
 }
 
 #endif /* defined(__FloodFill__FloodFillMethods__) */
