@@ -1,4 +1,4 @@
-//
+ //
 //  Methods.cpp
 //  KMeans
 //
@@ -18,19 +18,18 @@ using namespace cv;
 using namespace std;
 namespace fs = boost::filesystem;
 
-void kMeansCustom(bool bSaveState, string fileName, int maxClusters, int& clusterCount)
+void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, int maxClusters, int& clusterCount)
 {
     MOUSEINFO mouseInfo,*pMouseInfo;
     pMouseInfo=&mouseInfo;
-    string dataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
     Mat points,centers,grayScale,mask;
     clusterCount = 0;
     unsigned long sampleCount = 0;
-    bSaveState=false;
 
     // Generate image data
     Mat image = imread(dataDir+fileName+".png");
-    imshow("Image",image);
+    imshow("Input to KMeans",image);
+    //waitKey();
     int ucharMax=pow(2,sizeof(uchar)*8) - 1;
     Point3i dataRange3D(ucharMax,ucharMax,ucharMax);
     cout<<"Fill points array"<<endl;
@@ -40,57 +39,77 @@ void kMeansCustom(bool bSaveState, string fileName, int maxClusters, int& cluste
     cout<<"Perform k-means clustering"<<endl;
     ostringstream ss;
     ss<<clusterCount;
-    if(!bSaveState)
+    
+    // User wants to define new background classes
+    if(bSaveState)
+    {
+        TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
+        kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 3, KMEANS_PP_CENTERS, centers);
+        saveMat(centers, dataDir+"centers."+ss.str()+".bin");
+    }
+    // User wants to use already defined background classes
+    else
+    {
         loadMat(centers, dataDir+"centers."+ss.str()+".bin");
-    for(int i=0;i<centers.rows;i++)
-        printf("Before Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
-    TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
-    kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 3, KMEANS_USE_INITIAL_LABELS, centers);
+        for(int i=0;i<centers.rows;i++)
+            printf("Before Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
+        TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
+        kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 3, KMEANS_PP_CENTERS, centers);
+    }
     for(int i=0;i<centers.rows;i++)
         printf("After Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
-    if(bSaveState)
-        saveMat(centers, dataDir+"centers."+ss.str()+".bin");
     
     // Display data clusters
     cout<<"Create graph cluster"<<endl;
     pMouseInfo->graph.create(image.rows,image.cols,CV_8UC3);
     createGraph3D(pMouseInfo->graph, pMouseInfo->labels, clusterCount, dataDir, bSaveState);
     char cn[256];
-    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"Cluster",clusterCount,".png");
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"clusters",clusterCount,".png");
     imwrite(cn,pMouseInfo->graph);
-    
-    // Show graph and start defining background
-    imshow("Clusters", pMouseInfo->graph);
-    setMouseCallback("Clusters", onMouse, (void*) pMouseInfo);
-    
-    printf("kmeans info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, pMouseInfo->labels.rows, pMouseInfo->labels.cols, centers.rows, centers.cols);
-    
+    imshow("Clusters",pMouseInfo->graph);
     //waitKey();
-    if(bSaveState)
+    
+   if(bSaveState)
     {
+        // Show graph and start defining background
+        setMouseCallback("Clusters", onMouse, (void*) pMouseInfo);
+        
+        // Wait until the user is done defining the background classses
+        int retKey;
+        while(true)
+        {
+            retKey = waitKey(33);
+            if( retKey == 'q' || retKey == 'Q' || retKey == 27)
+                break;
+        }
+
         saveCompletedClasses(pMouseInfo->completedClasses, dataDir+"completedClasses."+ss.str()+".bin");
     }
-    else
+    
+    // Reload graph (clusters image) to erase red circles and remove completed background classes
+    pMouseInfo->graph=imread(cn);
+    loadCompletedClasses(pMouseInfo->completedClasses, dataDir+"completedClasses."+ss.str()+".bin");
+    int channels=pMouseInfo->graph.channels();
+    for(int i=0;i<pMouseInfo->labels.rows;i++)
     {
-        loadCompletedClasses(pMouseInfo->completedClasses, dataDir+"completedClasses."+ss.str()+".bin");
-        int channels=pMouseInfo->graph.channels();
-        for(int i=0;i<pMouseInfo->labels.rows;i++)
+        for(set<int>::iterator it=pMouseInfo->completedClasses.begin();it!=pMouseInfo->completedClasses.end();)
         {
-            for(set<int>::iterator it=pMouseInfo->completedClasses.begin();it!=pMouseInfo->completedClasses.end();)
+            if(pMouseInfo->labels.at<int>(i)==*it)
             {
-                if(pMouseInfo->labels.at<int>(i)==*it)
-                {
-                    pMouseInfo->graph.data[i*channels] = 0;
-                    pMouseInfo->graph.data[i*channels + 1] = 0;
-                    pMouseInfo->graph.data[i*channels + 2] = 0;
-                }
-                ++it;
+                pMouseInfo->graph.data[i*channels] = 0;
+                pMouseInfo->graph.data[i*channels + 1] = 0;
+                pMouseInfo->graph.data[i*channels + 2] = 0;
             }
+            ++it;
         }
-        
-        imshow("Clusters", pMouseInfo->graph);
-        //waitKey();
     }
+    
+    // Show final result after background removed
+    printf("K-means info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, pMouseInfo->labels.rows, pMouseInfo->labels.cols, centers.rows, centers.cols);
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"clustersMinusBackground",clusterCount,".png");
+    imwrite(cn,pMouseInfo->graph);
+    imshow("Desired Clusters", pMouseInfo->graph);
+    waitKey();
     
     // Convert to grayscale
     mask.create(image.rows,image.cols,CV_8UC1);
@@ -100,6 +119,8 @@ void kMeansCustom(bool bSaveState, string fileName, int maxClusters, int& cluste
     
     // Do opening to get rid of speckles
     erode(mask,mask,Mat());
+    Mat dilateElement(5,5,CV_8UC1);
+    dilateElement=Scalar(255,255,255);
     dilate(mask,mask,Mat());
     imshow("Gray Scale",mask);
     //waitKey();

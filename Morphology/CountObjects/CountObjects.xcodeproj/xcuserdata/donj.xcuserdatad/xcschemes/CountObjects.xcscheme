@@ -59,7 +59,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "foregroundYCrCb"
+            argument = "DSC02105.JPG"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "outputYCrCb"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

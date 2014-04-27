@@ -3,6 +3,7 @@
 //  CountObjects
 //
 //  Created by Don Johnson on 4/26/14.
+//  Copyright (c) 2014 Donald Johnson. All rights reserved.
 //
 //  From http://en.wikipedia.org/wiki/Image_moment
 

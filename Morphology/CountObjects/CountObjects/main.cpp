@@ -21,34 +21,49 @@ using namespace cv;
 
 int main(int argc, const char * argv[])
 {
-    string dataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
+    // Input arguments
+    // 0 program name
+    // 1 full input file name with extension
+    // 2 output file name without extension used to save intermiediate products
+    // 3 boolen whether to save k-means state, background classes and class palette
+    // 4 maximum number k-means classes to use
     
-    // Read in program arguments
-    if(argc!=4)
+    string inputDataDir="/Users/donj/workspace/cs585/Morphology/Data/Input/";
+    string outputDataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
+    
+    if(argc!=5)
     {
         cout<<"Incorrect number of program arguments"<<endl;
         return 1;
     }
-    string fileName=argv[1];
     
+    // Read in program arguments
+    string inputFullFileName=argv[1];
+    string outputFileName=argv[2];
+    Mat input;
+    if(readInImage(input, inputDataDir, inputFullFileName, outputDataDir, outputFileName, 1.0/3.0))
+    {
+        cout<<"Unable to read input file "<<inputDataDir+inputFullFileName<<endl;
+        return 1;        
+    }
     bool bSaveState;
-    if(strcmp(argv[2],"true")==0)
+    if(strcmp(argv[3],"true")==0)
         bSaveState=true;
-    else if(strcmp(argv[2],"false")==0)
+    else if(strcmp(argv[3],"false")==0)
         bSaveState=false;
     else
     {
         cout<<"You must specify whether to save the state of the k-means classification"<<endl;
     }
-    int maxClusters=atoi(argv[3]);
+    int maxClusters=atoi(argv[4]);
     
     // Perform k-means classfication
     int clusterCount=0;
-    kMeansCustom(bSaveState, fileName, maxClusters, clusterCount);
+    kMeansCustom(bSaveState, outputDataDir, outputFileName, maxClusters, clusterCount);
 
     // Set up flood fill segmentation
     char cn[256];
-    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Binary",clusterCount,".png");
+    sprintf(cn,"%s%s%s%d%s",outputDataDir.c_str(),outputFileName.c_str(),"Binary",clusterCount,".png");
     Mat binary=imread(cn,CV_LOAD_IMAGE_GRAYSCALE);
     imshow("Binary",binary);
     
@@ -66,20 +81,26 @@ int main(int argc, const char * argv[])
     floodFill(binary, regions, nRegions, regionLists);
     
     // Extract a list of object candiate blobs and the list of pixels in each
-    extractblobs(regions, nRegions, regionLists, nBlobs, blobLists, dataDir);
+    extractblobs(regions, nRegions, regionLists, nBlobs, blobLists, outputDataDir);
     
     // Calculate centroids of blobs
-    Mat tempRegions=imread(dataDir+"regions.png",CV_8UC1);
+    Mat tempRegions=imread(outputDataDir+"regions.png",CV_8UC1);
     for(int i=0;i<nBlobs;i++)
     {
         if(blobLists[i]!=nullptr)
         {
+            Scalar labelColor;
             Point centroid(xbar(*blobLists[i]), ybar(*blobLists[i]));
             stringstream ss;
             ss << i;
             string sVal = ss.str();
-            circle(tempRegions, centroid, 5, CV_RGB(0,0,0), FILLED);
-            putText(tempRegions, sVal, Point(centroid.x-10,centroid.y-6),FONT_HERSHEY_SIMPLEX, 0.45, Scalar(30,30,30),1);
+            vector<PIXEL> blob=*blobLists[i];
+            if (blob[0].val[0]<=128)
+                labelColor=CV_RGB(180,180,180);
+            else
+                labelColor=CV_RGB(80,80,80);
+            circle(tempRegions, centroid, 5, labelColor, FILLED);
+            putText(tempRegions, sVal, Point(centroid.x-5,centroid.y-6),FONT_HERSHEY_SIMPLEX, 0.45, labelColor,1);
             cout<<"Centroid of blob["<<i<<"]: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
             //cout<<Mij(*blobLists[i], 1, 1) - xbar(*blobLists[i]) * Mij(*blobLists[i], 0, 1)<<endl;
             //Mij(v, 1, 1) - xbar(v) * Mij(v, 0, 1)
@@ -91,10 +112,13 @@ int main(int argc, const char * argv[])
             cout<<"Blob "<<i<<" has a null pointer"<<endl;
         }
     }
-    imshow("Regions",tempRegions);
-    waitKey();
     
     destroyRegionBlobLists(regionLists, blobLists);
+
+    sprintf(cn,"%s%s%s%d%s",outputDataDir.c_str(),outputFileName.c_str(),"Blobs",clusterCount,".png");
+    imwrite(cn,tempRegions);
+    imshow("Blobs",tempRegions);
+    waitKey();
     
     return 0;
 }

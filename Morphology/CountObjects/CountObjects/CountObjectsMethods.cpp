@@ -6,10 +6,31 @@
 //  Copyright (c) 2014 Donald Johnson. All rights reserved.
 //
 
+//opencv
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/video/background_segm.hpp>
+#include <opencv2/imgproc/types_c.h>
+#include <opencv2/imgproc/imgproc.hpp>
+//C
+#include <stdio.h>
+//C++
+#include <iostream>
+#include <sstream>
+//Boost
+#define BOOST_FILESYSTEM_NO_DEPRECATED
+#include "boost/filesystem/operations.hpp"
+#include "boost/filesystem/path.hpp"
+#include "boost/progress.hpp"
+// Mine
 #include "CountObjectsMethods.h"
 
-using namespace std;
+#define BLOB_MIN_PIX 1000
+#define BLOB_MAX_PIX 40000
+
 using namespace cv;
+using namespace std;
+namespace fs = boost::filesystem;
 
 void constructRegionBlobLists(vector<vector<PIXEL>*>& regionLists, vector<cv::vector<PIXEL>*>& blobLists)
 {
@@ -55,7 +76,7 @@ void extractblobs(Mat& regions, unsigned short& nRegion, vector<vector<PIXEL>*>&
     
     for(int i=0;i<nRegion;i++)
     {
-        if(regionLists[i]->size()<1000 || regionLists[i]->size()>30000)
+        if(regionLists[i]->size()<BLOB_MIN_PIX || regionLists[i]->size()>BLOB_MAX_PIX)
         {
             for(int j=0;j<regionLists[i]->size();j++)
             {
@@ -110,3 +131,91 @@ void extractblobs(Mat& regions, unsigned short& nRegion, vector<vector<PIXEL>*>&
     //waitKey();
 }
 
+int readInImage(Mat& image, string inputDataDir, string fullInputfileName, string outputDataDir, string outputFileName, float resizeFactor)
+{
+    Mat input = imread(inputDataDir+fullInputfileName);
+    namedWindow("Input");
+    if (input.empty())
+    {
+        cout << "Cannot open input image" << endl;
+        return 1;
+    }
+    resize(input,input,Size(input.cols * resizeFactor, input.rows * resizeFactor),0,0,INTER_LINEAR);
+    imshow("Input", input);
+    //waitKey();
+    
+    Mat ycrcb;
+    namedWindow("YCrCb");
+    cvtColor(input,ycrcb,CV_BGR2YCrCb);
+    imwrite(outputDataDir + outputFileName + ".png",ycrcb);
+    
+    //waitKey();
+    return 0;
+}
+
+unsigned long listFiles(string targetPath, vector<string>& fileNames)
+{
+    boost::progress_timer t( std::clog );
+    
+    fs::path full_path( fs::initial_path<fs::path>() );
+    full_path = fs::system_complete( fs::path( targetPath ) );
+    
+    unsigned long file_count = 0;
+    unsigned long dir_count = 0;
+    unsigned long other_count = 0;
+    unsigned long err_count = 0;
+    
+    if ( !fs::exists( full_path ) )
+    {
+        cout << "\nNot found: " << full_path.string() << std::endl;
+        return 1;
+    }
+    
+    if ( fs::is_directory( full_path ) )
+    {
+        cout << "\nIn directory: "
+        << full_path.string() << "\n\n";
+        fs::directory_iterator end_iter;
+        for ( fs::directory_iterator dir_itr( full_path );
+             dir_itr != end_iter;
+             ++dir_itr )
+        {
+            try
+            {
+                if ( fs::is_directory( dir_itr->status() ) )
+                {
+                    ++dir_count;
+                    std::cout << dir_itr->path().filename() << " [directory]\n";
+                }
+                else if ( fs::is_regular_file( dir_itr->status() ) )
+                {
+                    ++file_count;
+                    std::cout << dir_itr->path().filename() << "\n";
+                    fileNames.push_back(dir_itr->path().filename().string());
+                }
+                else
+                {
+                    ++other_count;
+                    std::cout << dir_itr->path().filename() << " [other]\n";
+                }
+                
+            }
+            catch ( const std::exception & ex )
+            {
+                ++err_count;
+                std::cout << dir_itr->path().filename() << " " << ex.what() << std::endl;
+            }
+        }
+        std::cout << "\n" << file_count << " files\n"
+        << dir_count << " directories\n"
+        << other_count << " others\n"
+        << err_count << " errors\n";
+    }
+    else // must be a file
+    {
+        ++file_count;
+        std::cout << "\nFound: " << full_path.string() << "\n";
+        fileNames.push_back(full_path.string());
+    }
+    return file_count;
+}
