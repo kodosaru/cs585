@@ -1108,32 +1108,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CountObjects/CountObjects/main.cpp"
-            timestampString = "420250041.588257"
+            filePath = "CountObjects/Moments.cpp"
+            timestampString = "420266361.442031"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CountObjects/CountObjects/main.cpp"
-            timestampString = "420250041.588257"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "main(int argc, const char * argv[])"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "etaij(vector&lt;PIXEL&gt; v, long i, long j)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -65,7 +65,7 @@ void kMeansCustom(bool bSaveState, string fileName, int maxClusters, int& cluste
     
     printf("kmeans info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, pMouseInfo->labels.rows, pMouseInfo->labels.cols, centers.rows, centers.cols);
     
-    waitKey();
+    //waitKey();
     if(bSaveState)
     {
         saveCompletedClasses(pMouseInfo->completedClasses, dataDir+"completedClasses."+ss.str()+".bin");
@@ -89,25 +89,25 @@ void kMeansCustom(bool bSaveState, string fileName, int maxClusters, int& cluste
         }
         
         imshow("Clusters", pMouseInfo->graph);
-        waitKey();
+        //waitKey();
     }
     
     // Convert to grayscale
     mask.create(image.rows,image.cols,CV_8UC1);
     cvtColor(pMouseInfo->graph, mask, CV_BGR2GRAY);
     imshow("Gray Scale",mask);
-    waitKey();
+    //waitKey();
     
     // Do opening to get rid of speckles
     erode(mask,mask,Mat());
     dilate(mask,mask,Mat());
     imshow("Gray Scale",mask);
-    waitKey();
+    //waitKey();
     
     // Do binary threshold
     threshold(mask, mask, 0, 255, THRESH_BINARY);
     imshow("Mask", mask);
-    waitKey();
+    //waitKey();
     
     // Convert float element to uchar
     sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"Binary",clusterCount,".png");

@@ -200,5 +200,5 @@ void testStack(Mat& binary, string dataDir)
     std::cout<<"End of pushing and popping all pixels in binary image onto stack"<<endl;
     imshow("test",test);
     imwrite(dataDir+"outtest.png",test);
-    waitKey();
+    // waitKey();
 }

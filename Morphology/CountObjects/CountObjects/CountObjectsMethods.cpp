@@ -107,6 +107,6 @@ void extractblobs(Mat& regions, unsigned short& nRegion, vector<vector<PIXEL>*>&
     
     imshow("Regions",tempRegions);
     imwrite(dataDir+"regions.png",tempRegions);
-    waitKey();
+    //waitKey();
 }
 

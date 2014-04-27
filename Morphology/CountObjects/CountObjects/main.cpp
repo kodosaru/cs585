@@ -11,6 +11,7 @@
 #include "Stack.hpp"
 #include "CountObjectsMethods.h"
 #include "KMeansMethods.h"
+#include "Moments.h"
 
 using namespace std;
 using namespace cv;
@@ -63,6 +64,26 @@ int main(int argc, const char * argv[])
     
     // Extract a list of object candiate blobs and the list of pixels in each
     extractblobs(regions, nRegions, regionLists, nBlobs, blobLists, dataDir);
+    
+    // Calculate centroids of blobs
+    Mat tempRegions=imread(dataDir+"regions.png",CV_8UC1);
+    for(int i=0;i<nBlobs;i++)
+    {
+        if(blobLists[i]!=nullptr)
+        {
+            cout<<"Centroid of blob["<<i<<"]: ("<<xbar(*blobLists[i])<<","<<ybar(*blobLists[i])<<")"<<endl;
+            cout<<Mij(*blobLists[i], 1, 1) - xbar(*blobLists[i]) * Mij(*blobLists[i], 0, 1)<<endl;
+            //Mij(v, 1, 1) - xbar(v) * Mij(v, 0, 1)
+            cout<<muij((*blobLists[i]), 1, 1)<<endl;
+            cout<<Mij(*blobLists[i], 1, 1) - ybar(*blobLists[i]) * Mij(*blobLists[i], 1, 0)<<endl;
+        }
+        else
+        {
+            cout<<"Blob "<<i<<" has a null pointer"<<endl;
+        }
+    }
+    imshow("Regions",tempRegions);
+    waitKey();
     
     destroyRegionBlobLists(regionLists, blobLists);
     
