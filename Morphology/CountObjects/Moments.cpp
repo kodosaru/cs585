@@ -18,6 +18,49 @@ using namespace std;
 #define POW2(val) (val * val)
 #define POW3(val) (val * val * val)
 
+// Orientaton Angle
+Mat* orientation(vector<PIXEL> v)
+{
+    Mat *m=new Mat(2,1,CV_64FC1);
+    double mup20 = muPrimeij(v, 2, 0);
+    double mup02 = muPrimeij(v, 0, 2);
+    if(mup20 == mup02)
+    {
+        cout<<"Orientation cannot be computed because muPrime20 equals muPrime02"<<endl;
+        m->at<double>(0,0) = -DBL_MAX;
+        m->at<double>(1,0) = -DBL_MAX;
+        return m;
+    }
+    // range -90 to 90 deg
+    m->at<double>(0,0) = 0.5 * atan( (2.0 * muPrimeij(v, 1, 1)) / (mup20 - mup02) );
+    m->at<double>(1,0) = 180.0/M_PI * m->at<double>(0,0);
+    return m;
+}
+
+// Eccentricity
+double eccentricity(vector<PIXEL> v)
+{
+    Mat m = *eigenvalueMatrix(v);
+    double lambda2 = m.at<double>(0,0);
+    double lambda1 = m.at<double>(1,0);
+    
+    return sqrt(1.0 - lambda2/lambda1);
+}
+
+// Eigenvalue Matrix
+Mat* eigenvalueMatrix(vector<PIXEL> v)
+{
+    Mat *m=new Mat(2,1,CV_64FC1);
+    double leftTerm = muPrimeij(v, 2, 0) + muPrimeij(v, 0, 2);
+    leftTerm /= 2.0;
+    double rightTerm = sqrt(4.0 * POW2(muPrimeij(v, 1, 1)) + POW2(muPrimeij(v, 2, 0) + muPrimeij(v, 0, 2)));
+    rightTerm /= 2.0;
+    m->at<double>(0,0) = leftTerm - rightTerm;
+    m->at<double>(1,0) = leftTerm + rightTerm;
+
+    return m;
+}
+
 // Covariance Matrix
 Mat* covarianceMatrix(vector<PIXEL> v)
 {

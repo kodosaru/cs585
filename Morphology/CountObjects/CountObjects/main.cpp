@@ -90,6 +90,12 @@ int main(int argc, const char * argv[])
     {
         if(blobLists[i]!=nullptr)
         {
+            // Test code for moments
+            //cout<<Mij(*blobLists[i], 1, 1) - xbar(*blobLists[i]) * Mij(*blobLists[i], 0, 1)<<endl;
+            //Mij(v, 1, 1) - xbar(v) * Mij(v, 0, 1)
+            //cout<<muij((*blobLists[i]), 1, 1)<<endl;
+            //cout<<Mij(*blobLists[i], 1, 1) - ybar(*blobLists[i]) * Mij(*blobLists[i], 1, 0)<<endl;
+
             Scalar labelColor;
             Point centroid(xbar(*blobLists[i]), ybar(*blobLists[i]));
             stringstream ss;
@@ -101,28 +107,39 @@ int main(int argc, const char * argv[])
             else
                 labelColor=CV_RGB(80,80,80);
             circle(tempRegions, centroid, 5, labelColor, FILLED);
-            putText(tempRegions, sVal, Point(centroid.x-5,centroid.y-6),FONT_HERSHEY_SIMPLEX, 0.45, labelColor,1);
-            cout<<endl<<"Centroid of blob["<<i<<"]: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
-            //cout<<Mij(*blobLists[i], 1, 1) - xbar(*blobLists[i]) * Mij(*blobLists[i], 0, 1)<<endl;
-            //Mij(v, 1, 1) - xbar(v) * Mij(v, 0, 1)
-            //cout<<muij((*blobLists[i]), 1, 1)<<endl;
-            //cout<<Mij(*blobLists[i], 1, 1) - ybar(*blobLists[i]) * Mij(*blobLists[i], 1, 0)<<endl;
-            Mat *covar= covarianceMatrix(*blobLists[i]);
-            cout<<"Covariance Matrix for blob "<<i<<endl;
+            putText(tempRegions, sVal, Point(centroid.x+4,centroid.y-1),FONT_HERSHEY_SIMPLEX, 0.45, labelColor,1);
+            cout<<endl<<"Blob["<<i<<"]"<<endl;
+            cout<<"Centroid of blob: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
+            Mat *covar = covarianceMatrix(*blobLists[i]);
+            cout<<"Covariance Matrix"<<i<<endl;
             cout<<"| "<<covar->at<double>(0,0)<<" "<<covar->at<double>(0,1)<<"|"<<endl;
             cout<<"| "<<covar->at<double>(1,0)<<" "<<covar->at<double>(1,1)<<"|"<<endl;
             Mat eval, evec;
-            bool retVal=eigen((*covar),eval,evec);
-            //cout<<"Eigen calc ret val: "<<retVal<<endl;
+            eigen((*covar),eval,evec);
             // Printing out column order and taking negative of eigenvectors like MATLAB
-            evec=-1*evec;
-            cout<<"Eigenvector Matrix for blob "<<i<<endl;
+            evec = -1.0 * evec;
+            cout<<"Eigenvector Matrix"<<i<<endl;
             cout<<"| "<<evec.at<double>(1,0)<<" "<<evec.at<double>(0,0)<<"|"<<endl;
             cout<<"| "<<evec.at<double>(1,1)<<" "<<evec.at<double>(0,1)<<"|"<<endl;
-            cout<<"Eigenvalue Matrix for blob "<<i<<endl;
+            cout<<"OpenCV Calc Eigenvalue Matrix"<<i<<endl;
             cout<<"| "<<eval.at<double>(1,0)<<" "<<0<<"|"<<endl;
             cout<<"| "<<0<<" "<<eval.at<double>(0,0)<<"|"<<endl;
-
+            evec = *eigenvalueMatrix(*blobLists[i]);
+            cout<<"Moment Calc Eigenvalue Matrix"<<i<<endl;
+            cout<<"| "<<eval.at<double>(1,0)<<" "<<0<<"|"<<endl;
+            cout<<"| "<<0<<" "<<eval.at<double>(0,0)<<"|"<<endl;
+            cout<<"Eccentricity: "<<eccentricity(*blobLists[i])<<endl;
+            Mat *orient = orientation(*blobLists[i]);
+            double angle = orient->at<double>(0,0);
+            cout<<"Orientation: "<<angle<<" rads"<<endl;
+            Scalar lineColor = CV_RGB(0,0,0);
+            int d = 40;
+            int deltaX = int(d * tan(angle) + 0.5);
+            circle(tempRegions, Point(centroid.x+deltaX,centroid.y-d), 2, lineColor, FILLED);
+            circle(tempRegions, Point(centroid.x-deltaX,centroid.y+d), 2, lineColor, FILLED);
+            line(tempRegions, Point(centroid.x+deltaX,centroid.y-d), Point(centroid.x-deltaX,centroid.y+d), lineColor);
+            orient->release();
+            covar->release();
         }
         else
         {
@@ -135,7 +152,7 @@ int main(int argc, const char * argv[])
     sprintf(cn,"%s%s%s%d%s",outputDataDir.c_str(),outputFileName.c_str(),"Blobs",clusterCount,".png");
     imwrite(cn,tempRegions);
     imshow("Blobs",tempRegions);
-    //waitKey();
+    waitKey();
     
     return 0;
 }

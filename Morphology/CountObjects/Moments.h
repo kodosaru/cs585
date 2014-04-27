@@ -16,6 +16,12 @@
 #define POW2(val) (val * val)
 #define POW3(val) (val * val * val)
 
+// Orientaton Angle
+cv::Mat* orientation(cv::vector<PIXEL> v);
+// Eccentricity
+double eccentricity(cv::vector<PIXEL> v);
+// Eigenvalue Matrix
+cv::Mat* eigenvalueMatrix(cv::vector<PIXEL> v);
 // Covariance Matrix
 cv::Mat* covarianceMatrix(cv::vector<PIXEL> v);
 // Central moments divided by sum of the pixel values M00
