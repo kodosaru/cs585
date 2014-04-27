@@ -130,7 +130,7 @@ void extractblobs(Mat& regions, int clusterCount, unsigned short& nRegion, vecto
     sprintf(cn,"%s%s%s%d%s",outputDataDir.c_str(),outputFileName.c_str(),"Regions",clusterCount,".png");
     imwrite(cn,tempRegions);
     imshow("Regions",tempRegions);
-    waitKey();
+    //waitKey();
 }
 
 int readInImage(Mat& image, string inputDataDir, string fullInputfileName, string outputDataDir, string outputFileName, float resizeFactor)

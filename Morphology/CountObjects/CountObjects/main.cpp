@@ -102,11 +102,27 @@ int main(int argc, const char * argv[])
                 labelColor=CV_RGB(80,80,80);
             circle(tempRegions, centroid, 5, labelColor, FILLED);
             putText(tempRegions, sVal, Point(centroid.x-5,centroid.y-6),FONT_HERSHEY_SIMPLEX, 0.45, labelColor,1);
-            cout<<"Centroid of blob["<<i<<"]: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
+            cout<<endl<<"Centroid of blob["<<i<<"]: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
             //cout<<Mij(*blobLists[i], 1, 1) - xbar(*blobLists[i]) * Mij(*blobLists[i], 0, 1)<<endl;
             //Mij(v, 1, 1) - xbar(v) * Mij(v, 0, 1)
             //cout<<muij((*blobLists[i]), 1, 1)<<endl;
             //cout<<Mij(*blobLists[i], 1, 1) - ybar(*blobLists[i]) * Mij(*blobLists[i], 1, 0)<<endl;
+            Mat *covar= covarianceMatrix(*blobLists[i]);
+            cout<<"Covariance Matrix for blob "<<i<<endl;
+            cout<<"| "<<covar->at<double>(0,0)<<" "<<covar->at<double>(0,1)<<"|"<<endl;
+            cout<<"| "<<covar->at<double>(1,0)<<" "<<covar->at<double>(1,1)<<"|"<<endl;
+            Mat eval, evec;
+            bool retVal=eigen((*covar),eval,evec);
+            //cout<<"Eigen calc ret val: "<<retVal<<endl;
+            // Printing out column order and taking negative of eigenvectors like MATLAB
+            evec=-1*evec;
+            cout<<"Eigenvector Matrix for blob "<<i<<endl;
+            cout<<"| "<<evec.at<double>(1,0)<<" "<<evec.at<double>(0,0)<<"|"<<endl;
+            cout<<"| "<<evec.at<double>(1,1)<<" "<<evec.at<double>(0,1)<<"|"<<endl;
+            cout<<"Eigenvalue Matrix for blob "<<i<<endl;
+            cout<<"| "<<eval.at<double>(1,0)<<" "<<0<<"|"<<endl;
+            cout<<"| "<<0<<" "<<eval.at<double>(0,0)<<"|"<<endl;
+
         }
         else
         {
@@ -119,7 +135,7 @@ int main(int argc, const char * argv[])
     sprintf(cn,"%s%s%s%d%s",outputDataDir.c_str(),outputFileName.c_str(),"Blobs",clusterCount,".png");
     imwrite(cn,tempRegions);
     imshow("Blobs",tempRegions);
-    waitKey();
+    //waitKey();
     
     return 0;
 }

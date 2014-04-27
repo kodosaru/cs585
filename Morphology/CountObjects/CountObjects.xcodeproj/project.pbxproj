@@ -62,6 +62,7 @@
 		72CA3A1618F457A1001401AB /* libopencv_video.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72CA39DD18F457A1001401AB /* libopencv_video.dylib */; };
 		72CA3A1918F457A1001401AB /* libopencv_videostab.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72CA39E018F457A1001401AB /* libopencv_videostab.dylib */; };
 		72CA3A1D18F45859001401AB /* CannyMethods.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CA3A1B18F45859001401AB /* CannyMethods.cpp */; };
+		72EA4B4C190DA11F00BBD5BC /* Eigen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72EA4B4A190DA11F00BBD5BC /* Eigen.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -141,6 +142,8 @@
 		72CA39E018F457A1001401AB /* libopencv_videostab.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_videostab.dylib; sourceTree = "<absolute>"; };
 		72CA3A1B18F45859001401AB /* CannyMethods.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CannyMethods.cpp; sourceTree = "<group>"; };
 		72CA3A1C18F45859001401AB /* CannyMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannyMethods.h; sourceTree = "<group>"; };
+		72EA4B4A190DA11F00BBD5BC /* Eigen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Eigen.cpp; sourceTree = "<group>"; };
+		72EA4B4B190DA11F00BBD5BC /* Eigen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Eigen.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,8 @@
 				72CA39A118F437A9001401AB /* CountObjects.1 */,
 				72CA3A1B18F45859001401AB /* CannyMethods.cpp */,
 				72CA3A1C18F45859001401AB /* CannyMethods.h */,
+				72EA4B4A190DA11F00BBD5BC /* Eigen.cpp */,
+				72EA4B4B190DA11F00BBD5BC /* Eigen.h */,
 			);
 			path = CountObjects;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				72951F28190C6CC400618A74 /* Archive.cpp in Sources */,
 				72951E9D190C5DE600618A74 /* CountObjectsMethods.cpp in Sources */,
 				72951F63190CA4C200618A74 /* Moments.cpp in Sources */,
+				72EA4B4C190DA11F00BBD5BC /* Eigen.cpp in Sources */,
 				72951EA0190C5DE600618A74 /* Stack.cpp in Sources */,
 				72CA3A1D18F45859001401AB /* CannyMethods.cpp in Sources */,
 				72951F29190C6CC400618A74 /* KMeansMethods.cpp in Sources */,

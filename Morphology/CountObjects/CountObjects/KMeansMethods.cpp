@@ -93,7 +93,7 @@ void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, in
     sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"ClustersNoBkgd",clusterCount,".png");
     imwrite(cn,pMouseInfo->graph);
     imshow("Desired Clusters", pMouseInfo->graph);
-    waitKey();
+    //waitKey();
     
     // Convert to grayscale
     mask.create(image.rows,image.cols,CV_8UC1);
