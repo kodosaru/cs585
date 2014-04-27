@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "extractblobs(cv::Mat&amp;, unsigned short&amp;, std::__1::vector&lt;std::__1::vector&lt;pixel, std::__1::allocator&lt;pixel&gt; &gt;*, std::__1::allocator&lt;std::__1::vector&lt;pixel, std::__1::allocator&lt;pixel&gt; &gt;*&gt; &gt;, int&amp;, std::__1::vector&lt;std::__1::vector&lt;pixel, std::__1::allocator&lt;pixel&gt; &gt;*, std::__1::allocator&lt;std::__1::vector&lt;pixel, std::__1::allocator&lt;pixel&gt; &gt;*&gt; &gt;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;):main.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "i">
+            </PersistentString>
+            <PersistentString
+               value = "regionsList[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "main:kmeans.cpp">
          <PersistentStrings>
             <PersistentString
@@ -70,15 +81,21 @@
          contextName = "main:main.cpp">
          <PersistentStrings>
             <PersistentString
+               value = "cn">
+            </PersistentString>
+            <PersistentString
+               value = "maxVal">
+            </PersistentString>
+            <PersistentString
                value = "argv[1]">
             </PersistentString>
             <PersistentString
                value = "argv[2]">
             </PersistentString>
-            <PersistentString
-               value = "cn">
-            </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "extractblobs(cv::Mat&amp;, unsigned short&amp;, std::__1::vector&lt;std::__1::vector&lt;pixel, std::__1::allocator&lt;pixel&gt; &gt;*, std::__1::allocator&lt;std::__1::vector&lt;pixel, std::__1::allocator&lt;pixel&gt; &gt;*&gt; &gt;, int&amp;, std::__1::vector&lt;std::__1::vector&lt;pixel, std::__1::allocator&lt;pixel&gt; &gt;*, std::__1::allocator&lt;std::__1::vector&lt;pixel, std::__1::allocator&lt;pixel&gt; &gt;*&gt; &gt;&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;):main.cpp">
       </ContextState>
       <ContextState
          contextName = "onMouse(int, int, int, int, void*):kmeans.cpp">

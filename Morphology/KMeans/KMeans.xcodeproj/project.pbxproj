@@ -35,7 +35,7 @@
 		721239491905691F00AC7A66 /* libboost_unit_test_framework.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7212392E1905691F00AC7A66 /* libboost_unit_test_framework.dylib */; };
 		7212394A1905691F00AC7A66 /* libboost_wave.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7212392F1905691F00AC7A66 /* libboost_wave.dylib */; };
 		7212394B1905691F00AC7A66 /* libboost_wserialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 721239301905691F00AC7A66 /* libboost_wserialization.dylib */; };
-		726678161902A12E00DFFE03 /* kmeans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 726678141902A12E00DFFE03 /* kmeans.cpp */; };
+		726678161902A12E00DFFE03 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 726678141902A12E00DFFE03 /* main.cpp */; };
 		7271479B1901DCDE00649CC6 /* KMeans.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7271479A1901DCDE00649CC6 /* KMeans.1 */; };
 		727147B31901DE4300649CC6 /* libopencv_calib3d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147A11901DE4300649CC6 /* libopencv_calib3d.dylib */; };
 		727147B41901DE4300649CC6 /* libopencv_contrib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727147A21901DE4300649CC6 /* libopencv_contrib.dylib */; };
@@ -101,8 +101,7 @@
 		7212392E1905691F00AC7A66 /* libboost_unit_test_framework.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_unit_test_framework.dylib; path = /usr/local/packages/boost_1_53_0/lib/libboost_unit_test_framework.dylib; sourceTree = "<absolute>"; };
 		7212392F1905691F00AC7A66 /* libboost_wave.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_wave.dylib; path = /usr/local/packages/boost_1_53_0/lib/libboost_wave.dylib; sourceTree = "<absolute>"; };
 		721239301905691F00AC7A66 /* libboost_wserialization.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_wserialization.dylib; path = /usr/local/packages/boost_1_53_0/lib/libboost_wserialization.dylib; sourceTree = "<absolute>"; };
-		726678141902A12E00DFFE03 /* kmeans.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kmeans.cpp; sourceTree = "<group>"; };
-		726678151902A12E00DFFE03 /* kmeans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kmeans.h; sourceTree = "<group>"; };
+		726678141902A12E00DFFE03 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		727147951901DCDE00649CC6 /* KMeans */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KMeans; sourceTree = BUILT_PRODUCTS_DIR; };
 		7271479A1901DCDE00649CC6 /* KMeans.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = KMeans.1; sourceTree = "<group>"; };
 		727147A11901DE4300649CC6 /* libopencv_calib3d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_calib3d.dylib; sourceTree = "<absolute>"; };
@@ -239,8 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				7271479A1901DCDE00649CC6 /* KMeans.1 */,
-				726678141902A12E00DFFE03 /* kmeans.cpp */,
-				726678151902A12E00DFFE03 /* kmeans.h */,
+				726678141902A12E00DFFE03 /* main.cpp */,
 				72941BAA1903F69600655514 /* KMeansMethods.cpp */,
 				72941BAB1903F69600655514 /* KMeansMethods.h */,
 				721239131905686800AC7A66 /* Archive.cpp */,
@@ -326,7 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72941BAC1903F69600655514 /* KMeansMethods.cpp in Sources */,
-				726678161902A12E00DFFE03 /* kmeans.cpp in Sources */,
+				726678161902A12E00DFFE03 /* main.cpp in Sources */,
 				721239151905686800AC7A66 /* Archive.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

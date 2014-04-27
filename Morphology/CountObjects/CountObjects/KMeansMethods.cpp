@@ -18,14 +18,13 @@ using namespace cv;
 using namespace std;
 namespace fs = boost::filesystem;
 
-void kMeansCustom(bool bSaveState, string fileName )
+void kMeansCustom(bool bSaveState, string fileName, int maxClusters, int& clusterCount)
 {
     MOUSEINFO mouseInfo,*pMouseInfo;
     pMouseInfo=&mouseInfo;
     string dataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
-    const int maxClusters = 20;
     Mat points,centers,grayScale,mask;
-    int clusterCount = 0;
+    clusterCount = 0;
     unsigned long sampleCount = 0;
     bSaveState=false;
 

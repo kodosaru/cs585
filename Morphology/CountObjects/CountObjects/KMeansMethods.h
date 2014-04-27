@@ -33,7 +33,7 @@ struct mouseInfo
 typedef struct mouseInfo MOUSEINFO;
 
 static void onMouse( int event, int x, int y, int /*flags*/, void* /*param*/ );
-void kMeansCustom(bool bSaveState, cv::string fileName );
+void kMeansCustom(bool bSaveState, std::string fileName, int maxClusters, int& clusterCount);
 void saveCompletedClasses(std::set<int>& completedClasses, std::string path);
 void loadCompletedClasses(std::set<int>& completedClasses, std::string path);
 void colorTabTest(int clusterCount, std::string dataDir);

@@ -1,82 +1,70 @@
 //
 //  main.cpp
+//  CountObjects
 //
-//  Created by Don Johnson on 1/29/14.
+//  Created by Don Johnson on 4/26/14.
 //  Copyright (c) 2014 Donald Johnson. All rights reserved.
 //
 
 #include <iostream>
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
-#include <stdlib.h>
-#include <stdio.h>
-#include "Methods.h"
+#include "FloodFillMethods.h"
+#include "Stack.hpp"
+#include "CountObjectsMethods.h"
+#include "KMeansMethods.h"
 
-using namespace cv;
 using namespace std;
+using namespace cv;
 
-/// Global variables
-
-Mat srcOriginal, srcOriginalGray;
-Mat dstCanny;
-
-int lowThreshold;
-int const maxLowThreshold = 100;
-int threshholdRatio = 3;
-int kernel_size = 3;
-String originalWindow = "Original Image";
-String cannyWindow = "Edge Map";
-
-
-
-int main2(int argc, const char * argv[])
+int main(int argc, const char * argv[])
 {
-    String dataDir="/Users/donj/workspace/cs585/Morphology/Data/";
-    shadowDemo();
-    return 0;
+    string dataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
     
-    /// Load an image
-    srcOriginal = imread( dataDir + argv[1] );
-    resize(srcOriginal,srcOriginal,Size(srcOriginal.cols/3,srcOriginal.rows/3));
-    
-    if( !srcOriginal.data )
-    { return -1; }
-
-    
-    /// Create a matrix of the same type and size as src (for dst)
-    dstCanny.create( srcOriginal.size(), srcOriginal.type() );
-    
-    /// Convert the image to grayscale
-    cvtColor( srcOriginal, srcOriginalGray, CV_BGR2GRAY );
-    
-    /// Create a window
-    namedWindow( originalWindow, CV_WINDOW_AUTOSIZE );
-    namedWindow( cannyWindow, CV_WINDOW_AUTOSIZE );
-    
-    /// Create a Trackbar for user to enter threshold
-    createTrackbar( "Min Threshold:", cannyWindow, &lowThreshold, maxLowThreshold, callbackCanny);
-    
-    /// Show the image
-    callbackCanny(lowThreshold, 0);
-    
-    /// Wait until user exit program by pressing a key
-    while(1)
+    // Read in program arguments
+    if(argc!=4)
     {
-        char c = (char)waitKey(0);
-        switch( c )
-        {
-            case 'w':
-                imwrite(dataDir+"temp1.png",  dstCanny);
-                break;
-            case 'q':
-            case 27:
-                return(0);
-        }
+        cout<<"Incorrect number of program arguments"<<endl;
+        return 1;
     }
-}
+    string fileName=argv[1];
+    
+    bool bSaveState;
+    if(strcmp(argv[2],"true")==0)
+        bSaveState=true;
+    else if(strcmp(argv[2],"false")==0)
+        bSaveState=false;
+    else
+    {
+        cout<<"You must specify whether to save the state of the k-means classification"<<endl;
+    }
+    int maxClusters=atoi(argv[3]);
+    
+    // Perform k-means classfication
+    int clusterCount=0;
+    kMeansCustom(bSaveState, fileName, maxClusters, clusterCount);
 
-void callbackCanny(int, void*)
-{
-    CannyThreshold(srcOriginalGray, dstCanny, lowThreshold, lowThreshold*threshholdRatio, 3);
-    imshow(cannyWindow,dstCanny);
+    // Set up flood fill segmentation
+    char cn[256];
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),argv[1],"Binary",clusterCount,".png");
+    Mat binary=imread(cn,CV_LOAD_IMAGE_GRAYSCALE);
+    imshow("Binary",binary);
+    
+    // Create data structures to save region and blob information
+    unsigned short nRegions=0;
+    vector<vector<PIXEL>*> regionLists(USHRT_MAX);
+    unsigned short  nBlobs=0;
+    vector<vector<PIXEL>*> blobLists(USHRT_MAX);
+    constructRegionBlobLists(regionLists, blobLists);
+    
+    // Create image of flood-fill regions
+    Mat regions(binary.size(),CV_16UC1);
+    
+    // Segment the binary object into regions
+    floodFill(binary, regions, nRegions, regionLists);
+    
+    // Extract a list of object candiate blobs and the list of pixels in each
+    extractblobs(regions, nRegions, regionLists, nBlobs, blobLists, dataDir);
+    
+    destroyRegionBlobLists(regionLists, blobLists);
+    
+    return 0;
 }

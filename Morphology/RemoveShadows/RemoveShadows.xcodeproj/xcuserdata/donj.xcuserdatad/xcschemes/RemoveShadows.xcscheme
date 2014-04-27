@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "72A64F2419091C9C00BBBEFF"
-               BuildableName = "FloodFill"
-               BlueprintName = "FloodFill"
-               ReferencedContainer = "container:FloodFill.xcodeproj">
+               BlueprintIdentifier = "72951EE4190C66C700618A74"
+               BuildableName = "RemoveShadows"
+               BlueprintName = "RemoveShadows"
+               ReferencedContainer = "container:RemoveShadows.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "72A64F2419091C9C00BBBEFF"
-            BuildableName = "FloodFill"
-            BlueprintName = "FloodFill"
-            ReferencedContainer = "container:FloodFill.xcodeproj">
+            BlueprintIdentifier = "72951EE4190C66C700618A74"
+            BuildableName = "RemoveShadows"
+            BlueprintName = "RemoveShadows"
+            ReferencedContainer = "container:RemoveShadows.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,25 +51,12 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "72A64F2419091C9C00BBBEFF"
-            BuildableName = "FloodFill"
-            BlueprintName = "FloodFill"
-            ReferencedContainer = "container:FloodFill.xcodeproj">
+            BlueprintIdentifier = "72951EE4190C66C700618A74"
+            BuildableName = "RemoveShadows"
+            BlueprintName = "RemoveShadows"
+            ReferencedContainer = "container:RemoveShadows.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "foregroundYCrCb"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "DYLD_LIBRARY_PATH"
-            value = "/usr/local/packages/boost_1_53_0/lib"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -82,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "72A64F2419091C9C00BBBEFF"
-            BuildableName = "FloodFill"
-            BlueprintName = "FloodFill"
-            ReferencedContainer = "container:FloodFill.xcodeproj">
+            BlueprintIdentifier = "72951EE4190C66C700618A74"
+            BuildableName = "RemoveShadows"
+            BlueprintName = "RemoveShadows"
+            ReferencedContainer = "container:RemoveShadows.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
