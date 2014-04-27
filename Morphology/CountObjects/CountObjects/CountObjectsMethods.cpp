@@ -59,7 +59,7 @@ void destroyRegionBlobLists(vector<vector<PIXEL>*>& regionLists, vector<vector<P
     }
 }
 
-void extractblobs(Mat& regions, unsigned short& nRegion, vector<vector<PIXEL>*>& regionLists, unsigned short& nBlobs, vector<vector<PIXEL>*>& blobLists, string dataDir)
+void extractblobs(Mat& regions, int clusterCount, unsigned short& nRegion, vector<vector<PIXEL>*>& regionLists, unsigned short& nBlobs, vector<vector<PIXEL>*>& blobLists, std::string outputDataDir, std::string outputFileName)
 {
     // Display region map
     Mat tempRegions(regions.size(),CV_8UC1);
@@ -126,9 +126,11 @@ void extractblobs(Mat& regions, unsigned short& nRegion, vector<vector<PIXEL>*>&
         }
     }
     
+    char cn[256];
+    sprintf(cn,"%s%s%s%d%s",outputDataDir.c_str(),outputFileName.c_str(),"Regions",clusterCount,".png");
+    imwrite(cn,tempRegions);
     imshow("Regions",tempRegions);
-    imwrite(dataDir+"regions.png",tempRegions);
-    //waitKey();
+    waitKey();
 }
 
 int readInImage(Mat& image, string inputDataDir, string fullInputfileName, string outputDataDir, string outputFileName, float resizeFactor)

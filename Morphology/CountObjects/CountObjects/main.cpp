@@ -81,10 +81,11 @@ int main(int argc, const char * argv[])
     floodFill(binary, regions, nRegions, regionLists);
     
     // Extract a list of object candiate blobs and the list of pixels in each
-    extractblobs(regions, nRegions, regionLists, nBlobs, blobLists, outputDataDir);
+    extractblobs(regions, clusterCount, nRegions, regionLists, nBlobs, blobLists, outputDataDir, outputFileName);
     
     // Calculate centroids of blobs
-    Mat tempRegions=imread(outputDataDir+"regions.png",CV_8UC1);
+    sprintf(cn,"%s%s%s%d%s",outputDataDir.c_str(),outputFileName.c_str(),"Regions",clusterCount,".png");
+    Mat tempRegions=imread(cn,CV_8UC1);
     for(int i=0;i<nBlobs;i++)
     {
         if(blobLists[i]!=nullptr)

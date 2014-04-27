@@ -15,7 +15,7 @@
 
 void constructRegionBlobLists(cv::vector<cv::vector<PIXEL>*>& regionLists, cv::vector<cv::vector<PIXEL>*>& blobLists);
 void destroyRegionBlobLists(cv::vector<cv::vector<PIXEL>*>& regionLists, cv::vector<cv::vector<PIXEL>*>& blobLists);
-void extractblobs(cv::Mat& regions, unsigned short& nRegion, cv::vector<cv::vector<PIXEL>*>& regionLists, unsigned short& nBlobs, cv::vector<cv::vector<PIXEL>*>& blobLists, cv::string dataDir);
+void extractblobs(cv::Mat& regions, int clusterCount, unsigned short& nRegion, cv::vector<cv::vector<PIXEL>*>& regionLists, unsigned short& nBlobs, cv::vector<cv::vector<PIXEL>*>& blobLists,  std::string outputDataDir, std::string outputFileName);
 int readInImage(cv::Mat& image, std::string inputDataDir, std::string fullInputfileName, std::string outputDataDir, std::string outputFileName, float resizeFactor);
 unsigned long listFiles(std::string targetPath, cv::vector<std::string>& fileNames);
 #endif /* defined(__CountObjects__CountObjectsMethods__) */

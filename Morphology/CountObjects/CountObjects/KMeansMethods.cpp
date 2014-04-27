@@ -39,23 +39,8 @@ void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, in
     cout<<"Perform k-means clustering"<<endl;
     ostringstream ss;
     ss<<clusterCount;
-    
-    // User wants to define new background classes
-    if(bSaveState)
-    {
-        TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
-        kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 3, KMEANS_PP_CENTERS, centers);
-        saveMat(centers, dataDir+"centers."+ss.str()+".bin");
-    }
-    // User wants to use already defined background classes
-    else
-    {
-        loadMat(centers, dataDir+"centers."+ss.str()+".bin");
-        for(int i=0;i<centers.rows;i++)
-            printf("Before Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
-        TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
-        kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 3, KMEANS_PP_CENTERS, centers);
-    }
+    TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
+    kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 3, KMEANS_USE_INITIAL_LABELS|KMEANS_PP_CENTERS, centers);
     for(int i=0;i<centers.rows;i++)
         printf("After Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
     
@@ -64,13 +49,12 @@ void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, in
     pMouseInfo->graph.create(image.rows,image.cols,CV_8UC3);
     createGraph3D(pMouseInfo->graph, pMouseInfo->labels, clusterCount, dataDir, bSaveState);
     char cn[256];
-    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"clusters",clusterCount,".png");
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"Clusters",clusterCount,".png");
     imwrite(cn,pMouseInfo->graph);
     imshow("Clusters",pMouseInfo->graph);
-    //waitKey();
     
    if(bSaveState)
-    {
+   {
         // Show graph and start defining background
         setMouseCallback("Clusters", onMouse, (void*) pMouseInfo);
         
@@ -106,7 +90,7 @@ void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, in
     
     // Show final result after background removed
     printf("K-means info  cluster count: %d sample count: %lu points size: (%d,%d) labels size: (%d,%d) centers size: (%d,%d)\n", clusterCount, sampleCount, points.rows, points.cols, pMouseInfo->labels.rows, pMouseInfo->labels.cols, centers.rows, centers.cols);
-    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"clustersMinusBackground",clusterCount,".png");
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"ClustersNoBkgd",clusterCount,".png");
     imwrite(cn,pMouseInfo->graph);
     imshow("Desired Clusters", pMouseInfo->graph);
     waitKey();
