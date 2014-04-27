@@ -12,6 +12,9 @@
 #include "CountObjectsMethods.h"
 #include "KMeansMethods.h"
 #include "Moments.h"
+#include <sstream>
+
+#define FILLED -1
 
 using namespace std;
 using namespace cv;
@@ -71,11 +74,17 @@ int main(int argc, const char * argv[])
     {
         if(blobLists[i]!=nullptr)
         {
-            cout<<"Centroid of blob["<<i<<"]: ("<<xbar(*blobLists[i])<<","<<ybar(*blobLists[i])<<")"<<endl;
-            cout<<Mij(*blobLists[i], 1, 1) - xbar(*blobLists[i]) * Mij(*blobLists[i], 0, 1)<<endl;
+            Point centroid(xbar(*blobLists[i]), ybar(*blobLists[i]));
+            stringstream ss;
+            ss << i;
+            string sVal = ss.str();
+            circle(tempRegions, centroid, 5, CV_RGB(0,0,0), FILLED);
+            putText(tempRegions, sVal, Point(centroid.x-10,centroid.y-6),FONT_HERSHEY_SIMPLEX, 0.45, Scalar(30,30,30),1);
+            cout<<"Centroid of blob["<<i<<"]: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
+            //cout<<Mij(*blobLists[i], 1, 1) - xbar(*blobLists[i]) * Mij(*blobLists[i], 0, 1)<<endl;
             //Mij(v, 1, 1) - xbar(v) * Mij(v, 0, 1)
-            cout<<muij((*blobLists[i]), 1, 1)<<endl;
-            cout<<Mij(*blobLists[i], 1, 1) - ybar(*blobLists[i]) * Mij(*blobLists[i], 1, 0)<<endl;
+            //cout<<muij((*blobLists[i]), 1, 1)<<endl;
+            //cout<<Mij(*blobLists[i], 1, 1) - ybar(*blobLists[i]) * Mij(*blobLists[i], 1, 0)<<endl;
         }
         else
         {

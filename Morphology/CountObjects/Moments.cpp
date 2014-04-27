@@ -17,6 +17,29 @@ using namespace std;
 #define POW2(val) (val * val)
 #define POW3(val) (val * val * val)
 
+// Covariance Matrix
+Mat* covarianceMatrix(vector<PIXEL> v)
+{
+    Mat *m=new Mat(2,2,CV_64FC1);
+    m->at<double>(0,0) = muPrimeij(v, 2, 0);
+    m->at<double>(0,1) = muPrimeij(v, 1, 1);
+    m->at<double>(1,0) = muPrimeij(v, 1, 1);
+    m->at<double>(1,1) = muPrimeij(v, 0, 2);
+    return m;
+}
+
+// Central moments divided by sum of the pixel values M00
+double muPrimeij(vector<PIXEL> v, long i, long j)
+{
+    return muij(v, i, j) / muij(v, 0, 0);
+}
+
+// Scale invariant moments
+double etaij(vector<PIXEL> v, long i, long j)
+{
+    return muij(v, i, j) / pow(muij(v, 0, 0), 1 + (i + j)/2.0);
+}
+
 // Raw moments
 double Mij(vector<PIXEL> v, long i, long j)
 {
@@ -118,13 +141,6 @@ double xbar(vector<PIXEL> v)
 double ybar(vector<PIXEL> v)
 {
     return Mij(v, 0, 1)/Mij(v, 0, 0);
-}
-
-
-// Scale invariant moments
-double etaij(vector<PIXEL> v, long i, long j)
-{
-    return muij(v, i, j) / pow(muij(v, 0, 0), 1 + (i + j)/2.0);
 }
 
 // Central moments
