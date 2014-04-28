@@ -63,13 +63,20 @@ void thresh_callback(int, void* )
     
     /// Get the moments
     vector<Moments> mu(contours.size() );
+    double hu[7];
     for( size_t i = 0; i < contours.size(); i++ )
     {
         mu[i] = moments( contours[i], true);
         printf("Raw Obj %d: %0.2f  %0.2f %0.2f %0.2f %0.2f %0.2f %0.2f  %0.2f %0.2f %0.2f\n",(int)i,mu[i].m00, mu[i].m10, mu[i].m01, mu[i].m20, mu[i].m11, mu[i].m02, mu[i].m30,  mu[i].m21, mu[i].m12,  mu[i].m03);
         printf("Central Obj %d: %0.2f  %0.2f %0.2f %0.2f %0.2f %0.2f %0.2f\n",(int)i,mu[i].mu20, mu[i].mu11, mu[i].mu02, mu[i].mu30, mu[i].mu21, mu[i].mu12, mu[i].mu03);
         printf("Normalized Obj %d: %0.2f  %0.2f %0.2f %0.2f %0.2f %0.2f %0.2f\n",(int)i,mu[i].nu20, mu[i].nu11, mu[i].nu02, mu[i].nu30, mu[i].nu21, mu[i].nu12, mu[i].nu03);
+        HuMoments(mu[i], hu);
+        cout<<"Hu Obj "<<i<<":";
+        for(int j=0;j<7;j++)
+            printf(" %0.2f",hu[j]);
+        cout<<endl;
     }
+
     
     ///  Get the mass centers:
     vector<Point2f> mc( contours.size() );

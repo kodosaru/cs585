@@ -1,0 +1,391 @@
+
+kmeans info  cluster count: 20 sample count: 1114560 points size: (1114560,1)
+Perform k-means clustering
+After Center(0): (85.56,130.14,141.10)
+After Center(1): (141.10,146.47,53.87)
+After Center(2): (53.87,141.40,248.69)
+After Center(3): (248.69,131.53,125.04)
+After Center(4): (125.04,130.47,174.03)
+After Center(5): (174.03,149.93,26.70)
+After Center(6): (26.70,128.07,106.39)
+After Center(7): (106.39,146.22,41.86)
+After Center(8): (41.86,136.89,180.83)
+After Center(9): (180.83,131.69,143.86)
+After Center(10): (143.86,130.50,89.61)
+After Center(11): (89.61,145.47,74.25)
+After Center(12): (74.25,143.35,214.44)
+After Center(13): (214.44,144.68,161.56)
+After Center(14): (161.56,130.93,124.99)
+After Center(15): (124.99,145.60,105.96)
+After Center(16): (105.96,130.47,63.07)
+After Center(17): (63.07,128.60,63.20)
+After Center(18): (63.20,139.60,44.12)
+After Center(19): (44.12,127.31,0.00)
+Create graph cluster
+ColorTab before assign (0): (52.00,122.00,230.00,0.00)
+ColorTab before assign (1): (97.00,29.00,49.00,0.00)
+ColorTab before assign (2): (32.00,31.00,106.00,0.00)
+ColorTab before assign (3): (18.00,144.00,179.00,0.00)
+ColorTab before assign (4): (185.00,173.00,143.00,0.00)
+ColorTab before assign (5): (14.00,84.00,133.00,0.00)
+ColorTab before assign (6): (185.00,5.00,80.00,0.00)
+ColorTab before assign (7): (129.00,162.00,158.00,0.00)
+ColorTab before assign (8): (18.00,227.00,207.00,0.00)
+ColorTab before assign (9): (176.00,23.00,152.00,0.00)
+ColorTab before assign (10): (172.00,193.00,101.00,0.00)
+ColorTab before assign (11): (187.00,142.00,238.00,0.00)
+ColorTab before assign (12): (24.00,71.00,102.00,0.00)
+ColorTab before assign (13): (113.00,83.00,73.00,0.00)
+ColorTab before assign (14): (153.00,195.00,53.00,0.00)
+ColorTab before assign (15): (175.00,155.00,162.00,0.00)
+ColorTab before assign (16): (243.00,5.00,240.00,0.00)
+ColorTab before assign (17): (130.00,109.00,98.00,0.00)
+ColorTab before assign (18): (209.00,159.00,232.00,0.00)
+ColorTab before assign (19): (14.00,192.00,123.00,0.00)
+Load completed classes
+Matrix after load at location 0 has value 0
+Matrix after load at location 1 has value 4
+Matrix after load at location 2 has value 6
+Matrix after load at location 3 has value 9
+Matrix after load at location 4 has value 10
+Matrix after load at location 5 has value 14
+Matrix after load at location 6 has value 16
+Matrix after load at location 7 has value 17
+Matrix after load at location 8 has value 19
+Completed classes vector has value 0
+Completed classes vector has value 4
+Completed classes vector has value 6
+Completed classes vector has value 9
+Completed classes vector has value 10
+Completed classes vector has value 14
+Completed classes vector has value 16
+Completed classes vector has value 17
+Completed classes vector has value 19
+K-means info  cluster count: 20 sample count: 1114560 points size: (1114560,1) labels size: (1114560,1) centers size: (20,3)
+Starting region 1 transversal
+Ending region 1 count:1629
+Starting region 2 transversal
+Ending region 2 count:836794
+Starting region 3 transversal
+Ending region 3 count:127720
+Starting region 4 transversal
+Ending region 4 count:29955
+Starting region 5 transversal
+Ending region 5 count:21446
+Starting region 6 transversal
+Ending region 6 count:29173
+Starting region 7 transversal
+Ending region 7 count:31451
+Starting region 8 transversal
+Ending region 8 count:2
+Starting region 9 transversal
+Ending region 9 count:7
+Starting region 10 transversal
+Ending region 10 count:7
+Starting region 11 transversal
+Ending region 11 count:19625
+Starting region 12 transversal
+Ending region 12 count:27
+Starting region 13 transversal
+Ending region 13 count:8
+Starting region 14 transversal
+Ending region 14 count:1
+Starting region 15 transversal
+Ending region 15 count:133
+Starting region 16 transversal
+Ending region 16 count:90
+Starting region 17 transversal
+Ending region 17 count:92
+Starting region 18 transversal
+Ending region 18 count:1
+Starting region 19 transversal
+Ending region 19 count:2
+Starting region 20 transversal
+Ending region 20 count:38
+Starting region 21 transversal
+Ending region 21 count:3
+Starting region 22 transversal
+Ending region 22 count:9
+Starting region 23 transversal
+Ending region 23 count:7
+Starting region 24 transversal
+Ending region 24 count:7
+Starting region 25 transversal
+Ending region 25 count:69
+Starting region 26 transversal
+Ending region 26 count:12
+Starting region 27 transversal
+Ending region 27 count:2
+Starting region 28 transversal
+Ending region 28 count:51
+Starting region 29 transversal
+Ending region 29 count:19
+Starting region 30 transversal
+Ending region 30 count:18
+Starting region 31 transversal
+Ending region 31 count:9
+Starting region 32 transversal
+Ending region 32 count:9
+Starting region 33 transversal
+Ending region 33 count:39
+Starting region 34 transversal
+Ending region 34 count:9
+Starting region 35 transversal
+Ending region 35 count:1
+Starting region 36 transversal
+Ending region 36 count:2
+Starting region 37 transversal
+Ending region 37 count:7
+Starting region 38 transversal
+Ending region 38 count:1
+Starting region 39 transversal
+Ending region 39 count:2
+Starting region 40 transversal
+Ending region 40 count:1
+Starting region 41 transversal
+Ending region 41 count:6
+Starting region 42 transversal
+Ending region 42 count:39
+Starting region 43 transversal
+Ending region 43 count:9
+Starting region 44 transversal
+Ending region 44 count:9
+Starting region 45 transversal
+Ending region 45 count:1
+Starting region 46 transversal
+Ending region 46 count:122
+Starting region 47 transversal
+Ending region 47 count:24
+Starting region 48 transversal
+Ending region 48 count:10
+Starting region 49 transversal
+Ending region 49 count:1
+Starting region 50 transversal
+Ending region 50 count:6
+Starting region 51 transversal
+Ending region 51 count:14
+Starting region 52 transversal
+Ending region 52 count:1
+Starting region 53 transversal
+Ending region 53 count:1
+Starting region 54 transversal
+Ending region 54 count:1
+Starting region 55 transversal
+Ending region 55 count:5
+Starting region 56 transversal
+Ending region 56 count:77
+Starting region 57 transversal
+Ending region 57 count:1
+Starting region 58 transversal
+Ending region 58 count:14
+Starting region 59 transversal
+Ending region 59 count:103
+Starting region 60 transversal
+Ending region 60 count:1
+Starting region 61 transversal
+Ending region 61 count:1
+Starting region 62 transversal
+Ending region 62 count:1
+Starting region 63 transversal
+Ending region 63 count:1
+Starting region 64 transversal
+Ending region 64 count:1
+Starting region 65 transversal
+Ending region 65 count:1
+Starting region 66 transversal
+Ending region 66 count:15632
+Before removing very small and large areas
+Region 1 has 1629 pixels
+Region 2 has 836794 pixels
+Region 3 has 127720 pixels
+Region 4 has 29955 pixels
+Region 5 has 21446 pixels
+Region 6 has 29173 pixels
+Region 7 has 31451 pixels
+Region 8 has 2 pixels
+Region 9 has 7 pixels
+Region 10 has 7 pixels
+Region 11 has 19625 pixels
+Region 12 has 27 pixels
+Region 13 has 8 pixels
+Region 14 has 1 pixels
+Region 15 has 133 pixels
+Region 16 has 90 pixels
+Region 17 has 92 pixels
+Region 18 has 1 pixels
+Region 19 has 2 pixels
+Region 20 has 38 pixels
+Region 21 has 3 pixels
+Region 22 has 9 pixels
+Region 23 has 7 pixels
+Region 24 has 7 pixels
+Region 25 has 69 pixels
+Region 26 has 12 pixels
+Region 27 has 2 pixels
+Region 28 has 51 pixels
+Region 29 has 19 pixels
+Region 30 has 18 pixels
+Region 31 has 9 pixels
+Region 32 has 9 pixels
+Region 33 has 39 pixels
+Region 34 has 9 pixels
+Region 35 has 1 pixels
+Region 36 has 2 pixels
+Region 37 has 7 pixels
+Region 38 has 1 pixels
+Region 39 has 2 pixels
+Region 40 has 1 pixels
+Region 41 has 6 pixels
+Region 42 has 39 pixels
+Region 43 has 9 pixels
+Region 44 has 9 pixels
+Region 45 has 1 pixels
+Region 46 has 122 pixels
+Region 47 has 24 pixels
+Region 48 has 10 pixels
+Region 49 has 1 pixels
+Region 50 has 6 pixels
+Region 51 has 14 pixels
+Region 52 has 1 pixels
+Region 53 has 1 pixels
+Region 54 has 1 pixels
+Region 55 has 5 pixels
+Region 56 has 77 pixels
+Region 57 has 1 pixels
+Region 58 has 14 pixels
+Region 59 has 103 pixels
+Region 60 has 1 pixels
+Region 61 has 1 pixels
+Region 62 has 1 pixels
+Region 63 has 1 pixels
+Region 64 has 1 pixels
+Region 65 has 1 pixels
+Region 66 has 15632 pixels
+
+After removing very small and large areas
+Blob 1, originally region 1, has 1629 pixels
+Blob 2, originally region 4, has 29955 pixels
+Blob 3, originally region 5, has 21446 pixels
+Blob 4, originally region 6, has 29173 pixels
+Blob 5, originally region 7, has 31451 pixels
+Blob 6, originally region 11, has 19625 pixels
+Blob 7, originally region 66, has 15632 pixels
+
+Blob[0]
+Centroid of blob: (27,12)
+Covariance Matrix0
+| 374.671 -85.4727|
+| -85.4727 82.7878|
+Eigenvector Matrix0
+| -0.261818 -0.965117|
+| -0.965117 0.261818|
+OpenCV Calc Eigenvalue Matrix0
+| 59.6007 0|
+| 0 397.858|
+Moment Calc Eigenvalue Matrix0
+| 59.6007 0|
+| 0 397.858|
+Eccentricity: 0.83671
+Orientation: -0.264905 rads
+
+Blob[1]
+Centroid of blob: (631,430)
+Covariance Matrix1
+| 395.638 2653.7|
+| 2653.7 36998.9|
+Eigenvector Matrix1
+| -0.997409 -0.0719352|
+| 0.0719352 -0.997409|
+OpenCV Calc Eigenvalue Matrix1
+| 204.247 0|
+| 0 37190.3|
+Moment Calc Eigenvalue Matrix1
+| 204.247 0|
+| 0 37190.3|
+Eccentricity: 0.54583
+Orientation: -0.0719974 rads
+
+Blob[2]
+Centroid of blob: (510,425)
+Covariance Matrix2
+| 522.271 2684.38|
+| 2684.38 30901.7|
+Eigenvector Matrix2
+| -0.996178 -0.0873472|
+| 0.0873472 -0.996178|
+OpenCV Calc Eigenvalue Matrix2
+| 286.899 0|
+| 0 31137.1|
+Moment Calc Eigenvalue Matrix2
+| 286.899 0|
+| 0 31137.1|
+Eccentricity: 0.593144
+Orientation: -0.0874587 rads
+
+Blob[3]
+Centroid of blob: (383,500)
+Covariance Matrix3
+| 825.82 2794.3|
+| 2794.3 30912.3|
+Eigenvector Matrix3
+| -0.995787 -0.0916999|
+| 0.0916999 -0.995787|
+OpenCV Calc Eigenvalue Matrix3
+| 568.499 0|
+| 0 31169.7|
+Moment Calc Eigenvalue Matrix3
+| 568.499 0|
+| 0 31169.7|
+Eccentricity: 0.619489
+Orientation: -0.0918289 rads
+
+Blob[4]
+Centroid of blob: (769,383)
+Covariance Matrix4
+| 3402.9 8770.83|
+| 8770.83 28536.4|
+Eigenvector Matrix4
+| -0.953946 -0.299979|
+| 0.299979 -0.953946|
+OpenCV Calc Eigenvalue Matrix4
+| 644.81 0|
+| 0 31294.5|
+Moment Calc Eigenvalue Matrix4
+| 644.81 0|
+| 0 31294.5|
+Eccentricity: 0.879195
+Orientation: -0.304671 rads
+
+Blob[5]
+Centroid of blob: (249,445)
+Covariance Matrix5
+| 249.269 5.94402|
+| 5.94402 29439.8|
+Eigenvector Matrix5
+| -1 -0.000203628|
+| 0.000203628 -1|
+OpenCV Calc Eigenvalue Matrix5
+| 249.267 0|
+| 0 29439.8|
+Moment Calc Eigenvalue Matrix5
+| 249.267 0|
+| 0 29439.8|
+Eccentricity: 0.409317
+Orientation: -0.000203628 rads
+
+Blob[6]
+Centroid of blob: (343,850)
+Covariance Matrix6
+| 34415.1 552.568|
+| 552.568 80.4608|
+Eigenvector Matrix6
+| 0.0160874 -0.999871|
+| -0.999871 -0.0160874|
+OpenCV Calc Eigenvalue Matrix6
+| 71.5703 0|
+| 0 34424|
+Moment Calc Eigenvalue Matrix6
+| 71.5703 0|
+| 0 34424|
+Eccentricity: 0.331548
+Orientation: 0.016088 rads

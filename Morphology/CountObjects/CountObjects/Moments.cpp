@@ -278,16 +278,13 @@ double Hui(vector<PIXEL> v, long i)
         case 3:
             return POW2(dm) + POW2(em);
             break;
-
             
         case 4:
             return POW2(bp) + POW2(cp);
             break;
             
         case 5:
-            return dm * bp * ( POW2(bp) - 3 * POW2(cp) ) +
-            
-            em * cp * ( 3.0 * POW2(bp) - POW2(cp) );
+            return dm * bp * ( POW2(bp) - 3 * POW2(cp) ) + em * cp * ( 3.0 * POW2(bp) - POW2(cp) );
             break;
 
         case 6:
