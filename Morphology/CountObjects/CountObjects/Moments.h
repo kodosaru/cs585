@@ -30,6 +30,8 @@ double muPrimeij(cv::vector<PIXEL> v, long i, long j);
 double etaij(cv::vector<PIXEL> v, long i, long j);
 // Raw moments
 double Mij(cv::vector<PIXEL> v, long i, long j);
+// Raw moments which include pixel intensity in calculations
+double MijIij(cv::vector<PIXEL> v, long i, long j);
 // Centroid coordinates
 double xbar(cv::vector<PIXEL> v);
 double ybar(cv::vector<PIXEL> v);

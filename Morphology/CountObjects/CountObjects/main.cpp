@@ -25,8 +25,8 @@ int main(int argc, const char * argv[])
     // 0 program name
     // 1 full input file name with extension
     // 2 output file name without extension used to save intermiediate products
-    // 3 boolen whether to save k-means state, background classes and class palette
-    // 4 maximum number k-means classes to use
+    // 3 boolen whether to save k-means state: background classes and class palette
+    // 4 maximum number k-means classes to allow
     
     string inputDataDir="/Users/donj/workspace/cs585/Morphology/Data/Input/";
     string outputDataDir="/Users/donj/workspace/cs585/Morphology/Data/Output/";
@@ -111,21 +111,21 @@ int main(int argc, const char * argv[])
             cout<<endl<<"Blob["<<i<<"]"<<endl;
             cout<<"Centroid of blob: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
             Mat *covar = covarianceMatrix(*blobLists[i]);
-            cout<<"Covariance Matrix"<<i<<endl;
+            cout<<"Covariance Matrix"<<endl;
             cout<<"| "<<covar->at<double>(0,0)<<" "<<covar->at<double>(0,1)<<"|"<<endl;
             cout<<"| "<<covar->at<double>(1,0)<<" "<<covar->at<double>(1,1)<<"|"<<endl;
             Mat eval, evec;
             eigen((*covar),eval,evec);
             // Printing out column order and taking negative of eigenvectors like MATLAB
             evec = -1.0 * evec;
-            cout<<"Eigenvector Matrix"<<i<<endl;
+            cout<<"Eigenvector Matrix"<<endl;
             cout<<"| "<<evec.at<double>(1,0)<<" "<<evec.at<double>(0,0)<<"|"<<endl;
             cout<<"| "<<evec.at<double>(1,1)<<" "<<evec.at<double>(0,1)<<"|"<<endl;
-            cout<<"OpenCV Calc Eigenvalue Matrix"<<i<<endl;
+            cout<<"OpenCV Calc Eigenvalue Matrix"<<endl;
             cout<<"| "<<eval.at<double>(1,0)<<" "<<0<<"|"<<endl;
             cout<<"| "<<0<<" "<<eval.at<double>(0,0)<<"|"<<endl;
             evec = *eigenvalueMatrix(*blobLists[i]);
-            cout<<"Moment Calc Eigenvalue Matrix"<<i<<endl;
+            cout<<"Moment Calc Eigenvalue Matrix"<<endl;
             cout<<"| "<<eval.at<double>(1,0)<<" "<<0<<"|"<<endl;
             cout<<"| "<<0<<" "<<eval.at<double>(0,0)<<"|"<<endl;
             cout<<"Eccentricity: "<<eccentricity(*blobLists[i])<<endl;
