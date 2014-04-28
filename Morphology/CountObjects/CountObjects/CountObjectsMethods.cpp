@@ -24,9 +24,10 @@
 #include "boost/progress.hpp"
 // Mine
 #include "CountObjectsMethods.h"
+#include "FloodFillMethods.h"
 
 #define BLOB_MIN_PIX 1000
-#define BLOB_MAX_PIX 40000
+#define BLOB_MAX_PIX 50000
 
 using namespace cv;
 using namespace std;
@@ -110,10 +111,10 @@ void extractblobs(Mat& regions, int clusterCount, unsigned short& nRegion, vecto
     
     cout<<endl<<"After removing very small and large areas"<<endl;
     float beta=50.0;
-    int incVal=(int)((UCHAR_MAX-beta)/nBlobs + 0.5);
+    int incVal=(int)((UCHAR_MAX-beta)/nBlobs);
     for(int i=0;i<nBlobs;i++)
     {
-        cout<<"Blob "<<i<<", originally region "<<(*blobLists[i])[0].val[0]<<", has "<<blobLists[i]->size()<<" pixels"<<endl;
+        cout<<"Blob "<<i<<", originally region "<<(*blobLists[i])[0].val[0]<<", has "<<blobLists[i]->size()<<" pixels and assigned "<<(i+1)*incVal+beta<<" grayscale value"<<endl;
         
         for(int j=0;j<blobLists[i]->size();j++)
         {
@@ -130,7 +131,7 @@ void extractblobs(Mat& regions, int clusterCount, unsigned short& nRegion, vecto
     sprintf(cn,"%s%s%s%d%s",outputDataDir.c_str(),outputFileName.c_str(),"Regions",clusterCount,".png");
     imwrite(cn,tempRegions);
     imshow("Regions",tempRegions);
-    //waitKey();
+    waitKey();
 }
 
 int readInImage(Mat& image, string inputDataDir, string fullInputfileName, string outputDataDir, string outputFileName, float resizeFactor)

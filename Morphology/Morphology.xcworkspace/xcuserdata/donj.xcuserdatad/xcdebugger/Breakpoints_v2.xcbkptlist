@@ -1215,5 +1215,149 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/main.cpp"
+            timestampString = "420390781.526983"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "main(int argc, const char * argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/main.cpp"
+            timestampString = "420390840.533664"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "main(int argc, const char * argv[])"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/CountObjectsMethods.cpp"
+            timestampString = "420393045.621086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "extractblobs(Mat&amp; regions, int clusterCount, unsigned short&amp; nRegion, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; regionLists, unsigned short&amp; nBlobs, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; blobLists, std::string outputDataDir, std::string outputFileName)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/CountObjectsMethods.cpp"
+            timestampString = "420393486.650309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "extractblobs(Mat&amp; regions, int clusterCount, unsigned short&amp; nRegion, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; regionLists, unsigned short&amp; nBlobs, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; blobLists, std::string outputDataDir, std::string outputFileName)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/CountObjectsMethods.cpp"
+            timestampString = "420393486.650309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "extractblobs(Mat&amp; regions, int clusterCount, unsigned short&amp; nRegion, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; regionLists, unsigned short&amp; nBlobs, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; blobLists, std::string outputDataDir, std::string outputFileName)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/CountObjectsMethods.cpp"
+            timestampString = "420393045.621086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "extractblobs(Mat&amp; regions, int clusterCount, unsigned short&amp; nRegion, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; regionLists, unsigned short&amp; nBlobs, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; blobLists, std::string outputDataDir, std::string outputFileName)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/CountObjectsMethods.cpp"
+            timestampString = "420393562.083868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "extractblobs(Mat&amp; regions, int clusterCount, unsigned short&amp; nRegion, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; regionLists, unsigned short&amp; nBlobs, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; blobLists, std::string outputDataDir, std::string outputFileName)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/CountObjectsMethods.cpp"
+            timestampString = "420393686.645775"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "extractblobs(Mat&amp; regions, int clusterCount, unsigned short&amp; nRegion, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; regionLists, unsigned short&amp; nBlobs, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; blobLists, std::string outputDataDir, std::string outputFileName)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountObjects/CountObjects/CountObjectsMethods.cpp"
+            timestampString = "420393808.320571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "extractblobs(Mat&amp; regions, int clusterCount, unsigned short&amp; nRegion, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; regionLists, unsigned short&amp; nBlobs, vector&lt;vector&lt;PIXEL&gt;*&gt;&amp; blobLists, std::string outputDataDir, std::string outputFileName)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
