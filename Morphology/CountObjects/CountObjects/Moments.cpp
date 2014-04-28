@@ -233,12 +233,12 @@ double muij(vector<PIXEL> v, long i, long j)
     //mu30
     else if(i==3 && j==0)
     {
-        return Mij(v, 3, 0) - 3.0 * xbar(v) * Mij(v, 2, 0) -  2.0 * POW2(xbar(v)) * Mij(v, 1, 0);
+        return Mij(v, 3, 0) - 3.0 * xbar(v) * Mij(v, 2, 0) +  2.0 * POW2(xbar(v)) * Mij(v, 1, 0);
     }
     //mu03
     else if(i==0 && j==3)
     {
-        return Mij(v, 0, 3) - 3.0 * ybar(v) * Mij(v, 0, 2) -  2.0 * POW2(ybar(v)) * Mij(v, 0, 1);
+        return Mij(v, 0, 3) - 3.0 * ybar(v) * Mij(v, 0, 2) +  2.0 * POW2(ybar(v)) * Mij(v, 0, 1);
     }
     else
     {
@@ -248,7 +248,7 @@ double muij(vector<PIXEL> v, long i, long j)
 }
 
 // Hu Translation, scale, and rotation invarient moments (+I8 recommended by Flusser & Suk)
-double huij(vector<PIXEL> v, long i)
+double Hui(vector<PIXEL> v, long i)
 {
     double n02 = etaij(v, 0, 2);
     double n03 = etaij(v, 0, 3);

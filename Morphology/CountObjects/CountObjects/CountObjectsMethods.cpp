@@ -113,7 +113,7 @@ void extractblobs(Mat& regions, int clusterCount, unsigned short& nRegion, vecto
     int incVal=(int)((UCHAR_MAX-beta)/nBlobs + 0.5);
     for(int i=0;i<nBlobs;i++)
     {
-        cout<<"Blob "<<i+1<<", originally region "<<(*blobLists[i])[0].val[0]<<", has "<<blobLists[i]->size()<<" pixels"<<endl;
+        cout<<"Blob "<<i<<", originally region "<<(*blobLists[i])[0].val[0]<<", has "<<blobLists[i]->size()<<" pixels"<<endl;
         
         for(int j=0;j<blobLists[i]->size();j++)
         {

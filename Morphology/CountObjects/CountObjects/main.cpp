@@ -108,8 +108,10 @@ int main(int argc, const char * argv[])
                 labelColor=CV_RGB(80,80,80);
             circle(tempRegions, centroid, 5, labelColor, FILLED);
             putText(tempRegions, sVal, Point(centroid.x+4,centroid.y-1),FONT_HERSHEY_SIMPLEX, 0.45, labelColor,1);
+            
+            // Begin blob statistics and moments
             cout<<endl<<"Blob["<<i<<"]"<<endl;
-            cout<<"Centroid of blob: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
+            /*cout<<"Centroid of blob: ("<<centroid.x<<","<<centroid.y<<")"<<endl;
             Mat *covar = covarianceMatrix(*blobLists[i]);
             cout<<"Covariance Matrix"<<endl;
             cout<<"| "<<covar->at<double>(0,0)<<" "<<covar->at<double>(0,1)<<"|"<<endl;
@@ -129,6 +131,8 @@ int main(int argc, const char * argv[])
             cout<<"| "<<eval.at<double>(1,0)<<" "<<0<<"|"<<endl;
             cout<<"| "<<0<<" "<<eval.at<double>(0,0)<<"|"<<endl;
             cout<<"Eccentricity: "<<eccentricity(*blobLists[i])<<endl;
+            
+            // Draw major axis
             Mat *orient = orientation(*blobLists[i]);
             double angle = orient->at<double>(0,0);
             cout<<"Orientation: "<<angle<<" rads"<<endl;
@@ -138,8 +142,28 @@ int main(int argc, const char * argv[])
             circle(tempRegions, Point(centroid.x+deltaX,centroid.y-d), 2, lineColor, FILLED);
             circle(tempRegions, Point(centroid.x-deltaX,centroid.y+d), 2, lineColor, FILLED);
             line(tempRegions, Point(centroid.x+deltaX,centroid.y-d), Point(centroid.x-deltaX,centroid.y+d), lineColor);
-            orient->release();
-            covar->release();
+            
+            // Hu moments
+            vector<vector<double>> huMoments(8);
+            for(int j=1;j<=8;j++)
+            {
+                huMoments[i].push_back(Hui(*blobLists[i],j));
+            }
+            cout<<"Hu Moments"<<endl;
+            printf("Blob No.\t0\t1\t2\t3\t4\t5\t6\t7\t\n");
+            printf("        ");
+            for(int j=1;j<=8;j++)
+            {
+               printf("        \t%0.2f",huMoments[i][j]);
+            }*/
+            //cout<<endl;
+            printf("Raw Obj %d: %0.2f  %0.2f %0.2f %0.2f %0.2f %0.2f %0.2f  %0.2f %0.2f %0.2f\n",(int)i,Mij(*blobLists[i],0,0), Mij(*blobLists[i],1,0),  Mij(*blobLists[i],0,1),  Mij(*blobLists[i],2,0),  Mij(*blobLists[i],1,1),  Mij(*blobLists[i],0,2), Mij(*blobLists[i],3,0),  Mij(*blobLists[i],2,1), Mij(*blobLists[i],1,2),  Mij(*blobLists[i],0,3));
+            printf("Central Obj %d: %0.2f  %0.2f %0.2f %0.2f %0.2f %0.2f %0.2f\n",i,muij(*blobLists[i],2,0), muij(*blobLists[i],1,1), muij(*blobLists[i],0,2),muij(*blobLists[i],3,0), muij(*blobLists[i],2,1), muij(*blobLists[i],1,2), muij(*blobLists[i],0,3));
+
+            printf("Normalized Obj %d: %0.2f  %0.2f %0.2f %0.2f %0.2f %0.2f %0.2f\n",i,etaij(*blobLists[i],2,0), etaij(*blobLists[i],1,1), etaij(*blobLists[i],0,2),etaij(*blobLists[i],3,0), etaij(*blobLists[i],2,1), etaij(*blobLists[i],1,2), etaij(*blobLists[i],0,3));
+
+            //orient->release();
+            //covar->release();
         }
         else
         {

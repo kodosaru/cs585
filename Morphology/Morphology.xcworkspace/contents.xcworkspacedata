@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Moments/Moments.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:RemoveShadows/RemoveShadows.xcodeproj">
    </FileRef>
    <FileRef

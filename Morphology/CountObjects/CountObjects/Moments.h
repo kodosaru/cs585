@@ -16,6 +16,8 @@
 #define POW2(val) (val * val)
 #define POW3(val) (val * val * val)
 
+// Hu Translation, scale, and rotation invarient moments (+I8 recommended by Flusser & Suk)
+double Hui(cv::vector<PIXEL> v, long i);
 // Orientaton Angle
 cv::Mat* orientation(cv::vector<PIXEL> v);
 // Eccentricity
