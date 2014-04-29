@@ -32,8 +32,10 @@ struct mouseInfo
 };
 typedef struct mouseInfo MOUSEINFO;
 
+int findClosestCenter(cv::Mat& centers, cv::Scalar imagePixel);
+int useSavedCentersAndClasses(bool bSaveState, std::string dataDir, std::string fileName, int maxClusters, int& clusterCount);
 static void onMouse( int event, int x, int y, int /*flags*/, void* /*param*/ );
-void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, int maxClusters, int& clusterCount);
+int kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, int maxClusters, int& clusterCount);
 void saveCompletedClasses(std::set<int>& completedClasses, std::string path);
 void loadCompletedClasses(std::set<int>& completedClasses, std::string path);
 void colorTabTest(int clusterCount, std::string dataDir);

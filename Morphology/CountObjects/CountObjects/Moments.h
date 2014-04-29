@@ -12,9 +12,9 @@
 #include <iostream>
 #include "FloodFillMethods.h"
 
-#define POW1(val) (val)
-#define POW2(val) (val * val)
-#define POW3(val) (val * val * val)
+#define POW1(val) ((val))
+#define POW2(val) ((val) * (val))
+#define POW3(val) ((val) * (val) * (val))
 
 // Hu Translation, scale, and rotation invarient moments (+I8 recommended by Flusser & Suk)
 double Hui(cv::vector<PIXEL> v, long i);

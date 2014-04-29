@@ -14,12 +14,176 @@
 #include "boost/filesystem/path.hpp"
 #include "boost/progress.hpp"
 
+#define POW2(val) ((val) * (val))
+
 using namespace cv;
 using namespace std;
 namespace fs = boost::filesystem;
 
-void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, int maxClusters, int& clusterCount)
+inline int findClosestCenter(Mat& centers, Scalar imagePixel)
 {
+    double minDistSqrd=DBL_MAX, tempDistSqrd;
+    int clusterIdx=-1;
+    Scalar centersPixel;
+    for(int i=0;i<centers.rows;i++)
+    {
+        centersPixel = Scalar(centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,2),0.0);
+        tempDistSqrd = POW2(centersPixel[0] - imagePixel[0]) + POW2(centersPixel[1] - imagePixel[1]) + POW2(centersPixel[2] - imagePixel[2]);
+        //printf("Image pixel(%0.0f,%0.0f,%0.0f) is distance squared %0.0f from centers pixel(%0.0f,%0.0f,%0.0f)\n",centersPixel[0],centersPixel[1],centersPixel[2],tempDistSqrd,imagePixel[0],imagePixel[1],imagePixel[2]);
+        if( tempDistSqrd < minDistSqrd)
+        {
+            clusterIdx = i;
+            minDistSqrd = tempDistSqrd;
+        }
+    }
+    return clusterIdx;
+}
+
+int useSavedCentersAndClasses(bool bSaveState, std::string dataDir, std::string fileName, int maxClusters, int& clusterCount)
+{
+    cout<<"dataDir: "<<dataDir<<endl;
+    cout<<"filename: "<<fileName<<endl;
+
+    // Load center
+    Mat centers;
+    ostringstream ss;
+    ss<<clusterCount;
+    loadMat(centers, dataDir+"centers."+ss.str()+".bin");
+    if(centers.empty())
+    {
+        cout<<"Unable to load '"<<dataDir<<"centers"<<ss.str()<<".bin' in kMeansExperimental()"<<endl;
+        return 1;
+    }
+    for(int i=0;i<centers.rows;i++)
+        printf("Before Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
+    if(clusterCount != centers.rows)
+    {
+        cout<<"Cluster count and size of centers array are different in kMeansExperimental()"<<endl;
+        return 1;
+    }
+
+    MOUSEINFO mouseInfo,*pMouseInfo;
+    pMouseInfo=&mouseInfo;
+    
+    // Load image data
+    Mat image = imread(dataDir+fileName+".png");
+    if(image.empty())
+    {
+        cout<<"Unable to load '"<<dataDir<<fileName<<".png' in kMeansExperimental()"<<endl;
+        return 1;
+    }
+    imshow("Input to KMeans",image);
+    //waitKey();
+    int channels = image.channels();
+    if(channels != 3)
+    {
+        cout<<"Image must have three channels"<<endl;
+        return 1;
+    }
+    
+    // Create labels array and assign image pixel to existing class
+    int i = 0;
+    int clusterIdx = -1;
+    pMouseInfo->labels.create((int)image.total(),1,CV_32S);
+    Scalar pixel;
+    while (i < image.total())
+    {
+        for(int row=0; row<image.rows; row++)
+        {
+            for(int col=0; col<image.cols; col++)
+            {
+                pixel[0] = (float)image.data[row*(image.step[0]) + col*channels + 0];
+                pixel[1] = (float)image.data[row*(image.step[0]) + col*channels + 1];
+                pixel[2] = (float)image.data[row*(image.step[0]) + col*channels + 2];
+                pixel[3] = 0.0f;
+                clusterIdx = findClosestCenter(centers, pixel);
+                pMouseInfo->labels.at<int>(i) = clusterIdx;
+                printf("Pixel(%d,%d) assigned class %d\n",row,col,clusterIdx);
+                i++;
+            }
+        }
+    }
+    
+    // Display data clusters
+    cout<<"Create graph cluster"<<endl;
+    pMouseInfo->graph.create(image.rows,image.cols,CV_8UC3);
+    createGraph3D(pMouseInfo->graph, pMouseInfo->labels, clusterCount, dataDir, bSaveState);
+    char cn[256];
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"Clusters",clusterCount,".png");
+    imwrite(cn,pMouseInfo->graph);
+    imshow("Clusters",pMouseInfo->graph);
+    
+    if(bSaveState)
+    {
+        // Show graph and start defining background
+        setMouseCallback("Clusters", onMouse, (void*) pMouseInfo);
+        
+        // Wait until the user is done defining the background classses
+        int retKey;
+        while(true)
+        {
+            retKey = waitKey(33);
+            if( retKey == 'q' || retKey == 'Q' || retKey == 27)
+                break;
+        }
+        
+        saveCompletedClasses(pMouseInfo->completedClasses, dataDir+"completedClasses."+ss.str()+".bin");
+    }
+    
+    // Reload graph (clusters image) to erase red circles and remove completed background classes
+    pMouseInfo->graph=imread(cn);
+    loadCompletedClasses(pMouseInfo->completedClasses, dataDir+"completedClasses."+ss.str()+".bin");
+    channels=pMouseInfo->graph.channels();
+    for(int i=0;i<pMouseInfo->labels.rows;i++)
+    {
+        for(set<int>::iterator it=pMouseInfo->completedClasses.begin();it!=pMouseInfo->completedClasses.end();)
+        {
+            if(pMouseInfo->labels.at<int>(i)==*it)
+            {
+                pMouseInfo->graph.data[i*channels] = 0;
+                pMouseInfo->graph.data[i*channels + 1] = 0;
+                pMouseInfo->graph.data[i*channels + 2] = 0;
+            }
+            ++it;
+        }
+    }
+    
+    // Show final result after background removed
+    imwrite(cn,pMouseInfo->graph);
+    imshow("Desired Clusters", pMouseInfo->graph);
+    waitKey();
+    
+    // Convert to grayscale
+    Mat grayScale,mask;
+    mask.create(image.rows,image.cols,CV_8UC1);
+    cvtColor(pMouseInfo->graph, mask, CV_BGR2GRAY);
+    imshow("Gray Scale",mask);
+    waitKey();
+    
+    // Do opening to get rid of speckles
+    erode(mask,mask,Mat());
+    Mat dilateElement(5,5,CV_8UC1);
+    dilateElement=Scalar(255,255,255);
+    dilate(mask,mask,Mat());
+    imshow("Gray Scale",mask);
+    waitKey();
+    
+    // Do binary threshold
+    threshold(mask, mask, 0, 255, THRESH_BINARY);
+    imshow("Mask", mask);
+    waitKey();
+    
+    // Convert float element to uchar
+    sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"Binary",clusterCount,".png");
+    imwrite(cn,mask);
+    return 0;
+}
+
+int kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, int maxClusters, int& clusterCount)
+{
+    cout<<"dataDir: "<<dataDir<<endl;
+    cout<<"filename: "<<fileName<<endl;
+    
     MOUSEINFO mouseInfo,*pMouseInfo;
     pMouseInfo=&mouseInfo;
     Mat points,centers,grayScale,mask;
@@ -41,8 +205,14 @@ void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, in
     ss<<clusterCount;
     TermCriteria termCrit=TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0);
     kmeans(points, clusterCount, pMouseInfo->labels, termCrit, 3, KMEANS_USE_INITIAL_LABELS|KMEANS_PP_CENTERS, centers);
+    for(int i=0; i<pMouseInfo->labels.total(); i++)
+    {
+        cout<<"Label class: "<<pMouseInfo->labels.at<int>(i)<<endl;
+    }
     for(int i=0;i<centers.rows;i++)
         printf("After Center(%d): (%0.2f,%0.2f,%0.2f)\n",i,centers.at<float>(i,0),centers.at<float>(i,1),centers.at<float>(i,3));
+    if(bSaveState)
+        saveMat(centers, dataDir+"centers."+ss.str()+".bin");
     
     // Display data clusters
     cout<<"Create graph cluster"<<endl;
@@ -117,6 +287,7 @@ void kMeansCustom(bool bSaveState, std::string dataDir, std::string fileName, in
     // Convert float element to uchar
     sprintf(cn,"%s%s%s%d%s",dataDir.c_str(),fileName.c_str(),"Binary",clusterCount,".png");
     imwrite(cn,mask);
+    return 0;
 }
 
 static void onMouse( int event, int x, int y, int /*flags*/, void* ptr )

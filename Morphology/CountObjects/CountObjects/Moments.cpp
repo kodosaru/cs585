@@ -14,10 +14,6 @@
 using namespace cv;
 using namespace std;
 
-#define POW1(val) (val)
-#define POW2(val) (val * val)
-#define POW3(val) (val * val * val)
-
 // Orientaton Angle
 Mat* orientation(vector<PIXEL> v)
 {

@@ -1,0 +1,70 @@
+Idea 1: (32/32)
+  Description of idea: (8/8)
+  Definition of success: (4/4)
+  Source of data: (4/4)
+  Sub-problem 1: (4/4)
+  Sub-problem 2: (4/4)
+  Difficulty 1: (4/4)
+  Difficulty 2: (4/4)
+
+Idea 2: (17/32)
+  Description of idea: (4/8) I am really confused by what you are proposing. Your title is "tracking and classifying tropical fish", but then you go on to talk about the motion of the fins. The idea is very unfocused.
+  Definition of success: (1/4) You discuss three different tasks (I think) but you don't articulate what it would mean to perform them successfully. For example, what would it mean to "correctly" analyze the motion of the fins? Do you have ground truth? Human annotations?
+  Source of data: (0/4) You do not discuss how you would collect or obtain data to develop these ideas
+  Sub-problem 1: (4/4) Assuming you are talking about tracking the fish, you mention finding when the fish is swimming perpendicular to the camera
+  Sub-problem 2: (4/4) You also talk about how swimming patterns could be distinctive for different types of fish
+  Difficulty 1: (4/4) You mention "as long as you could extract good images", which is a very real difficulty you would encounter
+  Difficulty 2: (0/4) I don't see a second source of difficulty identified, which is made more difficult to parse by the unfocused problem statement.
+
+
+Idea 3: (24/32)
+  Description of idea: (8/8)
+  Definition of success: (4/4) 
+  Source of data: (0/4) You do not identify a source of data that you might use to develop this idea. There exist many driver and traffic image databases.
+  Sub-problem 1: (4/4)
+  Sub-problem 2: (4/4)
+  Difficulty 1: (4/4)  You talked about camera position
+  Difficulty 2: (0/4) I do not see a second source of difficulty identified. Clothes? Suits with diagonal lines masquerading as seatbelts?
+
+Completed student feedback: (/4)
+
+Total: 78
+
+        
+Specific task identified: (10/10)
+Definition of success: (10/10)
+Source of data: (5/5)
+Prior knowledge and assumptions: (0/10)
+Specific, measurable sub-tasks: (10/20)
+Potential technical approaches: (20/20)
+Discussion of current status: (10/20)
+Feedback for other students: (10/5)
+
+I think what you are trying to do is really tough. That said, I think you might benefit from a more systematic approach. You're kind of crashing around making plans for steps 3 and 4 when you are still stuck on step 1. 
+
+After spending all this time looking at your images, I recommend that you make a thorough accounting of what types of characteristics you see and don't see.  Clarify your assumptions, take stock of what you observe, figure out what you can control or not. You will have a lot of trouble getting algorithms to work if your data and your assumptions and your algorithms are not well-matched.
+
+Ex: sometimes the edges of objects are clearly defined because of shadows, but sometimes they blend together because you are looking at gray, stainless steel objects on top of gray, stainless steel trays. I suspect you will continue to have problems with this edge-based approach because of the mismatch with your data. Maybe you are having trouble with edges because edges are not the right feature, or you need edges in some different feature space, or you need to downsample the images, or whatever. 
+
+You talk about creating a machine-learning classifier, but I don't know what features you intend to use or what your classes will even be, since it seems like you are having trouble tokenizing your images, so how are you ever going to classify them?
+
+You said that you can't necessarily make the pieces be on a white tray vs a steel tray, but can you control the light or the camera? Can you modify your input in some way to get you closer to what you need? Can you use video of the objects with a moving light to get more edges? 
+
+Remembering what Danna said, I did a quick search for "Shape from Focus." Does this help at all? 
+http://www1.cs.columbia.edu/CAVE/publications/pdfs/Sundaram_CVPR97.pdf 
+http://www1.cs.columbia.edu/CAVE/projects/shape_focus/shape_focus.php
+
+Can you take a video while you wave some pattern above the pieces to get some texture going? Look into "structured light" maybe, which is what the Kinect uses.
+
+
+Just do anything to change your problem from the one you are currently doing, because clearly you are having problems with what you are currently doing.
+My motto for life seems to apply: 
+If, at first, you don't succeed, redefine success!
+
+I know all of this stuff about your project and your input because we talked about it, but to be fair to the other students, for the final grading, the information needs to be in your report, and not just in a conversation between us. You will not be required to distribute your final report for peer review if there are details you wish to keep confidential.
+
+Please submit all of your files to project-2 for my book-keeping. 
+
+Total: 80
+
+                        

@@ -73,7 +73,16 @@ int main(int argc, const char * argv[])
     
     // Perform k-means classfication
     int clusterCount=0;
-    kMeansCustom(bSaveState, outputDataDir, outputFileName, maxClusters, clusterCount);
+    if(bSaveState)
+    {
+        if(kMeansCustom(bSaveState, outputDataDir, outputFileName, maxClusters, clusterCount))
+            return 1;
+    }
+    else
+    {
+        if(useSavedCentersAndClasses(bSaveState, outputDataDir, outputFileName, maxClusters, maxClusters))
+            return 1;
+    }
 
     // Set up flood fill segmentation
     char cn[256];
