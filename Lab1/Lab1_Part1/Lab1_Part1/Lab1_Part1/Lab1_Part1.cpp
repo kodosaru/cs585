@@ -9,7 +9,6 @@
 // Copyright 2014 Diane H. Theriault
 //
 //
-#include "stdafx.h"
 #include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -32,6 +31,7 @@ void getChannel(Mat& image, Mat& channel, int channelIndex);
 
 int main(int argc, char* argv[])
 {
+    string dataDir="/Users/donj/workspace/cs585/Lab1/Data/";
     //Tip : Avoid hard-coding pathnames by using command-line arguments instead
     //First check that a command-line argument has been given
     if (argc < 2)
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
     // populated by the operating system
     // Arguments provided by the user start in argv[1]
     Mat image;
-    image = imread(argv[1]); 
+    image = imread(dataDir+argv[1]);
 
     //the empty() method of the Mat class determines if the class has been successfully 
     //initialized

@@ -8,7 +8,6 @@
 // Copyright 2014 Diane H. Theriault
 //
 
-#include "stdafx.h"
 #include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -20,6 +19,7 @@ using namespace cv;
 // the main() function is the entry point for all C++ programs
 int main(int argc, char* argv[])
 {
+    string dataDir="/Users/donj/workspace/cs585/Lab1/Data/";
     //cout is the command to print things to the command line in C++
     //endl inserts an end of line character / line break
     cout<<"Hello CS585!"<<endl;
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     Mat image;
 
     //imread is the OpenCV function for reading images from a file
-    image = imread("HelloCS585.jpg"); 
+    image = imread(dataDir+"HelloCS585.jpg");
 
     //namedWindow is the OpenCV function for creating a new window
     namedWindow( "Image View", 1 );
