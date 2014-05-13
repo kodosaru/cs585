@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Assignment3/Assignment3.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Assignment3_Part3/Assignment3_Part3.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Assignment3_Part2/Assignment3_Part2.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Assignment3_Part1/Assignment3_Part1.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Lab3_Part3/Lab3_Part3.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Lab3_Part2/Lab3_Part2.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Lab3_Part1/Lab3_Part1.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Lab3_Part0/Lab3_Part0.xcodeproj">
+   </FileRef>
+</Workspace>
