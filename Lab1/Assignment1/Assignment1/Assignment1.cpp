@@ -4,7 +4,6 @@
 // In this lab, you will practice manipulating images by computing 
 // a mask by thresholding the red channel of an input image
 
-#include "stdafx.h"
 #include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -110,6 +109,8 @@ void thresholdRedGreenRatio(Mat& image, Mat& mask)
 
 int main(int argc, char* argv[])
 {
+    string dataDir="/Users/donj/workspace/cs585/Lab1/Data/";
+
     if (argc < 3)
     {
         cout<<"Usage: Assignment1 imageName redThreshold"<<endl;
@@ -117,7 +118,7 @@ int main(int argc, char* argv[])
 
     // Read in the image whose filename is given on the command line
     Mat image;
-    image = imread(argv[1]); 
+    image = imread(dataDir+argv[1]);
 
     // Construct an extra image containing only one channel
     Mat redThreshold(image.rows, image.cols, CV_8UC1);
@@ -135,8 +136,8 @@ int main(int argc, char* argv[])
     //
     //
     // You must define this function to perform the thresholding operation and define the mask
-    thresholdChannel(image, redThreshold, 2, threshold);
-    //thresholdRedGreenRatio(image, redThreshold);
+    //thresholdChannel(image, redThreshold, 2, threshold);
+    thresholdRedGreenRatio(image, redThreshold);
     //
     //
     //

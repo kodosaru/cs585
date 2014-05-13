@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 
     // Re-initialize the image data, tint the image green, display the image, and 
     // write out the resulting image
-    image = imread(argv[1]); 
+    image = imread(dataDir+argv[1]);
     tintImage_RowPtr(image, 1);
     imshow("Image View", image);
     imwrite("tintedGreen.jpg", image);
@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
 
     // Re-initialize the image data, tint the image red, display the image, and 
     // write out the resulting image
-    image = imread(argv[1]); 
+    image = imread(dataDir+argv[1]);
     tintImage_RowPtr(image, 2);
     imshow("Image View", image);
     imwrite("tintedRed.jpg", image);
@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
     // Re-initialize the image data, extract the blue channel, display the image, 
     // and write out the resulting image    
     namedWindow( "Channel View", 1 );
-    image = imread(argv[1]); 
+    image = imread(dataDir+argv[1]); 
 
     //Mat objects can be constructed by specifying a size (rows and columns), as well as a type.
     // CV_8UC1 means 8 bit, unsigned, 1 channel
@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
 
     // Re-initialize the image data, extract the green channel, display the image, 
     // and write out the resulting image    
-    image = imread(argv[1]); 
+    image = imread(dataDir+argv[1]);
     Mat greenChannel(image.rows, image.cols, CV_8UC1);
     getChannel(image, greenChannel, 1);
     imshow("Image View", image);
@@ -109,7 +109,7 @@ int main(int argc, char* argv[])
     waitKey(0);
 
     // Re-initialize the image data, extract the red channel, display the image, and write out the resulting image    
-    image = imread(argv[1]); 
+    image = imread(dataDir+argv[1]);
     Mat redChannel(image.rows, image.cols, CV_8UC1);
     getChannel(image, redChannel, 2);
     imshow("Image View", image);

@@ -13,13 +13,12 @@
 //
 // Copyright 2014 Diane H. Theriault
 //
-#include "stdafx.h"
 #include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-#include "CStopWatch.h"
+//#include "CStopWatch.h"
 
 using namespace std;
 using namespace cv;
@@ -32,6 +31,8 @@ void addOne_RowPtr(Mat& image);
 
 int main(int argc, char* argv[])
 {
+    string dataDir="/Users/donj/workspace/cs585/Lab1/Data/";
+    
     if (argc < 2)
     {
         cout<<"Usage: Lab1 imageName"<<endl;
@@ -39,15 +40,17 @@ int main(int argc, char* argv[])
     }
 
     Mat image;
-    image = imread(argv[1]); 
+    image = imread(dataDir+argv[1]);
 
     namedWindow( "Image View", 1 );
     imshow("Image View", image);
 
 
-    CStopWatch timer;
-    image = imread(argv[1]); 
-    timer.startTimer();
+    //CStopWatch timer;
+    image = imread(dataDir+argv[1]);
+    //timer.startTimer();
+    clock_t startTime = clock();
+    
     for(int i=0; i<255; i++)
     {
         addOne_LinearIndex_v1(image);
@@ -58,11 +61,14 @@ int main(int argc, char* argv[])
             break;
         }        
     }
-    timer.stopTimer();
-    double linearIndex_v1_Time = timer.getElapsedTime();
+    //timer.stopTimer();
+    //double linearIndex_v1_Time = timer.getElapsedTime();
+    cout << "addOne_LinearIndex_v1 " << double( clock() - startTime ) / (double)CLOCKS_PER_SEC<< " seconds." << endl;
 
-    image = imread(argv[1]); 
-    timer.startTimer();
+    image = imread(dataDir+argv[1]);
+    //timer.startTimer();
+    startTime = clock();
+
     for(int i=0; i<255; i++)
     {
         addOne_LinearIndex_v2(image);
@@ -73,11 +79,13 @@ int main(int argc, char* argv[])
             break;
         }        
     }
-    timer.stopTimer();
-    double linearIndex_v2_Time = timer.getElapsedTime();
+    //timer.stopTimer();
+    //double linearIndex_v2_Time = timer.getElapsedTime();
+    cout << "addOne_LinearIndex_v2 " << double( clock() - startTime ) / (double)CLOCKS_PER_SEC<< " seconds." << endl;
 
-    image = imread(argv[1]); 
-    timer.startTimer();
+    startTime = clock();
+    image = imread(dataDir+argv[1]);
+    //timer.startTimer();
     for(int i=0; i<255; i++)
     {
         addOne_LinearIndex_v3(image);
@@ -88,11 +96,14 @@ int main(int argc, char* argv[])
             break;
         }        
     }
-    timer.stopTimer();
-    double linearIndex_v3_Time = timer.getElapsedTime();
+    //timer.stopTimer();
+    //double linearIndex_v3_Time = timer.getElapsedTime();
+    cout << "addOne_LinearIndex_v3 " << double( clock() - startTime ) / (double)CLOCKS_PER_SEC<< " seconds." << endl;
 
-    image = imread(argv[1]); 
-    timer.startTimer();
+    image = imread(dataDir+argv[1]);
+    //timer.startTimer();
+    startTime = clock();
+
     for(int i=0; i<255; i++)
     {
         addOne_RowPtr(image);
@@ -103,8 +114,9 @@ int main(int argc, char* argv[])
             break;
         }        
     }
-    timer.stopTimer();
-    double rowPtr_Time = timer.getElapsedTime();
+    //timer.stopTimer();
+    //    double rowPtr_Time = timer.getElapsedTime();
+    cout << "addOne_RowPtr " << double( clock() - startTime ) / (double)CLOCKS_PER_SEC<< " seconds." << endl;
 
     return 0;
 }
@@ -120,6 +132,7 @@ void addOne_LinearIndex_v1(Mat& image)
 
     for(int row=0; row<image.rows; row++)
     {
+        //cout << "Row: "<<row<<endl;
         for(int col=0; col<image.cols; col++)
         {
             for(int channel=0; channel<image.channels(); channel++)

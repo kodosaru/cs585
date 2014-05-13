@@ -1,0 +1,33 @@
+Lab1
+
+Lab1_Part0
+// This program reads an image from a file, then displays the image.
+// The program waits for the user to press a key to end the program, 
+// prints the key that was pressed, then exits.
+
+Lab1_Part1
+// This program reads an image from a file, then displays the image.
+// The image is then displayed as tinted with Blue, Green, and Red.
+// We will demonstrate two ways performing this operation.
+// Then, the program displays the Blue, Green, and Red channels of the image
+
+Lab1_Part2
+// Efficiency Considerations and Overflow
+//
+// This program reads an image from a file, and then performs a loop where 
+// it adds one to every element of the image and displays the image.
+//
+// Adding one to every element of the image is done in four different ways. 
+// The code is instrumented with timers to demonstrate the dramatic difference 
+// in efficiency between these logically equivalent functions.
+//
+// We also explore the idea of overflow and what happens when you attempt to set 
+// elements of the image to values outside of the range of [0 255]
+
+Assignemen1
+// Color-based thresholding
+//
+// In this lab, you will practice manipulating images by computing 
+// a mask by thresholding the red channel of an input image
+
+
