@@ -1,5 +1,5 @@
 //CS585 HW7
-//For this homework, we will try our hand at using template tracking
+qg
 
 #include <opencv2/video/tracking.hpp>
 #include <opencv2/imgproc/imgproc.hpp>

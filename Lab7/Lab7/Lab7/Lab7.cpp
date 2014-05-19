@@ -46,7 +46,7 @@ int main( int argc, char** argv )
     Size subPixWinSize(10,10), winSize(31,31);
 
     const int MAX_COUNT = 500;
-    bool needToInit = false;
+    bool needToInit = true;
     bool nightMode = false;
 
     if( argc == 1 || (argc == 2 && strlen(argv[1]) == 1 && isdigit(argv[1][0])))
