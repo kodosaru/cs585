@@ -15,13 +15,18 @@
 
 class Tracking
 {
-    float offset;
-    int radius;
-    cv::Point circleCenter;
-    int fps;
+    private:
+        int frameNo;
+        int fps;
+        float offset;
+        cv::Point circleCenter;
+        float radius;
+
     public:
-        void set(float offset, int radius, cv::Point circleCenter);
+        void setCircle(cv::Point circleCenter, float radius);
+        void setFrame(int fps, int frameNo);
         std::string map2json (const std::map<std::string, std::string>& map);
-    float vidOffset(int fps, );
+        Tracking();
+        Tracking(int fps, int frameNo);
 };
 #endif /* defined(__Prototype__Tracking__) */

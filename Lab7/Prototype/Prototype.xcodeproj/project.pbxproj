@@ -64,7 +64,6 @@
 		72FD72C5192A68CA00A55B87 /* libopencv_videostab.2.4.7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FD728E192A68CA00A55B87 /* libopencv_videostab.2.4.7.dylib */; };
 		72FD72C6192A68CA00A55B87 /* libopencv_videostab.2.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FD728F192A68CA00A55B87 /* libopencv_videostab.2.4.dylib */; };
 		72FD72C7192A68CA00A55B87 /* libopencv_videostab.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FD7290192A68CA00A55B87 /* libopencv_videostab.dylib */; };
-		72FD72CB192AEE1200A55B87 /* extra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72FD72C9192AEE1200A55B87 /* extra.cpp */; };
 		72FD72E7192B0E2000A55B87 /* libboost_atomic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FD72CC192B0E2000A55B87 /* libboost_atomic.dylib */; };
 		72FD72E8192B0E2000A55B87 /* libboost_chrono.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FD72CD192B0E2000A55B87 /* libboost_chrono.dylib */; };
 		72FD72E9192B0E2000A55B87 /* libboost_context.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FD72CE192B0E2000A55B87 /* libboost_context.dylib */; };
@@ -167,8 +166,6 @@
 		72FD728E192A68CA00A55B87 /* libopencv_videostab.2.4.7.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.7.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_videostab.2.4.7.dylib; sourceTree = "<absolute>"; };
 		72FD728F192A68CA00A55B87 /* libopencv_videostab.2.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_videostab.2.4.dylib; sourceTree = "<absolute>"; };
 		72FD7290192A68CA00A55B87 /* libopencv_videostab.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.dylib; path = /usr/local/Cellar/opencv/2.4.7.1/lib/libopencv_videostab.dylib; sourceTree = "<absolute>"; };
-		72FD72C9192AEE1200A55B87 /* extra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extra.cpp; sourceTree = "<group>"; };
-		72FD72CA192AEE1200A55B87 /* extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extra.h; sourceTree = "<group>"; };
 		72FD72CC192B0E2000A55B87 /* libboost_atomic.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_atomic.dylib; path = /usr/local/packages/boost_1_53_0/lib/libboost_atomic.dylib; sourceTree = "<absolute>"; };
 		72FD72CD192B0E2000A55B87 /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = /usr/local/packages/boost_1_53_0/lib/libboost_chrono.dylib; sourceTree = "<absolute>"; };
 		72FD72CE192B0E2000A55B87 /* libboost_context.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_context.dylib; path = /usr/local/packages/boost_1_53_0/lib/libboost_context.dylib; sourceTree = "<absolute>"; };
@@ -316,8 +313,6 @@
 			children = (
 				7275D8B4192A61040059BDE1 /* main.cpp */,
 				7275D8B6192A61040059BDE1 /* Prototype.1 */,
-				72FD72C9192AEE1200A55B87 /* extra.cpp */,
-				72FD72CA192AEE1200A55B87 /* extra.h */,
 				72FD7306192B106C00A55B87 /* Tracking.cpp */,
 				72FD7307192B106C00A55B87 /* Tracking.hpp */,
 			);
@@ -471,7 +466,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72FD72CB192AEE1200A55B87 /* extra.cpp in Sources */,
 				72FD7308192B106C00A55B87 /* Tracking.cpp in Sources */,
 				7275D8B5192A61040059BDE1 /* main.cpp in Sources */,
 			);
