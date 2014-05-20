@@ -6,6 +6,12 @@
          contextName = "main:main.cpp">
          <PersistentStrings>
             <PersistentString
+               value = "keypoints">
+            </PersistentString>
+            <PersistentString
+               value = "img_keypoints">
+            </PersistentString>
+            <PersistentString
                value = "argv[1]">
             </PersistentString>
             <PersistentString
